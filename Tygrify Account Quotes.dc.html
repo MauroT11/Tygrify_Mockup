@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Public+Sans:ital,wght@0,300..800;1,400&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#0D0D0D;-webkit-font-smoothing:antialiased}
+body{font-family:'Public Sans',system-ui,sans-serif;color:#FFFFFF}
+*{box-sizing:border-box}
+a{color:#FFFFFF;text-decoration:none}
+a:hover{color:#F24405}
+input,button{font-family:'Public Sans',system-ui,sans-serif}
+</style>
+</helmet>
+
+<div style="background:#0D0D0D;min-height:100vh;overflow-x:hidden;display:flex;flex-direction:column">
+
+  <header style="position:sticky;top:0;z-index:40;background:rgba(13,13,13,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(185,186,184,.16)">
+    <div style="max-width:1000px;margin:0 auto;padding:13px 20px;display:flex;align-items:center;gap:14px">
+      <a href="./Tygrify Homepage.dc.html" style="display:flex;align-items:baseline;gap:8px;flex:none">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.06em;line-height:1">TYGRIFY</span>
+        <span style="width:7px;height:7px;background:#F24405;border-radius:50%;display:block"></span>
+      </a>
+      <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B9BAB8;border:1px solid rgba(185,186,184,.3);border-radius:999px;padding:3px 8px;flex:none;white-space:nowrap">My garage</span>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:14px;flex:none">
+        <a href="./Tygrify Homepage.dc.html" style="display:{{ siteLinkDisplay }};font-size:13.5px;color:#B9BAB8">Back to site</a>
+        <a href="./Tygrify Sign In.dc.html" style="font-size:13.5px;color:#B9BAB8">Sign out</a>
+      </div>
+      <button type="button" onClick="{{ toggleNavMenu }}" aria-label="Open menu" style="display:{{ navBurgerDisplay }};background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <span style="display:block;width:17px;height:1.5px;background:#fff;box-shadow:0 -5px 0 #fff,0 5px 0 #fff"></span>
+      </button>
+    </div>
+    <nav style="display:{{ tabsDisplay }};border-top:1px solid rgba(185,186,184,.12);overflow-x:auto">
+      <div style="max-width:1000px;margin:0 auto;padding:0 20px;display:flex;gap:22px;font-size:13.5px;white-space:nowrap">
+        <a href="./Tygrify Account.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Home</a>
+        <a href="./Tygrify Account Vehicles.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Vehicles</a>
+        <a href="./Tygrify Account Quotes.dc.html" style="color:#fff;padding:12px 0;border-bottom:2px solid #F24405">Quotes</a>
+        <a href="./Tygrify Account Repairs.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Repairs</a>
+        <a href="./Tygrify Account Profile.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Profile</a>
+      </div>
+    </nav>
+  </header>
+
+  <div onClick="{{ closeNavMenu }}" style="display:{{ navMenuDisplay }};position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.62)"></div>
+  <aside style="display:{{ navMenuDisplay }};position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(86vw,320px);background:#0A0A0A;border-left:1px solid rgba(185,186,184,.18);flex-direction:column;overflow-y:auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px;border-bottom:1px solid rgba(185,186,184,.16)">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em;line-height:1">MY GARAGE</span>
+      <button type="button" onClick="{{ closeNavMenu }}" aria-label="Close menu" style="background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+    <nav style="display:flex;flex-direction:column;padding:6px 20px 10px">
+      <a href="./Tygrify Account.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Home</a>
+      <a href="./Tygrify Account Vehicles.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Vehicles</a>
+      <a href="./Tygrify Account Quotes.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1);color:#F24405">Quotes &amp; estimates</a>
+      <a href="./Tygrify Account Repairs.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Repairs</a>
+      <a href="./Tygrify Account Profile.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Profile</a>
+    </nav>
+    <div style="margin-top:auto;padding:16px 20px 24px;display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(185,186,184,.16);font-size:14px">
+      <a href="./Tygrify Get a Quote.dc.html" style="background:#F24405;color:#fff;text-align:center;padding:15px;border-radius:2px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.04em;font-size:13px">Get a quote</a>
+      <a href="./Tygrify Homepage.dc.html" style="color:#B9BAB8">Back to site</a>
+      <a href="./Tygrify Sign In.dc.html" style="color:#B9BAB8">Sign out</a>
+    </div>
+  </aside>
+
+  <main style="flex:1;max-width:1000px;width:100%;margin:0 auto;padding:clamp(26px,4vw,44px) 20px clamp(48px,7vw,72px)">
+
+    <p style="margin:0 0 10px;font-size:12.5px;color:#595959"><a href="./Tygrify Account.dc.html" style="color:#595959">My garage</a> / Quotes</p>
+    <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(34px,6vw,58px);letter-spacing:.02em;line-height:1">Quotes &amp; estimates</h1>
+    <p style="margin:12px 0 0;font-size:clamp(15px,2.2vw,17px);line-height:1.6;color:#B9BAB8;max-width:58ch">{{ headline }}</p>
+
+    <div style="margin-top:clamp(22px,3.2vw,30px);display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
+        <button type="button" onClick="{{ f.pick }}" style="background:{{ f.bg }};border:1px solid {{ f.border }};color:{{ f.color }};border-radius:999px;padding:9px 15px;font-size:13px;cursor:pointer;white-space:nowrap">{{ f.label }}</button>
+      </sc-for>
+    </div>
+
+    <section style="margin-top:clamp(18px,2.6vw,24px);display:flex;flex-direction:column;gap:clamp(12px,1.8vw,16px)">
+      <sc-for list="{{ quotes }}" as="q" hint-placeholder-count="4">
+        <div style="border:1px solid {{ q.border }};background:{{ q.bg }};padding:clamp(18px,2.6vw,24px);display:flex;flex-direction:column;gap:16px">
+          <div style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap">
+            <div style="flex:1;min-width:200px">
+              <p style="margin:0 0 6px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#595959">{{ q.ref }}</p>
+              <p style="margin:0;font-size:19px;font-weight:600;line-height:1.35">{{ q.title }}</p>
+              <p style="margin:6px 0 0;font-size:13.5px;color:#B9BAB8">{{ q.vehicle }}</p>
+            </div>
+            <div style="flex:none;text-align:{{ priceAlign }}">
+              <p style="margin:0;font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,5vw,40px);line-height:.95;letter-spacing:.01em">{{ q.price }}</p>
+              <p style="margin:5px 0 0;font-size:12.5px;color:#595959">{{ q.priceNote }}</p>
+            </div>
+          </div>
+          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;border-top:1px solid rgba(185,186,184,.12);padding-top:14px">
+            <span style="font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;border:1px solid {{ q.chipBorder }};color:{{ q.chipColor }};border-radius:999px;padding:5px 10px;flex:none;white-space:nowrap">{{ q.status }}</span>
+            <span style="font-size:13.5px;color:#B9BAB8;flex:1;min-width:160px">{{ q.timing }}</span>
+            <a href="./Tygrify Account Quote.dc.html" style="flex:none;font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;color:{{ q.linkColor }}">{{ q.linkLabel }}</a>
+          </div>
+        </div>
+      </sc-for>
+    </section>
+
+    <p style="display:{{ emptyDisplay }};margin:clamp(18px,2.6vw,24px) 0 0;border:1px solid rgba(185,186,184,.16);background:#111;padding:24px;font-size:15px;line-height:1.65;color:#B9BAB8">Nothing in this list. Try another filter, or send photos of what needs doing and Jay will price it.</p>
+
+    <section style="margin-top:clamp(30px,4.4vw,44px);display:grid;gap:clamp(14px,2vw,18px);grid-template-columns:{{ twoColumns }}">
+      <div style="border:1px solid rgba(185,186,184,.16);background:#111;padding:22px">
+        <p style="margin:0 0 12px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">How estimates work here</p>
+        <p style="margin:0;font-size:14.5px;line-height:1.7;color:#B9BAB8">A range means the job depends on what we find once the panel is off or on the ramp - Jay confirms the final figure before any work starts. A single price is fixed unless you change the job.</p>
+      </div>
+      <div style="border:1px solid rgba(185,186,184,.16);background:#111;padding:22px">
+        <p style="margin:0 0 12px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#595959">Need another price?</p>
+        <p style="margin:0 0 18px;font-size:14.5px;line-height:1.65;color:#B9BAB8">Photos and a couple of details are enough. Most quotes come back the same day.</p>
+        <a href="./Tygrify Get a Quote.dc.html" style="display:inline-block;background:#F24405;color:#fff;padding:14px 20px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">Get a quote</a>
+      </div>
+    </section>
+
+  </main>
+
+  <footer style="border-top:1px solid rgba(185,186,184,.16);background:#0A0A0A">
+    <div style="max-width:1000px;margin:0 auto;padding:44px 20px 32px;display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr))">
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Your garage</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px">
+          <a href="./Tygrify Account.dc.html" style="color:#B9BAB8">Overview</a>
+          <a href="./Tygrify Account Vehicles.dc.html" style="color:#B9BAB8">Vehicles</a>
+          <a href="./Tygrify Account Quotes.dc.html" style="color:#B9BAB8">Quotes &amp; estimates</a>
+          <a href="./Tygrify Account Repairs.dc.html" style="color:#B9BAB8">Repair history</a>
+          <a href="./Tygrify Account Profile.dc.html" style="color:#B9BAB8">Profile</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Account</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px">
+          <a href="./Tygrify Account Profile.dc.html" style="color:#B9BAB8">Email &amp; password</a>
+          <a href="./Tygrify Account Profile.dc.html#contact" style="color:#B9BAB8">Contact preferences</a>
+          <a href="#" style="color:#B9BAB8">Download your data</a>
+          <a href="#" style="color:#B9BAB8">Close your account</a>
+          <a href="./Tygrify Sign In.dc.html" style="color:#B9BAB8">Sign out</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Tygrify</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px">
+          <a href="./Tygrify Services.dc.html" style="color:#B9BAB8">Services</a>
+          <a href="./Tygrify Security.dc.html" style="color:#B9BAB8">Security</a>
+          <a href="./Tygrify Gallery.dc.html" style="color:#B9BAB8">Before &amp; after</a>
+          <a href="./Tygrify Reviews.dc.html" style="color:#B9BAB8">Reviews</a>
+          <a href="./Tygrify Contact.dc.html" style="color:#B9BAB8">Contact &amp; find us</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Legal</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px">
+          <a href="#" style="color:#B9BAB8">Terms of service</a>
+          <a href="#" style="color:#B9BAB8">Privacy policy</a>
+          <a href="#" style="color:#B9BAB8">Cookies</a>
+          <a href="#" style="color:#B9BAB8">Repair terms &amp; warranty</a>
+          <a href="#" style="color:#B9BAB8">Complaints</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Need a hand?</p>
+        <p style="margin:0 0 12px;font-size:14px;line-height:1.65;color:#B9BAB8">Call or message Jay directly - quickest way to get an answer on an estimate.</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px">
+          <a href="tel:07722102736" style="color:#fff">07722 102736</a>
+          <a href="mailto:hello@tygrify.co.uk" style="color:#B9BAB8">hello@tygrify.co.uk</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1000px;margin:0 auto;padding:0 20px 32px">
+      <div style="border-top:1px solid rgba(185,186,184,.12);padding-top:18px;margin-bottom:18px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:12.5px;color:#595959">
+        <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap">Client preview</span>
+        <a href="./Tygrify Account.dc.html" style="color:#B9BAB8">Customer account</a>
+        <a href="./Tygrify Admin Home.dc.html" style="color:#B9BAB8">Admin dashboard</a>
+        <a href="./Tygrify Sign In.dc.html" style="color:#B9BAB8">Sign in</a>
+        <a href="./Tygrify Sign Up.dc.html" style="color:#B9BAB8">Create account</a>
+      </div>
+      <div style="border-top:1px solid rgba(185,186,184,.12);padding-top:20px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;font-size:12.5px;color:#595959">
+        <span>&copy; 2026 Tygrify Ltd, 7 Brays Lane, Coventry CV2 4DT. Company 15894572.</span>
+        <a href="./Tygrify Homepage.dc.html" style="color:#595959">Back to the main site</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:1100}}">
+const QUOTES = [
+  {
+    ref: 'TG-2041', title: 'Rear quarter and bumper repair', vehicle: 'Mini Cooper S - RK21 OZP',
+    price: '£420 - £560', priceNote: 'Range, confirmed on the ramp',
+    status: 'Awaiting you', state: 'open', timing: 'Sent 4 September - valid until 18 September',
+    linkLabel: 'Accept or decline'
+  },
+  {
+    ref: 'TG-1926', title: 'Ceramic coating - two stage polish', vehicle: 'Mini Cooper S - RK21 OZP',
+    price: '£540', priceNote: 'Fixed price, paid',
+    status: 'Completed', state: 'done', timing: 'Accepted 12 April - work finished 18 April',
+    linkLabel: 'View quote'
+  },
+  {
+    ref: 'TG-1783', title: 'Alloy wheel refurbishment - four wheels', vehicle: 'Seat Ibiza - KP18 VBN',
+    price: '£360', priceNote: 'Fixed price, paid',
+    status: 'Completed', state: 'done', timing: 'Accepted 2 March - work finished 9 March',
+    linkLabel: 'View quote'
+  },
+  {
+    ref: 'TG-1650', title: 'Front bumper scuff - SMART repair', vehicle: 'Seat Ibiza - KP18 VBN',
+    price: '£180', priceNote: 'Fixed price',
+    status: 'Expired', state: 'expired', timing: 'Sent 12 December 2025 - expired 26 December',
+    linkLabel: 'Ask again'
+  }
+];
+
+const STYLES = {
+  open: { border: 'rgba(242,68,5,.5)', bg: 'linear-gradient(180deg,rgba(242,68,5,.1),rgba(242,68,5,.01))', chip: '#F24405', chipBorder: 'rgba(242,68,5,.5)', link: '#F24405' },
+  done: { border: 'rgba(185,186,184,.16)', bg: '#111', chip: '#B9BAB8', chipBorder: 'rgba(185,186,184,.28)', link: '#B9BAB8' },
+  expired: { border: 'rgba(185,186,184,.16)', bg: '#0F0F0F', chip: '#595959', chipBorder: 'rgba(185,186,184,.22)', link: '#B9BAB8' }
+};
+
+const FILTERS = ['All', 'Awaiting you', 'Completed', 'Expired'];
+
+class Component extends DCLogic {
+  state = { navDrawer: false, navMenu: false, narrow: false, filter: 'All' };
+  componentDidMount() {
+    this._r = () => {
+      const dw = window.innerWidth < 760;
+      const n = window.innerWidth < 700;
+      if (dw !== this.state.navDrawer || n !== this.state.narrow) this.setState({ navDrawer: dw, narrow: n, navMenu: false });
+    };
+    this._r();
+    window.addEventListener('resize', this._r);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+  renderVals() {
+    const st = this.state;
+    const rows = QUOTES.filter(q => st.filter === 'All' || q.status === st.filter);
+    const openCount = QUOTES.filter(q => q.state === 'open').length;
+    return {
+      tabsDisplay: st.navDrawer ? 'none' : 'flex',
+      navBurgerDisplay: st.navDrawer ? 'flex' : 'none',
+      navMenuDisplay: st.navDrawer && st.navMenu ? 'flex' : 'none',
+      toggleNavMenu: () => this.setState(s => ({ navMenu: !s.navMenu })),
+      closeNavMenu: () => this.setState({ navMenu: false }),
+      siteLinkDisplay: st.narrow ? 'none' : 'inline',
+      twoColumns: st.narrow ? '1fr' : 'repeat(2,minmax(0,1fr))',
+      priceAlign: st.narrow ? 'left' : 'right',
+      headline: openCount === 1
+        ? 'One estimate is waiting on a decision from you. Everything Jay has priced for you is kept here.'
+        : 'Everything Jay has priced for you is kept here, open or not.',
+      filters: FILTERS.map(f => {
+        const on = st.filter === f;
+        return {
+          label: f,
+          bg: on ? '#F24405' : 'transparent',
+          border: on ? '#F24405' : 'rgba(185,186,184,.3)',
+          color: on ? '#fff' : '#B9BAB8',
+          pick: () => this.setState({ filter: f })
+        };
+      }),
+      quotes: rows.map(q => {
+        const s = STYLES[q.state];
+        return {
+          ref: q.ref, title: q.title, vehicle: q.vehicle, price: q.price, priceNote: q.priceNote,
+          status: q.status, timing: q.timing, linkLabel: q.linkLabel,
+          border: s.border, bg: s.bg, chipColor: s.chip, chipBorder: s.chipBorder, linkColor: s.link
+        };
+      }),
+      emptyDisplay: rows.length === 0 ? 'block' : 'none'
+    };
+  }
+}
+</script>
+</body>
+</html>

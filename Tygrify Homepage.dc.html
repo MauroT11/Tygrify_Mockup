@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Public+Sans:ital,wght@0,300..800;1,400&amp;display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+html,body{margin:0;padding:0;background:#0D0D0D;-webkit-font-smoothing:antialiased}
+body{font-family:'Public Sans',system-ui,sans-serif;color:#FFFFFF}
+*{box-sizing:border-box}
+a{color:#FFFFFF;text-decoration:none}
+a:hover{color:#F24405}
+@keyframes tgFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+</style>
+</helmet>
+
+<div style="background:#0D0D0D;min-height:100vh;overflow-x:hidden">
+
+  <header style="position:sticky;top:0;z-index:40;background:rgba(13,13,13,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(185,186,184,.16)">
+    <div style="max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:{{ headerGap }}">
+      <a href="./Tygrify Homepage.dc.html" style="display:flex;align-items:baseline;gap:8px;flex:none">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:.06em;line-height:1">TYGRIFY</span>
+        <span style="width:7px;height:7px;background:#F24405;border-radius:50%;display:block"></span>
+      </a>
+      <nav style="display: {{ navDisplay }}; align-items: center; justify-content: center; gap: 26px; margin: 0 auto; font-size: 14px; letter-spacing: .02em; color: #B9BAB8; text-align: left">
+        <a href="./Tygrify Services.dc.html">Services</a>
+        <a href="./Tygrify Security.dc.html">Security</a>
+        <a href="./Tygrify Gallery.dc.html">Gallery</a>
+        <a href="./Tygrify About.dc.html">About</a>
+        <a href="./Tygrify Contact.dc.html">Contact</a>
+        <span style="display:inline-flex;align-items:center;gap:7px;color:#595959">Shop
+          <span style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;border:1px solid #595959;border-radius:999px;padding:2px 6px">Soon</span>
+        </span>
+      </nav>
+      <div style="display:{{ navDisplay }};align-items:center;gap:14px;font-size:14px;flex:none">
+        <a href="./Tygrify Sign In.dc.html" style="color:#B9BAB8">Login</a>
+        <a href="#quote" style="background:#F24405;color:#fff;padding:11px 18px;border-radius:2px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;font-size:12.5px">Get a quote</a>
+      </div>
+      <div style="display:{{ burgerDisplay }};align-items:center;gap:8px;margin-left:auto">
+        <a href="tel:07722102736" aria-label="Call Tygrify" style="display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.4);border-radius:2px;height:44px;width:44px;flex:none">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F24405" stroke-width="2" stroke-linecap="round"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v4a15 15 0 0 1-16-16z"></path></svg>
+        </a>
+        <a href="#quote" style="display:flex;align-items:center;background:#F24405;color:#fff;border-radius:2px;height:44px;padding:0 14px;font-weight:700;font-size:12.5px;text-transform:uppercase;white-space:nowrap;letter-spacing:.04em">Quote</a>
+      </div>
+      <button onClick="{{ toggleMenu }}" style="display:{{ burgerDisplay }};background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:44px;height:44px;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <span style="display:block;width:18px;height:1.5px;background:#fff;box-shadow:0 -6px 0 #fff,0 6px 0 #fff"></span>
+      </button>
+    </div>
+  </header>
+
+  <div onClick="{{ closeMenu }}" style="display:{{ menuDisplay }};position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.62)"></div>
+  <aside style="display:{{ menuDisplay }};position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(86vw,340px);background:#0A0A0A;border-left:1px solid rgba(185,186,184,.18);flex-direction:column;overflow-y:auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px;border-bottom:1px solid rgba(185,186,184,.16)">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.06em;line-height:1">MENU</span>
+      <button type="button" onClick="{{ closeMenu }}" aria-label="Close menu" style="background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"></path></svg>
+      </button>
+    </div>
+    <nav style="display:flex;flex-direction:column;padding:6px 20px 10px">
+      <a href="./Tygrify Homepage.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Home</a>
+      <a href="./Tygrify Services.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Services</a>
+      <a href="./Tygrify Security.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Security</a>
+      <a href="./Tygrify Gallery.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Before &amp; after</a>
+      <a href="./Tygrify Reviews.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Reviews</a>
+      <a href="./Tygrify About.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">About</a>
+      <a href="./Tygrify Contact.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Contact</a>
+      <span style="padding:14px 0;font-size:16px;color:#595959;border-bottom:1px solid rgba(185,186,184,.1)">Shop - coming soon</span>
+      <a href="./Tygrify Account.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1);color:#B9BAB8">My Garage</a>
+      <a href="./Tygrify Sign In.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1);color:#B9BAB8;border-bottom:none">Login</a>
+    </nav>
+    <div style="margin-top:auto;padding:16px 20px 24px;display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(185,186,184,.16)">
+      <a href="#quote" style="background:#F24405;color:#fff;text-align:center;padding:16px;border-radius:2px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.04em;font-size:13px">Get a quote</a>
+      <a href="tel:07722102736" style="text-align:center;padding:15px;border:1px solid rgba(185,186,184,.34);border-radius:2px;font-size:14px;color:#B9BAB8">07722 102736</a>
+    </div>
+  </aside>
+
+
+  <section style="position:relative;min-height:min(86vh,720px);display:flex;align-items:flex-end;overflow:hidden">
+    <div style="position:absolute;inset:0">
+      <image-slot id="tg-hero" shape="rect" src="./assets/hero-bodyshop.jpg" placeholder="Hero photo - car outside the Tygrify workshop, plate covered"></image-slot>
+    </div>
+    <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.75) 0%,rgba(13,13,13,.45) 40%,rgba(13,13,13,.94) 100%);pointer-events:none"></div>
+    <div style="position:relative;width:100%;max-width:1200px;margin:0 auto;padding:120px 20px 56px;pointer-events:none">
+      <p style="margin:0 0 18px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">Bodyshop &amp; vehicle security - Coventry</p>
+      <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(46px,9.5vw,112px);line-height:.92;letter-spacing:.005em;max-width:16ch;text-wrap:balance">Damaged car? Start here.</h1>
+      <p style="margin:22px 0 0;max-width:56ch;font-size:clamp(16px,2.2vw,19px);line-height:1.6;color:#B9BAB8;text-wrap:pretty">Paint and panel repairs, SMART repairs, alloys and vehicle security, done in one workshop on Brays Lane. Send a few photos of the damage and we will come back to you the same day.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;pointer-events:auto">
+        <a href="#quote" style="background:#F24405;color:#fff;padding:17px 30px;border-radius:2px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.05em;font-size:13.5px">Get a quote</a>
+        <a href="./Tygrify Services.dc.html" style="border:1px solid rgba(255,255,255,.5);color:#fff;padding:17px 30px;border-radius:2px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.05em;font-size:13.5px">Our services</a>
+        
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:30px;font-size:15px;pointer-events:auto">
+        <a href="tel:07722102736" style="display:inline-flex;align-items:center;gap:9px;font-weight:600">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F24405" stroke-width="2" stroke-linecap="round"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v4a15 15 0 0 1-16-16z"></path></svg>
+          07722 102736
+        </a>
+        <a href="https://wa.me/447722102736" target="_blank" rel="noreferrer" style="display:inline-flex;align-items:center;gap:9px;color:#B9BAB8">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#B9BAB8" stroke-width="2" stroke-linecap="round"><path d="M21 12a9 9 0 0 1-13.3 7.9L3 21l1.2-4.6A9 9 0 1 1 21 12z"></path></svg>
+          Message us on WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <div style="border-top:1px solid rgba(185,186,184,.16);border-bottom:1px solid rgba(185,186,184,.16);background:#101010">
+    <div style="max-width:1200px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))">
+      <div style="padding:26px 26px 26px 0;border-right:1px solid rgba(185,186,184,.12);text-align:{{ trustAlign }}">
+        <p style="margin:0 0 6px;font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em">Same-day response</p>
+        <p style="margin:0;font-size:14px;color:#595959;line-height:1.5">Quote requests answered the same day, Monday to Saturday.</p>
+      </div>
+      <div style="padding:26px;border-right:1px solid rgba(185,186,184,.12);text-align:{{ trustAlign }}">
+        <p style="margin:0 0 6px;font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em">5 years in the trade</p>
+        <p style="margin:0;font-size:14px;color:#595959;line-height:1.5">Founder-led, built up from mobile repairs. Trading as Tygrify since 2024.</p>
+      </div>
+      <div style="padding:26px;text-align:{{ trustAlign }}">
+        <p style="margin:0 0 6px;font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em">Public liability insured</p>
+        <p style="margin:0;font-size:14px;color:#595959;line-height:1.5">Your car is covered while it is with us at Brays Lane.</p>
+      </div>
+    </div>
+  </div>
+
+  <section id="services" style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,96px) 20px 0">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px">
+      <div>
+        <p style="margin:0 0 12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">What we do</p>
+        <h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(34px,5.5vw,56px);line-height:1;letter-spacing:.01em">Bodywork, paint and security under one roof</h2>
+      </div>
+    </div>
+
+    <div style="display:grid;gap:1px;background:rgba(185,186,184,.16);border:1px solid rgba(185,186,184,.16);margin-top:38px;grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))">
+      <div style="background:#111;padding:30px 26px 28px;display:flex;flex-direction:column;justify-content:space-between">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F24405" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 14l1.8-5.2A3 3 0 0 1 7.6 7h8.8a3 3 0 0 1 2.8 1.8L21 14v4h-3M3 18v-4h18"></path><circle cx="7" cy="18" r="2"></circle><circle cx="17" cy="18" r="2"></circle></svg>
+        <h3 style="margin:18px 0 10px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:27px;letter-spacing:.03em">Body &amp; paint</h3>
+        <p style="margin:0 0 18px;font-size:14.5px;line-height:1.6;color:#B9BAB8">SMART repair (small and medium area repair - a localised repair to the damaged patch only), bumper scuff and crack repair, panel repair and replacement, full and part resprays, colour matching, aluminium bodywork, rust and corrosion repair.</p>
+        <p style="margin:0 0 20px;font-size:13px;color:#595959">From £45 - subject to inspection</p>
+        <a href="./Tygrify Services.dc.html#body" style="align-self:flex-start;font-size:12.5px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.05em;border-bottom:1px solid #F24405;padding-bottom:4px">Body &amp; paint services</a>
+      </div>
+      <div style="background:#111;padding:30px 26px 28px;display:flex;flex-direction:column;justify-content:space-between">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F24405" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="3.2"></circle><path d="M12 3v5.8M12 15.2V21M3 12h5.8M15.2 12H21"></path></svg>
+        <h3 style="margin:18px 0 10px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:27px;letter-spacing:.03em">Cosmetic &amp; aftermarket</h3>
+        <p style="margin:0 0 18px;font-size:14.5px;line-height:1.6;color:#B9BAB8">Alloy wheel refurbishment, paint correction, ceramic coating and paint protection, valeting and detailing, interior and trim repair.</p>
+        <p style="margin:0 0 20px;font-size:13px;color:#595959">Alloys from £50 · interiors from £80 · paint correction from £400</p>
+        <a href="./Tygrify Services.dc.html#cosmetic" style="align-self:flex-start;font-size:12.5px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.05em;border-bottom:1px solid #F24405;padding-bottom:4px">Cosmetic services</a>
+      </div>
+      <div id="security" style="background:#111;padding:30px 26px 28px;display:flex;flex-direction:column;justify-content:space-between;scroll-margin-top:90px">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F24405" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l7 3v5.5c0 4.3-2.9 7.9-7 9.5-4.1-1.6-7-5.2-7-9.5V6z"></path><path d="M9.5 12l1.8 1.9 3.4-3.6"></path></svg>
+        <h3 style="margin:18px 0 10px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:27px;letter-spacing:.03em">Security &amp; customisation</h3>
+        <p style="margin:0 0 18px;font-size:14.5px;line-height:1.6;color:#B9BAB8">Ghost immobilisers, trackers and CAN-BUS security systems, fitted and set up while you wait where the vehicle allows.</p>
+        <p style="margin:0 0 20px;font-size:13px;color:#595959">Trackers from £350 · Ghost immobiliser £500</p>
+        <a href="./Tygrify Security.dc.html" style="align-self:flex-start;font-size:12.5px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.05em;border-bottom:1px solid #F24405;padding-bottom:4px">Security services</a>
+      </div>
+    </div>
+
+    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:22px">
+      <span style="font-size:12.5px;color:#595959;padding:8px 0 8px 0;margin-right:6px">Popular jobs:</span>
+      <a href="./Tygrify Services.dc.html#body" style="font-size:12.5px;color:#B9BAB8;border:1px solid rgba(185,186,184,.24);border-radius:999px;padding:8px 14px">SMART repair - from £50, 24 hours</a>
+      <a href="./Tygrify Services.dc.html#body" style="font-size:12.5px;color:#B9BAB8;border:1px solid rgba(185,186,184,.24);border-radius:999px;padding:8px 14px">Bumper scuffs</a>
+      <a href="./Tygrify Services.dc.html#cosmetic" style="font-size:12.5px;color:#B9BAB8;border:1px solid rgba(185,186,184,.24);border-radius:999px;padding:8px 14px">Alloy refurb - same day to 3 days</a>
+      <a href="./Tygrify Services.dc.html#body" style="font-size:12.5px;color:#B9BAB8;border:1px solid rgba(185,186,184,.24);border-radius:999px;padding:8px 14px">Half respray - 2 to 7 days</a>
+      <a href="./Tygrify Security.dc.html#ghost" style="font-size:12.5px;color:#B9BAB8;border:1px solid rgba(185,186,184,.24);border-radius:999px;padding:8px 14px">Ghost immobiliser</a>
+    </div>
+  </section>
+
+  <section id="quote" style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,96px) 20px 0;scroll-margin-top:80px">
+    <p style="margin:0 0 12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">How it works</p>
+    <h2 style="margin:0 0 40px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(34px,5.5vw,56px);line-height:1;max-width:22ch">Four steps from damage to done</h2>
+    <div style="display:grid;gap:26px;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))">
+      <div style="border-top:2px solid #F24405;padding-top:18px">
+        <p style="margin:0 0 12px;font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;color:#595959">01</p>
+        <h3 style="margin:0 0 8px;font-size:17px;font-weight:700">Show us the damage</h3>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#B9BAB8">Pick your body type, tap the panels that are damaged, and tell us how bad each one is.</p>
+      </div>
+      <div style="border-top:2px solid rgba(185,186,184,.24);padding-top:18px">
+        <p style="margin:0 0 12px;font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;color:#595959">02</p>
+        <h3 style="margin:0 0 8px;font-size:17px;font-weight:700">Add photos and your reg</h3>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#B9BAB8">A couple of clear photos per panel is enough. Add preferred dates if you have them.</p>
+      </div>
+      <div style="border-top:2px solid rgba(185,186,184,.24);padding-top:18px">
+        <p style="margin:0 0 12px;font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;color:#595959">03</p>
+        <h3 style="margin:0 0 8px;font-size:17px;font-weight:700">We quote the same day</h3>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#B9BAB8">A person looks at your photos and replies with a price and a realistic turnaround. Final price is confirmed on inspection.</p>
+      </div>
+      <div style="border-top:2px solid rgba(185,186,184,.24);padding-top:18px">
+        <p style="margin:0 0 12px;font-family:'Bebas Neue',sans-serif;font-size:44px;line-height:1;color:#595959">04</p>
+        <h3 style="margin:0 0 8px;font-size:17px;font-weight:700">Approve and track it</h3>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#B9BAB8">Approve the quote in My Garage and follow the job from received, to in progress, to ready for collection.</p>
+      </div>
+    </div>
+    <div style="margin-top:36px;display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+      <a href="#quote" style="background:#F24405;color:#fff;padding:16px 28px;border-radius:2px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.05em;font-size:13px">Start a quote</a>
+      <span style="font-size:13.5px;color:#595959">Takes about two minutes. No account needed.</span>
+    </div>
+  </section>
+
+  <section id="gallery" style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,96px) 20px 0;scroll-margin-top:80px">
+    <div style="display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:34px">
+      <div>
+        <p style="margin:0 0 12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">Before and after</p>
+        <h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(34px,5.5vw,56px);line-height:1">Drag to see the repair</h2>
+      </div>
+      <a href="./Tygrify Gallery.dc.html" style="font-size:13.5px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.05em;border-bottom:1px solid #F24405;padding-bottom:4px">Full gallery</a>
+    </div>
+    <div style="display:{{ tabsDisplay }};flex-wrap:wrap;gap:8px;margin-bottom:16px">
+      <button onClick="{{ pick0 }}" style="background:{{ tab0Bg }};color:{{ tab0Fg }};border:1px solid {{ tab0Border }};border-radius:999px;padding:10px 16px;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer">Front wing scratch</button>
+      <button onClick="{{ pick1 }}" style="background:{{ tab1Bg }};color:{{ tab1Fg }};border:1px solid {{ tab1Border }};border-radius:999px;padding:10px 16px;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer">Rear bumper impact</button>
+      <button onClick="{{ pick2 }}" style="background:{{ tab2Bg }};color:{{ tab2Fg }};border:1px solid {{ tab2Border }};border-radius:999px;padding:10px 16px;font:inherit;font-size:12.5px;font-weight:600;cursor:pointer">Front bumper &amp; bonnet</button>
+    </div>
+    <div style="display:grid;gap:24px;grid-template-columns:{{ galleryCols }}">
+      <div style="display:{{ card0 }}">
+        <div style="position:relative;width:100%;aspect-ratio:16/9;border:1px solid rgba(185,186,184,.16);overflow:hidden;background:#111;user-select:none">
+          <div style="position:absolute;inset:0">
+            <image-slot id="tg-after" shape="rect" src="./assets/after-wing.jpg" placeholder="AFTER photo - same angle, repaired"></image-slot>
+          </div>
+          <div style="position:absolute;inset:0;overflow:hidden;width:{{ splitPct0 }}">
+            <div style="position:absolute;inset:0;width:{{ frameW0 }}">
+              <image-slot id="tg-before" shape="rect" src="./assets/before-wing.jpg" placeholder="BEFORE photo - damage, plate covered"></image-slot>
+            </div>
+          </div>
+          <div style="position:absolute;top:0;bottom:0;left:{{ splitPct0 }};width:2px;background:#F24405;pointer-events:none">
+            <span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#F24405;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px">↔</span>
+          </div>
+          <span style="position:absolute;top:12px;left:12px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;background:rgba(13,13,13,.72);padding:5px 9px;pointer-events:none">Before</span>
+          <span style="position:absolute;top:12px;right:12px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;background:rgba(13,13,13,.72);padding:5px 9px;pointer-events:none">After</span>
+          <input type="range" min="0" max="100" value="{{ split0 }}" onInput="{{ onSplit0 }}" aria-label="Reveal the repair - Front wing scratch" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;-webkit-appearance:none;appearance:none;background:transparent;margin:0">
+        </div>
+        <p style="margin:12px 0 0;font-size:14px;font-weight:600">Front wing scratch</p>
+      </div>
+      <div style="display:{{ card1 }}">
+        <div style="position:relative;width:100%;aspect-ratio:16/9;border:1px solid rgba(185,186,184,.16);overflow:hidden;background:#111;user-select:none">
+          <div style="position:absolute;inset:0">
+            <image-slot id="tg-after-2" shape="rect" src="./assets/after-rear.jpg" placeholder="AFTER photo - same angle, repaired"></image-slot>
+          </div>
+          <div style="position:absolute;inset:0;overflow:hidden;width:{{ splitPct1 }}">
+            <div style="position:absolute;inset:0;width:{{ frameW1 }}">
+              <image-slot id="tg-before-2" shape="rect" src="./assets/before-rear.jpg" placeholder="BEFORE photo - damage, plate covered"></image-slot>
+            </div>
+          </div>
+          <div style="position:absolute;top:0;bottom:0;left:{{ splitPct1 }};width:2px;background:#F24405;pointer-events:none">
+            <span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#F24405;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px">↔</span>
+          </div>
+          <span style="position:absolute;top:12px;left:12px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;background:rgba(13,13,13,.72);padding:5px 9px;pointer-events:none">Before</span>
+          <span style="position:absolute;top:12px;right:12px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;background:rgba(13,13,13,.72);padding:5px 9px;pointer-events:none">After</span>
+          <input type="range" min="0" max="100" value="{{ split1 }}" onInput="{{ onSplit1 }}" aria-label="Reveal the repair - Rear bumper impact" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;-webkit-appearance:none;appearance:none;background:transparent;margin:0">
+        </div>
+        <p style="margin:12px 0 0;font-size:14px;font-weight:600">Rear bumper impact</p>
+      </div>
+      <div style="display:{{ card2 }}">
+        <div style="position:relative;width:100%;aspect-ratio:16/9;border:1px solid rgba(185,186,184,.16);overflow:hidden;background:#111;user-select:none">
+          <div style="position:absolute;inset:0">
+            <image-slot id="tg-after-3" shape="rect" src="./assets/after-front.jpg" placeholder="AFTER photo - same angle, repaired"></image-slot>
+          </div>
+          <div style="position:absolute;inset:0;overflow:hidden;width:{{ splitPct2 }}">
+            <div style="position:absolute;inset:0;width:{{ frameW2 }}">
+              <image-slot id="tg-before-3" shape="rect" src="./assets/before-front.jpg" placeholder="BEFORE photo - damage, plate covered"></image-slot>
+            </div>
+          </div>
+          <div style="position:absolute;top:0;bottom:0;left:{{ splitPct2 }};width:2px;background:#F24405;pointer-events:none">
+            <span style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;border-radius:50%;background:#F24405;display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px">↔</span>
+          </div>
+          <span style="position:absolute;top:12px;left:12px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;background:rgba(13,13,13,.72);padding:5px 9px;pointer-events:none">Before</span>
+          <span style="position:absolute;top:12px;right:12px;font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;background:rgba(13,13,13,.72);padding:5px 9px;pointer-events:none">After</span>
+          <input type="range" min="0" max="100" value="{{ split2 }}" onInput="{{ onSplit2 }}" aria-label="Reveal the repair - Front bumper &amp; bonnet" style="position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:ew-resize;-webkit-appearance:none;appearance:none;background:transparent;margin:0">
+        </div>
+        <p style="margin:12px 0 0;font-size:14px;font-weight:600">Front bumper &amp; bonnet</p>
+      </div>
+    </div>
+    <p style="margin:14px 0 0;font-size:13px;color:#595959">Example pairing - real before and after photos to come from the workshop. Number plates will be covered with a Tygrify plate.</p>
+  </section>
+
+  <section id="about" style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,96px) 20px 0;scroll-margin-top:80px">
+    <div style="display:grid;gap:clamp(28px,5vw,56px);grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));align-items:center">
+      <div>
+        <p style="margin:0 0 12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">About Tygrify</p>
+        <h2 style="margin:0 0 20px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(34px,5.5vw,52px);line-height:1;max-width:20ch">Started in a van. Same standard, bigger workshop.</h2>
+        <p style="margin:0 0 16px;font-size:16.5px;line-height:1.7;color:#B9BAB8;max-width:52ch">Tygrify grew out of mobile repair work - long days, a lot of miles, and customers who kept coming back. That is still where most of our work comes from today: recommendations.</p>
+        <p style="margin:0 0 26px;font-size:16.5px;line-height:1.7;color:#B9BAB8;max-width:52ch">Now it is a one-stop shop on Brays Lane in Coventry for dealer-quality bodywork, SMART repairs, security systems and customisation.</p>
+        <a href="./Tygrify About.dc.html" style="font-size:13.5px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.05em;border-bottom:1px solid #F24405;padding-bottom:4px">Read the full story</a>
+      </div>
+      <div style="aspect-ratio:4/5;max-height:520px">
+        <image-slot id="tg-about" shape="rect" src="./assets/placeholder-about.png" placeholder="Portrait of the founder, or the unit exterior on Brays Lane"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ showReviews }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,96px) 20px 0">
+      <p style="margin:0 0 12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">Reviews</p>
+      <h2 style="margin:0 0 28px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(34px,5.5vw,56px);line-height:1">What customers say</h2>
+      <div style="display:grid;gap:1px;background:rgba(185,186,184,.16);border:1px solid rgba(185,186,184,.16);grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr))">
+        <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+          <div style="background:#111;padding:28px 26px;display:flex;flex-direction:column;justify-content:space-between;gap:20px">
+            <div>
+              <p style="margin:0 0 14px;font-size:14px;letter-spacing:.3em;color:#F24405">{{ r.stars }}</p>
+              <p style="margin:0;font-size:15.5px;line-height:1.7">{{ r.quote }}</p>
+            </div>
+            <div>
+              <p style="margin:0;font-size:14px;font-weight:600">{{ r.name }}</p>
+              <p style="margin:5px 0 0;font-size:13px;color:#595959">{{ r.job }}</p>
+            </div>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:18px 0 0;font-size:13px;color:#595959">Placeholder wording. These get replaced with real Google reviews before launch.</p>
+    </section>
+  </sc-if>
+
+  <section id="contact" style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,96px) 20px 0;scroll-margin-top:80px">
+    <div style="display:grid;gap:clamp(28px,5vw,48px);grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))">
+      <div>
+        <p style="margin:0 0 12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">Where we work</p>
+        <h2 style="margin:0 0 20px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(34px,5.5vw,52px);line-height:1">Coventry and 20 miles around it</h2>
+        <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:26px">
+          <span style="font-size:13px;color:#0D0D0D;background:#B9BAB8;padding:8px 14px">Coventry</span>
+          <span style="font-size:13px;color:#B9BAB8;border:1px solid rgba(185,186,184,.3);padding:8px 14px">Nuneaton</span>
+          <span style="font-size:13px;color:#B9BAB8;border:1px solid rgba(185,186,184,.3);padding:8px 14px">Warwick</span>
+          <span style="font-size:13px;color:#B9BAB8;border:1px solid rgba(185,186,184,.3);padding:8px 14px">Hinckley</span>
+          <span style="font-size:13px;color:#B9BAB8;border:1px solid rgba(185,186,184,.3);padding:8px 14px">Daventry</span>
+        </div>
+        <div style="display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr));border-top:1px solid rgba(185,186,184,.16);padding-top:24px">
+          <div>
+            <p style="margin:0 0 6px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Workshop</p>
+            <p style="margin:0;font-size:15px;line-height:1.6">7 Brays Lane<br>Coventry CV2 4DT</p>
+          </div>
+          <div>
+            <p style="margin:0 0 6px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Opening hours</p>
+            <p style="margin:0;font-size:15px;line-height:1.6">Mon - Fri 9am - 5pm<br>Sat 10am - 3pm<br>Sun closed</p>
+          </div>
+          <div>
+            <p style="margin:0 0 6px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Get in touch</p>
+            <p style="margin:0;font-size:15px;line-height:1.7"><a href="tel:07722102736">07722 102736</a><br><a href="mailto:thushiharan@tygrify.co.uk" style="color:#B9BAB8">thushiharan@tygrify.co.uk</a></p>
+          </div>
+        </div>
+      </div>
+      <div style="aspect-ratio:3/2;min-width:0;position:relative;border:1px solid rgba(185,186,184,.16)">
+        <image-slot id="tg-map" shape="rect" src="./assets/placeholder-map.png" placeholder="Map embed - 7 Brays Lane, Coventry CV2 4DT"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ showAccreditations }}" hint-placeholder-val="{{ true }}">
+    <section style="max-width:1200px;margin:clamp(56px,8vw,96px) auto 0;padding:0 20px">
+      <div style="border-top:1px solid rgba(185,186,184,.16);padding-top:28px;display:flex;flex-wrap:wrap;align-items:center;gap:18px 30px">
+        <p style="margin:0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959;flex:none">Accreditations</p>
+        <div style="display:flex;flex-wrap:wrap;gap:12px;flex:1 1 320px">
+          <span style="flex:1 1 120px;min-width:120px;height:64px;border:1px dashed rgba(185,186,184,.3);display:flex;align-items:center;justify-content:center;font-size:11px;color:#595959;text-align:center;padding:6px">Logo - awaiting certificate</span>
+          <span style="flex:1 1 120px;min-width:120px;height:64px;border:1px dashed rgba(185,186,184,.3);display:flex;align-items:center;justify-content:center;font-size:11px;color:#595959;text-align:center;padding:6px">Logo - awaiting certificate</span>
+          <span style="flex:1 1 120px;min-width:120px;height:64px;border:1px dashed rgba(185,186,184,.3);display:flex;align-items:center;justify-content:center;font-size:11px;color:#595959;text-align:center;padding:6px">Logo - awaiting certificate</span>
+          <span style="flex:1 1 120px;min-width:120px;height:64px;border:1px dashed rgba(185,186,184,.3);display:flex;align-items:center;justify-content:center;font-size:11px;color:#595959;text-align:center;padding:6px">Logo - awaiting certificate</span>
+        </div>
+      </div>
+    </section>
+  </sc-if>
+
+  <section style="max-width:1200px;margin:clamp(56px,8vw,96px) auto 0;padding:0 20px">
+    <div style="background:#F24405;padding:clamp(34px,5vw,56px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:26px">
+      <div>
+        <h2 style="margin:0 0 10px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(32px,5vw,50px);line-height:1;color:#fff;max-width:24ch">Send us the damage, we will do the rest</h2>
+        <p style="margin:0;font-size:16px;color:#fff;opacity:.92;max-width:46ch;line-height:1.6">Same-day response, Monday to Saturday. Or call the workshop if you would rather talk it through.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <a href="#quote" style="background:#0D0D0D;color:#fff;padding:17px 30px;border-radius:2px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.05em;font-size:13.5px">Get a quote</a>
+        <a href="tel:07722102736" style="border:1px solid #fff;color:#fff;padding:17px 30px;border-radius:2px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.05em;font-size:13.5px">Call 07722 102736</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="margin-top:clamp(56px,8vw,96px);border-top:1px solid rgba(185,186,184,.16);background:#0A0A0A">
+    <div style="max-width:1200px;margin:0 auto;padding:52px 20px 40px;display:grid;gap:34px;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr))">
+      <div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:14px">
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.06em">TYGRIFY</span>
+          <span style="width:6px;height:6px;background:#F24405;border-radius:50%;display:block"></span>
+        </div>
+        <p style="margin:0 0 14px;font-size:14px;line-height:1.7;color:#595959">7 Brays Lane, Coventry CV2 4DT<br>Tygrify Ltd - company 15894572<br>VAT 474996228</p>
+        <div style="display:flex;gap:14px;font-size:14px;color:#B9BAB8">
+          <a href="https://instagram.com/tygrify" target="_blank" rel="noreferrer" style="color:#B9BAB8">Instagram</a>
+          <a href="https://tiktok.com/@tygrify" target="_blank" rel="noreferrer" style="color:#B9BAB8">TikTok</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Services</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;color:#B9BAB8">
+          <a href="./Tygrify Services.dc.html#body" style="color:#B9BAB8">SMART repair</a>
+          <a href="./Tygrify Services.dc.html#body" style="color:#B9BAB8">Bumper scuff &amp; crack repair</a>
+          <a href="./Tygrify Services.dc.html#body" style="color:#B9BAB8">Panel repair &amp; replacement</a>
+          <a href="./Tygrify Services.dc.html#body" style="color:#B9BAB8">Respray &amp; colour matching</a>
+          <a href="./Tygrify Services.dc.html#cosmetic" style="color:#B9BAB8">Alloy wheel refurbishment</a>
+          <a href="./Tygrify Services.dc.html#cosmetic" style="color:#B9BAB8">Ceramic coating</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Security</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;color:#B9BAB8">
+          <a href="./Tygrify Security.dc.html#ghost" style="color:#B9BAB8">Ghost immobilisers</a>
+          <a href="./Tygrify Security.dc.html#trackers" style="color:#B9BAB8">Trackers</a>
+          <a href="./Tygrify Security.dc.html#canbus" style="color:#B9BAB8">CAN-BUS systems</a>
+          <a href="./Tygrify Services.dc.html#cosmetic" style="color:#B9BAB8">Interior &amp; trim repair</a>
+          <a href="#" style="color:#595959">Shop - coming soon</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Company</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;color:#B9BAB8">
+          <a href="./Tygrify About.dc.html" style="color:#B9BAB8">About us</a>
+          <a href="./Tygrify Gallery.dc.html" style="color:#B9BAB8">Before &amp; after</a>
+          <a href="./Tygrify Reviews.dc.html" style="color:#B9BAB8">Reviews</a>
+          <a href="./Tygrify Contact.dc.html" style="color:#B9BAB8">Contact &amp; find us</a>
+          <a href="./Tygrify Account.dc.html" style="color:#B9BAB8">My Garage</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1200px;margin:0 auto;padding:0 20px 40px">
+      <div style="border-top:1px solid rgba(185,186,184,.12);padding-top:18px;margin-bottom:18px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:12.5px;color:#595959">
+        <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap">Client preview</span>
+        <a href="./Tygrify Account.dc.html" style="color:#B9BAB8">Customer account</a>
+        <a href="./Tygrify Admin Home.dc.html" style="color:#B9BAB8">Admin dashboard</a>
+        <a href="./Tygrify Sign In.dc.html" style="color:#B9BAB8">Sign in</a>
+        <a href="./Tygrify Sign Up.dc.html" style="color:#B9BAB8">Create account</a>
+      </div>
+      <div style="border-top:1px solid rgba(185,186,184,.12);padding-top:20px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;font-size:12.5px;color:#595959">
+        <span>© 2026 Tygrify Ltd. All rights reserved.</span>
+        <div style="display:flex;gap:20px">
+          <a href="#" style="color:#595959">Terms</a>
+          <a href="#" style="color:#595959">Privacy</a>
+          <a href="#" style="color:#595959">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showReviews&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Open questions&quot;},&quot;showAccreditationsStrip&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Open questions&quot;}}">
+class Component extends DCLogic {
+  state = { splits: [50, 50, 50], mobile: false, menu: false, pair: 0 };
+  componentDidMount() {
+    this._r = () => {
+      const m = window.innerWidth < 900;
+      if (m !== this.state.mobile) this.setState({ mobile: m, menu: false });
+    };
+    this._r();
+    window.addEventListener('resize', this._r);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+  renderVals() {
+    const m = this.state.mobile, p = this.state.pair, sp = this.state.splits;
+    const tab = i => {
+      const s = sp[i];
+      return {
+        ['tab' + i + 'Bg']: p === i ? '#F24405' : 'transparent',
+        ['tab' + i + 'Fg']: p === i ? '#FFFFFF' : '#B9BAB8',
+        ['tab' + i + 'Border']: p === i ? '#F24405' : 'rgba(185,186,184,.24)',
+        ['card' + i]: (!m || p === i) ? 'block' : 'none',
+        ['split' + i]: s,
+        ['splitPct' + i]: s + '%',
+        ['frameW' + i]: s > 0 ? (10000 / s) + '%' : '100%',
+        ['onSplit' + i]: e => {
+          const v = Number(e.target.value);
+          this.setState(st => { const n = st.splits.slice(); n[i] = v; return { splits: n }; });
+        },
+        ['pick' + i]: () => this.setState({ pair: i })
+      };
+    };
+    return {
+      ...tab(0), ...tab(1), ...tab(2),
+      tabsDisplay: m ? 'flex' : 'none',
+      galleryCols: m ? '1fr' : 'repeat(3,minmax(0,1fr))',
+      headerGap: m ? '10px' : '24px',
+      trustAlign: m ? 'center' : 'left',
+      navDisplay: m ? 'none' : 'flex',
+      burgerDisplay: m ? 'flex' : 'none',
+      menuDisplay: m && this.state.menu ? 'flex' : 'none',
+      closeMenu: () => this.setState({ menu: false }),
+      toggleMenu: () => this.setState(st => ({ menu: !st.menu })),
+      showReviews: this.props.showReviews ?? false,
+      reviews: [
+        { stars: '★★★★★', quote: 'Kerbed both nearside alloys on the way to work. Sent photos at lunchtime, had a price back the same afternoon and the car was done in two days. You cannot tell where the damage was.', name: 'Placeholder name', job: 'Alloy refurbishment - Audi A3' },
+        { stars: '★★★★★', quote: 'Rear quarter was creased and I expected to be told it needed replacing. Jay repaired it instead and blended the paint into the door. Saved me a few hundred pounds.', name: 'Placeholder name', job: 'Panel repair and respray - VW Golf' },
+        { stars: '★★★★★', quote: 'Had a Ghost immobiliser fitted while I waited. Explained how it works properly rather than just handing the keys back, and it went through my insurer without a problem.', name: 'Placeholder name', job: 'Ghost immobiliser - BMW 330e' }
+      ],
+      showAccreditations: this.props.showAccreditationsStrip ?? true
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Public+Sans:ital,wght@0,300..800;1,400&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#0D0D0D;-webkit-font-smoothing:antialiased}
+body{font-family:'Public Sans',system-ui,sans-serif;color:#FFFFFF}
+*{box-sizing:border-box}
+a{color:#FFFFFF;text-decoration:none}
+a:hover{color:#F24405}
+input::placeholder{color:#595959}
+input:focus{outline:none;border-color:#F24405}
+</style>
+</helmet>
+
+<div style="background:#0D0D0D;min-height:100vh;overflow-x:hidden;display:flex;flex-direction:column">
+
+  <header style="position:sticky;top:0;z-index:40;background:rgba(13,13,13,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(185,186,184,.16)">
+    <div style="max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px">
+      <a href="./Tygrify Admin Home.dc.html" style="display:flex;align-items:baseline;gap:8px;flex:none">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.06em;line-height:1">TYGRIFY</span>
+        <span style="width:6px;height:6px;background:#F24405;border-radius:50%;display:block"></span>
+      </a>
+      <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B9BAB8;border:1px solid rgba(185,186,184,.3);border-radius:999px;padding:3px 8px;flex:none;white-space:nowrap">Admin</span>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:12px;flex:none">
+        <span style="display:{{ emailDisplay }};font-size:13px;color:#595959">jay@tygrify.co.uk</span>
+        <a href="./Tygrify Account.dc.html" style="display:{{ emailDisplay }};font-size:13px;color:#B9BAB8">Customer account</a>
+        <a href="./Tygrify Sign In.dc.html" style="font-size:13px;color:#B9BAB8">Sign out</a>
+      </div>
+      <button type="button" onClick="{{ toggleNavMenu }}" aria-label="Open menu" style="display:{{ navBurgerDisplay }};background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <span style="display:block;width:17px;height:1.5px;background:#fff;box-shadow:0 -5px 0 #fff,0 5px 0 #fff"></span>
+      </button>
+    </div>
+    <nav style="display:{{ tabsDisplay }};border-top:1px solid rgba(185,186,184,.12);overflow-x:auto">
+      <div style="max-width:1080px;margin:0 auto;padding:0 20px;display:flex;gap:22px;font-size:13.5px;letter-spacing:.02em;white-space:nowrap">
+        <a href="./Tygrify Admin Home.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Home</a>
+        <a href="./Tygrify Admin Enquiries.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Enquiries</a>
+        <a href="./Tygrify Admin Customers.dc.html" style="color:#fff;padding:12px 0;border-bottom:2px solid #F24405">Customers</a>
+        <a href="./Tygrify Admin Services.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Services</a>
+        <a href="./Tygrify Admin Gallery.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Gallery</a>
+        <a href="./Tygrify Admin Settings.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Settings</a>
+      </div>
+    </nav>
+  </header>
+
+  <div onClick="{{ closeNavMenu }}" style="display:{{ navMenuDisplay }};position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.62)"></div>
+  <aside style="display:{{ navMenuDisplay }};position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(86vw,320px);background:#0A0A0A;border-left:1px solid rgba(185,186,184,.18);flex-direction:column;overflow-y:auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px;border-bottom:1px solid rgba(185,186,184,.16)">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em;line-height:1">ADMIN</span>
+      <button type="button" onClick="{{ closeNavMenu }}" aria-label="Close menu" style="background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+    <nav style="display:flex;flex-direction:column;padding:6px 20px 10px">
+      <a href="./Tygrify Admin Home.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Home</a>
+      <a href="./Tygrify Admin Enquiries.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Enquiries</a>
+      <a href="./Tygrify Admin Customers.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Customers</a>
+      <a href="./Tygrify Admin Services.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Services</a>
+      <a href="./Tygrify Admin Gallery.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Gallery</a>
+      <a href="./Tygrify Admin Settings.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Settings</a>
+    </nav>
+    <div style="margin-top:auto;padding:16px 20px 24px;display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(185,186,184,.16);font-size:14px">
+      <a href="./Tygrify Homepage.dc.html" style="color:#B9BAB8">View the public site</a>
+      <a href="./Tygrify Account.dc.html" style="color:#B9BAB8">Customer account</a>
+      <a href="./Tygrify Sign In.dc.html" style="color:#B9BAB8">Sign out</a>
+    </div>
+  </aside>
+
+
+  <main style="flex:1;max-width:1080px;width:100%;margin:0 auto;padding:clamp(22px,3.6vw,36px) 20px clamp(48px,7vw,72px)">
+
+    <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+      <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(30px,5vw,44px);letter-spacing:.02em;line-height:1">Customers</h1>
+      <span style="font-size:14px;color:#595959">{{ countLabel }}</span>
+    </div>
+    <p style="margin:12px 0 0;font-size:13.5px;line-height:1.6;color:#595959;max-width:60ch">Only people who have set up an account appear here. Anonymous enquiries stay under Enquiries until the email matches an account.</p>
+
+    <div style="margin-top:22px;display:grid;gap:clamp(18px,2.6vw,26px);grid-template-columns:{{ pageColumns }};align-items:start">
+
+      <div style="min-width:0">
+        <label style="position:relative;display:block">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#595959" stroke-width="2" stroke-linecap="round" style="position:absolute;left:14px;top:50%;transform:translateY(-50%)"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+          <input type="search" value="{{ query }}" onChange="{{ onQuery }}" placeholder="Search name, email or reg" style="background:#111;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:14.5px;padding:13px 15px 13px 40px;width:100%">
+        </label>
+
+        <div style="margin-top:14px;border:1px solid rgba(185,186,184,.16);display:grid;gap:1px;background:rgba(185,186,184,.16)">
+          <sc-for list="{{ list }}" as="c" hint-placeholder-count="5">
+            <button type="button" onClick="{{ c.pick }}" style="background:{{ c.bg }};border:none;border-left:3px solid {{ c.marker }};text-align:left;padding:15px 18px;font-family:'Public Sans',sans-serif;cursor:pointer;display:block;width:100%">
+              <span style="display:block;font-size:15.5px;font-weight:600;color:#fff">{{ c.name }}</span>
+              <span style="display:block;margin-top:5px;font-size:13px;color:#B9BAB8">{{ c.summary }}</span>
+              <span style="display:block;margin-top:4px;font-size:12.5px;color:#595959">{{ c.since }}</span>
+            </button>
+          </sc-for>
+          <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+            <div style="background:#111;padding:36px 18px;text-align:center">
+              <p style="margin:0;font-size:14px;color:#595959">No customer matches that.</p>
+            </div>
+          </sc-if>
+        </div>
+      </div>
+
+      <div style="min-width:0;display:{{ recordDisplay }};flex-direction:column;gap:clamp(16px,2.4vw,20px)">
+
+        <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(20px,2.6vw,26px)">
+          <p style="margin:0 0 14px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Contact details</p>
+          <h2 style="margin:0 0 18px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(24px,3.4vw,32px);letter-spacing:.03em">{{ sel.name }}</h2>
+          <div style="display:grid;gap:16px 24px;grid-template-columns:{{ specColumns }}">
+            <div>
+              <p style="margin:0 0 4px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#595959">Phone</p>
+              <p style="margin:0;font-size:15px"><a href="{{ sel.telHref }}" style="color:#F24405">{{ sel.phone }}</a></p>
+            </div>
+            <div>
+              <p style="margin:0 0 4px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#595959">Email</p>
+              <p style="margin:0;font-size:15px;word-break:break-word"><a href="{{ sel.mailHref }}" style="color:#B9BAB8">{{ sel.email }}</a></p>
+            </div>
+            <div>
+              <p style="margin:0 0 4px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#595959">Marketing</p>
+              <p style="margin:0;font-size:15px">{{ sel.marketing }}</p>
+            </div>
+            <div>
+              <p style="margin:0 0 4px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#595959">Account created</p>
+              <p style="margin:0;font-size:15px">{{ sel.created }}</p>
+            </div>
+            <div>
+              <p style="margin:0 0 4px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#595959">Last signed in</p>
+              <p style="margin:0;font-size:15px">{{ sel.lastSeen }}</p>
+            </div>
+            <div>
+              <p style="margin:0 0 4px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#595959">Sign-in method</p>
+              <p style="margin:0;font-size:15px">{{ sel.method }}</p>
+            </div>
+          </div>
+          <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap">
+            <a href="{{ sel.telHref }}" style="background:#F24405;color:#fff;padding:12px 18px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">Call</a>
+            <a href="{{ sel.waHref }}" style="border:1px solid rgba(185,186,184,.34);color:#fff;padding:12px 18px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">WhatsApp</a>
+            <button type="button" style="background:none;border:1px solid rgba(185,186,184,.34);color:#fff;border-radius:2px;padding:12px 18px;font-family:'Public Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer" style-hover="border-color:#F24405;color:#F24405">Correct a typo</button>
+          </div>
+          <p style="margin:14px 0 0;font-size:12.5px;line-height:1.6;color:#595959">This is the customer's own record. Corrections only, and deletion is theirs to request from their account.</p>
+        </section>
+
+        <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(20px,2.6vw,26px)">
+          <p style="margin:0 0 16px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Saved vehicles</p>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <sc-for list="{{ sel.vehicles }}" as="v" hint-placeholder-count="2">
+              <div style="border:1px solid rgba(185,186,184,.16);background:#0D0D0D;padding:15px;display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap">
+                <span style="display:inline-block;white-space:nowrap;line-height:1.2;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;background:#F5E93B;color:#111;border-radius:3px;padding:3px 9px;flex:none">{{ v.reg }}</span>
+                <div style="flex:1;min-width:0">
+                  <p style="margin:0;font-size:15px">{{ v.name }}</p>
+                  <p style="margin:5px 0 0;font-size:13px;color:#595959">{{ v.mot }}</p>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </section>
+
+        <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(20px,2.6vw,26px)">
+          <p style="margin:0 0 16px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Enquiry history</p>
+          <div style="display:grid;gap:1px;background:rgba(185,186,184,.16);border:1px solid rgba(185,186,184,.16)">
+            <sc-for list="{{ sel.enquiries }}" as="e" hint-placeholder-count="3">
+              <a href="./Tygrify Admin Enquiry.dc.html" style="background:#0D0D0D;padding:14px 16px;display:flex;gap:14px;align-items:baseline;flex-wrap:wrap">
+                <span style="font-size:13px;color:#595959;flex:none;min-width:52px">{{ e.date }}</span>
+                <span style="flex:1;min-width:0;font-size:14.5px">{{ e.what }}</span>
+                <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid {{ e.border }};color:{{ e.color }};border-radius:2px;padding:3px 7px;white-space:nowrap;flex:none">{{ e.status }}</span>
+              </a>
+            </sc-for>
+          </div>
+        </section>
+
+        <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(20px,2.6vw,26px)">
+          <p style="margin:0 0 16px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Repair history</p>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <sc-for list="{{ sel.repairs }}" as="r" hint-placeholder-count="2">
+              <div style="border-left:2px solid rgba(242,68,5,.5);padding:2px 0 2px 14px">
+                <p style="margin:0;font-size:15px">{{ r.what }}</p>
+                <p style="margin:5px 0 0;font-size:13px;color:#595959">{{ r.meta }}</p>
+              </div>
+            </sc-for>
+            <sc-if value="{{ sel.noRepairs }}" hint-placeholder-val="{{ false }}">
+              <p style="margin:0;font-size:14px;color:#595959">No completed work yet.</p>
+            </sc-if>
+          </div>
+        </section>
+
+      </div>
+    </div>
+  </main>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1080,&quot;height&quot;:1000}}">
+const TONE = {
+  New: ['#F24405', '#F24405'],
+  Quoted: ['#FFFFFF', 'rgba(185,186,184,.4)'],
+  Approved: ['#FFFFFF', 'rgba(185,186,184,.4)'],
+  Booked: ['#B9BAB8', 'rgba(185,186,184,.28)'],
+  Completed: ['#595959', 'rgba(185,186,184,.2)'],
+  Lost: ['#595959', 'rgba(185,186,184,.2)']
+};
+
+const CUSTOMERS = [
+  {
+    id: 1, name: 'Sophie Bennett', phone: '07500 118 402', wa: '447500118402', email: 's.bennett@example.com',
+    marketing: 'Email only', created: '4 Sep 2026', lastSeen: 'Today', method: 'Google', since: 'Customer since Sep 2026',
+    vehicles: [{ reg: 'RK21 OZP', name: 'Mini Cooper S, 2021, white', mot: 'MOT expires 14 Mar 2027' }],
+    enquiries: [{ date: '4 Sep', what: 'Rear quarter and bumper - 3 panels', status: 'Quoted' }],
+    repairs: []
+  },
+  {
+    id: 2, name: 'Ade Fashola', phone: '07966 301 558', wa: '447966301558', email: 'ade.fashola@example.com',
+    marketing: 'Email and WhatsApp', created: '2 Sep 2026', lastSeen: '2 days ago', method: 'One-time code', since: 'Customer since Sep 2026',
+    vehicles: [{ reg: 'MV17 CDU', name: 'Mercedes C220, 2017, silver', mot: 'MOT expires 2 Nov 2026' }],
+    enquiries: [{ date: '2 Sep', what: 'Offside rear door scratch + Ghost fitting', status: 'Approved' }],
+    repairs: []
+  },
+  {
+    id: 3, name: 'Chris Whelan', phone: '07451 887 120', wa: '447451887120', email: 'cwhelan@example.com',
+    marketing: 'None', created: '18 Jul 2026', lastSeen: '6 days ago', method: 'Google', since: 'Customer since Jul 2026',
+    vehicles: [
+      { reg: 'FG15 TRJ', name: 'VW Golf GTI, 2015, red', mot: 'MOT expires 21 Jan 2027' },
+      { reg: 'KP18 VBN', name: 'Seat Ibiza, 2018, grey', mot: 'MOT expires 9 Jun 2027' }
+    ],
+    enquiries: [
+      { date: '31 Aug', what: 'Front wing and door - 2 panels', status: 'Booked' },
+      { date: '19 Jul', what: 'Alloy refurb, four wheels', status: 'Completed' }
+    ],
+    repairs: [{ what: 'Alloy wheel refurbishment, four wheels', meta: 'Completed 26 Jul 2026 - £320 - 4 photos on file' }]
+  },
+  {
+    id: 4, name: 'Priya Raval', phone: '07733 664 208', wa: '447733664208', email: 'priya.raval@example.com',
+    marketing: 'Email only', created: '28 Aug 2026', lastSeen: '9 days ago', method: 'One-time code', since: 'Customer since Aug 2026',
+    vehicles: [{ reg: 'BD20 LME', name: 'Kia Sportage, 2020, blue', mot: 'MOT expires 30 Sep 2026 - due soon' }],
+    enquiries: [{ date: '28 Aug', what: 'Bonnet stone chips and bumper scuff', status: 'Quoted' }],
+    repairs: []
+  },
+  {
+    id: 5, name: 'Liam Doherty', phone: '07902 553 447', wa: '447902553447', email: 'l.doherty@example.com',
+    marketing: 'Email and WhatsApp', created: '11 May 2026', lastSeen: '3 weeks ago', method: 'Google', since: 'Customer since May 2026',
+    vehicles: [{ reg: 'WR62 KNA', name: 'Ford Focus, 2012, grey', mot: 'MOT expires 4 Feb 2027' }],
+    enquiries: [
+      { date: '21 Aug', what: 'Nearside panels after a car park knock', status: 'Completed' },
+      { date: '12 May', what: 'Bumper crack repair', status: 'Completed' }
+    ],
+    repairs: [
+      { what: 'Nearside front door and rear quarter respray', meta: 'Completed 29 Aug 2026 - £640 - 6 photos on file' },
+      { what: 'Rear bumper crack repair', meta: 'Completed 16 May 2026 - £180 - 3 photos on file' }
+    ]
+  }
+];
+
+class Component extends DCLogic {
+  state = { navDrawer: false, navMenu: false, narrow: false, query: '', selId: 1 };
+  componentDidMount() {
+    this._r = () => {
+      const dw = window.innerWidth < 760;
+      if (dw !== this.state.navDrawer) this.setState({ navDrawer: dw, navMenu: false });
+      const n = window.innerWidth < 860;
+      if (n !== this.state.narrow) this.setState({ narrow: n });
+    };
+    this._r();
+    window.addEventListener('resize', this._r);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+  renderVals() {
+    const st = this.state;
+    const q = st.query.trim().toLowerCase();
+    const list = CUSTOMERS.filter(c => !q || (c.name + ' ' + c.email + ' ' + c.vehicles.map(v => v.reg).join(' ')).toLowerCase().includes(q));
+    const sel = CUSTOMERS.find(c => c.id === st.selId) || CUSTOMERS[0];
+    return {
+      tabsDisplay: this.state.navDrawer ? 'none' : 'flex',
+      navBurgerDisplay: this.state.navDrawer ? 'flex' : 'none',
+      navMenuDisplay: this.state.navDrawer && this.state.navMenu ? 'flex' : 'none',
+      toggleNavMenu: () => this.setState(s => ({ navMenu: !s.navMenu })),
+      closeNavMenu: () => this.setState({ navMenu: false }),
+      emailDisplay: st.narrow ? 'none' : 'inline',
+      pageColumns: st.narrow ? '1fr' : '320px minmax(0,1fr)',
+      specColumns: st.narrow ? '1fr 1fr' : 'repeat(3,minmax(0,1fr))',
+      recordDisplay: 'flex',
+      countLabel: CUSTOMERS.length + ' accounts',
+      query: st.query,
+      onQuery: e => this.setState({ query: e.target.value }),
+      isEmpty: list.length === 0,
+      list: list.map(c => ({
+        name: c.name,
+        summary: c.vehicles.length + (c.vehicles.length === 1 ? ' vehicle - ' : ' vehicles - ') + c.enquiries.length + (c.enquiries.length === 1 ? ' enquiry' : ' enquiries'),
+        since: c.since,
+        bg: c.id === sel.id ? '#181818' : '#111',
+        marker: c.id === sel.id ? '#F24405' : 'transparent',
+        pick: () => this.setState({ selId: c.id })
+      })),
+      sel: {
+        ...sel,
+        telHref: 'tel:' + sel.phone.replace(/\s/g, ''),
+        mailHref: 'mailto:' + sel.email,
+        waHref: 'https://wa.me/' + sel.wa,
+        enquiries: sel.enquiries.map(e => ({ ...e, color: TONE[e.status][0], border: TONE[e.status][1] })),
+        noRepairs: sel.repairs.length === 0
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

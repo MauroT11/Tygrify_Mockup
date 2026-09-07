@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Public+Sans:ital,wght@0,300..800;1,400&display=swap" rel="stylesheet">
+<style>
+html,body{margin:0;padding:0;background:#0D0D0D;-webkit-font-smoothing:antialiased}
+body{font-family:'Public Sans',system-ui,sans-serif;color:#FFFFFF}
+*{box-sizing:border-box}
+a{color:#FFFFFF;text-decoration:none}
+a:hover{color:#F24405}
+input::placeholder{color:#595959}
+input:focus,select:focus{outline:none;border-color:#F24405}
+</style>
+</helmet>
+
+<div style="background:#0D0D0D;min-height:100vh;overflow-x:hidden;display:flex;flex-direction:column">
+
+  <header style="position:sticky;top:0;z-index:40;background:rgba(13,13,13,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(185,186,184,.16)">
+    <div style="max-width:1080px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px">
+      <a href="./Tygrify Admin Home.dc.html" style="display:flex;align-items:baseline;gap:8px;flex:none">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.06em;line-height:1">TYGRIFY</span>
+        <span style="width:6px;height:6px;background:#F24405;border-radius:50%;display:block"></span>
+      </a>
+      <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B9BAB8;border:1px solid rgba(185,186,184,.3);border-radius:999px;padding:3px 8px;flex:none;white-space:nowrap">Admin</span>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:12px;flex:none">
+        <span style="display:{{ emailDisplay }};font-size:13px;color:#595959">jay@tygrify.co.uk</span>
+        <a href="./Tygrify Account.dc.html" style="display:{{ emailDisplay }};font-size:13px;color:#B9BAB8">Customer account</a>
+        <a href="./Tygrify Sign In.dc.html" style="font-size:13px;color:#B9BAB8">Sign out</a>
+      </div>
+      <button type="button" onClick="{{ toggleNavMenu }}" aria-label="Open menu" style="display:{{ navBurgerDisplay }};background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <span style="display:block;width:17px;height:1.5px;background:#fff;box-shadow:0 -5px 0 #fff,0 5px 0 #fff"></span>
+      </button>
+    </div>
+    <nav style="display:{{ tabsDisplay }};border-top:1px solid rgba(185,186,184,.12);overflow-x:auto">
+      <div style="max-width:1080px;margin:0 auto;padding:0 20px;display:flex;gap:22px;font-size:13.5px;letter-spacing:.02em;white-space:nowrap">
+        <a href="./Tygrify Admin Home.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Home</a>
+        <a href="./Tygrify Admin Enquiries.dc.html" style="color:#fff;padding:12px 0;border-bottom:2px solid #F24405">Enquiries</a>
+        <a href="./Tygrify Admin Customers.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Customers</a>
+        <a href="./Tygrify Admin Services.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Services</a>
+        <a href="./Tygrify Admin Gallery.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Gallery</a>
+        <a href="./Tygrify Admin Settings.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Settings</a>
+      </div>
+    </nav>
+  </header>
+
+  <div onClick="{{ closeNavMenu }}" style="display:{{ navMenuDisplay }};position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.62)"></div>
+  <aside style="display:{{ navMenuDisplay }};position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(86vw,320px);background:#0A0A0A;border-left:1px solid rgba(185,186,184,.18);flex-direction:column;overflow-y:auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px;border-bottom:1px solid rgba(185,186,184,.16)">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em;line-height:1">ADMIN</span>
+      <button type="button" onClick="{{ closeNavMenu }}" aria-label="Close menu" style="background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+    <nav style="display:flex;flex-direction:column;padding:6px 20px 10px">
+      <a href="./Tygrify Admin Home.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Home</a>
+      <a href="./Tygrify Admin Enquiries.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Enquiries</a>
+      <a href="./Tygrify Admin Customers.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Customers</a>
+      <a href="./Tygrify Admin Services.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Services</a>
+      <a href="./Tygrify Admin Gallery.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Gallery</a>
+      <a href="./Tygrify Admin Settings.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Settings</a>
+    </nav>
+    <div style="margin-top:auto;padding:16px 20px 24px;display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(185,186,184,.16);font-size:14px">
+      <a href="./Tygrify Homepage.dc.html" style="color:#B9BAB8">View the public site</a>
+      <a href="./Tygrify Account.dc.html" style="color:#B9BAB8">Customer account</a>
+      <a href="./Tygrify Sign In.dc.html" style="color:#B9BAB8">Sign out</a>
+    </div>
+  </aside>
+
+
+  <main style="flex:1;max-width:1080px;width:100%;margin:0 auto;padding:clamp(22px,3.6vw,36px) 20px clamp(48px,7vw,72px)">
+
+    <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+      <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(30px,5vw,44px);letter-spacing:.02em;line-height:1">Enquiries</h1>
+      <span style="font-size:14px;color:#595959">{{ countLabel }}</span>
+    </div>
+
+    <div style="margin-top:22px;display:grid;gap:12px;grid-template-columns:{{ toolbarColumns }}">
+      <label style="position:relative;display:block">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#595959" stroke-width="2" stroke-linecap="round" style="position:absolute;left:14px;top:50%;transform:translateY(-50%)"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5L21 21"/></svg>
+        <input type="search" value="{{ query }}" onChange="{{ onQuery }}" placeholder="Search name, registration or phone" style="background:#111;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:14.5px;padding:13px 15px 13px 40px;width:100%">
+      </label>
+      <label style="display:flex;align-items:center;gap:10px">
+        <span style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#595959;flex:none">Sort</span>
+        <select value="{{ sort }}" onChange="{{ onSort }}" style="background:#111;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:14.5px;padding:13px 12px;width:100%">
+          <option value="oldest">Oldest unanswered first</option>
+          <option value="newest">Newest received first</option>
+        </select>
+      </label>
+    </div>
+
+    <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
+      <sc-for list="{{ chips }}" as="c" hint-placeholder-count="7">
+        <button type="button" onClick="{{ c.pick }}" style="background:{{ c.bg }};border:1px solid {{ c.border }};color:{{ c.color }};border-radius:999px;padding:8px 14px;font-family:'Public Sans',sans-serif;font-size:12.5px;letter-spacing:.04em;cursor:pointer">{{ c.label }}</button>
+      </sc-for>
+    </div>
+
+    <div style="display:{{ bulkDisplay }};align-items:center;gap:14px;flex-wrap:wrap;margin-top:16px;border:1px solid #F24405;background:rgba(242,68,5,.1);padding:12px 16px">
+      <span style="font-size:14px;color:#fff">{{ selectedCount }} selected</span>
+      <button type="button" onClick="{{ markLost }}" style="background:#F24405;border:none;color:#fff;border-radius:2px;padding:10px 16px;font-family:'Public Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer">Mark as lost</button>
+      <button type="button" onClick="{{ clearSel }}" style="background:none;border:none;color:#B9BAB8;font-family:'Public Sans',sans-serif;font-size:13px;cursor:pointer;text-decoration:underline">Clear</button>
+    </div>
+
+    <div style="margin-top:18px;border:1px solid rgba(185,186,184,.16);display:grid;gap:1px;background:rgba(185,186,184,.16)">
+      <div style="background:#0F0F0F;padding:11px 20px;display:flex;align-items:center;gap:16px">
+        <input type="checkbox" checked="{{ allChecked }}" onChange="{{ toggleAll }}" aria-label="Select all" style="width:17px;height:17px;accent-color:#F24405;flex:none">
+        <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Select all shown</span>
+      </div>
+      <sc-for list="{{ rows }}" as="e" hint-placeholder-count="6">
+        <div style="background:#111;padding:16px 20px;display:flex;align-items:flex-start;gap:16px">
+          <input type="checkbox" checked="{{ e.checked }}" onChange="{{ e.toggle }}" aria-label="Select enquiry" style="width:17px;height:17px;accent-color:#F24405;flex:none;margin-top:3px">
+          <a href="./Tygrify Admin Enquiry.dc.html" style="flex:1;min-width:0;display:flex;gap:16px;align-items:flex-start">
+            <div style="flex:1;min-width:0">
+              <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
+                <span style="font-size:16px;font-weight:600">{{ e.name }}</span>
+                <span style="display:inline-block;flex:none;white-space:nowrap;line-height:1.25;font-family:'Bebas Neue',sans-serif;font-size:17px;letter-spacing:.06em;color:#fff;border:1px solid rgba(185,186,184,.3);border-radius:2px;padding:2px 7px">{{ e.reg }}</span>
+              </div>
+              <p style="margin:7px 0 0;font-size:13.5px;line-height:1.5;color:#B9BAB8">{{ e.vehicle }}</p>
+              <p style="margin:5px 0 0;font-size:13px;color:#595959">{{ e.meta }}</p>
+            </div>
+            <div style="flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:8px">
+              <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid {{ e.statusBorder }};color:{{ e.statusColor }};border-radius:2px;padding:4px 8px;white-space:nowrap">{{ e.status }}</span>
+              <span style="font-size:12.5px;color:#595959;white-space:nowrap">{{ e.date }}</span>
+            </div>
+          </a>
+        </div>
+      </sc-for>
+      <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+        <div style="background:#111;padding:44px 20px;text-align:center">
+          <p style="margin:0 0 6px;font-size:16px">Nothing matches that</p>
+          <p style="margin:0;font-size:13.5px;color:#595959">Try a different status, or clear the search.</p>
+        </div>
+      </sc-if>
+    </div>
+
+    <p style="margin:26px 0 0;font-size:13px;line-height:1.6;color:#595959;max-width:56ch">Stale enquiries can be cleared in bulk so the list stays worth checking. Marking as lost keeps the record, it just drops out of the default view.</p>
+
+  </main>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1080,&quot;height&quot;:900}}">
+const TONE = {
+  New: ['#F24405', '#F24405'],
+  Quoted: ['#FFFFFF', 'rgba(185,186,184,.4)'],
+  Approved: ['#FFFFFF', 'rgba(185,186,184,.4)'],
+  Booked: ['#B9BAB8', 'rgba(185,186,184,.28)'],
+  Completed: ['#595959', 'rgba(185,186,184,.2)'],
+  Lost: ['#595959', 'rgba(185,186,184,.2)']
+};
+
+const DATA = [
+  { id: 1, name: 'Danielle Okafor', phone: '07712 445 019', reg: 'LV19 XKR', vehicle: 'Audi A3 Sportback, 2019, Nardo grey', panels: 2, photos: 4, status: 'New', date: '6 Sep', age: 0 },
+  { id: 2, name: 'Marek Kowalski', phone: '07884 220 771', reg: 'YE68 HTN', vehicle: 'BMW 320d Touring, 2018, black', panels: 1, photos: 3, status: 'New', date: '5 Sep', age: 1 },
+  { id: 3, name: 'Sophie Bennett', phone: '07500 118 402', reg: 'RK21 OZP', vehicle: 'Mini Cooper S, 2021, white', panels: 3, photos: 6, status: 'Quoted', date: '4 Sep', age: 2 },
+  { id: 4, name: 'Ade Fashola', phone: '07966 301 558', reg: 'MV17 CDU', vehicle: 'Mercedes C220, 2017, silver', panels: 1, photos: 2, status: 'Approved', date: '2 Sep', age: 4 },
+  { id: 5, name: 'Chris Whelan', phone: '07451 887 120', reg: 'FG15 TRJ', vehicle: 'VW Golf GTI, 2015, red', panels: 2, photos: 5, status: 'Booked', date: '31 Aug', age: 6 },
+  { id: 6, name: 'Priya Raval', phone: '07733 664 208', reg: 'BD20 LME', vehicle: 'Kia Sportage, 2020, blue', panels: 2, photos: 4, status: 'Quoted', date: '28 Aug', age: 9 },
+  { id: 7, name: 'Liam Doherty', phone: '07902 553 447', reg: 'WR62 KNA', vehicle: 'Ford Focus, 2012, grey', panels: 4, photos: 7, status: 'Completed', date: '21 Aug', age: 16 },
+  { id: 8, name: 'Hannah Yates', phone: '07816 990 335', reg: 'SG14 PLV', vehicle: 'Vauxhall Corsa, 2014, black', panels: 1, photos: 2, status: 'Lost', date: '12 Aug', age: 25 }
+];
+
+class Component extends DCLogic {
+  state = { navDrawer: false, navMenu: false, narrow: false, status: 'All', query: '', sort: 'oldest', sel: [], lost: [] };
+  componentDidMount() {
+    this._r = () => {
+      const dw = window.innerWidth < 760;
+      if (dw !== this.state.navDrawer) this.setState({ navDrawer: dw, navMenu: false });
+      const n = window.innerWidth < 700;
+      if (n !== this.state.narrow) this.setState({ narrow: n });
+    };
+    this._r();
+    window.addEventListener('resize', this._r);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+
+  visible() {
+    const { status, query, sort, lost } = this.state;
+    const q = query.trim().toLowerCase();
+    let rows = DATA.map(r => lost.includes(r.id) ? { ...r, status: 'Lost' } : r);
+    rows = rows.filter(r => status === 'All' ? r.status !== 'Lost' : r.status === status);
+    if (q) rows = rows.filter(r => (r.name + ' ' + r.reg + ' ' + r.phone).toLowerCase().replace(/\s+/g, ' ').includes(q));
+    rows.sort((a, b) => sort === 'oldest' ? b.age - a.age : a.age - b.age);
+    return rows;
+  }
+
+  renderVals() {
+    const st = this.state;
+    const rows = this.visible();
+    const ids = rows.map(r => r.id);
+    const statuses = ['All', 'New', 'Quoted', 'Approved', 'Booked', 'Completed', 'Lost'];
+    return {
+      tabsDisplay: this.state.navDrawer ? 'none' : 'flex',
+      navBurgerDisplay: this.state.navDrawer ? 'flex' : 'none',
+      navMenuDisplay: this.state.navDrawer && this.state.navMenu ? 'flex' : 'none',
+      toggleNavMenu: () => this.setState(s => ({ navMenu: !s.navMenu })),
+      closeNavMenu: () => this.setState({ navMenu: false }),
+      emailDisplay: st.narrow ? 'none' : 'inline',
+      toolbarColumns: st.narrow ? '1fr' : 'minmax(0,1fr) 280px',
+      countLabel: rows.length + (rows.length === 1 ? ' enquiry' : ' enquiries') + (st.status === 'All' ? ', excluding lost' : ''),
+      query: st.query,
+      sort: st.sort,
+      onQuery: e => this.setState({ query: e.target.value }),
+      onSort: e => this.setState({ sort: e.target.value }),
+      chips: statuses.map(s => ({
+        label: s,
+        pick: () => this.setState({ status: s, sel: [] }),
+        bg: st.status === s ? '#F24405' : 'transparent',
+        border: st.status === s ? '#F24405' : 'rgba(185,186,184,.28)',
+        color: st.status === s ? '#fff' : '#B9BAB8'
+      })),
+      rows: rows.map(r => ({
+        ...r,
+        meta: r.panels + (r.panels === 1 ? ' panel - ' : ' panels - ') + r.photos + ' photos',
+        statusColor: TONE[r.status][0],
+        statusBorder: TONE[r.status][1],
+        checked: st.sel.includes(r.id),
+        toggle: () => this.setState(s => ({ sel: s.sel.includes(r.id) ? s.sel.filter(i => i !== r.id) : s.sel.concat(r.id) }))
+      })),
+      isEmpty: rows.length === 0,
+      allChecked: ids.length > 0 && ids.every(i => st.sel.includes(i)),
+      toggleAll: () => this.setState(s => ({ sel: ids.every(i => s.sel.includes(i)) ? [] : ids })),
+      bulkDisplay: st.sel.length ? 'flex' : 'none',
+      selectedCount: st.sel.length,
+      markLost: () => this.setState(s => ({ lost: s.lost.concat(s.sel), sel: [] })),
+      clearSel: () => this.setState({ sel: [] })
+    };
+  }
+}
+</script>
+</body>
+</html>

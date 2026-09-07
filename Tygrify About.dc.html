@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Public+Sans:ital,wght@0,300..800;1,400&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+html,body{margin:0;padding:0;background:#0D0D0D;-webkit-font-smoothing:antialiased}
+body{font-family:'Public Sans',system-ui,sans-serif;color:#FFFFFF}
+*{box-sizing:border-box}
+a{color:#FFFFFF;text-decoration:none}
+a:hover{color:#F24405}
+</style>
+</helmet>
+
+<div style="background:#0D0D0D;min-height:100vh;overflow-x:hidden">
+
+  <header style="position:sticky;top:0;z-index:40;background:rgba(13,13,13,.92);backdrop-filter:blur(10px);border-bottom:1px solid rgba(185,186,184,.16)">
+    <div style="max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:{{ headerGap }}">
+      <a href="./Tygrify Homepage.dc.html" style="display:flex;align-items:baseline;gap:8px;flex:none">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:30px;letter-spacing:.06em;line-height:1">TYGRIFY</span>
+        <span style="width:7px;height:7px;background:#F24405;border-radius:50%;display:block"></span>
+      </a>
+      <nav style="display:{{ navDisplay }};align-items:center;gap:26px;margin-left:auto;font-size:14px;letter-spacing:.02em;color:#B9BAB8">
+        <a href="./Tygrify Homepage.dc.html">Home</a>
+        <a href="./Tygrify Services.dc.html">Services</a>
+        <a href="./Tygrify Security.dc.html">Security</a>
+        <a href="./Tygrify Gallery.dc.html">Gallery</a>
+        <a href="#top" style="color:#FFFFFF">About</a>
+        <a href="./Tygrify Contact.dc.html">Contact</a>
+        <span style="display:inline-flex;align-items:center;gap:7px;color:#595959">Shop
+          <span style="font-size:9px;letter-spacing:.1em;text-transform:uppercase;border:1px solid #595959;border-radius:999px;padding:2px 6px">Soon</span>
+        </span>
+      </nav>
+      <div style="display:{{ navDisplay }};align-items:center;gap:14px;font-size:14px">
+        <a href="./Tygrify Sign In.dc.html" style="color:#B9BAB8">Login</a>
+        <a href="./Tygrify Get a Quote.dc.html" style="background:#F24405;color:#fff;padding:11px 18px;border-radius:2px;font-weight:700;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap;font-size:12.5px">Get a quote</a>
+      </div>
+      <div style="display:{{ burgerDisplay }};align-items:center;gap:8px;margin-left:auto">
+        <a href="tel:07722102736" aria-label="Call Tygrify" style="display:flex;align-items:center;justify-content:center;border:1px solid rgba(255,255,255,.4);border-radius:2px;height:44px;width:44px;flex:none">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#F24405" stroke-width="2" stroke-linecap="round"><path d="M4 4h4l2 5-2.5 1.5a11 11 0 0 0 6 6L15 14l5 2v4a15 15 0 0 1-16-16z"/></svg>
+        </a>
+        <a href="./Tygrify Get a Quote.dc.html" style="display:flex;align-items:center;background:#F24405;color:#fff;border-radius:2px;height:44px;padding:0 14px;font-weight:700;font-size:12.5px;text-transform:uppercase;white-space:nowrap;letter-spacing:.04em">Quote</a>
+      </div>
+      <button onClick="{{ toggleMenu }}" style="display:{{ burgerDisplay }};background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:44px;height:44px;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <span style="display:block;width:18px;height:1.5px;background:#fff;box-shadow:0 -6px 0 #fff,0 6px 0 #fff"></span>
+      </button>
+    </div>
+  </header>
+
+  <div onClick="{{ closeMenu }}" style="display:{{ menuDisplay }};position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.62)"></div>
+  <aside style="display:{{ menuDisplay }};position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(86vw,340px);background:#0A0A0A;border-left:1px solid rgba(185,186,184,.18);flex-direction:column;overflow-y:auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px;border-bottom:1px solid rgba(185,186,184,.16)">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:.06em;line-height:1">MENU</span>
+      <button type="button" onClick="{{ closeMenu }}" aria-label="Close menu" style="background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:44px;height:44px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+    <nav style="display:flex;flex-direction:column;padding:6px 20px 10px">
+      <a href="./Tygrify Homepage.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Home</a>
+      <a href="./Tygrify Services.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Services</a>
+      <a href="./Tygrify Security.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Security</a>
+      <a href="./Tygrify Gallery.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Before &amp; after</a>
+      <a href="./Tygrify Reviews.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Reviews</a>
+      <a href="./Tygrify About.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">About</a>
+      <a href="./Tygrify Contact.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Contact</a>
+      <span style="padding:14px 0;font-size:16px;color:#595959;border-bottom:1px solid rgba(185,186,184,.1)">Shop - coming soon</span>
+      <a href="./Tygrify Account.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1);color:#B9BAB8">My Garage</a>
+      <a href="./Tygrify Sign In.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1);color:#B9BAB8;border-bottom:none">Login</a>
+    </nav>
+    <div style="margin-top:auto;padding:16px 20px 24px;display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(185,186,184,.16)">
+      <a href="./Tygrify Get a Quote.dc.html" style="background:#F24405;color:#fff;text-align:center;padding:16px;border-radius:2px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.04em;font-size:13px">Get a quote</a>
+      <a href="tel:07722102736" style="text-align:center;padding:15px;border:1px solid rgba(185,186,184,.34);border-radius:2px;font-size:14px;color:#B9BAB8">07722 102736</a>
+    </div>
+  </aside>
+
+
+  <section id="top" style="position:relative;overflow:hidden;background:#0D0D0D;scroll-margin-top:88px">
+    <div style="position:absolute;inset:0;background-image:url('./uploads/about1.jpg');background-size:cover;background-position:center"></div>
+    <div style="position:absolute;inset:0;background:linear-gradient(100deg,rgba(13,13,13,.96) 0%,rgba(13,13,13,.88) 40%,rgba(13,13,13,.5) 100%)"></div>
+    <div style="position:relative;max-width:1200px;margin:0 auto;padding:clamp(52px,8vw,104px) 20px clamp(46px,7vw,84px)">
+      <p style="margin:0 0 14px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#595959">
+      <a href="./Tygrify Homepage.dc.html" style="color:#595959">Home</a> / <span style="color:#B9BAB8">About us</span>
+    </p>
+    <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(42px,8vw,92px);line-height:.94;max-width:18ch">Started in a van. Same standard, bigger workshop.</h1>
+    <p style="margin:22px 0 0;max-width:60ch;font-size:clamp(16px,2.2vw,19px);line-height:1.65;color:#B9BAB8;text-wrap:pretty">Tygrify is a founder-led bodyshop on Brays Lane in Coventry. It grew out of mobile repair work, and nearly all of the work still comes in the same way it did then - somebody telling somebody else.</p>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:clamp(40px,6vw,64px) 20px 0">
+    <div style="display:grid;gap:clamp(24px,4vw,48px);grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));align-items:start">
+      <div>
+        <p style="margin:0 0 12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">The story</p>
+        <h2 style="margin:0 0 20px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(30px,4.6vw,46px);line-height:1;max-width:22ch">Five years of learning it properly</h2>
+        <p style="margin:0 0 16px;font-size:16.5px;line-height:1.7;color:#B9BAB8;max-width:54ch">The business began as mobile repairs - going out to cars wherever they were, on driveways and in car parks, fixing scuffs, dents and paint damage on the spot. Five years in the industry, and Tygrify itself trading since 2024.</p>
+        <p style="margin:0 0 16px;font-size:16.5px;line-height:1.7;color:#B9BAB8;max-width:54ch">Getting from there to a workshop took, in the founder's own words, "numerous sleepless nights, long days, and many miles travelled." Customer satisfaction has been the number one priority since day one, and that is not a slogan - when the only marketing you have is word of mouth, it is the whole business model.</p>
+        <p style="margin:0;font-size:16.5px;line-height:1.7;color:#B9BAB8;max-width:54ch">Today the unit on Brays Lane handles bodywork, paint, cosmetic work and vehicle security in one place, so a car does not have to go to three different people to come back right.</p>
+      </div>
+      <div style="aspect-ratio:4/5;max-height:560px">
+        <image-slot id="tg-about-founder" shape="rect" src="./assets/placeholder-about.png" placeholder="Portrait of the founder at the workshop"></image-slot>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:clamp(46px,7vw,80px) 20px 0">
+    <div style="border-left:2px solid #F24405;padding:6px 0 6px 24px;max-width:60ch">
+      <p style="margin:0 0 12px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(24px,3.6vw,34px);line-height:1.15;letter-spacing:.01em">"A one-stop shop for dealer-quality work, SMART repairs and fitting security systems and customisation upgrades."</p>
+      <p style="margin:0;font-size:14px;color:#595959">Thushiharan, founder - Tygrify Ltd</p>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:clamp(46px,7vw,80px) 20px 0">
+    <p style="margin:0 0 12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">What is different here</p>
+    <h2 style="margin:0 0 34px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(30px,4.6vw,46px);line-height:1;max-width:24ch">Four things we hold to</h2>
+    <div style="display:grid;gap:1px;background:rgba(185,186,184,.16);border:1px solid rgba(185,186,184,.16);grid-template-columns:repeat(auto-fit,minmax(min(270px,100%),1fr))">
+      <div style="background:#111;padding:28px 24px">
+        <p style="margin:0 0 12px;font-family:'Bebas Neue',sans-serif;font-size:38px;line-height:1;color:#595959">01</p>
+        <h3 style="margin:0 0 10px;font-size:17px;font-weight:700">One workshop, one point of contact</h3>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#B9BAB8">Paint, panel, alloys, interior and security are all done here. You deal with the person doing the work, not a call centre.</p>
+      </div>
+      <div style="background:#111;padding:28px 24px">
+        <p style="margin:0 0 12px;font-family:'Bebas Neue',sans-serif;font-size:38px;line-height:1;color:#595959">02</p>
+        <h3 style="margin:0 0 10px;font-size:17px;font-weight:700">Repair before replace</h3>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#B9BAB8">Where a localised repair will do the job properly, that is what we quote. It is quicker and it costs you less.</p>
+      </div>
+      <div style="background:#111;padding:28px 24px">
+        <p style="margin:0 0 12px;font-family:'Bebas Neue',sans-serif;font-size:38px;line-height:1;color:#595959">03</p>
+        <h3 style="margin:0 0 10px;font-size:17px;font-weight:700">Straight answers on cost</h3>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#B9BAB8">Published "from" prices on cosmetic work, and a real figure once we have seen the car. No surprises added later.</p>
+      </div>
+      <div style="background:#111;padding:28px 24px">
+        <p style="margin:0 0 12px;font-family:'Bebas Neue',sans-serif;font-size:38px;line-height:1;color:#595959">04</p>
+        <h3 style="margin:0 0 10px;font-size:17px;font-weight:700">Newer cars, done to standard</h3>
+        <p style="margin:0;font-size:14.5px;line-height:1.6;color:#B9BAB8">Aluminium panels, modern paint systems and CAN-BUS wiring all need the right approach rather than the quick one.</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="max-width:1200px;margin:0 auto;padding:clamp(46px,7vw,80px) 20px 0">
+    <div style="display:grid;gap:clamp(24px,4vw,44px);grid-template-columns:repeat(auto-fit,minmax(min(300px,100%),1fr))">
+      <div>
+        <p style="margin:0 0 12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">The workshop</p>
+        <h2 style="margin:0 0 18px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(30px,4.6vw,46px);line-height:1;max-width:20ch">7 Brays Lane, Coventry</h2>
+        <p style="margin:0 0 24px;font-size:16px;line-height:1.7;color:#B9BAB8;max-width:52ch">Drop in during opening hours if you would rather have someone look at the damage in person. It is worth a call first so we know to expect you.</p>
+        <div style="display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr));border-top:1px solid rgba(185,186,184,.16);padding-top:22px">
+          <div>
+            <p style="margin:0 0 6px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Opening hours</p>
+            <p style="margin:0;font-size:15px;line-height:1.6">Mon - Fri 9am - 5pm<br>Sat 10am - 3pm<br>Sun closed</p>
+          </div>
+          <div>
+            <p style="margin:0 0 6px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Areas covered</p>
+            <p style="margin:0;font-size:15px;line-height:1.6">Coventry, Nuneaton, Warwick, Hinckley, Daventry - roughly 20 miles of CV2</p>
+          </div>
+          <div>
+            <p style="margin:0 0 6px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Get in touch</p>
+            <p style="margin:0;font-size:15px;line-height:1.7"><a href="tel:07722102736">07722 102736</a><br><a href="mailto:thushiharan@tygrify.co.uk" style="color:#B9BAB8">thushiharan@tygrify.co.uk</a></p>
+          </div>
+        </div>
+      </div>
+      <div style="display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start">
+        <div style="aspect-ratio:1/1;min-width:0"><image-slot id="tg-about-shop-1" shape="rect" placeholder="Unit exterior on Brays Lane"></image-slot></div>
+        <div style="aspect-ratio:1/1;min-width:0"><image-slot id="tg-about-shop-2" shape="rect" placeholder="Inside the workshop"></image-slot></div>
+        <div style="aspect-ratio:1/1;min-width:0"><image-slot id="tg-about-shop-3" shape="rect" placeholder="Paint or prep bay"></image-slot></div>
+        <div style="aspect-ratio:1/1;min-width:0"><image-slot id="tg-about-shop-4" shape="rect" placeholder="Car in for work, plate covered"></image-slot></div>
+      </div>
+    </div>
+  </section>
+
+  <sc-if value="{{ showTeam }}" hint-placeholder-val="{{ false }}">
+    <section style="max-width:1200px;margin:0 auto;padding:clamp(46px,7vw,80px) 20px 0">
+      <p style="margin:0 0 12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">The team</p>
+      <h2 style="margin:0 0 26px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(30px,4.6vw,46px);line-height:1">Who you will be dealing with</h2>
+      <div style="border:1px dashed rgba(185,186,184,.35);padding:32px;text-align:center">
+        <p style="margin:0;font-size:14.5px;color:#B9BAB8;line-height:1.6">Reserved for team names, roles and photos. Held back until there is something real to put here.</p>
+      </div>
+    </section>
+  </sc-if>
+
+  <section style="max-width:1200px;margin:clamp(50px,7vw,88px) auto 0;padding:0 20px">
+    <div style="background:#F24405;padding:clamp(34px,5vw,56px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:26px">
+      <div>
+        <h2 style="margin:0 0 10px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(32px,5vw,50px);line-height:1;color:#fff;max-width:24ch">Got a car that needs looking at?</h2>
+        <p style="margin:0;font-size:16px;color:#fff;opacity:.92;max-width:46ch;line-height:1.6">Send photos of the damage and we will come back to you the same day, Monday to Saturday.</p>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:12px">
+        <a href="./Tygrify Get a Quote.dc.html" style="background:#0D0D0D;color:#fff;padding:17px 30px;border-radius:2px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.05em;font-size:13.5px">Get a quote</a>
+        <a href="tel:07722102736" style="border:1px solid #fff;color:#fff;padding:17px 30px;border-radius:2px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.05em;font-size:13.5px">Call 07722 102736</a>
+      </div>
+    </div>
+  </section>
+
+  <footer style="margin-top:clamp(56px,8vw,96px);border-top:1px solid rgba(185,186,184,.16);background:#0A0A0A">
+    <div style="max-width:1200px;margin:0 auto;padding:52px 20px 40px;display:grid;gap:34px;grid-template-columns:repeat(auto-fit,minmax(min(200px,100%),1fr))">
+      <div>
+        <div style="display:flex;align-items:baseline;gap:8px;margin-bottom:14px">
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.06em">TYGRIFY</span>
+          <span style="width:6px;height:6px;background:#F24405;border-radius:50%;display:block"></span>
+        </div>
+        <p style="margin:0 0 14px;font-size:14px;line-height:1.7;color:#595959">7 Brays Lane, Coventry CV2 4DT<br>Tygrify Ltd - company 15894572<br>VAT 474996228</p>
+        <div style="display:flex;gap:14px;font-size:14px;color:#B9BAB8">
+          <a href="https://instagram.com/tygrify" target="_blank" rel="noreferrer" style="color:#B9BAB8">Instagram</a>
+          <a href="https://tiktok.com/@tygrify" target="_blank" rel="noreferrer" style="color:#B9BAB8">TikTok</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Services</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;color:#B9BAB8">
+          <a href="./Tygrify Services.dc.html#body" style="color:#B9BAB8">SMART repair</a>
+          <a href="./Tygrify Services.dc.html#body" style="color:#B9BAB8">Bumper scuff &amp; crack repair</a>
+          <a href="./Tygrify Services.dc.html#body" style="color:#B9BAB8">Panel repair &amp; replacement</a>
+          <a href="./Tygrify Services.dc.html#body" style="color:#B9BAB8">Respray &amp; colour matching</a>
+          <a href="./Tygrify Services.dc.html#cosmetic" style="color:#B9BAB8">Alloy wheel refurbishment</a>
+          <a href="./Tygrify Services.dc.html#cosmetic" style="color:#B9BAB8">Ceramic coating</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Security</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;color:#B9BAB8">
+          <a href="./Tygrify Security.dc.html#ghost" style="color:#B9BAB8">Ghost immobilisers</a>
+          <a href="./Tygrify Security.dc.html#trackers" style="color:#B9BAB8">Trackers</a>
+          <a href="./Tygrify Security.dc.html#canbus" style="color:#B9BAB8">CAN-BUS systems</a>
+          <a href="./Tygrify Services.dc.html#cosmetic" style="color:#B9BAB8">Interior &amp; trim repair</a>
+          <a href="#" style="color:#595959">Shop - coming soon</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Company</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px;color:#B9BAB8">
+          <a href="#top" style="color:#B9BAB8">About us</a>
+          <a href="./Tygrify Gallery.dc.html" style="color:#B9BAB8">Before &amp; after</a>
+          <a href="./Tygrify Reviews.dc.html" style="color:#B9BAB8">Reviews</a>
+          <a href="./Tygrify Contact.dc.html" style="color:#B9BAB8">Contact &amp; find us</a>
+          <a href="./Tygrify Account.dc.html" style="color:#B9BAB8">My Garage</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1200px;margin:0 auto;padding:0 20px 40px">
+      <div style="border-top:1px solid rgba(185,186,184,.12);padding-top:18px;margin-bottom:18px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:12.5px;color:#595959">
+        <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap">Client preview</span>
+        <a href="./Tygrify Account.dc.html" style="color:#B9BAB8">Customer account</a>
+        <a href="./Tygrify Admin Home.dc.html" style="color:#B9BAB8">Admin dashboard</a>
+        <a href="./Tygrify Sign In.dc.html" style="color:#B9BAB8">Sign in</a>
+        <a href="./Tygrify Sign Up.dc.html" style="color:#B9BAB8">Create account</a>
+      </div>
+      <div style="border-top:1px solid rgba(185,186,184,.12);padding-top:20px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;font-size:12.5px;color:#595959">
+        <span>&copy; 2026 Tygrify Ltd. All rights reserved.</span>
+        <div style="display:flex;gap:20px">
+          <a href="#" style="color:#595959">Terms</a>
+          <a href="#" style="color:#595959">Privacy</a>
+          <a href="#" style="color:#595959">Cookies</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;showTeam&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Open questions&quot;}}">
+class Component extends DCLogic {
+  state = { mobile: false, menu: false };
+  componentDidMount() {
+    this._r = () => {
+      const m = window.innerWidth < 900;
+      if (m !== this.state.mobile) this.setState({ mobile: m, menu: false });
+    };
+    this._r();
+    window.addEventListener('resize', this._r);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+  renderVals() {
+    const m = this.state.mobile;
+    return {
+      headerGap: m ? '10px' : '24px',
+      navDisplay: m ? 'none' : 'flex',
+      burgerDisplay: m ? 'flex' : 'none',
+      menuDisplay: m && this.state.menu ? 'flex' : 'none',
+      closeMenu: () => this.setState({ menu: false }),
+      toggleMenu: () => this.setState(st => ({ menu: !st.menu })),
+      showTeam: this.props.showTeam ?? false
+    };
+  }
+}
+</script>
+</body>
+</html>

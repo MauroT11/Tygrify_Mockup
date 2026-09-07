@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Public+Sans:ital,wght@0,300..800;1,400&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+html,body{margin:0;padding:0;background:#0D0D0D;-webkit-font-smoothing:antialiased}
+body{font-family:'Public Sans',system-ui,sans-serif;color:#FFFFFF}
+*{box-sizing:border-box}
+a{color:#FFFFFF;text-decoration:none}
+a:hover{color:#F24405}
+input,button,textarea{font-family:'Public Sans',system-ui,sans-serif}
+</style>
+</helmet>
+
+<div style="background:#0D0D0D;min-height:100vh;overflow-x:hidden;display:flex;flex-direction:column">
+
+  <header style="position:sticky;top:0;z-index:40;background:rgba(13,13,13,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(185,186,184,.16)">
+    <div style="max-width:1000px;margin:0 auto;padding:13px 20px;display:flex;align-items:center;gap:14px">
+      <a href="./Tygrify Homepage.dc.html" style="display:flex;align-items:baseline;gap:8px;flex:none">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.06em;line-height:1">TYGRIFY</span>
+        <span style="width:7px;height:7px;background:#F24405;border-radius:50%;display:block"></span>
+      </a>
+      <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B9BAB8;border:1px solid rgba(185,186,184,.3);border-radius:999px;padding:3px 8px;flex:none;white-space:nowrap">My garage</span>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:14px;flex:none">
+        <a href="./Tygrify Homepage.dc.html" style="display:{{ siteLinkDisplay }};font-size:13.5px;color:#B9BAB8">Back to site</a>
+        <a href="./Tygrify Sign In.dc.html" style="font-size:13.5px;color:#B9BAB8">Sign out</a>
+      </div>
+      <button type="button" onClick="{{ toggleNavMenu }}" aria-label="Open menu" style="display:{{ navBurgerDisplay }};background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <span style="display:block;width:17px;height:1.5px;background:#fff;box-shadow:0 -5px 0 #fff,0 5px 0 #fff"></span>
+      </button>
+    </div>
+    <nav style="display:{{ tabsDisplay }};border-top:1px solid rgba(185,186,184,.12);overflow-x:auto">
+      <div style="max-width:1000px;margin:0 auto;padding:0 20px;display:flex;gap:22px;font-size:13.5px;white-space:nowrap">
+        <a href="./Tygrify Account.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Home</a>
+        <a href="./Tygrify Account Vehicles.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Vehicles</a>
+        <a href="./Tygrify Account Quotes.dc.html" style="color:#fff;padding:12px 0;border-bottom:2px solid #F24405">Quotes</a>
+        <a href="./Tygrify Account Repairs.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Repairs</a>
+        <a href="./Tygrify Account Profile.dc.html" style="color:#B9BAB8;padding:12px 0;border-bottom:2px solid transparent">Profile</a>
+      </div>
+    </nav>
+  </header>
+
+  <div onClick="{{ closeNavMenu }}" style="display:{{ navMenuDisplay }};position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.62)"></div>
+  <aside style="display:{{ navMenuDisplay }};position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(86vw,320px);background:#0A0A0A;border-left:1px solid rgba(185,186,184,.18);flex-direction:column;overflow-y:auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px;border-bottom:1px solid rgba(185,186,184,.16)">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em;line-height:1">MY GARAGE</span>
+      <button type="button" onClick="{{ closeNavMenu }}" aria-label="Close menu" style="background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+    <nav style="display:flex;flex-direction:column;padding:6px 20px 10px">
+      <a href="./Tygrify Account.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Home</a>
+      <a href="./Tygrify Account Vehicles.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Vehicles</a>
+      <a href="./Tygrify Account Quotes.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1);color:#F24405">Quotes &amp; estimates</a>
+      <a href="./Tygrify Account Repairs.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Repairs</a>
+      <a href="./Tygrify Account Profile.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Profile</a>
+    </nav>
+    <div style="margin-top:auto;padding:16px 20px 24px;display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(185,186,184,.16);font-size:14px">
+      <a href="./Tygrify Get a Quote.dc.html" style="background:#F24405;color:#fff;text-align:center;padding:15px;border-radius:2px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.04em;font-size:13px">Get a quote</a>
+      <a href="./Tygrify Homepage.dc.html" style="color:#B9BAB8">Back to site</a>
+      <a href="./Tygrify Sign In.dc.html" style="color:#B9BAB8">Sign out</a>
+    </div>
+  </aside>
+
+  <main style="flex:1;max-width:1000px;width:100%;margin:0 auto;padding:clamp(26px,4vw,44px) 20px clamp(48px,7vw,72px)">
+
+    <p style="margin:0 0 14px;font-size:12.5px;color:#595959"><a href="./Tygrify Account.dc.html" style="color:#595959">My garage</a> / <a href="./Tygrify Account Quotes.dc.html" style="color:#595959">Quotes</a> / TG-2041</p>
+
+    <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+      <div style="flex:1;min-width:220px">
+        <p style="margin:0 0 8px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Estimate TG-2041</p>
+        <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(32px,5.4vw,50px);letter-spacing:.02em;line-height:1">Rear quarter and bumper</h1>
+        <p style="margin:10px 0 0;font-size:15px;color:#B9BAB8"><a href="./Tygrify Account Vehicle.dc.html" style="color:#B9BAB8;text-decoration:underline">Mini Cooper S - RK21 OZP</a> - sent 4 September, valid until 18 September</p>
+      </div>
+      <div style="flex:none;text-align:{{ priceAlign }}">
+        <p style="margin:0;font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,7.5vw,58px);line-height:.9">£420 - £560</p>
+        <p style="margin:6px 0 0;font-size:13px;color:#595959">Including VAT</p>
+      </div>
+    </div>
+
+    <section style="margin-top:clamp(24px,3.4vw,32px);border:1px solid #F24405;background:linear-gradient(180deg,rgba(242,68,5,.13),rgba(242,68,5,.02));padding:clamp(22px,3vw,30px)">
+      <p style="margin:0 0 12px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">{{ stageLabel }}</p>
+      <p style="margin:0;font-size:15.5px;line-height:1.7;max-width:62ch">The bumper can be repaired rather than replaced. The quarter needs blending into the door to match, which is why there is a range - I will confirm the figure once it is on the ramp, before anything starts.</p>
+      <p style="margin:12px 0 0;font-size:13.5px;color:#B9BAB8">Jay - 4 September, 6:40pm</p>
+
+      <div style="display:{{ decisionDisplay }};gap:10px;flex-wrap:wrap;margin-top:22px">
+        <button type="button" onClick="{{ accept }}" style="background:#F24405;border:none;color:#fff;border-radius:2px;padding:16px 24px;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer">Accept and pick dates</button>
+        <button type="button" onClick="{{ decline }}" style="background:none;border:1px solid rgba(185,186,184,.4);color:#B9BAB8;border-radius:2px;padding:16px 22px;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer" style-hover="border-color:#F24405;color:#F24405">Not for now</button>
+        <a href="tel:07722102736" style="display:flex;align-items:center;font-size:13px;color:#B9BAB8;text-decoration:underline;padding:0 6px">Call Jay about this estimate</a>
+      </div>
+
+      <div style="display:{{ datesDisplay }};flex-direction:column;margin-top:22px;border-top:1px solid rgba(255,255,255,.14);padding-top:22px">
+        <p style="margin:0 0 6px;font-size:15px">Pick up to three dates that suit you</p>
+        <p style="margin:0 0 16px;font-size:13.5px;line-height:1.55;color:#B9BAB8;max-width:52ch">These are preferences, not a booking. Jay confirms one of them by phone or message, usually the same day.</p>
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <sc-for list="{{ dateOptions }}" as="d" hint-placeholder-count="6">
+            <button type="button" onClick="{{ d.toggle }}" style="background:{{ d.bg }};border:1px solid {{ d.border }};color:{{ d.color }};border-radius:2px;padding:12px 15px;white-space:nowrap;line-height:1.25;font-size:13.5px;cursor:pointer">{{ d.label }}</button>
+          </sc-for>
+        </div>
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin-top:20px">
+          <button type="button" onClick="{{ sendDates }}" disabled="{{ sendDisabled }}" style="background:{{ sendBg }};border:none;color:{{ sendColor }};border-radius:2px;padding:16px 24px;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:{{ sendCursor }}">Send my dates</button>
+          <span style="font-size:13px;color:#B9BAB8">{{ pickedLabel }}</span>
+        </div>
+      </div>
+
+      <div style="display:{{ sentDisplay }};flex-direction:column;margin-top:22px;border-top:1px solid rgba(255,255,255,.14);padding-top:22px">
+        <p style="margin:0;font-size:15px;line-height:1.6">Accepted. Your dates are with Jay - {{ pickedList }}</p>
+        <p style="margin:8px 0 0;font-size:13.5px;color:#B9BAB8">He will confirm one of them with you directly. Nothing is booked until he does.</p>
+      </div>
+
+      <div style="display:{{ declinedDisplay }};flex-direction:column;margin-top:22px;border-top:1px solid rgba(255,255,255,.14);padding-top:22px">
+        <p style="margin:0;font-size:15px;line-height:1.6">Left for now. The estimate stays here until 18 September if you change your mind.</p>
+        <button type="button" onClick="{{ reopen }}" style="align-self:flex-start;margin-top:16px;background:none;border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:2px;padding:13px 18px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer">Change my mind</button>
+      </div>
+    </section>
+
+    <section style="margin-top:clamp(30px,4.4vw,44px)">
+      <h2 style="margin:0 0 16px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(24px,3.6vw,32px);letter-spacing:.03em">What is included</h2>
+      <div style="border:1px solid rgba(185,186,184,.16);background:#111">
+        <sc-for list="{{ lines }}" as="l" hint-placeholder-count="4">
+          <div style="display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-bottom:1px solid rgba(185,186,184,.12);flex-wrap:wrap">
+            <div style="flex:1;min-width:200px">
+              <p style="margin:0;font-size:15.5px;font-weight:600">{{ l.title }}</p>
+              <p style="margin:6px 0 0;font-size:13.5px;line-height:1.6;color:#B9BAB8">{{ l.detail }}</p>
+            </div>
+            <p style="margin:0;flex:none;font-size:15.5px;color:#fff;min-width:96px;text-align:{{ priceAlign }}">{{ l.price }}</p>
+          </div>
+        </sc-for>
+        <div style="display:flex;gap:16px;align-items:baseline;padding:18px 20px;flex-wrap:wrap">
+          <p style="margin:0;flex:1;min-width:200px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Total including VAT</p>
+          <p style="margin:0;flex:none;font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.02em;min-width:96px;text-align:{{ priceAlign }}">£420 - £560</p>
+        </div>
+      </div>
+      <p style="margin:14px 0 0;font-size:13px;line-height:1.65;color:#595959;max-width:64ch">Not included: parts we cannot see until the bumper is off, and anything structural behind the quarter. If either shows up, Jay stops and calls you before spending anything.</p>
+    </section>
+
+    <section style="margin-top:clamp(30px,4.4vw,44px);display:grid;gap:clamp(14px,2vw,18px);grid-template-columns:{{ twoColumns }}">
+      <div>
+        <h2 style="margin:0 0 16px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(24px,3.6vw,32px);letter-spacing:.03em">Panels quoted</h2>
+        <div style="border:1px solid rgba(185,186,184,.16);background:#111;padding:20px;display:flex;flex-direction:column;gap:12px">
+          <sc-for list="{{ panels }}" as="p" hint-placeholder-count="3">
+            <div style="display:flex;gap:12px;align-items:baseline">
+              <span style="width:8px;height:8px;border-radius:50%;background:{{ p.dot }};flex:none;display:block"></span>
+              <div style="flex:1;min-width:0">
+                <p style="margin:0;font-size:15px">{{ p.name }}</p>
+                <p style="margin:4px 0 0;font-size:13.5px;color:#B9BAB8">{{ p.note }}</p>
+              </div>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div>
+        <h2 style="margin:0 0 16px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(24px,3.6vw,32px);letter-spacing:.03em">Photos you sent</h2>
+        <div style="display:grid;gap:10px;grid-template-columns:1fr 1fr">
+          <sc-for list="{{ photos }}" as="ph" hint-placeholder-count="4">
+            <div style="border:1px solid rgba(185,186,184,.16);background:#111;aspect-ratio:4/3">
+              <image-slot id="{{ ph.id }}" placeholder="{{ ph.placeholder }}" shape="rect"></image-slot>
+            </div>
+          </sc-for>
+        </div>
+        <p style="margin:12px 0 0;font-size:13px;color:#595959">6 photos and a marked panel diagram went with this enquiry.</p>
+      </div>
+    </section>
+
+    <section style="margin-top:clamp(30px,4.4vw,44px);border:1px solid rgba(185,186,184,.16);background:#0F0F0F;padding:clamp(20px,3vw,28px)">
+      <h2 style="margin:0 0 14px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(22px,3.2vw,28px);letter-spacing:.03em">The small print on this estimate</h2>
+      <div style="display:grid;gap:18px;grid-template-columns:{{ twoColumns }}">
+        <sc-for list="{{ terms }}" as="t" hint-placeholder-count="4">
+          <div>
+            <p style="margin:0 0 5px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">{{ t.label }}</p>
+            <p style="margin:0;font-size:14.5px;line-height:1.65;color:#B9BAB8">{{ t.value }}</p>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:20px 0 0;font-size:13px;color:#595959">Full <a href="#" style="color:#B9BAB8;text-decoration:underline">repair terms and warranty</a> apply to any accepted estimate.</p>
+    </section>
+
+  </main>
+
+  <footer style="border-top:1px solid rgba(185,186,184,.16);background:#0A0A0A">
+    <div style="max-width:1000px;margin:0 auto;padding:44px 20px 32px;display:grid;gap:30px;grid-template-columns:repeat(auto-fit,minmax(min(180px,100%),1fr))">
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Your garage</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px">
+          <a href="./Tygrify Account.dc.html" style="color:#B9BAB8">Overview</a>
+          <a href="./Tygrify Account Vehicles.dc.html" style="color:#B9BAB8">Vehicles</a>
+          <a href="./Tygrify Account Quotes.dc.html" style="color:#B9BAB8">Quotes &amp; estimates</a>
+          <a href="./Tygrify Account Repairs.dc.html" style="color:#B9BAB8">Repair history</a>
+          <a href="./Tygrify Account Profile.dc.html" style="color:#B9BAB8">Profile</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Account</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px">
+          <a href="./Tygrify Account Profile.dc.html" style="color:#B9BAB8">Email &amp; password</a>
+          <a href="./Tygrify Account Profile.dc.html#contact" style="color:#B9BAB8">Contact preferences</a>
+          <a href="#" style="color:#B9BAB8">Download your data</a>
+          <a href="#" style="color:#B9BAB8">Close your account</a>
+          <a href="./Tygrify Sign In.dc.html" style="color:#B9BAB8">Sign out</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Tygrify</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px">
+          <a href="./Tygrify Services.dc.html" style="color:#B9BAB8">Services</a>
+          <a href="./Tygrify Security.dc.html" style="color:#B9BAB8">Security</a>
+          <a href="./Tygrify Gallery.dc.html" style="color:#B9BAB8">Before &amp; after</a>
+          <a href="./Tygrify Reviews.dc.html" style="color:#B9BAB8">Reviews</a>
+          <a href="./Tygrify Contact.dc.html" style="color:#B9BAB8">Contact &amp; find us</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Legal</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px">
+          <a href="#" style="color:#B9BAB8">Terms of service</a>
+          <a href="#" style="color:#B9BAB8">Privacy policy</a>
+          <a href="#" style="color:#B9BAB8">Cookies</a>
+          <a href="#" style="color:#B9BAB8">Repair terms &amp; warranty</a>
+          <a href="#" style="color:#B9BAB8">Complaints</a>
+        </div>
+      </div>
+      <div>
+        <p style="margin:0 0 14px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Need a hand?</p>
+        <p style="margin:0 0 12px;font-size:14px;line-height:1.65;color:#B9BAB8">Call or message Jay directly - quickest way to get an answer on an estimate.</p>
+        <div style="display:flex;flex-direction:column;gap:9px;font-size:14px">
+          <a href="tel:07722102736" style="color:#fff">07722 102736</a>
+          <a href="mailto:hello@tygrify.co.uk" style="color:#B9BAB8">hello@tygrify.co.uk</a>
+        </div>
+      </div>
+    </div>
+    <div style="max-width:1000px;margin:0 auto;padding:0 20px 32px">
+      <div style="border-top:1px solid rgba(185,186,184,.12);padding-top:18px;margin-bottom:18px;display:flex;flex-wrap:wrap;gap:10px 18px;align-items:center;font-size:12.5px;color:#595959">
+        <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;white-space:nowrap">Client preview</span>
+        <a href="./Tygrify Account.dc.html" style="color:#B9BAB8">Customer account</a>
+        <a href="./Tygrify Admin Home.dc.html" style="color:#B9BAB8">Admin dashboard</a>
+        <a href="./Tygrify Sign In.dc.html" style="color:#B9BAB8">Sign in</a>
+        <a href="./Tygrify Sign Up.dc.html" style="color:#B9BAB8">Create account</a>
+      </div>
+      <div style="border-top:1px solid rgba(185,186,184,.12);padding-top:20px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;font-size:12.5px;color:#595959">
+        <span>&copy; 2026 Tygrify Ltd, 7 Brays Lane, Coventry CV2 4DT. Company 15894572.</span>
+        <a href="./Tygrify Homepage.dc.html" style="color:#595959">Back to the main site</a>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:1200}}">
+const DATES = ['Tue 9 Sep', 'Wed 10 Sep', 'Thu 11 Sep', 'Fri 12 Sep', 'Mon 15 Sep', 'Tue 16 Sep'];
+
+const LINES = [
+  { title: 'Rear quarter panel repair', detail: 'Dent pulled and filled, primed, painted and blended into the rear door to match.', price: '£240 - £340' },
+  { title: 'Rear bumper repair', detail: 'Crack bonded from behind, scuffed corner rebuilt, textured and painted.', price: '£140 - £180' },
+  { title: 'Colour match and finish', detail: 'Pearl White matched to the panel, flatted and polished after baking.', price: '£40' }
+];
+
+const PANELS = [
+  { name: 'Rear quarter, driver side', note: 'Dent and scored paint - repair and blend', dot: '#F24405' },
+  { name: 'Rear bumper, driver corner', note: 'Crack and scuffing - repair, no replacement', dot: '#F24405' },
+  { name: 'Rear door, driver side', note: 'Blend only, no damage', dot: 'rgba(185,186,184,.5)' }
+];
+
+const PHOTOS = [
+  { id: 'q2041-1', placeholder: 'Rear quarter damage' },
+  { id: 'q2041-2', placeholder: 'Bumper corner' },
+  { id: 'q2041-3', placeholder: 'Wider shot of the rear' },
+  { id: 'q2041-4', placeholder: 'Close up of the scoring' }
+];
+
+const TERMS = [
+  { label: 'How long', value: 'Three working days in the shop once it is booked in.' },
+  { label: 'Courtesy car', value: 'Not included. Ask when Jay confirms the date - depends on the week.' },
+  { label: 'Payment', value: 'Nothing up front. Card or bank transfer on collection.' },
+  { label: 'Warranty', value: 'Lifetime guarantee on paint and workmanship while you own the car.' }
+];
+
+class Component extends DCLogic {
+  state = { navDrawer: false, navMenu: false, narrow: false, stage: 'decide', picked: [] };
+  componentDidMount() {
+    this._r = () => {
+      const dw = window.innerWidth < 760;
+      const n = window.innerWidth < 700;
+      if (dw !== this.state.navDrawer || n !== this.state.narrow) this.setState({ navDrawer: dw, narrow: n, navMenu: false });
+    };
+    this._r();
+    window.addEventListener('resize', this._r);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+  renderVals() {
+    const st = this.state;
+    const canSend = st.picked.length > 0;
+    const stageLabel = st.stage === 'sent' ? 'Accepted - waiting on Jay to confirm a date'
+      : st.stage === 'declined' ? 'Left for now'
+      : st.stage === 'dates' ? 'Pick your dates'
+      : 'Waiting on your decision';
+    return {
+      tabsDisplay: st.navDrawer ? 'none' : 'flex',
+      navBurgerDisplay: st.navDrawer ? 'flex' : 'none',
+      navMenuDisplay: st.navDrawer && st.navMenu ? 'flex' : 'none',
+      toggleNavMenu: () => this.setState(s => ({ navMenu: !s.navMenu })),
+      closeNavMenu: () => this.setState({ navMenu: false }),
+      siteLinkDisplay: st.narrow ? 'none' : 'inline',
+      twoColumns: st.narrow ? '1fr' : 'repeat(2,minmax(0,1fr))',
+      priceAlign: st.narrow ? 'left' : 'right',
+      stageLabel,
+      lines: LINES,
+      panels: PANELS,
+      photos: PHOTOS,
+      terms: TERMS,
+      decisionDisplay: st.stage === 'decide' ? 'flex' : 'none',
+      datesDisplay: st.stage === 'dates' ? 'flex' : 'none',
+      sentDisplay: st.stage === 'sent' ? 'flex' : 'none',
+      declinedDisplay: st.stage === 'declined' ? 'flex' : 'none',
+      accept: () => this.setState({ stage: 'dates' }),
+      decline: () => this.setState({ stage: 'declined' }),
+      reopen: () => this.setState({ stage: 'decide' }),
+      sendDates: () => canSend && this.setState({ stage: 'sent' }),
+      sendDisabled: !canSend,
+      sendBg: canSend ? '#F24405' : 'rgba(185,186,184,.14)',
+      sendColor: canSend ? '#fff' : '#595959',
+      sendCursor: canSend ? 'pointer' : 'not-allowed',
+      pickedLabel: st.picked.length === 0 ? 'Nothing picked yet' : st.picked.length + ' of 3 picked',
+      pickedList: st.picked.join(', '),
+      dateOptions: DATES.map(d => {
+        const on = st.picked.includes(d);
+        const full = st.picked.length >= 3 && !on;
+        return {
+          label: d,
+          bg: on ? '#F24405' : 'transparent',
+          border: on ? '#F24405' : 'rgba(185,186,184,.34)',
+          color: on ? '#fff' : (full ? '#595959' : '#B9BAB8'),
+          toggle: () => this.setState(s => ({
+            picked: s.picked.includes(d) ? s.picked.filter(x => x !== d) : (s.picked.length >= 3 ? s.picked : s.picked.concat(d))
+          }))
+        };
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>
