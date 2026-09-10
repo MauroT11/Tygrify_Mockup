@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Public+Sans:ital,wght@0,300..800;1,400&display=swap" rel="stylesheet">
 <style>
+html{scroll-behavior:smooth}
 html,body{margin:0;padding:0;background:#0D0D0D;-webkit-font-smoothing:antialiased}
 body{font-family:'Public Sans',system-ui,sans-serif;color:#FFFFFF}
 *{box-sizing:border-box}
@@ -56,6 +57,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#F24405}
       <a href="./Tygrify Admin Customers.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Customers</a>
       <a href="./Tygrify Admin Services.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Services</a>
       <a href="./Tygrify Admin Gallery.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Gallery</a>
+      <a href="./Tygrify Admin Rewards.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Tygrify XP</a>
       <a href="./Tygrify Admin Settings.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Settings</a>
     </nav>
     <div style="margin-top:auto;padding:16px 20px 24px;display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(185,186,184,.16);font-size:14px">
@@ -75,6 +77,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#F24405}
         <a href="./Tygrify Admin Customers.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Customers</a>
         <a href="./Tygrify Admin Services.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid #F24405;background:rgba(242,68,5,.08);color:#fff">Services</a>
         <a href="./Tygrify Admin Gallery.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Gallery</a>
+        <a href="./Tygrify Admin Rewards.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Tygrify XP</a>
         <a href="./Tygrify Admin Settings.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Settings</a>
       </nav>
     </aside>
@@ -89,7 +92,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#F24405}
 
     <div style="margin-top:22px;display:grid;gap:clamp(18px,2.6vw,26px);grid-template-columns:{{ pageColumns }};align-items:start">
 
-      <div style="min-width:0">
+      <div style="min-width:0;display:{{ listDisplay }}">
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <sc-for list="{{ chips }}" as="c" hint-placeholder-count="4">
             <button type="button" onClick="{{ c.pick }}" style="background:{{ c.bg }};border:1px solid {{ c.border }};color:{{ c.color }};border-radius:999px;padding:8px 13px;white-space:nowrap;line-height:1.25;font-family:'Public Sans',sans-serif;font-size:12px;letter-spacing:.04em;cursor:pointer">{{ c.label }}</button>
@@ -112,7 +115,12 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#F24405}
         <button type="button" style="margin-top:14px;background:none;border:1px dashed rgba(185,186,184,.34);color:#B9BAB8;border-radius:2px;padding:14px 16px;font-family:'Public Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer;width:100%" style-hover="border-color:#F24405;color:#F24405">Add a service</button>
       </div>
 
-      <div style="min-width:0;display:flex;flex-direction:column;gap:clamp(16px,2.4vw,20px)">
+      <div style="min-width:0;display:{{ recordDisplay }};flex-direction:column;gap:clamp(16px,2.4vw,20px)">
+
+        <button type="button" onClick="{{ backToList }}" style="display:{{ backDisplay }};align-items:center;gap:8px;background:none;border:none;color:#B9BAB8;font-family:'Public Sans',sans-serif;font-size:13px;padding:0;cursor:pointer;width:fit-content">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          All services
+        </button>
 
         <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(20px,2.6vw,26px)">
           <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap">
@@ -312,7 +320,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#F24405}
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:1100}}">
 const SERVICES = [
   {
-    id: 1, name: 'SMART Repair', slug: 'smart-repair', category: 'Body &amp; paint', status: 'Published', sort: '1',
+    id: 1, name: 'SMART Repair', slug: 'smart-repair', category: 'Body & paint', status: 'Published', sort: '1',
     priceType: 'From', amount: '£120', publishPrice: false, turnaround: 'Usually same day',
     summary: 'Small, localised paint and dent repair without respraying the whole panel.',
     description: 'SMART stands for small to medium area repair technique - the damage is repaired and blended into the existing paint rather than the whole panel being resprayed. It suits scratches, small dents and scuffs where the panel itself is straight.',
@@ -321,7 +329,7 @@ const SERVICES = [
     galleryTag: 'Body repair', imageCount: 4, lastEdited: 'Last edited 2 Sep by Jay'
   },
   {
-    id: 2, name: 'Bumper Scuff &amp; Crack Repair', slug: 'bumper-repair', category: 'Body &amp; paint', status: 'Published', sort: '2',
+    id: 2, name: 'Bumper Scuff & Crack Repair', slug: 'bumper-repair', category: 'Body & paint', status: 'Published', sort: '2',
     priceType: 'From', amount: '£150', publishPrice: false, turnaround: '1 to 2 days',
     summary: 'Scuffs, scrapes and cracked plastic bumpers repaired and refinished.',
     description: 'Plastic bumpers can usually be repaired rather than replaced, including cracks, as long as the mounting points are sound. The repair is filled, reshaped and refinished to match the surrounding paint.',
@@ -330,7 +338,7 @@ const SERVICES = [
     galleryTag: 'Body repair', imageCount: 6, lastEdited: 'Last edited 2 Sep by Jay'
   },
   {
-    id: 3, name: 'Panel Repair &amp; Replacement', slug: 'panel-repair', category: 'Body &amp; paint', status: 'Published', sort: '3',
+    id: 3, name: 'Panel Repair & Replacement', slug: 'panel-repair', category: 'Body & paint', status: 'Published', sort: '3',
     priceType: 'Quote on inspection', amount: '', publishPrice: false, turnaround: 'Depends on the panel and parts',
     summary: 'Dents, creases and damaged panels repaired, or replaced where repair is not the right answer.',
     description: 'Larger damage, structural work and anything where the panel has moved needs looking at in person. Some panels are worth repairing, some are cheaper and better replaced - we will tell you which.',
@@ -339,7 +347,7 @@ const SERVICES = [
     galleryTag: 'Body repair', imageCount: 3, lastEdited: 'Last edited 28 Aug by Jay'
   },
   {
-    id: 4, name: 'Respray &amp; Colour Matching', slug: 'respray', category: 'Body &amp; paint', status: 'Published', sort: '4',
+    id: 4, name: 'Respray & Colour Matching', slug: 'respray', category: 'Body & paint', status: 'Published', sort: '4',
     priceType: 'Quote on inspection', amount: '', publishPrice: false, turnaround: '2 to 5 days',
     summary: 'Full and partial resprays, matched to the car\'s existing paint code.',
     description: 'Paint is mixed to the vehicle\'s own code and adjusted for age and fade, then blended into the adjacent panels so the repair does not sit as a patch.',
@@ -348,7 +356,7 @@ const SERVICES = [
     galleryTag: 'Body repair', imageCount: 5, lastEdited: 'Last edited 28 Aug by Jay'
   },
   {
-    id: 5, name: 'Alloy Wheel Refurbishment', slug: 'alloy-wheel-refurbishment', category: 'Cosmetic &amp; aftermarket', status: 'Published', sort: '1',
+    id: 5, name: 'Alloy Wheel Refurbishment', slug: 'alloy-wheel-refurbishment', category: 'Cosmetic & aftermarket', status: 'Published', sort: '1',
     priceType: 'From', amount: '£80 per wheel', publishPrice: true, turnaround: '1 to 2 days for a set',
     summary: 'Kerbed and corroded wheels stripped, repaired and refinished.',
     description: 'Wheels are stripped, kerb damage repaired, then refinished in the original colour or a different one. Diamond cut faces need specific equipment - ask and we will say whether yours can be done.',
@@ -357,7 +365,7 @@ const SERVICES = [
     galleryTag: 'Alloys', imageCount: 8, lastEdited: 'Last edited 1 Sep by Jay'
   },
   {
-    id: 6, name: 'Ceramic Coating', slug: 'ceramic-coating', category: 'Cosmetic &amp; aftermarket', status: 'Published', sort: '2',
+    id: 6, name: 'Ceramic Coating', slug: 'ceramic-coating', category: 'Cosmetic & aftermarket', status: 'Published', sort: '2',
     priceType: 'From', amount: '£250', publishPrice: true, turnaround: '1 to 2 days',
     summary: 'A hard protective layer over the paint, applied after correction.',
     description: 'The paint is decontaminated and machine polished first, then the coating is applied and cured. It makes the car easier to clean and holds gloss for longer. It is not scratch-proofing.',
@@ -366,7 +374,7 @@ const SERVICES = [
     galleryTag: 'Body repair', imageCount: 2, lastEdited: 'Last edited 1 Sep by Jay'
   },
   {
-    id: 7, name: 'Interior &amp; Trim Repair', slug: 'interior-trim-repair', category: 'Cosmetic &amp; aftermarket', status: 'Draft', sort: '3',
+    id: 7, name: 'Interior & Trim Repair', slug: 'interior-trim-repair', category: 'Cosmetic & aftermarket', status: 'Draft', sort: '3',
     priceType: 'Quote on inspection', amount: '', publishPrice: false, turnaround: 'Usually same day',
     summary: 'Leather, vinyl and plastic trim repaired rather than replaced.',
     description: 'Seat bolsters, scuffed door cards, cracked dash trim and cigarette burns can usually be repaired and recoloured in place.',
@@ -375,7 +383,7 @@ const SERVICES = [
     galleryTag: 'Interiors', imageCount: 1, lastEdited: 'Last edited 24 Aug by Jay'
   },
   {
-    id: 8, name: 'Ghost Immobilisers', slug: 'ghost-immobiliser', category: 'Security &amp; customisation', status: 'Published', sort: '1',
+    id: 8, name: 'Ghost Immobilisers', slug: 'ghost-immobiliser', category: 'Security & customisation', status: 'Published', sort: '1',
     priceType: 'Fixed', amount: '£500', publishPrice: true, turnaround: 'Same day to 24 hours',
     summary: 'A hidden immobiliser that needs a PIN before the engine will start.',
     description: 'The unit sits hidden in the vehicle and communicates over the car\'s own wiring. Until the PIN is entered through buttons the car already has, the engine will not start - so there is nothing to clone and nothing to relay.',
@@ -385,7 +393,7 @@ const SERVICES = [
     compatibility: 'Most makes from 2010 onward. Confirmed against the vehicle before fitting.'
   },
   {
-    id: 9, name: 'Trackers', slug: 'vehicle-trackers', category: 'Security &amp; customisation', status: 'Published', sort: '2',
+    id: 9, name: 'Trackers', slug: 'vehicle-trackers', category: 'Security & customisation', status: 'Published', sort: '2',
     priceType: 'From', amount: '£350', publishPrice: true, turnaround: 'Same day to 24 hours',
     summary: 'A tracking unit fitted and set up so the car can be found if it is taken.',
     description: 'A tracker will not stop the car being taken, but it gives the police and your insurer somewhere to start. Fitting is discreet and wired into the vehicle.',
@@ -395,7 +403,7 @@ const SERVICES = [
     compatibility: 'Any vehicle with a 12V system.'
   },
   {
-    id: 10, name: 'CAN-BUS Systems', slug: 'can-bus-security', category: 'Security &amp; customisation', status: 'Draft', sort: '3',
+    id: 10, name: 'CAN-BUS Systems', slug: 'can-bus-security', category: 'Security & customisation', status: 'Draft', sort: '3',
     priceType: 'Quote on inspection', amount: '', publishPrice: false, turnaround: 'Confirmed with your quote',
     summary: 'Security wired into the car\'s own data network rather than bolted on around it.',
     description: 'CAN-BUS is the network a modern car uses to let its systems talk to each other. Work here is heavily make and model dependent, which is why it is quoted after we have looked at the vehicle.',
@@ -406,10 +414,10 @@ const SERVICES = [
   }
 ];
 
-const CATS = ['All', 'Body &amp; paint', 'Cosmetic &amp; aftermarket', 'Security &amp; customisation'];
+const CATS = ['All', 'Body & paint', 'Cosmetic & aftermarket', 'Security & customisation'];
 
 class Component extends DCLogic {
-  state = { navDrawer: false, navMenu: false, narrow: false, mid: false, filter: 'All', selId: 1, edits: {}, slugTouched: {} };
+  state = { navDrawer: false, navMenu: false, narrow: false, mid: false, filter: 'All', selId: 1, edits: {}, slugTouched: {}, mobileView: 'list' };
   componentDidMount() {
     this._r = () => {
       const dw = window.innerWidth < 760;
@@ -435,7 +443,7 @@ class Component extends DCLogic {
     const list = all.filter(s => st.filter === 'All' || s.category === st.filter);
     const sel = all.find(s => s.id === st.selId) || all[0];
     const quoteOnly = sel.priceType === 'Quote on inspection';
-    const isSecurity = sel.category === 'Security &amp; customisation';
+    const isSecurity = sel.category === 'Security & customisation';
     const priceShown = sel.publishPrice && !quoteOnly;
     const label = (s) => s.priceType === 'Quote on inspection'
       ? 'Quote on inspection'
@@ -451,6 +459,10 @@ class Component extends DCLogic {
       closeNavMenu: () => this.setState({ navMenu: false }),
       emailDisplay: st.narrow ? 'none' : 'inline',
       pageColumns: st.mid ? '1fr' : '320px minmax(0,1fr)',
+      listDisplay: st.mid && st.mobileView === 'detail' ? 'none' : 'block',
+      recordDisplay: st.mid && st.mobileView !== 'detail' ? 'none' : 'flex',
+      backDisplay: st.mid ? 'flex' : 'none',
+      backToList: () => this.setState({ mobileView: 'list' }),
       pairColumns: st.narrow ? '1fr' : '1fr 1fr',
       priceColumns: st.narrow ? '1fr' : (quoteOnly ? '1fr 1fr' : 'repeat(3,minmax(0,1fr))'),
       countLabel: SERVICES.length + ' services, ' + all.filter(s => s.status === 'Draft').length + ' in draft',
@@ -471,7 +483,7 @@ class Component extends DCLogic {
         priceColor: s.publishPrice && s.priceType !== 'Quote on inspection' ? '#B9BAB8' : '#595959',
         bg: s.id === sel.id ? '#181818' : '#111',
         marker: s.id === sel.id ? '#F24405' : 'transparent',
-        pick: () => this.setState({ selId: s.id })
+        pick: () => this.setState({ selId: s.id, mobileView: 'detail' })
       })),
       sel: { ...sel, publicHref: './Tygrify Services.dc.html', terms: sel.terms },
       onName: e => this.edit({ name: e.target.value }),
@@ -494,7 +506,7 @@ class Component extends DCLogic {
       ppTrack: sel.publishPrice ? '#F24405' : 'transparent',
       ppTrackBorder: sel.publishPrice ? '#F24405' : 'rgba(185,186,184,.34)',
       ppKnob: sel.publishPrice ? 'flex-end' : 'flex-start',
-      priceWarnDisplay: (sel.publishPrice && !quoteOnly && sel.category === 'Body &amp; paint') ? 'block' : 'none',
+      priceWarnDisplay: (sel.publishPrice && !quoteOnly && sel.category === 'Body & paint') ? 'block' : 'none',
       pricePreview: priceShown ? sel.priceType + ' ' + sel.amount : 'Quote on inspection',
       securityDisplay: isSecurity ? 'flex' : 'none'
     };

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Public+Sans:ital,wght@0,300..800;1,400&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
+<style>
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0;background:#0D0D0D;-webkit-font-smoothing:antialiased}
+body{font-family:'Public Sans',system-ui,sans-serif;color:#FFFFFF}
+*{box-sizing:border-box}
+a{color:#FFFFFF;text-decoration:none}
+a:hover{color:#F24405}
+input::placeholder,textarea::placeholder{color:#595959}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#F24405}
+</style>
+</helmet>
+
+<div style="background:#0D0D0D;min-height:100vh;overflow-x:clip;display:flex;flex-direction:column">
+
+  <header style="position:sticky;top:0;z-index:40;background:rgba(13,13,13,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(185,186,184,.16)">
+    <div style="max-width:1400px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px">
+      <a href="./Tygrify Admin Home.dc.html" style="display:flex;align-items:baseline;gap:8px;flex:none">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.06em;line-height:1">TYGRIFY</span>
+        <span style="width:6px;height:6px;background:#F24405;border-radius:50%;display:block"></span>
+      </a>
+      <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B9BAB8;border:1px solid rgba(185,186,184,.3);border-radius:999px;padding:3px 8px;flex:none;white-space:nowrap">Admin</span>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:12px;flex:none">
+        <span style="display:{{ emailDisplay }};font-size:13px;color:#595959">jay@tygrify.co.uk</span>
+        <a href="./Tygrify Account.dc.html" style="display:{{ emailDisplay }};font-size:13px;color:#B9BAB8">Customer account</a>
+        <a href="./Tygrify Sign In.dc.html" style="font-size:13px;color:#B9BAB8">Sign out</a>
+      </div>
+      <button type="button" onClick="{{ toggleNavMenu }}" aria-label="Open menu" style="display:{{ navBurgerDisplay }};background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <span style="display:block;width:17px;height:1.5px;background:#fff;box-shadow:0 -5px 0 #fff,0 5px 0 #fff"></span>
+      </button>
+    </div>
+  </header>
+
+  <div onClick="{{ closeNavMenu }}" style="display:{{ navMenuDisplay }};position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.62)"></div>
+  <aside style="display:{{ navMenuDisplay }};position:fixed;inset:0;z-index:61;background:#0A0A0A;flex-direction:column;overflow-y:auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px;border-bottom:1px solid rgba(185,186,184,.16)">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em;line-height:1">ADMIN</span>
+      <button type="button" onClick="{{ closeNavMenu }}" aria-label="Close menu" style="background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+    <nav style="display:flex;flex-direction:column;padding:6px 20px 10px">
+      <a href="./Tygrify Admin Home.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Home</a>
+      <a href="./Tygrify Admin Enquiries.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Enquiries</a>
+      <a href="./Tygrify Admin Customers.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Customers</a>
+      <a href="./Tygrify Admin Services.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Services</a>
+      <a href="./Tygrify Admin Gallery.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Gallery</a>
+      <a href="./Tygrify Admin Rewards.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Tygrify XP</a>
+      <a href="./Tygrify Admin Settings.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Settings</a>
+    </nav>
+    <div style="margin-top:auto;padding:16px 20px 24px;display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(185,186,184,.16);font-size:14px">
+      <a href="./Tygrify Homepage.dc.html" style="color:#B9BAB8">View the public site</a>
+      <a href="./Tygrify Account.dc.html" style="color:#B9BAB8">Customer account</a>
+      <a href="./Tygrify Sign In.dc.html" style="color:#B9BAB8">Sign out</a>
+    </div>
+  </aside>
+
+
+  <main style="flex:1;max-width:1400px;width:100%;margin:0 auto;padding:clamp(20px,3.4vw,32px) 20px clamp(48px,7vw,72px);display:grid;gap:clamp(22px,3.4vw,38px);grid-template-columns:{{ mainCols }};align-items:start">
+
+    <aside style="display:flex;flex-direction:column;gap:16px;order:{{ sidebarOrder }};position:{{ sidebarPosition }};top:76px;min-width:0">
+      <nav style="display:{{ sidebarNavDisplay }};flex-direction:column;border:1px solid rgba(185,186,184,.16);background:#111">
+        <a href="./Tygrify Admin Home.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Home</a>
+        <a href="./Tygrify Admin Enquiries.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Enquiries</a>
+        <a href="./Tygrify Admin Customers.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Customers</a>
+        <a href="./Tygrify Admin Services.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Services</a>
+        <a href="./Tygrify Admin Gallery.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid #F24405;background:rgba(242,68,5,.08);color:#fff">Gallery</a>
+        <a href="./Tygrify Admin Rewards.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Tygrify XP</a>
+        <a href="./Tygrify Admin Settings.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Settings</a>
+      </nav>
+    </aside>
+
+    <div style="min-width:0">
+
+    <p style="margin:0 0 14px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#595959">
+      <a href="./Tygrify Admin Gallery.dc.html" style="color:#595959">Gallery</a> / <span style="color:#B9BAB8">Edit photo</span>
+    </p>
+
+    <div style="display:flex;align-items:flex-start;gap:16px;flex-wrap:wrap">
+      <div style="flex:1;min-width:0">
+        <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(30px,5vw,46px);letter-spacing:.02em;line-height:1">{{ titleHeading }}</h1>
+        <p style="margin:10px 0 0;font-size:14px;color:#595959">{{ publishedNote }}</p>
+      </div>
+      <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid {{ statusBorder }};color:{{ statusColor }};border-radius:2px;padding:6px 10px;white-space:nowrap;flex:none">{{ status }}</span>
+    </div>
+
+    <div style="margin-top:clamp(24px,3.6vw,34px);display:grid;gap:clamp(20px,3vw,30px);grid-template-columns:{{ pageColumns }};align-items:start">
+
+      <div style="min-width:0;display:flex;flex-direction:column;gap:clamp(20px,3vw,28px)">
+
+        <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(20px,2.6vw,26px)">
+          <p style="margin:0 0 6px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Photos</p>
+          <p style="margin:0 0 18px;font-size:13.5px;color:#B9BAB8">Click either photo to replace it. Number plates must be covered before this can be published.</p>
+          <div style="display:grid;gap:1px;background:rgba(185,186,184,.16);grid-template-columns:repeat(auto-fit,minmax(220px,1fr))">
+            <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#1A1A1A">
+              <image-slot id="tg-admin-gallery-item-before" shape="rect" placeholder="Before photo"></image-slot>
+              <span style="position:absolute;top:10px;left:10px;background:rgba(13,13,13,.82);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:5px 12px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;pointer-events:none">Before</span>
+            </div>
+            <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#1A1A1A">
+              <image-slot id="tg-admin-gallery-item-after" shape="rect" placeholder="After photo"></image-slot>
+              <span style="position:absolute;top:10px;left:10px;background:#F24405;color:#fff;border-radius:999px;padding:5px 12px;font-size:10.5px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;pointer-events:none">After</span>
+            </div>
+          </div>
+        </section>
+
+        <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(20px,2.6vw,26px)">
+          <div style="display:flex;align-items:baseline;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <p style="margin:0 0 6px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Details</p>
+            <span style="font-size:12.5px;color:{{ saveNoteColor }}">{{ saveNote }}</span>
+          </div>
+
+          <label style="display:flex;flex-direction:column;gap:8px;margin-top:14px">
+            <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Title</span>
+            <input type="text" value="{{ title }}" onChange="{{ onTitle }}" placeholder="e.g. Front wing scratch" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15.5px;padding:13px 14px;width:100%">
+          </label>
+
+          <label style="display:flex;flex-direction:column;gap:8px;margin-top:16px">
+            <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Description</span>
+            <textarea rows="3" value="{{ description }}" onChange="{{ onDescription }}" placeholder="What was done, in one line customers will understand." style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;line-height:1.55;padding:13px 14px;width:100%;resize:vertical"></textarea>
+          </label>
+
+          <div style="margin-top:16px;display:grid;gap:16px;grid-template-columns:{{ detailColumns }}">
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Category</span>
+              <select value="{{ category }}" onChange="{{ onCategory }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:13px 12px;width:100%">
+                <option value="Body repair">Body repair</option>
+                <option value="Alloys">Alloys</option>
+                <option value="Interiors">Interiors</option>
+                <option value="Security">Security</option>
+              </select>
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Completed in</span>
+              <div style="display:flex;gap:8px">
+                <input type="number" min="0" step="1" value="{{ duration }}" onChange="{{ onDuration }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15.5px;padding:13px 14px;width:100%;flex:1">
+                <select value="{{ durationUnit }}" onChange="{{ onDurationUnit }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:13px 12px;width:120px;flex:none">
+                  <option value="hours">Hours</option>
+                  <option value="days">Days</option>
+                </select>
+              </div>
+            </label>
+          </div>
+
+          <p style="margin:16px 0 0;font-size:13px;line-height:1.6;color:#595959;max-width:60ch">Vehicle on file: {{ vehicleNote }}. This does not appear on the public gallery.</p>
+
+          <div style="margin-top:20px;display:flex;gap:10px;flex-wrap:wrap;align-items:center">
+            <button type="button" onClick="{{ save }}" disabled="{{ saveDisabled }}" style="background:{{ saveBg }};border:none;color:{{ saveColorBtn }};border-radius:2px;padding:15px 24px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:{{ saveCursor }}">Save changes</button>
+            <button type="button" onClick="{{ reset }}" style="display:{{ resetDisplay }};background:none;border:1px solid rgba(185,186,184,.34);color:#B9BAB8;border-radius:2px;padding:15px 20px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer">Undo</button>
+          </div>
+        </section>
+
+      </div>
+
+      <aside style="min-width:0;display:flex;flex-direction:column;gap:clamp(16px,2.4vw,20px);position:{{ asidePosition }};top:112px">
+        <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:20px">
+          <p style="margin:0 0 14px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Visibility</p>
+          <select value="{{ status }}" onChange="{{ onStatus }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:13px 12px;width:100%">
+            <option value="Published">Published</option>
+            <option value="Pending review">Pending review</option>
+            <option value="Rejected">Rejected</option>
+          </select>
+          <p style="margin:14px 0 0;font-size:13px;line-height:1.6;color:#595959">{{ statusNote }}</p>
+        </section>
+
+        <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:20px">
+          <p style="margin:0 0 14px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Quick links</p>
+          <div style="display:flex;flex-direction:column;gap:10px;font-size:14px">
+            <a href="./Tygrify Gallery.dc.html" style="color:#B9BAB8">View public gallery</a>
+            <a href="./Tygrify Admin Gallery.dc.html" style="color:#B9BAB8">Back to gallery list</a>
+          </div>
+        </section>
+      </aside>
+
+    </div>
+
+    </div>
+  </main>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1080,&quot;height&quot;:1200}}">
+const ITEM = {
+  title: 'Bumper scuff repair',
+  description: 'Body & paint · scuff and scrape on the rear bumper corner, blended and colour matched.',
+  category: 'Body repair',
+  duration: 3,
+  durationUnit: 'hours',
+  status: 'Published',
+  vehicle: 'Ford Focus - plate redacted',
+  published: '2 Sep 2026'
+};
+
+class Component extends DCLogic {
+  state = {
+    navDrawer: false, navMenu: false, narrow: false,
+    values: { title: ITEM.title, description: ITEM.description, category: ITEM.category, duration: ITEM.duration, durationUnit: ITEM.durationUnit, status: ITEM.status },
+    saved: false
+  };
+  componentDidMount() {
+    this._r = () => {
+      const dw = window.innerWidth < 760;
+      if (dw !== this.state.navDrawer) this.setState({ navDrawer: dw, navMenu: false });
+      const n = window.innerWidth < 860;
+      if (n !== this.state.narrow) this.setState({ narrow: n });
+    };
+    this._r();
+    window.addEventListener('resize', this._r);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+  renderVals() {
+    const n = this.state.narrow;
+    const st = this.state;
+    const v = st.values;
+    const dirty = v.title !== ITEM.title || v.description !== ITEM.description || v.category !== ITEM.category
+      || Number(v.duration) !== Number(ITEM.duration) || v.durationUnit !== ITEM.durationUnit || v.status !== ITEM.status;
+    const statusColors = {
+      Published: '#F24405',
+      'Pending review': '#B9BAB8',
+      Rejected: '#595959'
+    };
+    const statusNotes = {
+      Published: 'Live on the public gallery now.',
+      'Pending review': 'Hidden from the public gallery until published.',
+      Rejected: 'Hidden from the public gallery and marked as rejected.'
+    };
+    return {
+      mainCols: this.state.navDrawer ? 'minmax(0,1fr)' : '218px minmax(0,1fr)',
+      sidebarOrder: this.state.navDrawer ? '2' : '0',
+      sidebarPosition: this.state.navDrawer ? 'static' : 'sticky',
+      sidebarNavDisplay: this.state.navDrawer ? 'none' : 'flex',
+      navBurgerDisplay: this.state.navDrawer ? 'flex' : 'none',
+      navMenuDisplay: this.state.navDrawer && this.state.navMenu ? 'flex' : 'none',
+      toggleNavMenu: () => this.setState(s => ({ navMenu: !s.navMenu })),
+      closeNavMenu: () => this.setState({ navMenu: false }),
+      emailDisplay: n ? 'none' : 'inline',
+      pageColumns: n ? '1fr' : 'minmax(0,1fr) 280px',
+      detailColumns: n ? '1fr' : '1fr 1fr',
+      asidePosition: n ? 'static' : 'sticky',
+      titleHeading: v.title,
+      publishedNote: 'Completed job photo - published ' + ITEM.published,
+      vehicleNote: ITEM.vehicle,
+      status: v.status,
+      statusColor: statusColors[v.status],
+      statusBorder: statusColors[v.status],
+      statusNote: statusNotes[v.status],
+      onStatus: e => this.setState(s => ({ values: { ...s.values, status: e.target.value }, saved: false })),
+      title: v.title,
+      onTitle: e => this.setState(s => ({ values: { ...s.values, title: e.target.value }, saved: false })),
+      description: v.description,
+      onDescription: e => this.setState(s => ({ values: { ...s.values, description: e.target.value }, saved: false })),
+      category: v.category,
+      onCategory: e => this.setState(s => ({ values: { ...s.values, category: e.target.value }, saved: false })),
+      duration: v.duration,
+      onDuration: e => this.setState(s => ({ values: { ...s.values, duration: e.target.value }, saved: false })),
+      durationUnit: v.durationUnit,
+      onDurationUnit: e => this.setState(s => ({ values: { ...s.values, durationUnit: e.target.value }, saved: false })),
+      saveNote: dirty ? 'Unsaved changes' : (st.saved ? 'Saved' : 'Up to date'),
+      saveNoteColor: dirty ? '#F24405' : '#595959',
+      save: () => dirty && this.setState(s => {
+        ITEM.title = s.values.title;
+        ITEM.description = s.values.description;
+        ITEM.category = s.values.category;
+        ITEM.duration = s.values.duration;
+        ITEM.durationUnit = s.values.durationUnit;
+        ITEM.status = s.values.status;
+        return { saved: true };
+      }),
+      saveDisabled: !dirty,
+      saveBg: dirty ? '#F24405' : 'rgba(185,186,184,.14)',
+      saveColorBtn: dirty ? '#fff' : '#595959',
+      saveCursor: dirty ? 'pointer' : 'not-allowed',
+      resetDisplay: dirty ? 'inline-flex' : 'none',
+      reset: () => this.setState({
+        values: { title: ITEM.title, description: ITEM.description, category: ITEM.category, duration: ITEM.duration, durationUnit: ITEM.durationUnit, status: ITEM.status },
+        saved: false
+      })
+    };
+  }
+}
+</script>
+</body>
+</html>

@@ -13,11 +13,14 @@
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Public+Sans:ital,wght@0,300..800;1,400&display=swap" rel="stylesheet">
 <script src="./image-slot.js"></script>
 <style>
+html{scroll-behavior:smooth}
 html,body{margin:0;padding:0;background:#0D0D0D;-webkit-font-smoothing:antialiased}
 body{font-family:'Public Sans',system-ui,sans-serif;color:#FFFFFF}
 *{box-sizing:border-box}
 a{color:#FFFFFF;text-decoration:none}
 a:hover{color:#F24405}
+.tg-gallery-hint{opacity:0;transition:opacity .18s ease}
+.tg-gallery-photo:hover .tg-gallery-hint{opacity:1}
 </style>
 </helmet>
 
@@ -82,6 +85,82 @@ a:hover{color:#F24405}
     </div>
   </aside>
 
+  <div onClick="{{ closeModal }}" style="display:{{ modalDisplay }};position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.8);align-items:center;justify-content:center;padding:20px;overflow-y:auto">
+
+    <div onClick="{{ stopClick }}" style="display:{{ modalPanel0Display }};background:#111111;border:1px solid rgba(185,186,184,.2);max-width:920px;width:100%;margin:auto;position:relative">
+      <button onClick="{{ closeModal }}" aria-label="Close comparison" style="position:absolute;top:14px;right:14px;z-index:2;background:rgba(13,13,13,.85);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+        <div style="position:relative;aspect-ratio:4/3;overflow:hidden;border-right:1px solid rgba(185,186,184,.16);background:#111">
+          <image-slot id="tg-g-before-1" shape="rect" src="./assets/before-wing.jpg" placeholder="Before"></image-slot>
+          <span style="position:absolute;top:12px;left:12px;background:rgba(13,13,13,.82);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Before</span>
+        </div>
+        <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#111">
+          <image-slot id="tg-g-after-1" shape="rect" src="./assets/after-wing.jpg" placeholder="After"></image-slot>
+          <span style="position:absolute;top:12px;left:12px;background:#F24405;color:#fff;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">After</span>
+        </div>
+      </div>
+      <div style="padding:clamp(20px,3vw,30px)">
+        <p style="margin:0 0 6px;font-size:20px;font-weight:700">Front wing scratch</p>
+        <p style="margin:0 0 14px;font-size:14.5px;color:#B9BAB8">Body &amp; paint · localised repair and refinish</p>
+        <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(242,68,5,.12);border:1px solid rgba(242,68,5,.4);color:#F24405;border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:700">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F24405" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          Completed in 3 hours
+        </span>
+      </div>
+    </div>
+
+    <div onClick="{{ stopClick }}" style="display:{{ modalPanel1Display }};background:#111111;border:1px solid rgba(185,186,184,.2);max-width:920px;width:100%;margin:auto;position:relative">
+      <button onClick="{{ closeModal }}" aria-label="Close comparison" style="position:absolute;top:14px;right:14px;z-index:2;background:rgba(13,13,13,.85);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+        <div style="position:relative;aspect-ratio:4/3;overflow:hidden;border-right:1px solid rgba(185,186,184,.16);background:#111">
+          <image-slot id="tg-g-before-2" shape="rect" src="./assets/before-rear.jpg" placeholder="Before"></image-slot>
+          <span style="position:absolute;top:12px;left:12px;background:rgba(13,13,13,.82);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Before</span>
+        </div>
+        <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#111">
+          <image-slot id="tg-g-after-2" shape="rect" src="./assets/after-rear.jpg" placeholder="After"></image-slot>
+          <span style="position:absolute;top:12px;left:12px;background:#F24405;color:#fff;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">After</span>
+        </div>
+      </div>
+      <div style="padding:clamp(20px,3vw,30px)">
+        <p style="margin:0 0 6px;font-size:20px;font-weight:700">Rear bumper impact</p>
+        <p style="margin:0 0 14px;font-size:14.5px;color:#B9BAB8">Body &amp; paint · panel repair and respray</p>
+        <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(242,68,5,.12);border:1px solid rgba(242,68,5,.4);color:#F24405;border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:700">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F24405" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          Completed in 6 hours
+        </span>
+      </div>
+    </div>
+
+    <div onClick="{{ stopClick }}" style="display:{{ modalPanel2Display }};background:#111111;border:1px solid rgba(185,186,184,.2);max-width:920px;width:100%;margin:auto;position:relative">
+      <button onClick="{{ closeModal }}" aria-label="Close comparison" style="position:absolute;top:14px;right:14px;z-index:2;background:rgba(13,13,13,.85);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))">
+        <div style="position:relative;aspect-ratio:4/3;overflow:hidden;border-right:1px solid rgba(185,186,184,.16);background:#111">
+          <image-slot id="tg-g-before-3" shape="rect" src="./assets/before-front.jpg" placeholder="Before"></image-slot>
+          <span style="position:absolute;top:12px;left:12px;background:rgba(13,13,13,.82);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">Before</span>
+        </div>
+        <div style="position:relative;aspect-ratio:4/3;overflow:hidden;background:#111">
+          <image-slot id="tg-g-after-3" shape="rect" src="./assets/after-front.jpg" placeholder="After"></image-slot>
+          <span style="position:absolute;top:12px;left:12px;background:#F24405;color:#fff;border-radius:999px;padding:6px 14px;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase">After</span>
+        </div>
+      </div>
+      <div style="padding:clamp(20px,3vw,30px)">
+        <p style="margin:0 0 6px;font-size:20px;font-weight:700">Front bumper &amp; bonnet</p>
+        <p style="margin:0 0 14px;font-size:14.5px;color:#B9BAB8">Body &amp; paint · panel repair, bumper and refinish</p>
+        <span style="display:inline-flex;align-items:center;gap:7px;background:rgba(242,68,5,.12);border:1px solid rgba(242,68,5,.4);color:#F24405;border-radius:999px;padding:7px 14px;font-size:12.5px;font-weight:700">
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F24405" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+          Completed in 8 hours
+        </span>
+      </div>
+    </div>
+
+  </div>
+
 
   <section id="top" style="max-width:1200px;margin:0 auto;padding:clamp(44px,7vw,80px) 20px 0;scroll-margin-top:88px">
     <p style="margin:0 0 14px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#595959">
@@ -102,12 +181,18 @@ a:hover{color:#F24405}
     <div style="display:grid;gap:24px;grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr))">
 
       <div style="display:{{ card0 }};min-width:0">
-        <div style="position:relative;width:100%;aspect-ratio:16/9;border:1px solid rgba(185,186,184,.16);overflow:hidden;background:#111">
+        <div class="tg-gallery-photo" onClick="{{ openModal0 }}" style="position:relative;width:100%;aspect-ratio:16/9;border:1px solid rgba(185,186,184,.16);overflow:hidden;background:#111;cursor:pointer">
           <div style="position:absolute;inset:0">
             <image-slot id="tg-g-after-1" shape="rect" src="./assets/after-wing.jpg" placeholder="After"></image-slot>
           </div>
           <div style="position:absolute;inset:0;display:{{ show0 }}">
             <image-slot id="tg-g-before-1" shape="rect" src="./assets/before-wing.jpg" placeholder="Before"></image-slot>
+          </div>
+          <div class="tg-gallery-hint" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(13,13,13,.4);pointer-events:none">
+            <span style="display:flex;align-items:center;gap:8px;background:rgba(13,13,13,.82);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:9px 18px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M8 3H4a1 1 0 0 0-1 1v4M16 3h4a1 1 0 0 1 1 1v4M8 21H4a1 1 0 0 1-1-1v-4M16 21h4a1 1 0 0 0 1-1v-4"/></svg>
+              Compare
+            </span>
           </div>
           <button onClick="{{ flip0 }}" style="position:absolute;bottom:12px;left:12px;background:rgba(13,13,13,.82);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:9px 16px;font:inherit;font-size:11.5px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.08em;cursor:pointer">{{ label0 }}</button>
         </div>
@@ -116,12 +201,18 @@ a:hover{color:#F24405}
       </div>
 
       <div style="display:{{ card1 }};min-width:0">
-        <div style="position:relative;width:100%;aspect-ratio:16/9;border:1px solid rgba(185,186,184,.16);overflow:hidden;background:#111">
+        <div class="tg-gallery-photo" onClick="{{ openModal1 }}" style="position:relative;width:100%;aspect-ratio:16/9;border:1px solid rgba(185,186,184,.16);overflow:hidden;background:#111;cursor:pointer">
           <div style="position:absolute;inset:0">
             <image-slot id="tg-g-after-2" shape="rect" src="./assets/after-rear.jpg" placeholder="After"></image-slot>
           </div>
           <div style="position:absolute;inset:0;display:{{ show1 }}">
             <image-slot id="tg-g-before-2" shape="rect" src="./assets/before-rear.jpg" placeholder="Before"></image-slot>
+          </div>
+          <div class="tg-gallery-hint" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(13,13,13,.4);pointer-events:none">
+            <span style="display:flex;align-items:center;gap:8px;background:rgba(13,13,13,.82);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:9px 18px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M8 3H4a1 1 0 0 0-1 1v4M16 3h4a1 1 0 0 1 1 1v4M8 21H4a1 1 0 0 1-1-1v-4M16 21h4a1 1 0 0 0 1-1v-4"/></svg>
+              Compare
+            </span>
           </div>
           <button onClick="{{ flip1 }}" style="position:absolute;bottom:12px;left:12px;background:rgba(13,13,13,.82);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:9px 16px;font:inherit;font-size:11.5px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.08em;cursor:pointer">{{ label1 }}</button>
         </div>
@@ -130,12 +221,18 @@ a:hover{color:#F24405}
       </div>
 
       <div style="display:{{ card2 }};min-width:0">
-        <div style="position:relative;width:100%;aspect-ratio:16/9;border:1px solid rgba(185,186,184,.16);overflow:hidden;background:#111">
+        <div class="tg-gallery-photo" onClick="{{ openModal2 }}" style="position:relative;width:100%;aspect-ratio:16/9;border:1px solid rgba(185,186,184,.16);overflow:hidden;background:#111;cursor:pointer">
           <div style="position:absolute;inset:0">
             <image-slot id="tg-g-after-3" shape="rect" src="./assets/after-front.jpg" placeholder="After"></image-slot>
           </div>
           <div style="position:absolute;inset:0;display:{{ show2 }}">
             <image-slot id="tg-g-before-3" shape="rect" src="./assets/before-front.jpg" placeholder="Before"></image-slot>
+          </div>
+          <div class="tg-gallery-hint" style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(13,13,13,.4);pointer-events:none">
+            <span style="display:flex;align-items:center;gap:8px;background:rgba(13,13,13,.82);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:9px 18px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M8 3H4a1 1 0 0 0-1 1v4M16 3h4a1 1 0 0 1 1 1v4M8 21H4a1 1 0 0 1-1-1v-4M16 21h4a1 1 0 0 0 1-1v-4"/></svg>
+              Compare
+            </span>
           </div>
           <button onClick="{{ flip2 }}" style="position:absolute;bottom:12px;left:12px;background:rgba(13,13,13,.82);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:999px;padding:9px 16px;font:inherit;font-size:11.5px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.08em;cursor:pointer">{{ label2 }}</button>
         </div>
@@ -240,15 +337,25 @@ a:hover{color:#F24405}
       <div style="border-top:1px solid rgba(185,186,184,.12);padding-top:20px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;font-size:12.5px;color:#595959">
         <span>&copy; 2026 Tygrify Ltd. All rights reserved.</span>
         <div style="display:flex;gap:20px">
-          <a href="#" style="color:#595959">Terms</a>
-          <a href="#" style="color:#595959">Privacy</a>
-          <a href="#" style="color:#595959">Cookies</a>
+          <a href="./Tygrify Terms of Service.dc.html" style="color:#595959">Terms</a>
+          <a href="./Tygrify Privacy Policy.dc.html" style="color:#595959">Privacy</a>
+          <a href="./Tygrify Cookies Policy.dc.html" style="color:#595959">Cookies</a>
         </div>
       </div>
     </div>
   </footer>
 
-  <a href="https://wa.me/447722102736" target="_blank" rel="noreferrer" aria-label="Message us on WhatsApp" style="position:fixed;right:20px;bottom:20px;z-index:50;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.4)">
+  <div style="display:{{ cookieBannerDisplay }};position:fixed;left:0;right:0;bottom:0;z-index:55;background:#111;border-top:1px solid rgba(185,186,184,.2);box-shadow:0 -8px 24px rgba(0,0,0,.35)">
+    <div style="max-width:1200px;margin:0 auto;padding:18px 20px;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
+      <p style="margin:0;font-size:13.5px;line-height:1.6;color:#B9BAB8;max-width:56ch">We use cookies to run this site and, with your permission, to understand how it is used. See our <a href="./Tygrify Cookies Policy.dc.html" style="color:#B9BAB8;text-decoration:underline">cookies policy</a> for details.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:10px;flex:none">
+        <button type="button" onClick="{{ acceptEssentialCookies }}" style="background:none;border:1px solid rgba(185,186,184,.34);color:#B9BAB8;padding:12px 20px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap">Essential only</button>
+        <button type="button" onClick="{{ acceptAllCookies }}" style="background:#F24405;border:none;color:#fff;padding:12px 22px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;white-space:nowrap">Accept all</button>
+      </div>
+    </div>
+  </div>
+
+  <a href="https://wa.me/447722102736" target="_blank" rel="noreferrer" aria-label="Message us on WhatsApp" style="position:fixed;right:20px;bottom:{{ waBottom }};z-index:50;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 6px 18px rgba(0,0,0,.4)">
     <svg width="28" height="28" viewBox="0 0 24 24" fill="#fff"><path d="M12 2C6.48 2 2 6.48 2 12c0 1.85.5 3.58 1.36 5.07L2 22l5.1-1.33A9.94 9.94 0 0 0 12 22c5.52 0 10-4.48 10-10S17.52 2 12 2zm0 18a8 8 0 0 1-4.08-1.12l-.29-.17-3.03.79.81-2.95-.19-.3A8 8 0 1 1 12 20zm4.38-5.91c-.24-.12-1.43-.7-1.65-.78-.22-.08-.38-.12-.54.12-.16.24-.62.78-.76.94-.14.16-.28.18-.52.06-.24-.12-1.01-.37-1.92-1.18-.71-.63-1.19-1.42-1.33-1.66-.14-.24-.01-.37.11-.49.11-.11.24-.28.36-.42.12-.14.16-.24.24-.4.08-.16.04-.3-.02-.42-.06-.12-.54-1.3-.74-1.78-.19-.46-.39-.4-.54-.4-.14-.01-.3-.01-.46-.01a.9.9 0 0 0-.65.3c-.22.24-.85.83-.85 2.03s.87 2.36.99 2.52c.12.16 1.71 2.61 4.14 3.66.58.25 1.03.4 1.38.51.58.18 1.11.16 1.53.1.47-.07 1.43-.58 1.63-1.15.2-.56.2-1.04.14-1.15-.06-.1-.22-.16-.46-.28z"/></svg>
   </a>
 
@@ -256,7 +363,7 @@ a:hover{color:#F24405}
 </x-dc>
 <script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
-  state = { mobile: false, menu: false, filter: 'all', before: [false, false, false] };
+  state = { mobile: false, menu: false, filter: 'all', before: [false, false, false], modal: null };
   componentDidMount() {
     this._r = () => {
       const m = window.innerWidth < 900;
@@ -264,9 +371,16 @@ class Component extends DCLogic {
     };
     this._r();
     window.addEventListener('resize', this._r);
+    this._esc = (e) => { if (e.key === 'Escape' && this.state.modal !== null) this.setState({ modal: null }); };
+    window.addEventListener('keydown', this._esc);
   }
-  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+  componentWillUnmount() {
+    window.removeEventListener('resize', this._r);
+    window.removeEventListener('keydown', this._esc);
+  }
   renderVals() {
+    let cookieChoice = this.state.cookieChoiceOverride || null;
+    if (!cookieChoice) { try { cookieChoice = localStorage.getItem('tygrifyCookieConsent'); } catch (e) {} }
     const m = this.state.mobile, f = this.state.filter, b = this.state.before;
     const cats = ['body', 'body', 'body', 'alloys', 'interior', 'security'];
     const out = {
@@ -275,8 +389,15 @@ class Component extends DCLogic {
       burgerDisplay: m ? 'flex' : 'none',
       menuDisplay: m && this.state.menu ? 'flex' : 'none',
       closeMenu: () => this.setState({ menu: false }),
-      toggleMenu: () => this.setState(st => ({ menu: !st.menu }))
+      toggleMenu: () => this.setState(st => ({ menu: !st.menu })),
+      modalDisplay: this.state.modal !== null ? 'flex' : 'none',
+      closeModal: () => this.setState({ modal: null }),
+      stopClick: (e) => { if (e) e.stopPropagation(); }
     };
+    [0, 1, 2].forEach(i => {
+      out['openModal' + i] = () => this.setState({ modal: i });
+      out['modalPanel' + i + 'Display'] = this.state.modal === i ? 'block' : 'none';
+    });
     const chip = (key, name) => {
       const on = f === key;
       out['f' + name + 'Bg'] = on ? '#F24405' : 'transparent';
@@ -290,10 +411,17 @@ class Component extends DCLogic {
     b.forEach((on, i) => {
       out['show' + i] = on ? 'block' : 'none';
       out['label' + i] = on ? 'Showing before' : 'Showing after';
-      out['flip' + i] = () => this.setState(st => {
-        const n = st.before.slice(); n[i] = !n[i]; return { before: n };
-      });
+      out['flip' + i] = (e) => {
+        if (e) e.stopPropagation();
+        this.setState(st => {
+          const n = st.before.slice(); n[i] = !n[i]; return { before: n };
+        });
+      };
     });
+    out.cookieBannerDisplay = cookieChoice ? 'none' : 'flex';
+    out.waBottom = cookieChoice ? '20px' : '92px';
+    out.acceptAllCookies = () => { try { localStorage.setItem('tygrifyCookieConsent', 'all'); } catch (e) {} this.setState({ cookieChoiceOverride: 'all' }); };
+    out.acceptEssentialCookies = () => { try { localStorage.setItem('tygrifyCookieConsent', 'essential'); } catch (e) {} this.setState({ cookieChoiceOverride: 'essential' }); };
     return out;
   }
 }

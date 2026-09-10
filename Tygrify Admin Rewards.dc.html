@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Public+Sans:ital,wght@0,300..800;1,400&display=swap" rel="stylesheet">
+<style>
+html{scroll-behavior:smooth}
+html,body{margin:0;padding:0;background:#0D0D0D;-webkit-font-smoothing:antialiased}
+body{font-family:'Public Sans',system-ui,sans-serif;color:#FFFFFF}
+*{box-sizing:border-box}
+a{color:#FFFFFF;text-decoration:none}
+a:hover{color:#F24405}
+input::placeholder,textarea::placeholder{color:#595959}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#F24405}
+</style>
+</helmet>
+
+<div style="background:#0D0D0D;min-height:100vh;overflow-x:clip;display:flex;flex-direction:column">
+
+  <header style="position:sticky;top:0;z-index:40;background:rgba(13,13,13,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(185,186,184,.16)">
+    <div style="max-width:1400px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px">
+      <a href="./Tygrify Admin Home.dc.html" style="display:flex;align-items:baseline;gap:8px;flex:none">
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.06em;line-height:1">TYGRIFY</span>
+        <span style="width:6px;height:6px;background:#F24405;border-radius:50%;display:block"></span>
+      </a>
+      <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B9BAB8;border:1px solid rgba(185,186,184,.3);border-radius:999px;padding:3px 8px;flex:none;white-space:nowrap">Admin</span>
+      <div style="margin-left:auto;display:flex;align-items:center;gap:12px;flex:none">
+        <span style="display:{{ emailDisplay }};font-size:13px;color:#595959">jay@tygrify.co.uk</span>
+        <a href="./Tygrify Account.dc.html" style="display:{{ emailDisplay }};font-size:13px;color:#B9BAB8">Customer account</a>
+        <a href="./Tygrify Sign In.dc.html" style="font-size:13px;color:#B9BAB8">Sign out</a>
+      </div>
+      <button type="button" onClick="{{ toggleNavMenu }}" aria-label="Open menu" style="display:{{ navBurgerDisplay }};background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <span style="display:block;width:17px;height:1.5px;background:#fff;box-shadow:0 -5px 0 #fff,0 5px 0 #fff"></span>
+      </button>
+    </div>
+  </header>
+
+  <div onClick="{{ closeNavMenu }}" style="display:{{ navMenuDisplay }};position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.62)"></div>
+  <aside style="display:{{ navMenuDisplay }};position:fixed;inset:0;z-index:61;background:#0A0A0A;flex-direction:column;overflow-y:auto">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px;border-bottom:1px solid rgba(185,186,184,.16)">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em;line-height:1">ADMIN</span>
+      <button type="button" onClick="{{ closeNavMenu }}" aria-label="Close menu" style="background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+    <nav style="display:flex;flex-direction:column;padding:6px 20px 10px">
+      <a href="./Tygrify Admin Home.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Home</a>
+      <a href="./Tygrify Admin Enquiries.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Enquiries</a>
+      <a href="./Tygrify Admin Customers.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Customers</a>
+      <a href="./Tygrify Admin Services.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Services</a>
+      <a href="./Tygrify Admin Gallery.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Gallery</a>
+      <a href="./Tygrify Admin Rewards.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1);color:#F24405">Tygrify XP</a>
+      <a href="./Tygrify Admin Settings.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Settings</a>
+    </nav>
+    <div style="margin-top:auto;padding:16px 20px 24px;display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(185,186,184,.16);font-size:14px">
+      <a href="./Tygrify Homepage.dc.html" style="color:#B9BAB8">View the public site</a>
+      <a href="./Tygrify Account.dc.html" style="color:#B9BAB8">Customer account</a>
+      <a href="./Tygrify Sign In.dc.html" style="color:#B9BAB8">Sign out</a>
+    </div>
+  </aside>
+
+
+  <main style="flex:1;max-width:1400px;width:100%;margin:0 auto;padding:clamp(22px,3.6vw,36px) 20px clamp(48px,7vw,72px);display:grid;gap:clamp(22px,3.4vw,38px);grid-template-columns:{{ mainCols }};align-items:start">
+
+    <aside style="display:flex;flex-direction:column;gap:16px;order:{{ sidebarOrder }};position:{{ sidebarPosition }};top:76px;min-width:0">
+      <nav style="display:{{ sidebarNavDisplay }};flex-direction:column;border:1px solid rgba(185,186,184,.16);background:#111">
+        <a href="./Tygrify Admin Home.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Home</a>
+        <a href="./Tygrify Admin Enquiries.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Enquiries</a>
+        <a href="./Tygrify Admin Customers.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Customers</a>
+        <a href="./Tygrify Admin Services.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Services</a>
+        <a href="./Tygrify Admin Gallery.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Gallery</a>
+        <a href="./Tygrify Admin Rewards.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid #F24405;background:rgba(242,68,5,.08);color:#fff">Tygrify XP</a>
+        <a href="./Tygrify Admin Settings.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Settings</a>
+      </nav>
+    </aside>
+
+    <div style="min-width:0">
+
+    <div style="display:flex;align-items:baseline;gap:14px;flex-wrap:wrap">
+      <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(30px,5vw,44px);letter-spacing:.02em;line-height:1">Tygrify XP</h1>
+      <span style="font-size:14px;color:#595959">{{ countLabel }}</span>
+    </div>
+    <p style="margin:12px 0 0;font-size:14px;line-height:1.6;color:#B9BAB8;max-width:64ch">Points are earned automatically from completed jobs. What sits below controls how fast customers earn them and what they can spend them on - shown live on the Tygrify XP card in every customer's account.</p>
+
+    <div style="margin-top:22px;display:grid;gap:clamp(18px,2.6vw,26px);grid-template-columns:{{ pageColumns }};align-items:start">
+
+      <div style="min-width:0;display:{{ listDisplay }}">
+        <div style="display:flex;gap:8px;flex-wrap:wrap">
+          <sc-for list="{{ chips }}" as="c" hint-placeholder-count="3">
+            <button type="button" onClick="{{ c.pick }}" style="background:{{ c.bg }};border:1px solid {{ c.border }};color:{{ c.color }};border-radius:999px;padding:8px 13px;white-space:nowrap;line-height:1.25;font-family:'Public Sans',sans-serif;font-size:12px;letter-spacing:.04em;cursor:pointer">{{ c.label }}</button>
+          </sc-for>
+        </div>
+
+        <div style="margin-top:14px;border:1px solid rgba(185,186,184,.16);display:grid;gap:1px;background:rgba(185,186,184,.16)">
+          <sc-for list="{{ list }}" as="r" hint-placeholder-count="4">
+            <button type="button" onClick="{{ r.pick }}" style="background:{{ r.bg }};border:none;border-left:3px solid {{ r.marker }};text-align:left;padding:14px 16px;font-family:'Public Sans',sans-serif;cursor:pointer;display:block;width:100%">
+              <span style="display:flex;align-items:baseline;gap:10px;justify-content:space-between">
+                <span style="font-size:15px;font-weight:600;color:#fff">{{ r.name }}</span>
+                <span style="flex:none;display:inline-block;white-space:nowrap;line-height:1.2;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid {{ r.statusBorder }};color:{{ r.statusColor }};border-radius:2px;padding:3px 6px">{{ r.status }}</span>
+              </span>
+              <span style="display:block;margin-top:6px;font-size:12.5px;color:#595959">{{ r.pointsLabel }}</span>
+              <span style="display:block;margin-top:4px;font-size:12.5px;color:#B9BAB8">{{ r.rewardLabel }}</span>
+            </button>
+          </sc-for>
+        </div>
+
+        <button type="button" onClick="{{ addTier }}" style="margin-top:14px;background:none;border:1px dashed rgba(185,186,184,.34);color:#B9BAB8;border-radius:2px;padding:14px 16px;font-family:'Public Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer;width:100%" style-hover="border-color:#F24405;color:#F24405">Add a reward</button>
+      </div>
+
+      <div style="min-width:0;display:{{ recordDisplay }};flex-direction:column;gap:clamp(16px,2.4vw,20px)">
+
+        <button type="button" onClick="{{ backToList }}" style="display:{{ backDisplay }};align-items:center;gap:8px;background:none;border:none;color:#B9BAB8;font-family:'Public Sans',sans-serif;font-size:13px;padding:0;cursor:pointer;width:fit-content">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+          All rewards
+        </button>
+
+        <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(20px,2.6vw,26px)">
+          <div style="display:flex;align-items:flex-start;gap:14px;flex-wrap:wrap">
+            <div style="flex:1;min-width:0">
+              <p style="margin:0 0 8px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Editing</p>
+              <h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(24px,3.4vw,34px);letter-spacing:.03em;line-height:1.05">{{ sel.name }}</h2>
+            </div>
+          </div>
+
+          <div style="margin-top:22px;display:flex;flex-direction:column;gap:16px">
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Customer-facing name</span>
+              <input type="text" value="{{ sel.name }}" onChange="{{ onName }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:13px 14px;width:100%">
+              <span style="font-size:12.5px;color:#595959">Shown on the Tygrify XP card once a customer has enough points to reach it.</span>
+            </label>
+
+            <div style="display:grid;gap:16px;grid-template-columns:{{ pairColumns }}">
+              <label style="display:flex;flex-direction:column;gap:8px">
+                <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Points required</span>
+                <input type="text" value="{{ sel.points }}" onChange="{{ onPoints }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:13px 14px;width:100%">
+              </label>
+              <label style="display:flex;flex-direction:column;gap:8px">
+                <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Status</span>
+                <select value="{{ sel.status }}" onChange="{{ onStatus }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:13px 12px;width:100%">
+                  <option value="Active">Active</option>
+                  <option value="Draft">Draft</option>
+                </select>
+              </label>
+            </div>
+
+            <div style="display:grid;gap:16px;grid-template-columns:{{ pairColumns }}">
+              <label style="display:flex;flex-direction:column;gap:8px">
+                <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Reward type</span>
+                <select value="{{ sel.rewardType }}" onChange="{{ onRewardType }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:13px 12px;width:100%">
+                  <option value="Free service">Free service</option>
+                  <option value="Percentage off">Percentage off</option>
+                  <option value="Amount off">Amount off</option>
+                </select>
+              </label>
+              <label style="display:{{ valueDisplay }};flex-direction:column;gap:8px">
+                <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">{{ valueFieldLabel }}</span>
+                <input type="text" value="{{ sel.value }}" onChange="{{ onValue }}" placeholder="{{ valuePlaceholder }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:13px 14px;width:100%">
+              </label>
+            </div>
+
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Description</span>
+              <textarea rows="2" value="{{ sel.description }}" onChange="{{ onDescription }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;line-height:1.6;padding:13px 14px;width:100%;resize:vertical"></textarea>
+            </label>
+          </div>
+
+          <p style="margin:18px 0 0;font-size:13.5px;color:#B9BAB8">Tygrify XP card will read: <span style="color:#fff">{{ rewardPreview }}</span> at <span style="color:#fff">{{ sel.points }} points</span>.</p>
+        </section>
+
+        <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(20px,2.6vw,26px)">
+          <p style="margin:0 0 6px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Earning rules</p>
+          <p style="margin:0 0 18px;font-size:14px;line-height:1.6;color:#B9BAB8;max-width:56ch">How points get onto a customer's balance in the first place.</p>
+
+          <div style="display:grid;gap:16px;grid-template-columns:{{ pairColumns }}">
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Points per £1 spent</span>
+              <input type="text" value="{{ perPound }}" onChange="{{ onPerPound }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:13px 14px;width:100%">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Referral bonus</span>
+              <input type="text" value="{{ referralBonus }}" onChange="{{ onReferralBonus }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:13px 14px;width:100%">
+            </label>
+          </div>
+
+          <label style="display:flex;align-items:flex-start;gap:11px;margin-top:16px;font-size:14.5px;line-height:1.5;color:#B9BAB8;cursor:pointer">
+            <input type="checkbox" checked="{{ autoAward }}" onChange="{{ toggleAutoAward }}" style="width:17px;height:17px;accent-color:#F24405;flex:none;margin-top:2px">
+            <span>Award points automatically when a job is marked complete</span>
+          </label>
+
+          <p style="margin:16px 0 0;font-size:13.5px;color:#B9BAB8">Currently: <span style="color:#fff">{{ earnPreview }}</span></p>
+        </section>
+
+        <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(20px,2.6vw,26px)">
+          <p style="margin:0 0 6px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Redemption rules</p>
+          <p style="margin:0 0 18px;font-size:14px;line-height:1.6;color:#B9BAB8;max-width:56ch">Limits on when and how a balance can be spent.</p>
+
+          <div style="display:grid;gap:16px;grid-template-columns:{{ pairColumns }}">
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Minimum balance to redeem</span>
+              <input type="text" value="{{ minRedeem }}" onChange="{{ onMinRedeem }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:13px 14px;width:100%">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Rewards per visit</span>
+              <select value="{{ perVisit }}" onChange="{{ onPerVisit }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:13px 12px;width:100%">
+                <option value="One">One</option>
+                <option value="Unlimited">Unlimited</option>
+              </select>
+            </label>
+          </div>
+
+          <div style="margin-top:18px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border:1px solid rgba(185,186,184,.16);background:#0D0D0D;padding:16px">
+            <div style="min-width:0">
+              <p style="margin:0;font-size:15px">Points expire</p>
+              <p style="margin:5px 0 0;font-size:13px;color:#595959">Off means a balance never lapses.</p>
+            </div>
+            <button type="button" onClick="{{ toggleExpiry }}" aria-label="Toggle points expiry" style="border:1px solid {{ expiryTrackBorder }};background:{{ expiryTrack }};border-radius:999px;width:56px;height:30px;padding:3px;cursor:pointer;display:flex;justify-content:{{ expiryKnob }};align-items:center;flex:none">
+              <span style="width:22px;height:22px;border-radius:50%;background:#fff;display:block"></span>
+            </button>
+          </div>
+          <label style="display:{{ expiryMonthsDisplay }};flex-direction:column;gap:8px;max-width:220px;margin-top:14px">
+            <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Expire after</span>
+            <select value="{{ expiryMonths }}" onChange="{{ onExpiryMonths }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:13px 12px;width:100%">
+              <option value="12 months">12 months</option>
+              <option value="18 months">18 months</option>
+              <option value="24 months">24 months</option>
+            </select>
+          </label>
+
+          <p style="margin:16px 0 0;font-size:13.5px;color:#B9BAB8">Currently: <span style="color:#fff">{{ redeemPreview }}</span></p>
+        </section>
+
+        <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(20px,2.6vw,26px)">
+          <p style="margin:0 0 6px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Program visibility</p>
+          <p style="margin:0 0 18px;font-size:14px;line-height:1.6;color:#B9BAB8;max-width:56ch">Controls the Tygrify XP card on the customer account page.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;border:1px solid rgba(185,186,184,.16);background:#0D0D0D;padding:16px">
+            <span style="font-size:15px">Show the Tygrify XP card on customer accounts</span>
+            <button type="button" onClick="{{ toggleVisible }}" aria-label="Toggle Tygrify XP card" style="border:1px solid {{ visTrackBorder }};background:{{ visTrack }};border-radius:999px;width:56px;height:30px;padding:3px;cursor:pointer;display:flex;justify-content:{{ visKnob }};align-items:center;flex:none">
+              <span style="width:22px;height:22px;border-radius:50%;background:#fff;display:block"></span>
+            </button>
+          </div>
+
+          <div style="display:{{ previewDisplay }};margin-top:16px;border:1px dashed rgba(185,186,184,.3);padding:18px">
+            <p style="margin:0 0 12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#595959">Preview - next reward for a customer partway there</p>
+            <div style="max-width:280px;border:1px solid rgba(185,186,184,.16);background:#111;padding:20px">
+              <p style="margin:0 0 14px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Tygrify XP</p>
+              <p style="margin:0 0 4px;font-family:'Bebas Neue',sans-serif;font-size:30px;line-height:1;letter-spacing:.02em">{{ previewPoints }} <span style="font-size:16px;color:#B9BAB8">/ {{ sel.points }}</span></p>
+              <p style="margin:0 0 14px;font-size:12.5px;color:#595959">points earned</p>
+              <div style="height:8px;background:rgba(185,186,184,.16);border-radius:999px;overflow:hidden;margin-bottom:14px">
+                <div style="height:100%;width:{{ previewPercent }};background:#F24405;border-radius:999px"></div>
+              </div>
+              <p style="margin:0 0 6px;font-size:14px;font-weight:700;line-height:1.4">{{ sel.name }}</p>
+              <p style="margin:0 0 14px;font-size:13px;line-height:1.55;color:#B9BAB8">{{ previewRemaining }} points to go.</p>
+            </div>
+          </div>
+        </section>
+
+        <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
+          <button type="button" style="background:#F24405;border:none;color:#fff;border-radius:2px;padding:16px 24px;font-family:'Public Sans',sans-serif;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer">Save changes</button>
+          <span style="font-size:13px;color:#595959">{{ sel.lastEdited }}</span>
+        </div>
+
+      </div>
+    </div>
+
+    </div>
+  </main>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:1500}}">
+const TIERS = [
+  {
+    id: 1, name: 'Free wheel clean', points: '150', status: 'Active', sort: '1',
+    rewardType: 'Free service', value: '',
+    description: 'A full wheel clean on their next visit, added as a free line on the job.',
+    lastEdited: 'Last edited 3 Sep by Jay'
+  },
+  {
+    id: 2, name: '10% off next service', points: '250', status: 'Active', sort: '2',
+    rewardType: 'Percentage off', value: '10',
+    description: 'Applies once, to any single service booked through the site or over the phone.',
+    lastEdited: 'Last edited 3 Sep by Jay'
+  },
+  {
+    id: 3, name: 'Free ceramic coating', points: '500', status: 'Active', sort: '3',
+    rewardType: 'Free service', value: '',
+    description: 'The reward already shown on the customer account page - our highest-value redemption.',
+    lastEdited: 'Last edited 5 Sep by Jay'
+  },
+  {
+    id: 4, name: 'Free interior valet', points: '750', status: 'Draft', sort: '4',
+    rewardType: 'Free service', value: '',
+    description: 'Held back until valeting capacity is confirmed with the workshop.',
+    lastEdited: 'Last edited 5 Sep by Jay'
+  }
+];
+
+class Component extends DCLogic {
+  state = {
+    navDrawer: false, navMenu: false, narrow: false, mid: false, filter: 'All', selId: 3, edits: {}, mobileView: 'list',
+    perPound: '1', referralBonus: '50 points', autoAward: true,
+    minRedeem: '150', perVisit: 'One',
+    expiry: false, expiryMonths: '24 months',
+    visible: true
+  };
+  componentDidMount() {
+    this._r = () => {
+      const dw = window.innerWidth < 760;
+      if (dw !== this.state.navDrawer) this.setState({ navDrawer: dw, navMenu: false });
+      const n = window.innerWidth < 640;
+      const m = window.innerWidth < 980;
+      if (n !== this.state.narrow || m !== this.state.mid) this.setState({ narrow: n, mid: m });
+    };
+    this._r();
+    window.addEventListener('resize', this._r);
+  }
+  componentWillUnmount() { window.removeEventListener('resize', this._r); }
+
+  merged(t) { return { ...t, ...(this.state.edits[t.id] || {}) }; }
+  edit(patch) {
+    const id = this.state.selId;
+    this.setState(st => ({ edits: { ...st.edits, [id]: { ...(st.edits[id] || {}), ...patch } } }));
+  }
+
+  renderVals() {
+    const st = this.state;
+    const all = TIERS.map(t => this.merged(t));
+    const list = all.filter(t => st.filter === 'All' || t.status === st.filter);
+    const sel = all.find(t => t.id === st.selId) || all[0];
+    const pts = Math.max(0, Math.round(Number(sel.points || 0) * 0.62));
+    const rewardText = (t) => t.rewardType === 'Percentage off'
+      ? (t.value || '0') + '% off'
+      : t.rewardType === 'Amount off'
+        ? '£' + (t.value || '0') + ' off'
+        : 'Free - ' + t.name;
+    return {
+      mainCols: this.state.navDrawer ? 'minmax(0,1fr)' : '218px minmax(0,1fr)',
+      sidebarOrder: this.state.navDrawer ? '2' : '0',
+      sidebarPosition: this.state.navDrawer ? 'static' : 'sticky',
+      sidebarNavDisplay: this.state.navDrawer ? 'none' : 'flex',
+      navBurgerDisplay: this.state.navDrawer ? 'flex' : 'none',
+      navMenuDisplay: this.state.navDrawer && this.state.navMenu ? 'flex' : 'none',
+      toggleNavMenu: () => this.setState(s => ({ navMenu: !s.navMenu })),
+      closeNavMenu: () => this.setState({ navMenu: false }),
+      emailDisplay: st.narrow ? 'none' : 'inline',
+      pageColumns: st.mid ? '1fr' : '320px minmax(0,1fr)',
+      listDisplay: st.mid && st.mobileView === 'detail' ? 'none' : 'block',
+      recordDisplay: st.mid && st.mobileView !== 'detail' ? 'none' : 'flex',
+      backDisplay: st.mid ? 'flex' : 'none',
+      backToList: () => this.setState({ mobileView: 'list' }),
+      pairColumns: st.narrow ? '1fr' : '1fr 1fr',
+      countLabel: TIERS.length + ' rewards, ' + all.filter(t => t.status === 'Active').length + ' active',
+      chips: ['All', 'Active', 'Draft'].map(c => ({
+        label: c,
+        pick: () => this.setState({ filter: c }),
+        bg: st.filter === c ? '#F24405' : 'transparent',
+        border: st.filter === c ? '#F24405' : 'rgba(185,186,184,.28)',
+        color: st.filter === c ? '#fff' : '#B9BAB8'
+      })),
+      list: list.map(t => ({
+        name: t.name,
+        status: t.status,
+        statusColor: t.status === 'Active' ? '#B9BAB8' : '#F24405',
+        statusBorder: t.status === 'Active' ? 'rgba(185,186,184,.3)' : '#F24405',
+        pointsLabel: t.points + ' points',
+        rewardLabel: rewardText(t),
+        bg: t.id === sel.id ? '#181818' : '#111',
+        marker: t.id === sel.id ? '#F24405' : 'transparent',
+        pick: () => this.setState({ selId: t.id, mobileView: 'detail' })
+      })),
+      addTier: () => {},
+      sel: sel,
+      onName: e => this.edit({ name: e.target.value }),
+      onPoints: e => this.edit({ points: e.target.value }),
+      onStatus: e => this.edit({ status: e.target.value }),
+      onRewardType: e => this.edit({ rewardType: e.target.value, value: '' }),
+      onValue: e => this.edit({ value: e.target.value }),
+      onDescription: e => this.edit({ description: e.target.value }),
+      valueDisplay: sel.rewardType === 'Free service' ? 'none' : 'flex',
+      valueFieldLabel: sel.rewardType === 'Percentage off' ? 'Percent off' : 'Amount off (£)',
+      valuePlaceholder: sel.rewardType === 'Percentage off' ? '10' : '15',
+      rewardPreview: rewardText(sel),
+      perPound: st.perPound,
+      onPerPound: e => this.setState({ perPound: e.target.value }),
+      referralBonus: st.referralBonus,
+      onReferralBonus: e => this.setState({ referralBonus: e.target.value }),
+      autoAward: st.autoAward,
+      toggleAutoAward: () => this.setState(s => ({ autoAward: !s.autoAward })),
+      earnPreview: 'Customers earn ' + st.perPound + ' point(s) per £1 spent, plus ' + st.referralBonus + ' for each referral' + (st.autoAward ? ', awarded automatically on job completion.' : ' - awarded manually.'),
+      minRedeem: st.minRedeem,
+      onMinRedeem: e => this.setState({ minRedeem: e.target.value }),
+      perVisit: st.perVisit,
+      onPerVisit: e => this.setState({ perVisit: e.target.value }),
+      toggleExpiry: () => this.setState(s => ({ expiry: !s.expiry })),
+      expiryTrack: st.expiry ? '#F24405' : 'transparent',
+      expiryTrackBorder: st.expiry ? '#F24405' : 'rgba(185,186,184,.34)',
+      expiryKnob: st.expiry ? 'flex-end' : 'flex-start',
+      expiryMonthsDisplay: st.expiry ? 'flex' : 'none',
+      expiryMonths: st.expiryMonths,
+      onExpiryMonths: e => this.setState({ expiryMonths: e.target.value }),
+      redeemPreview: st.minRedeem + ' points minimum, ' + st.perVisit.toLowerCase() + ' reward per visit' + (st.expiry ? ', points expire after ' + st.expiryMonths + '.' : ', points never expire.'),
+      toggleVisible: () => this.setState(s => ({ visible: !s.visible })),
+      visTrack: st.visible ? '#F24405' : 'transparent',
+      visTrackBorder: st.visible ? '#F24405' : 'rgba(185,186,184,.34)',
+      visKnob: st.visible ? 'flex-end' : 'flex-start',
+      previewDisplay: st.visible ? 'block' : 'none',
+      previewPoints: pts,
+      previewPercent: Math.min(100, Math.round(pts / Math.max(1, Number(sel.points || 1)) * 100)) + '%',
+      previewRemaining: Math.max(0, Number(sel.points || 0) - pts)
+    };
+  }
+}
+</script>
+</body>
+</html>

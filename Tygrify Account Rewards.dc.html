@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script src="./image-slot.js"></script>
 </head>
 <body>
 <x-dc>
@@ -11,7 +12,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Public+Sans:ital,wght@0,300..800;1,400&display=swap" rel="stylesheet">
-<script src="./image-slot.js"></script>
 <style>
 html{scroll-behavior:smooth}
 html,body{margin:0;padding:0;background:#0D0D0D;-webkit-font-smoothing:antialiased}
@@ -19,7 +19,7 @@ body{font-family:'Public Sans',system-ui,sans-serif;color:#FFFFFF}
 *{box-sizing:border-box}
 a{color:#FFFFFF;text-decoration:none}
 a:hover{color:#F24405}
-input,button,textarea{font-family:'Public Sans',system-ui,sans-serif}
+input,button{font-family:'Public Sans',system-ui,sans-serif}
 </style>
 </helmet>
 
@@ -52,10 +52,10 @@ input,button,textarea{font-family:'Public Sans',system-ui,sans-serif}
     </div>
     <nav style="display:flex;flex-direction:column;padding:6px 20px 10px">
       <a href="./Tygrify Account.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Home</a>
-      <a href="./Tygrify Account Vehicles.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1);color:#F24405">Vehicles</a>
+      <a href="./Tygrify Account Vehicles.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Vehicles</a>
       <a href="./Tygrify Account Quotes.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Quotes &amp; estimates</a>
       <a href="./Tygrify Account Repairs.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Repairs</a>
-      <a href="./Tygrify Account Rewards.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Tygrify XP</a>
+      <a href="./Tygrify Account Rewards.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1);color:#F24405">Tygrify XP</a>
       <a href="./Tygrify Account Profile.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Profile</a>
       <a href="./Tygrify Sign In.dc.html" style="padding:14px 0;font-size:16px;color:#B9BAB8;border-bottom:none">Sign out</a>
     </nav>
@@ -70,61 +70,85 @@ input,button,textarea{font-family:'Public Sans',system-ui,sans-serif}
     <aside style="display:flex;flex-direction:column;gap:16px;order:{{ sidebarOrder }};position:{{ sidebarPosition }};top:76px;min-width:0">
       <nav style="display:{{ sidebarNavDisplay }};flex-direction:column;border:1px solid rgba(185,186,184,.16);background:#111">
         <a href="./Tygrify Account.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Home</a>
-        <a href="./Tygrify Account Vehicles.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid #F24405;background:rgba(242,68,5,.08);color:#fff">Vehicles</a>
+        <a href="./Tygrify Account Vehicles.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Vehicles</a>
         <a href="./Tygrify Account Quotes.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Quotes</a>
         <a href="./Tygrify Account Repairs.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Repairs</a>
-        <a href="./Tygrify Account Rewards.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Tygrify XP</a>
+        <a href="./Tygrify Account Rewards.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid #F24405;background:rgba(242,68,5,.08);color:#fff">Tygrify XP</a>
         <a href="./Tygrify Account Profile.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Profile</a>
       </nav>
+      <div style="border:1px solid rgba(185,186,184,.16);background:#111;padding:20px">
+        <p style="margin:0 0 12px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Need something else looked at?</p>
+        <p style="margin:0 0 16px;font-size:14px;line-height:1.6;color:#B9BAB8">You do not have to be logged in to ask. Photos and a couple of details are enough for a price.</p>
+        <a href="./Tygrify Account Get a Quote.dc.html" style="display:block;text-align:center;background:#F24405;color:#fff;padding:14px 18px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">Get a quote</a>
+      </div>
     </aside>
 
     <div style="min-width:0">
 
-    <p style="margin:0 0 14px;font-size:12.5px;color:#595959"><a href="./Tygrify Account.dc.html" style="color:#595959">My garage</a> / <a href="./Tygrify Account Vehicles.dc.html" style="color:#595959">Vehicles</a> / RK21 OZP</p>
+    <p style="margin:0 0 10px;font-size:12.5px;color:#595959"><a href="./Tygrify Account.dc.html" style="color:#595959">My garage</a> / Tygrify XP</p>
+    <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(34px,6vw,58px);letter-spacing:.02em;line-height:1">Tygrify XP</h1>
+    <p style="margin:12px 0 0;font-size:clamp(15px,2.2vw,17px);line-height:1.6;color:#B9BAB8;max-width:56ch">Every repair, valet and detail you book earns points automatically. Here is what you have already unlocked and what is still ahead.</p>
 
-    <div style="display:flex;gap:18px;align-items:flex-start;flex-wrap:wrap">
-      <span style="display:inline-block;white-space:nowrap;line-height:1.15;font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,5vw,40px);letter-spacing:.08em;background:#F5E93B;color:#111;border-radius:4px;padding:6px 14px;flex:none">RK21 OZP</span>
-      <div style="flex:1;min-width:220px">
-        <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(32px,5.4vw,50px);letter-spacing:.02em;line-height:1">Mini Cooper S</h1>
-        <p style="margin:8px 0 0;font-size:15px;color:#B9BAB8">2021 - white - petrol - 1998cc - one job with us</p>
-      </div>
-    </div>
-
-    <a href="./Tygrify Account Quote.dc.html" style="display:block;margin-top:clamp(22px,3.2vw,30px);border:1px solid #F24405;background:linear-gradient(180deg,rgba(242,68,5,.13),rgba(242,68,5,.02));padding:clamp(20px,3vw,28px)">
-      <p style="margin:0 0 10px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Estimate waiting on you</p>
+    <section style="margin-top:clamp(24px,3.6vw,34px);border:1px solid #F24405;background:linear-gradient(180deg,rgba(242,68,5,.13),rgba(242,68,5,.02));padding:clamp(24px,3.4vw,36px)">
+      <p style="margin:0 0 10px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Your balance</p>
       <div style="display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap">
-        <span style="font-family:'Bebas Neue',sans-serif;font-size:clamp(38px,7vw,54px);line-height:.85">£420 - £560</span>
-        <span style="font-size:15px;color:#B9BAB8;padding-bottom:7px">Rear quarter and bumper - valid until 18 September</span>
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:clamp(56px,10vw,96px);line-height:.85">{{ loyaltyPoints }}</span>
+        <span style="font-size:15px;color:#B9BAB8;padding-bottom:10px">points - toward Free ceramic coating ({{ loyaltyTarget }} pts)</span>
       </div>
-      <p style="margin:16px 0 0;font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#F24405">View quote / estimate</p>
-    </a>
+      <div style="height:12px;background:rgba(185,186,184,.16);border-radius:999px;overflow:hidden;margin:20px 0 14px">
+        <div style="height:100%;width:{{ loyaltyPercent }};background:#F24405;border-radius:999px"></div>
+      </div>
+      <p style="margin:0;font-size:14px;line-height:1.6;color:#B9BAB8">{{ loyaltyRemaining }} points to go. Every job you have done with us adds to this. Last earned {{ loyaltyLast }}.</p>
+    </section>
 
-    <div style="margin-top:clamp(20px,3vw,26px);border:1px solid rgba(185,186,184,.16);background:#111">
-      <div style="aspect-ratio:16/9;display:block">
-        <image-slot id="veh-rk21-hero" src="./assets/Mini Cooper S.jpg" placeholder="Mini Cooper S, white" shape="rect"></image-slot>
-      </div>
-    </div>
-
-    <section style="margin-top:clamp(30px,4.4vw,44px);display:grid;gap:clamp(14px,2vw,18px);grid-template-columns:{{ twoColumns }}">
-      <div style="border:1px solid rgba(185,186,184,.16);background:#111;padding:22px">
-        <p style="margin:0 0 12px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Something else on this car?</p>
-        <p style="margin:0 0 18px;font-size:14.5px;line-height:1.65;color:#B9BAB8">The registration and details come across with the enquiry, so you only need photos and a sentence on what happened.</p>
-        <a href="./Tygrify Account Get a Quote.dc.html" style="display:inline-block;background:#F24405;color:#fff;padding:14px 20px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">Get a quote for RK21 OZP</a>
-      </div>
-      <div style="border:1px solid rgba(185,186,184,.16);background:#111;padding:22px;display:flex;flex-direction:column">
-        <p style="margin:0 0 12px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#595959">Remove this vehicle</p>
-        <p style="margin:0 0 18px;font-size:14.5px;line-height:1.65;color:#B9BAB8">Removing it hides the car from your garage. Past jobs and invoices stay on your account.</p>
-        <div style="display:{{ removeIdleDisplay }};margin-top:auto">
-          <button type="button" onClick="{{ askRemove }}" style="background:none;border:1px solid rgba(185,186,184,.34);color:#B9BAB8;border-radius:2px;padding:14px 20px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer" style-hover="border-color:#F24405;color:#F24405">Remove vehicle</button>
-        </div>
-        <div style="display:{{ removeAskDisplay }};flex-direction:column;gap:12px;margin-top:auto">
-          <p style="margin:0;font-size:14.5px;line-height:1.6">You have an estimate open on this car. Remove it anyway?</p>
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <a href="./Tygrify Account Vehicles.dc.html" style="background:#F24405;color:#fff;padding:14px 20px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">Yes, remove</a>
-            <button type="button" onClick="{{ cancelRemove }}" style="background:none;border:1px solid rgba(185,186,184,.34);color:#B9BAB8;border-radius:2px;padding:14px 18px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer">Keep it</button>
+    <section style="margin-top:clamp(34px,5vw,50px)">
+      <h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(24px,3.6vw,32px);letter-spacing:.03em">What you can unlock</h2>
+      <div style="margin-top:16px;display:grid;gap:clamp(12px,1.8vw,16px);grid-template-columns:{{ twoColumns }}">
+        <sc-for list="{{ tiers }}" as="tier" hint-placeholder-count="3">
+          <div style="border:1px solid {{ tier.borderColor }};background:{{ tier.bg }};padding:clamp(20px,2.6vw,26px);display:flex;flex-direction:column;gap:14px;min-width:0">
+            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+              <span style="display:flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:{{ tier.statusColor }}">
+                <sc-if value="{{ tier.unlocked }}" hint-placeholder-val="{{ false }}">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F24405" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12 9 17 20 6"/></svg>
+                </sc-if>
+                <sc-if value="{{ tier.locked }}" hint-placeholder-val="{{ true }}">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#595959" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+                </sc-if>
+                {{ tier.statusLabel }}
+              </span>
+              <span style="font-size:12.5px;color:#595959;white-space:nowrap">{{ tier.points }} pts</span>
+            </div>
+            <div>
+              <p style="margin:0 0 6px;font-size:19px;font-weight:600;line-height:1.3;color:{{ tier.titleColor }}">{{ tier.title }}</p>
+              <p style="margin:0;font-size:13.5px;line-height:1.55;color:#B9BAB8">{{ tier.desc }}</p>
+            </div>
+            <sc-if value="{{ tier.unlocked }}" hint-placeholder-val="{{ false }}">
+              <a href="https://wa.me/447722102736" target="_blank" rel="noreferrer" style="align-self:flex-start;background:#F24405;color:#fff;padding:12px 18px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">Claim this reward</a>
+            </sc-if>
+            <sc-if value="{{ tier.locked }}" hint-placeholder-val="{{ true }}">
+              <div>
+                <div style="height:6px;background:rgba(185,186,184,.16);border-radius:999px;overflow:hidden;margin-bottom:10px">
+                  <div style="height:100%;width:{{ tier.percent }};background:rgba(185,186,184,.4);border-radius:999px"></div>
+                </div>
+                <p style="margin:0;font-size:13px;color:#595959">{{ tier.remaining }} points to go</p>
+              </div>
+            </sc-if>
           </div>
-        </div>
+        </sc-for>
       </div>
+    </section>
+
+    <section style="margin-top:clamp(34px,5vw,50px)">
+      <h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(24px,3.6vw,32px);letter-spacing:.03em">How you earn points</h2>
+      <div style="margin-top:16px;display:flex;flex-direction:column;gap:0;border:1px solid rgba(185,186,184,.16);background:#111">
+        <sc-for list="{{ earnPoints }}" as="e" hint-placeholder-count="2">
+          <div style="display:flex;gap:14px;align-items:flex-start;padding:18px 20px;border-bottom:1px solid rgba(185,186,184,.1)">
+            <span style="width:8px;height:8px;border-radius:50%;background:#F24405;margin-top:6px;flex:none;display:block"></span>
+            <p style="margin:0;font-size:15px;line-height:1.55;color:#fff">{{ e.label }}</p>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:14px 0 0;font-size:13px;line-height:1.6;color:#595959;max-width:56ch">Points land on your account automatically once a job is marked complete. Nothing to track or claim yourself.</p>
     </section>
 
     </div>
@@ -182,7 +206,7 @@ input,button,textarea{font-family:'Public Sans',system-ui,sans-serif}
         <a href="./Tygrify Sign Up.dc.html" style="color:#B9BAB8">Create account</a>
       </div>
       <div style="border-top:1px solid rgba(185,186,184,.12);padding-top:20px;display:flex;flex-wrap:wrap;gap:10px 24px;justify-content:space-between;font-size:12.5px;color:#595959">
-        <span>&copy; 2026 Tygrify Ltd, 7 Brays Lane, Coventry CV2 4DT. Company 15894572.</span>
+        <span>© 2026 Tygrify Ltd, 7 Brays Lane, Coventry CV2 4DT. Company 15894572.</span>
         <a href="./Tygrify Homepage.dc.html" style="color:#595959">Back to the main site</a>
       </div>
     </div>
@@ -204,17 +228,15 @@ input,button,textarea{font-family:'Public Sans',system-ui,sans-serif}
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:1200}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:1300},&quot;loyaltyPoints&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:320,&quot;min&quot;:0,&quot;max&quot;:1000,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Tygrify XP&quot;},&quot;loyaltyTarget&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:500,&quot;min&quot;:100,&quot;max&quot;:2000,&quot;step&quot;:50,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Tygrify XP&quot;}}">
 class Component extends DCLogic {
-  state = { navDrawer: false, navMenu: false, narrow: false, mid: false, remove: 'idle' };
+  state = { navDrawer: false, navMenu: false, narrow: false };
   componentDidMount() {
     this._r = () => {
       const dw = window.innerWidth < 760;
+      if (dw !== this.state.navDrawer) this.setState({ navDrawer: dw, navMenu: false });
       const n = window.innerWidth < 700;
-      const m = window.innerWidth < 940;
-      if (dw !== this.state.navDrawer || n !== this.state.narrow || m !== this.state.mid) {
-        this.setState({ navDrawer: dw, narrow: n, mid: m, navMenu: false });
-      }
+      if (n !== this.state.narrow) this.setState({ narrow: n });
     };
     this._r();
     window.addEventListener('resize', this._r);
@@ -224,11 +246,40 @@ class Component extends DCLogic {
     let cookieChoice = this.state.cookieChoiceOverride || null;
     if (!cookieChoice) { try { cookieChoice = localStorage.getItem('tygrifyCookieConsent'); } catch (e) {} }
     const st = this.state;
+    const pts = this.props.loyaltyPoints ?? 320;
+    const target = this.props.loyaltyTarget ?? 500;
+    const tierDefs = [
+      { title: 'Free wheel clean', points: 150, desc: 'A full wheel clean on your next visit, added as a free line on the job.' },
+      { title: '10% off next service', points: 250, desc: 'Applies once, to any single service you book through the site or over the phone.' },
+      { title: 'Free ceramic coating', points: 500, desc: 'Our highest-value reward - a complete ceramic coating application, no charge.' }
+    ];
+    const tiers = tierDefs.map(t => {
+      const unlocked = pts >= t.points;
+      return {
+        title: t.title,
+        desc: t.desc,
+        points: t.points,
+        unlocked,
+        locked: !unlocked,
+        remaining: Math.max(0, t.points - pts),
+        percent: Math.min(100, Math.round(pts / t.points * 100)) + '%',
+        borderColor: unlocked ? '#F24405' : 'rgba(185,186,184,.16)',
+        bg: unlocked ? 'linear-gradient(180deg,rgba(242,68,5,.13),rgba(242,68,5,.02))' : '#111',
+        titleColor: unlocked ? '#fff' : '#B9BAB8',
+        statusLabel: unlocked ? 'Unlocked' : 'Locked',
+        statusColor: unlocked ? '#F24405' : '#595959'
+      };
+    });
     return {
       cookieBannerDisplay: cookieChoice ? 'none' : 'flex',
       waBottom: cookieChoice ? '20px' : '92px',
       acceptAllCookies: () => { try { localStorage.setItem('tygrifyCookieConsent', 'all'); } catch (e) {} this.setState({ cookieChoiceOverride: 'all' }); },
       acceptEssentialCookies: () => { try { localStorage.setItem('tygrifyCookieConsent', 'essential'); } catch (e) {} this.setState({ cookieChoiceOverride: 'essential' }); },
+      loyaltyPoints: pts,
+      loyaltyTarget: target,
+      loyaltyPercent: Math.min(100, Math.round(pts / target * 100)) + '%',
+      loyaltyRemaining: Math.max(0, target - pts),
+      loyaltyLast: '12 June',
       mainCols: st.navDrawer ? 'minmax(0,1fr)' : '218px minmax(0,1fr)',
       sidebarOrder: st.navDrawer ? '2' : '0',
       sidebarPosition: st.navDrawer ? 'static' : 'sticky',
@@ -239,10 +290,11 @@ class Component extends DCLogic {
       closeNavMenu: () => this.setState({ navMenu: false }),
       siteLinkDisplay: st.narrow ? 'none' : 'inline',
       twoColumns: st.narrow ? '1fr' : 'repeat(2,minmax(0,1fr))',
-      removeIdleDisplay: st.remove === 'idle' ? 'block' : 'none',
-      removeAskDisplay: st.remove === 'ask' ? 'flex' : 'none',
-      askRemove: () => this.setState({ remove: 'ask' }),
-      cancelRemove: () => this.setState({ remove: 'idle' })
+      tiers,
+      earnPoints: [
+        { label: '1 point for every £1 spent on repairs, detailing or bodywork' },
+        { label: '50 bonus points when a friend you refer books their first job' }
+      ]
     };
   }
 }
