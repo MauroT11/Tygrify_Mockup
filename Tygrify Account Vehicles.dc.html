@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script src="./image-slot.js"></script>
 </head>
 <body>
 <x-dc>
@@ -32,7 +33,7 @@ input,button{font-family:'Public Sans',system-ui,sans-serif}
       <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B9BAB8;border:1px solid rgba(185,186,184,.3);border-radius:999px;padding:3px 8px;flex:none;white-space:nowrap">My garage</span>
       <div style="margin-left:auto;display:flex;align-items:center;gap:14px;flex:none">
         <a href="./Tygrify Homepage.dc.html" style="display:{{ siteLinkDisplay }};font-size:13.5px;color:#B9BAB8">Back to site</a>
-        <a href="./Tygrify Sign In.dc.html" style="font-size:13.5px;color:#B9BAB8">Sign out</a>
+        <a href="./Tygrify Get a Quote.dc.html" style="background:#F24405;color:#fff;padding:8px 14px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap">Quote</a>
       </div>
       <button type="button" onClick="{{ toggleNavMenu }}" aria-label="Open menu" style="display:{{ navBurgerDisplay }};background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;flex:none">
         <span style="display:block;width:17px;height:1.5px;background:#fff;box-shadow:0 -5px 0 #fff,0 5px 0 #fff"></span>
@@ -41,7 +42,7 @@ input,button{font-family:'Public Sans',system-ui,sans-serif}
   </header>
 
   <div onClick="{{ closeNavMenu }}" style="display:{{ navMenuDisplay }};position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.62)"></div>
-  <aside style="display:{{ navMenuDisplay }};position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(86vw,320px);background:#0A0A0A;border-left:1px solid rgba(185,186,184,.18);flex-direction:column;overflow-y:auto">
+  <aside style="display:{{ navMenuDisplay }};position:fixed;inset:0;z-index:61;background:#0A0A0A;flex-direction:column;overflow-y:auto">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px;border-bottom:1px solid rgba(185,186,184,.16)">
       <span style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em;line-height:1">MY GARAGE</span>
       <button type="button" onClick="{{ closeNavMenu }}" aria-label="Close menu" style="background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none">
@@ -54,11 +55,11 @@ input,button{font-family:'Public Sans',system-ui,sans-serif}
       <a href="./Tygrify Account Quotes.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Quotes &amp; estimates</a>
       <a href="./Tygrify Account Repairs.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Repairs</a>
       <a href="./Tygrify Account Profile.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Profile</a>
+      <a href="./Tygrify Sign In.dc.html" style="padding:14px 0;font-size:16px;color:#B9BAB8;border-bottom:none">Sign out</a>
     </nav>
     <div style="margin-top:auto;padding:16px 20px 24px;display:flex;flex-direction:column;gap:10px;border-top:1px solid rgba(185,186,184,.16);font-size:14px">
       <a href="./Tygrify Get a Quote.dc.html" style="background:#F24405;color:#fff;text-align:center;padding:15px;border-radius:2px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.04em;font-size:13px">Get a quote</a>
       <a href="./Tygrify Homepage.dc.html" style="color:#B9BAB8">Back to site</a>
-      <a href="./Tygrify Sign In.dc.html" style="color:#B9BAB8">Sign out</a>
     </div>
   </aside>
 
@@ -85,34 +86,39 @@ input,button{font-family:'Public Sans',system-ui,sans-serif}
     <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(34px,6vw,58px);letter-spacing:.02em;line-height:1">Your vehicles</h1>
     <p style="margin:12px 0 0;font-size:clamp(15px,2.2vw,17px);line-height:1.6;color:#B9BAB8;max-width:56ch">{{ countLine }}</p>
 
-    <section style="margin-top:clamp(24px,3.6vw,34px);display:flex;flex-direction:column;gap:clamp(12px,1.8vw,16px)">
+    <section style="margin-top:clamp(24px,3.6vw,34px);display:grid;gap:clamp(12px,1.8vw,16px);grid-template-columns:{{ cardColumns }};align-items:start">
       <sc-for list="{{ vehicles }}" as="v" hint-placeholder-count="2">
-        <div style="border:1px solid {{ v.border }};background:#111;padding:clamp(18px,2.6vw,24px);display:flex;flex-direction:column;gap:18px">
-          <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
-            <span style="display:inline-block;white-space:nowrap;line-height:1.2;font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.08em;background:#F5E93B;color:#111;border-radius:3px;padding:5px 11px;flex:none">{{ v.reg }}</span>
-            <div style="flex:1;min-width:180px">
-              <p style="margin:0;font-size:19px;font-weight:600">{{ v.name }}</p>
-              <p style="margin:5px 0 0;font-size:13.5px;color:#B9BAB8">{{ v.spec }}</p>
-            </div>
-            <span style="flex:none;align-self:center;font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;border:1px solid {{ v.chipBorder }};color:{{ v.chipColor }};border-radius:999px;padding:5px 10px;white-space:nowrap">{{ v.chip }}</span>
+        <div style="border:1px solid {{ v.border }};background:#111;display:flex;flex-direction:column;gap:14px;min-width:0">
+          <div style="aspect-ratio:16/10;display:block">
+            <image-slot id="{{ v.imgId }}" src="{{ v.imgSrc }}" placeholder="{{ v.imgPlaceholder }}" shape="rect"></image-slot>
           </div>
-          <div style="display:grid;gap:14px;grid-template-columns:{{ metaColumns }};border-top:1px solid rgba(185,186,184,.12);padding-top:16px">
+          <div style="padding:0 16px 16px;display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;gap:10px;align-items:flex-start;flex-wrap:wrap">
+            <span style="display:inline-block;white-space:nowrap;line-height:1.2;font-family:'Bebas Neue',sans-serif;font-size:19px;letter-spacing:.07em;background:#F5E93B;color:#111;border-radius:3px;padding:4px 8px;flex:none">{{ v.reg }}</span>
+            <div style="flex:1;min-width:120px">
+              <p style="margin:0;font-size:15.5px;font-weight:600">{{ v.name }}</p>
+              <p style="margin:3px 0 0;font-size:12px;color:#B9BAB8">{{ v.spec }}</p>
+            </div>
+            <span style="flex:none;align-self:center;font-size:10px;letter-spacing:.1em;text-transform:uppercase;border:1px solid {{ v.chipBorder }};color:{{ v.chipColor }};border-radius:999px;padding:4px 8px;white-space:nowrap">{{ v.chip }}</span>
+          </div>
+          <div style="display:grid;gap:10px;grid-template-columns:1fr 1fr;border-top:1px solid rgba(185,186,184,.12);padding-top:12px">
             <div>
-              <p style="margin:0 0 5px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">MOT expires</p>
-              <p style="margin:0;font-size:14.5px;color:{{ v.motColor }}">{{ v.mot }}</p>
+              <p style="margin:0 0 4px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#595959">MOT expires</p>
+              <p style="margin:0;font-size:13px;color:{{ v.motColor }}">{{ v.mot }}</p>
             </div>
             <div>
-              <p style="margin:0 0 5px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Last with us</p>
-              <p style="margin:0;font-size:14.5px;color:#B9BAB8">{{ v.last }}</p>
+              <p style="margin:0 0 4px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#595959">Last with us</p>
+              <p style="margin:0;font-size:13px;color:#B9BAB8">{{ v.last }}</p>
             </div>
             <div>
-              <p style="margin:0 0 5px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Open work</p>
-              <p style="margin:0;font-size:14.5px;color:{{ v.openColor }}">{{ v.open }}</p>
+              <p style="margin:0 0 4px;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#595959">Open work</p>
+              <p style="margin:0;font-size:13px;color:{{ v.openColor }}">{{ v.open }}</p>
             </div>
           </div>
-          <div style="display:flex;gap:10px;flex-wrap:wrap">
-            <a href="./Tygrify Account Vehicle.dc.html" style="background:#F24405;color:#fff;padding:13px 20px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">Open vehicle</a>
-            <a href="./Tygrify Get a Quote.dc.html" style="border:1px solid rgba(185,186,184,.34);color:#B9BAB8;padding:13px 18px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap" style-hover="border-color:#F24405;color:#F24405">Get a quote for this car</a>
+          <div style="display:flex;gap:8px;flex-wrap:wrap">
+            <a href="./Tygrify Account Vehicle.dc.html" style="background:#F24405;color:#fff;padding:11px 16px;border-radius:2px;font-weight:700;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap">Open vehicle</a>
+            <a href="./Tygrify Get a Quote.dc.html" style="border:1px solid rgba(185,186,184,.34);color:#B9BAB8;padding:11px 14px;border-radius:2px;font-weight:700;font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap" style-hover="border-color:#F24405;color:#F24405">Get a quote</a>
+          </div>
           </div>
         </div>
       </sc-for>
@@ -236,12 +242,14 @@ const OWNED = [
   {
     reg: 'RK21 OZP', name: 'Mini Cooper S', spec: '2021 - white - petrol - 1998cc',
     mot: '30 September 2026', motNote: '24 days away', motSoon: true,
-    last: 'September 2026 - enquiry open', open: 'Estimate waiting on you', openOpen: true
+    last: 'September 2026 - enquiry open', open: 'Estimate waiting on you', openOpen: true,
+    imgId: 'veh-rk21-hero', imgSrc: './assets/Mini Cooper S.jpg', imgPlaceholder: 'Mini Cooper S, white'
   },
   {
     reg: 'KP18 VBN', name: 'Seat Ibiza', spec: '2018 - grey - petrol - 999cc',
     mot: '9 June 2027', motNote: '', motSoon: false,
-    last: 'March 2026 - alloy refurb, 4 wheels', open: 'Nothing open', openOpen: false
+    last: 'March 2026 - alloy refurb, 4 wheels', open: 'Nothing open', openOpen: false,
+    imgId: 'veh-kp18-hero', imgSrc: './assets/Seat Ibiza.jpg', imgPlaceholder: 'Seat Ibiza, grey'
   }
 ];
 
@@ -283,6 +291,7 @@ class Component extends DCLogic {
       toggleNavMenu: () => this.setState(s => ({ navMenu: !s.navMenu })),
       closeNavMenu: () => this.setState({ navMenu: false }),
       siteLinkDisplay: st.narrow ? 'none' : 'inline',
+      cardColumns: st.narrow ? '1fr' : 'repeat(2,minmax(0,1fr))',
       metaColumns: st.narrow ? '1fr 1fr' : 'repeat(3,minmax(0,1fr))',
       countLine: list.length === 1
         ? 'One vehicle on your account. Adding a car saves you filling in the same details on every quote.'
@@ -291,6 +300,9 @@ class Component extends DCLogic {
         reg: v.reg,
         name: v.name,
         spec: v.spec,
+        imgId: v.imgId,
+        imgSrc: v.imgSrc,
+        imgPlaceholder: v.imgPlaceholder,
         border: v.openOpen ? 'rgba(242,68,5,.5)' : 'rgba(185,186,184,.16)',
         chip: v.openOpen ? 'Needs you' : 'Up to date',
         chipColor: v.openOpen ? '#F24405' : '#595959',
@@ -319,7 +331,8 @@ class Component extends DCLogic {
         added: s.added.concat({
           reg: s.reg || DVLA.reg, name: DVLA.name, spec: '2012 - black - diesel - 1968cc',
           mot: '14 February 2027', motNote: '', motSoon: false,
-          last: 'Not been in yet', open: 'Nothing open', openOpen: false
+          last: 'Not been in yet', open: 'Nothing open', openOpen: false,
+          imgId: 'veh-' + (s.reg || DVLA.reg).toLowerCase().replace(/\s/g, '') + '-hero', imgPlaceholder: DVLA.name
         })
       })),
       cancel: () => this.setState({ stage: 'idle', reg: '' }),

@@ -41,7 +41,7 @@ a:hover{color:#F24405}
   </header>
 
   <div onClick="{{ closeNavMenu }}" style="display:{{ navMenuDisplay }};position:fixed;inset:0;z-index:60;background:rgba(0,0,0,.62)"></div>
-  <aside style="display:{{ navMenuDisplay }};position:fixed;top:0;right:0;bottom:0;z-index:61;width:min(86vw,320px);background:#0A0A0A;border-left:1px solid rgba(185,186,184,.18);flex-direction:column;overflow-y:auto">
+  <aside style="display:{{ navMenuDisplay }};position:fixed;inset:0;z-index:61;background:#0A0A0A;flex-direction:column;overflow-y:auto">
     <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 20px;border-bottom:1px solid rgba(185,186,184,.16)">
       <span style="font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.06em;line-height:1">ADMIN</span>
       <button type="button" onClick="{{ closeNavMenu }}" aria-label="Close menu" style="background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none">
