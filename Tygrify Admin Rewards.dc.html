@@ -185,8 +185,12 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#F24405}
               <input type="text" value="{{ perPound }}" onChange="{{ onPerPound }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:13px 14px;width:100%">
             </label>
             <label style="display:flex;flex-direction:column;gap:8px">
-              <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Referral bonus</span>
+              <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Referral bonus (new customer)</span>
               <input type="text" value="{{ referralBonus }}" onChange="{{ onReferralBonus }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:13px 14px;width:100%">
+            </label>
+            <label style="display:flex;flex-direction:column;gap:8px">
+              <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Referral bonus (code owner)</span>
+              <input type="text" value="{{ referralBonusOwner }}" onChange="{{ onReferralBonusOwner }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:13px 14px;width:100%">
             </label>
           </div>
 
@@ -306,7 +310,7 @@ const TIERS = [
 class Component extends DCLogic {
   state = {
     navDrawer: false, navMenu: false, narrow: false, mid: false, filter: 'All', selId: 3, edits: {}, mobileView: 'list',
-    perPound: '1', referralBonus: '50 points', autoAward: true,
+    perPound: '1.5', referralBonus: '200 points', referralBonusOwner: '100 points', autoAward: true,
     minRedeem: '150', perVisit: 'One',
     expiry: false, expiryMonths: '24 months',
     visible: true
@@ -392,9 +396,11 @@ class Component extends DCLogic {
       onPerPound: e => this.setState({ perPound: e.target.value }),
       referralBonus: st.referralBonus,
       onReferralBonus: e => this.setState({ referralBonus: e.target.value }),
+      referralBonusOwner: st.referralBonusOwner,
+      onReferralBonusOwner: e => this.setState({ referralBonusOwner: e.target.value }),
       autoAward: st.autoAward,
       toggleAutoAward: () => this.setState(s => ({ autoAward: !s.autoAward })),
-      earnPreview: 'Customers earn ' + st.perPound + ' point(s) per £1 spent, plus ' + st.referralBonus + ' for each referral' + (st.autoAward ? ', awarded automatically on job completion.' : ' - awarded manually.'),
+      earnPreview: 'Customers earn ' + st.perPound + ' point(s) per £1 spent, plus ' + st.referralBonus + ' for a new customer who signs up with their code and ' + st.referralBonusOwner + ' for the customer whose code was used' + (st.autoAward ? ', awarded automatically on job completion.' : ' - awarded manually.'),
       minRedeem: st.minRedeem,
       onMinRedeem: e => this.setState({ minRedeem: e.target.value }),
       perVisit: st.perVisit,

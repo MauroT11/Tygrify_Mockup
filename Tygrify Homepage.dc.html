@@ -30,7 +30,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
   <header style="position:sticky;top:0;z-index:40;background:{{ headerBg }};backdrop-filter:blur(10px);border-bottom:1px solid rgba(185,186,184,.16);box-shadow:{{ headerShadow }};transition:background-color .25s ease,box-shadow .25s ease">
     <div style="max-width:1200px;margin:0 auto;padding:14px 20px;display:flex;align-items:center;gap:{{ headerGap }}">
       <a href="./Tygrify Homepage.dc.html" style="display:flex;align-items:center;flex:none">
-        <img src="./assets/Logo_text.png" alt="Tygrify" style="height:56px;width:auto;display:block;filter:brightness(1.6)">
+        <img src="./assets/Logo_text.png" alt="Tygrify" style="height:56px;width:auto;display:block">
       </a>
       <nav style="display: {{ navDisplay }}; align-items: center; justify-content: center; gap: 26px; margin: 0 auto; font-size: 14px; letter-spacing: .02em; color: #B9BAB8; text-align: left">
         <a href="./Tygrify Services.dc.html">Services</a>
@@ -202,7 +202,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
         <div>
           <p style="margin:0 0 12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">Tygrify XP</p>
           <h2 style="margin:0 0 18px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(32px,5vw,50px);line-height:1;max-width:16ch">Every job earns you something back</h2>
-          <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#B9BAB8;max-width:52ch">1 point for every £1 you spend on repairs, detailing or bodywork, plus 50 points when a friend you refer books their first job. Points land on your account automatically once a job is complete - nothing to track or claim yourself.</p>
+          <p style="margin:0 0 16px;font-size:16px;line-height:1.7;color:#B9BAB8;max-width:52ch">1.5 points for every £1 you spend on repairs, detailing or bodywork, plus 200 points when you sign up with a friend's referral code and 100 points for the friend whose code you used. Points land on your account automatically once a job is complete - nothing to track or claim yourself.</p>
           <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:26px">
             <a href="./Tygrify Rewards.dc.html" style="background:#F24405;color:#fff;padding:15px 26px;border-radius:2px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.05em;font-size:13px" style-hover="filter:brightness(1.1)" style-active="transform:scale(.97)">How Tygrify XP works</a>
             <a href="./Tygrify Sign Up.dc.html" style="border:1px solid rgba(255,255,255,.5);color:#fff;padding:15px 26px;border-radius:2px;font-weight:700;text-transform:uppercase;white-space:nowrap;letter-spacing:.05em;font-size:13px" style-hover="border-color:#fff;background:rgba(255,255,255,.06)" style-active="transform:scale(.97)">Create an account</a>
@@ -301,6 +301,43 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
     <p style="margin:14px 0 0;font-size:13px;color:#595959">Real repairs from the Tygrify workshop, photographed before and after.</p>
   </section>
 
+  <section id="motion" style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,96px) 20px 0;scroll-margin-top:80px">
+    <div style="margin-bottom:34px">
+      <p style="margin:0 0 12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">See it in motion</p>
+      <h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(34px,5.5vw,56px);line-height:1">Watch the work happen</h2>
+    </div>
+    <div style="display:{{ motionTrackDisplay }};gap:{{ motionTrackGap }};grid-template-columns:{{ motionTrackCols }};overflow-x:{{ motionTrackOverflow }};scroll-snap-type:{{ motionTrackSnap }};padding:{{ motionTrackPad }};max-width:960px;margin:{{ motionTrackMargin }};-webkit-overflow-scrolling:touch">
+      <div style="flex:{{ motionCardFlex }};scroll-snap-align:{{ motionCardSnapAlign }}">
+        <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
+          <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28)"></div>
+          <div style="position:relative;height:360px;max-width:100%;aspect-ratio:3/4;overflow:hidden;border-radius:22px;background:#000">
+            <video id="tg-video-timelapse" src="./assets/videos/timelapse.mov" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center">Applying the final touches</p>
+      </div>
+      <div style="flex:{{ motionCardFlex }};scroll-snap-align:{{ motionCardSnapAlign }}">
+        <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
+          <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28)"></div>
+          <div style="position:relative;height:360px;max-width:100%;aspect-ratio:9/16;overflow:hidden;border-radius:22px;background:#000">
+            <video id="tg-video-golf" src="./assets/videos/golf_timelapse.mp4" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center">Before and after</p>
+      </div>
+      <div style="flex:{{ motionCardFlex }};scroll-snap-align:{{ motionCardSnapAlign }}">
+        <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
+          <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28)"></div>
+          <div style="position:relative;height:360px;max-width:100%;aspect-ratio:3/4;overflow:hidden;border-radius:22px;background:#000">
+            <video id="tg-video-finished" src="./assets/videos/finished.mov" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center">The finished result</p>
+      </div>
+    </div>
+    <p style="margin:28px 0 0;font-size:13px;color:#595959;text-align:center">Real work from the Tygrify workshop, start to finish.</p>
+  </section>
+
   <section id="about" style="max-width:1200px;margin:0 auto;padding:clamp(56px,8vw,96px) 20px 0;scroll-margin-top:80px">
     <div style="display:grid;gap:clamp(28px,5vw,56px);grid-template-columns:repeat(auto-fit,minmax(min(320px,100%),1fr));align-items:center">
       <div>
@@ -366,7 +403,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
         </div>
       </div>
       <div style="aspect-ratio:3/2;min-width:0;position:relative;border:1px solid rgba(185,186,184,.16)">
-        <image-slot id="tg-map" shape="rect" src="./assets/placeholder-map.png" placeholder="Map embed - 7 Brays Lane, Coventry CV2 4DT"></image-slot>
+        <iframe src="https://www.google.com/maps?q=7+Brays+Lane,+Coventry+CV2+4DT&output=embed" title="Tygrify workshop location - 7 Brays Lane, Coventry CV2 4DT" width="100%" height="100%" style="position:absolute;inset:0;border:0;filter:invert(1) hue-rotate(180deg) brightness(.92) contrast(.9)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>
   </section>
@@ -486,6 +523,16 @@ class Component extends DCLogic {
     };
     this._r();
     window.addEventListener('resize', this._r);
+    ['tg-video-timelapse', 'tg-video-golf', 'tg-video-finished'].forEach(id => {
+      const v = document.getElementById(id);
+      if (!v) return;
+      v.muted = true;
+      v.defaultMuted = true;
+      v.volume = 0;
+      v.loop = true;
+      v.addEventListener('ended', () => { v.currentTime = 0; v.play().catch(() => {}); });
+      v.play().catch(() => {});
+    });
     this._s = () => {
       const sc = window.scrollY > 8;
       if (sc !== this.state.scrolled) this.setState({ scrolled: sc });
@@ -526,6 +573,15 @@ class Component extends DCLogic {
       ...tab(0), ...tab(1), ...tab(2),
       tabsDisplay: m ? 'flex' : 'none',
       galleryCols: m ? '1fr' : 'repeat(3,minmax(0,1fr))',
+      motionTrackDisplay: m ? 'flex' : 'grid',
+      motionTrackGap: m ? '16px' : 'clamp(28px,5vw,40px)',
+      motionTrackCols: m ? 'none' : 'repeat(auto-fit,minmax(min(260px,100%),1fr))',
+      motionTrackOverflow: m ? 'auto' : 'visible',
+      motionTrackSnap: m ? 'x mandatory' : 'none',
+      motionTrackPad: m ? '4px 20px 12px' : '0',
+      motionTrackMargin: m ? '0 -20px' : '0 auto',
+      motionCardFlex: m ? '0 0 78%' : 'initial',
+      motionCardSnapAlign: m ? 'center' : 'unset',
       headerGap: m ? '10px' : '24px',
       trustAlign: m ? 'center' : 'left',
       navDisplay: m ? 'none' : 'flex',
