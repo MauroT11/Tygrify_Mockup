@@ -95,7 +95,7 @@ input::placeholder,textarea::placeholder{color:#4d4d4d}
     <div style="max-width:760px;margin-top:clamp(24px,3.6vw,34px)">
 
     <div style="display:flex;align-items:flex-start;gap:6px;margin-bottom:clamp(24px,4vw,36px);overflow-x:auto;padding-bottom:4px">
-      <sc-for list="{{ stepper }}" as="st" hint-placeholder-count="5">
+      <sc-for list="{{ stepper }}" as="st" hint-placeholder-count="4">
         <div style="flex:1;min-width:88px;display:flex;flex-direction:column;gap:9px">
           <div style="height:2px;background:{{ st.bar }}"></div>
           <button type="button" onClick="{{ st.onClick }}" style="background:none;border:none;padding:0;text-align:left;cursor:pointer;display:flex;flex-direction:column;gap:5px">
@@ -230,7 +230,7 @@ input::placeholder,textarea::placeholder{color:#4d4d4d}
       <div style="display:{{ s3 }}">
         <div style="display:{{ diagramDisplay }}">
           <h2 style="margin:0 0 8px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(26px,3.6vw,36px);line-height:1;letter-spacing:.02em">Where is the damage?</h2>
-          <p style="margin:0 0 22px;font-size:15px;line-height:1.65;color:#B9BAB8;max-width:60ch">Choose the shape closest to your car, then tap every panel that needs work.</p>
+          <p style="margin:0 0 22px;font-size:15px;line-height:1.65;color:#B9BAB8;max-width:60ch">Choose the shape closest to your car, then tap directly on the diagram wherever there is damage. We will work out which panel that is.</p>
 
           <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px">
             <sc-for list="{{ bodyTypes }}" as="bt" hint-placeholder-count="5">
@@ -240,40 +240,138 @@ input::placeholder,textarea::placeholder{color:#4d4d4d}
 
           <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:20px;align-items:center">
             <span style="font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959;margin-right:4px">Viewing</span>
-            <sc-for list="{{ sides }}" as="sd" hint-placeholder-count="2">
+            <sc-for list="{{ views }}" as="sd" hint-placeholder-count="4">
               <button type="button" onClick="{{ sd.onClick }}" style="cursor:pointer;font-size:13px;padding:10px 16px;border-radius:2px;background:{{ sd.bg }};border:1px solid {{ sd.border }};color:{{ sd.color }};white-space:nowrap">{{ sd.label }}</button>
             </sc-for>
           </div>
 
           <div style="border:1px solid rgba(185,186,184,.16);background:#0A0A0A;padding:clamp(10px,2.5vw,22px)">
-            <svg viewBox="0 0 460 172" style="width:100%;height:auto;display:block" role="img" aria-label="Car panel selector">
-              <defs>
-                <clipPath id="tygCarClip2"><polygon points="{{ carPts }}"></polygon></clipPath>
-              </defs>
-              <g transform="{{ flip }}">
-                <g clip-path="url(#tygCarClip2)">
-                  <sc-for list="{{ panels }}" as="pn" hint-placeholder-count="9">
-                    <rect x="{{ pn.x }}" y="{{ pn.y }}" width="{{ pn.w }}" height="{{ pn.h }}" fill="{{ pn.fill }}" stroke="rgba(255,255,255,.16)" stroke-width="1" onClick="{{ pn.onClick }}" style="cursor:pointer"></rect>
+            <div style="display:{{ sideViewDisplay }}">
+              <svg viewBox="0 0 460 172" style="width:100%;height:auto;display:block;cursor:crosshair;touch-action:manipulation" role="img" aria-label="Tap the car to mark where the damage is">
+                <defs>
+                  <clipPath id="tygCarClip"><polygon points="{{ carPts }}"></polygon></clipPath>
+                  <linearGradient id="tygBodyGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#2c2c2c"></stop>
+                    <stop offset="1" stop-color="#121212"></stop>
+                  </linearGradient>
+                  <linearGradient id="tygGlassGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#2c3b42"></stop>
+                    <stop offset="1" stop-color="#0c1315"></stop>
+                  </linearGradient>
+                  <radialGradient id="tygRimGrad" cx="0.38" cy="0.32" r="0.75">
+                    <stop offset="0" stop-color="#9a9a9a"></stop>
+                    <stop offset="1" stop-color="#2c2c2c"></stop>
+                  </radialGradient>
+                </defs>
+                <g transform="{{ flip }}" data-tyg-flip="1">
+                  <g clip-path="url(#tygCarClip)">
+                    <rect x="0" y="0" width="460" height="172" fill="url(#tygBodyGrad)" style="pointer-events:none"></rect>
+                    <ellipse cx="{{ wheelFrontX }}" cy="{{ wheelY }}" rx="{{ archRx }}" ry="{{ archRy }}" fill="#000" opacity=".38" style="pointer-events:none"></ellipse>
+                    <ellipse cx="{{ wheelRearX }}" cy="{{ wheelY }}" rx="{{ archRx }}" ry="{{ archRy }}" fill="#000" opacity=".38" style="pointer-events:none"></ellipse>
+                    <polygon points="{{ glassPts }}" fill="url(#tygGlassGrad)" opacity=".92" style="pointer-events:none"></polygon>
+                    <sc-for list="{{ seams }}" as="sm" hint-placeholder-count="4">
+                      <line x1="{{ sm.x }}" y1="{{ sm.y1 }}" x2="{{ sm.x }}" y2="{{ sm.y2 }}" stroke="rgba(0,0,0,.4)" stroke-width="1.5" style="pointer-events:none"></line>
+                    </sc-for>
+                    <line x1="{{ creaseX1 }}" y1="{{ creaseY }}" x2="{{ creaseX2 }}" y2="{{ creaseY }}" stroke="rgba(255,255,255,.1)" stroke-width="1" style="pointer-events:none"></line>
+                    <ellipse cx="{{ mirrorX }}" cy="{{ mirrorY }}" rx="7" ry="4.2" fill="#1a1a1a" stroke="rgba(255,255,255,.18)" stroke-width="1" style="pointer-events:none"></ellipse>
+                    <rect x="{{ headlightX }}" y="{{ lightY }}" width="14" height="8" rx="2" fill="#FFD200" opacity=".85" style="pointer-events:none"></rect>
+                    <rect x="{{ taillightX }}" y="{{ lightY }}" width="14" height="8" rx="2" fill="#F24405" opacity=".85" style="pointer-events:none"></rect>
+                    <rect x="0" y="0" width="460" height="172" fill="transparent" onClick="{{ diagramClick }}" style="cursor:crosshair"></rect>
+                  </g>
+                  <polygon points="{{ carPts }}" fill="none" stroke="#B9BAB8" stroke-width="2" stroke-linejoin="round" style="pointer-events:none"></polygon>
+                  <g style="pointer-events:none">
+                    <circle cx="{{ wheelFrontX }}" cy="{{ wheelY }}" r="{{ wheelR }}" fill="#0A0A0A" stroke="#595959" stroke-width="2"></circle>
+                    <circle cx="{{ wheelFrontX }}" cy="{{ wheelY }}" r="{{ rimR }}" fill="url(#tygRimGrad)" stroke="#1a1a1a" stroke-width="1"></circle>
+                    <circle cx="{{ wheelFrontX }}" cy="{{ wheelY }}" r="3" fill="#111"></circle>
+                    <circle cx="{{ wheelRearX }}" cy="{{ wheelY }}" r="{{ wheelR }}" fill="#0A0A0A" stroke="#595959" stroke-width="2"></circle>
+                    <circle cx="{{ wheelRearX }}" cy="{{ wheelY }}" r="{{ rimR }}" fill="url(#tygRimGrad)" stroke="#1a1a1a" stroke-width="1"></circle>
+                    <circle cx="{{ wheelRearX }}" cy="{{ wheelY }}" r="3" fill="#111"></circle>
+                  </g>
+                  <sc-for list="{{ pins }}" as="pn" hint-placeholder-count="2">
+                    <g onClick="{{ pn.onClick }}" style="cursor:pointer">
+                      <circle cx="{{ pn.x }}" cy="{{ pn.y }}" r="8" fill="rgba(242,68,5,.28)"></circle>
+                      <circle cx="{{ pn.x }}" cy="{{ pn.y }}" r="6" fill="#F24405" stroke="#fff" stroke-width="1.6"></circle>
+                    </g>
                   </sc-for>
                 </g>
-                <polygon points="{{ carPts }}" fill="none" stroke="#B9BAB8" stroke-width="2" stroke-linejoin="round" style="pointer-events:none"></polygon>
-                <circle cx="{{ wheelFrontX }}" cy="{{ wheelY }}" r="{{ wheelR }}" fill="#0A0A0A" stroke="#595959" stroke-width="2" style="pointer-events:none"></circle>
-                <circle cx="{{ wheelRearX }}" cy="{{ wheelY }}" r="{{ wheelR }}" fill="#0A0A0A" stroke="#595959" stroke-width="2" style="pointer-events:none"></circle>
-              </g>
-            </svg>
-            <p style="margin:10px 2px 0;font-size:12px;color:#595959;text-align:center">Front of the car is on the {{ frontSideWord }}</p>
+              </svg>
+            </div>
+            <div style="display:{{ frontRearViewDisplay }}">
+              <svg viewBox="0 0 460 172" style="width:100%;height:auto;max-height:400px;display:block;cursor:crosshair;touch-action:manipulation" role="img" aria-label="Tap the car to mark where the damage is">
+                <defs>
+                  <clipPath id="tygFrClip"><polygon points="{{ frontRearPts }}"></polygon></clipPath>
+                  <linearGradient id="tygFrBodyGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0" stop-color="#2c2c2c"></stop>
+                    <stop offset="1" stop-color="#121212"></stop>
+                  </linearGradient>
+                </defs>
+                <g data-tyg-flip="1">
+                  <g clip-path="url(#tygFrClip)">
+                    <rect x="0" y="0" width="460" height="172" fill="url(#tygFrBodyGrad)" style="pointer-events:none"></rect>
+                    <rect x="150" y="40" width="160" height="18" rx="3" fill="#0c1315" opacity=".85" style="pointer-events:none"></rect>
+                    <rect x="{{ frLightLX }}" y="90" width="26" height="14" rx="3" fill="{{ frLightColor }}" opacity=".85" style="pointer-events:none"></rect>
+                    <rect x="{{ frLightRX }}" y="90" width="26" height="14" rx="3" fill="{{ frLightColor }}" opacity=".85" style="pointer-events:none"></rect>
+                    <rect x="185" y="134" width="90" height="12" rx="2" fill="{{ frPlateColor }}" opacity=".9" style="pointer-events:none"></rect>
+                    <line x1="90" y1="138" x2="370" y2="138" stroke="rgba(255,255,255,.08)" stroke-width="1" style="pointer-events:none"></line>
+                    <rect x="0" y="0" width="460" height="172" fill="transparent" onClick="{{ diagramClick }}" style="cursor:crosshair"></rect>
+                  </g>
+                  <polygon points="{{ frontRearPts }}" fill="none" stroke="#B9BAB8" stroke-width="2" stroke-linejoin="round" style="pointer-events:none"></polygon>
+                  <g style="pointer-events:none">
+                    <ellipse cx="90" cy="148" rx="22" ry="10" fill="#0A0A0A" stroke="#595959" stroke-width="2"></ellipse>
+                    <ellipse cx="370" cy="148" rx="22" ry="10" fill="#0A0A0A" stroke="#595959" stroke-width="2"></ellipse>
+                  </g>
+                  <sc-for list="{{ pins }}" as="pn" hint-placeholder-count="2">
+                    <g onClick="{{ pn.onClick }}" style="cursor:pointer">
+                      <circle cx="{{ pn.x }}" cy="{{ pn.y }}" r="8" fill="rgba(242,68,5,.28)"></circle>
+                      <circle cx="{{ pn.x }}" cy="{{ pn.y }}" r="6" fill="#F24405" stroke="#fff" stroke-width="1.6"></circle>
+                    </g>
+                  </sc-for>
+                </g>
+              </svg>
+            </div>
+            <div style="display:{{ photoDiagramDisplay }}">
+              <svg viewBox="0 0 {{ photoViewW }} {{ photoViewH }}" style="width:100%;height:auto;max-height:{{ diagramMaxHeight }};display:block;cursor:crosshair;touch-action:manipulation" role="img" aria-label="Tap the car to mark where the damage is">
+                <g data-tyg-flip="1">
+                  <image href="{{ photoImg }}" x="0" y="0" width="{{ photoViewW }}" height="{{ photoViewH }}" style="pointer-events:none"></image>
+                  <rect x="0" y="0" width="{{ photoViewW }}" height="{{ photoViewH }}" fill="transparent" onClick="{{ diagramClick }}" style="cursor:crosshair"></rect>
+                  <sc-for list="{{ pins }}" as="pn" hint-placeholder-count="2">
+                    <g onClick="{{ pn.onClick }}" style="cursor:pointer">
+                      <circle cx="{{ pn.x }}" cy="{{ pn.y }}" r="{{ photoPinR }}" fill="rgba(242,68,5,.28)"></circle>
+                      <circle cx="{{ pn.x }}" cy="{{ pn.y }}" r="{{ photoPinInnerR }}" fill="#F24405" stroke="#fff" stroke-width="{{ photoPinStroke }}"></circle>
+                    </g>
+                  </sc-for>
+                </g>
+              </svg>
+            </div>
+            <p style="margin:10px 2px 0;font-size:12px;color:#595959;text-align:center">{{ diagramCaption }}</p>
           </div>
 
           <div style="margin-top:20px">
             <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Selected areas</p>
-            <div style="display:flex;flex-wrap:wrap;gap:8px">
-              <sc-for list="{{ selectedPanels }}" as="sp" hint-placeholder-count="2">
-                <button type="button" onClick="{{ sp.onClick }}" style="cursor:pointer;display:flex;align-items:center;gap:9px;font-size:13px;padding:9px 14px;border-radius:999px;background:rgba(242,68,5,.12);border:1px solid rgba(242,68,5,.5);color:#fff">{{ sp.label }}
-                  <span style="color:#F24405;font-size:15px;line-height:1">&times;</span>
-                </button>
+            <div style="display:flex;flex-direction:column;gap:10px">
+              <sc-for list="{{ pointCards }}" as="pc" hint-placeholder-count="2">
+                <div style="border:1px solid rgba(185,186,184,.18);background:#0D0D0D;padding:16px">
+                  <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px">
+                    <span style="font-size:14.5px;font-weight:700;color:#fff">{{ pc.label }}</span>
+                    <button type="button" onClick="{{ pc.onRemove }}" aria-label="Remove this area" style="cursor:pointer;background:none;border:none;padding:0;color:#F24405;font-size:17px;line-height:1">&times;</button>
+                  </div>
+
+                  <p style="margin:0 0 8px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#595959">How bad is it?</p>
+                  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px">
+                    <sc-for list="{{ pc.severities }}" as="sv" hint-placeholder-count="4">
+                      <button type="button" onClick="{{ sv.onClick }}" style="cursor:pointer;font-size:12px;padding:8px 13px;border-radius:999px;background:{{ sv.bg }};border:1px solid {{ sv.border }};color:{{ sv.color }};white-space:nowrap">{{ sv.label }}</button>
+                    </sc-for>
+                  </div>
+
+                  <p style="margin:0 0 8px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#595959">Photo {{ pc.photoOptionalWord }}</p>
+                  <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+                    <span style="flex:1;min-width:120px;font-size:13px;color:#B9BAB8">{{ pc.photoName }}</span>
+                    <button type="button" onClick="{{ pc.onPhoto }}" style="cursor:pointer;background:none;border:1px solid rgba(255,255,255,.4);color:#fff;border-radius:2px;padding:10px 16px;font-size:11.5px;font-weight:700;text-transform:uppercase;letter-spacing:.04em;white-space:nowrap">{{ pc.photoBtn }}</button>
+                  </div>
+                </div>
               </sc-for>
             </div>
-            <p style="display:{{ noPanelsDisplay }};margin:0;font-size:13.5px;color:#595959">Nothing selected yet. You can also skip this and describe it in your own words at the end.</p>
+            <p style="display:{{ noPanelsDisplay }};margin:0;font-size:13.5px;color:#595959">Nothing marked yet. You can also skip this and describe it in your own words at the end.</p>
           </div>
         </div>
 
@@ -288,45 +386,23 @@ input::placeholder,textarea::placeholder{color:#4d4d4d}
         </div>
       </div>
 
-      <div style="display:{{ s4 }}">
-        <h2 style="margin:0 0 8px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(26px,3.6vw,36px);line-height:1;letter-spacing:.02em">How bad is it?</h2>
-        <p style="margin:0 0 26px;font-size:15px;line-height:1.65;color:#B9BAB8;max-width:60ch">A rough idea is fine. It helps us tell you whether it is a SMART repair or a full panel job.</p>
-
-        <div style="display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));margin-bottom:28px">
-          <sc-for list="{{ severities }}" as="sev" hint-placeholder-count="4">
-            <button type="button" onClick="{{ sev.onClick }}" style="text-align:left;cursor:pointer;background:{{ sev.bg }};border:1px solid {{ sev.border }};border-radius:2px;padding:18px;display:flex;flex-direction:column;gap:6px">
-              <span style="font-size:15.5px;font-weight:700;color:#fff">{{ sev.label }}</span>
-              <span style="font-size:13px;line-height:1.55;color:#B9BAB8">{{ sev.note }}</span>
-            </button>
-          </sc-for>
-        </div>
-
-        <label style="display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959;margin-bottom:9px">Anything we should know? (optional)</label>
-        <textarea value="{{ notes }}" onChange="{{ setNotes }}" rows="4" placeholder="Kerbed the front wheel and scuffed the bumper on the same side." style="width:100%;background:#141414;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-size:15px;padding:14px;line-height:1.6;resize:vertical;margin-bottom:26px"></textarea>
-
-        <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Photo (optional)</p>
-        <div style="border:1px dashed rgba(185,186,184,.34);background:#0D0D0D;padding:24px;display:flex;flex-wrap:wrap;align-items:center;gap:18px">
-          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#595959" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><rect x="3" y="6" width="18" height="14" rx="2"/><circle cx="12" cy="13" r="3.4"/><path d="M8 6l1.4-2h5.2L16 6"/></svg>
-          <div style="flex:1;min-width:180px">
-            <p style="margin:0 0 4px;font-size:14.5px;color:#fff">{{ photoName }}</p>
-            <p style="margin:0;font-size:13px;color:#595959">One clear photo of the damage, taken in daylight, is usually enough.</p>
-          </div>
-          <button type="button" onClick="{{ pickPhoto }}" style="cursor:pointer;background:none;border:1px solid rgba(255,255,255,.5);color:#fff;border-radius:2px;padding:14px 22px;font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;white-space:nowrap">{{ photoBtn }}</button>
-        </div>
-      </div>
-
       <div style="display:{{ s5 }}">
         <h2 style="margin:0 0 8px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(26px,3.6vw,36px);line-height:1;letter-spacing:.02em">Check and send</h2>
         <p style="margin:0 0 26px;font-size:15px;line-height:1.65;color:#B9BAB8;max-width:60ch">Have a quick look over this, then send it through. It lands straight in your quotes and estimates.</p>
 
         <div style="border:1px solid rgba(185,186,184,.16);background:#0D0D0D;margin-bottom:30px">
-          <sc-for list="{{ summary }}" as="sm" hint-placeholder-count="5">
+          <sc-for list="{{ summary }}" as="sm" hint-placeholder-count="3">
             <div style="display:flex;flex-wrap:wrap;gap:6px 20px;padding:16px 18px;border-bottom:1px solid rgba(185,186,184,.1)">
               <span style="flex:none;width:150px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959;padding-top:3px">{{ sm.k }}</span>
               <span style="flex:1;min-width:180px;font-size:14.5px;line-height:1.6;color:#fff">{{ sm.v }}</span>
               <button type="button" onClick="{{ sm.onEdit }}" style="cursor:pointer;background:none;border:none;padding:0;font-size:12.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;color:#F24405">Edit</button>
             </div>
           </sc-for>
+        </div>
+
+        <div style="display:{{ notesFieldDisplay }};margin-bottom:26px">
+          <label style="display:block;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959;margin-bottom:9px">Anything we should know? (optional)</label>
+          <textarea value="{{ notes }}" onChange="{{ setNotes }}" rows="4" placeholder="Kerbed the front wheel and scuffed the bumper on the same side." style="width:100%;background:#141414;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-size:15px;padding:14px;line-height:1.6;resize:vertical"></textarea>
         </div>
 
         <div style="display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));margin-bottom:12px">
@@ -498,31 +574,31 @@ const SHAPES = {
     label: 'Hatchback',
     pts: '8,110 10,88 34,80 62,78 138,54 168,26 296,24 344,44 394,54 424,62 436,86 438,110 8,110',
     belt: 58, cowl: 150, bumperEnd: 52, wingEnd: 132, door1: 238, door2: 310, quarterEnd: 404, roofEnd: 336,
-    wf: 100, wr: 348, wy: 116, rad: 25
+    wf: 100, wr: 348, wy: 116, rad: 25, roofY: 24, sillY: 110
+  },
+  sedan: {
+    label: 'Sedan',
+    pts: '8,108 10,90 34,82 62,80 146,56 182,30 262,28 344,50 400,58 424,64 436,84 438,108 8,108',
+    belt: 58, cowl: 150, bumperEnd: 46, wingEnd: 128, door1: 234, door2: 306, quarterEnd: 400, roofEnd: 330,
+    wf: 98, wr: 344, wy: 114, rad: 24, roofY: 28, sillY: 108
   },
   estate: {
     label: 'Estate',
     pts: '8,110 10,88 34,80 62,78 138,54 168,26 380,24 402,28 420,38 436,84 438,110 8,110',
     belt: 58, cowl: 150, bumperEnd: 52, wingEnd: 132, door1: 238, door2: 312, quarterEnd: 408, roofEnd: 396,
-    wf: 100, wr: 352, wy: 116, rad: 25
+    wf: 100, wr: 352, wy: 116, rad: 25, roofY: 24, sillY: 110
   },
   suv: {
     label: 'SUV / 4x4',
     pts: '8,112 10,80 34,70 66,68 132,44 162,14 320,12 372,20 402,28 430,52 442,84 444,112 8,112',
     belt: 50, cowl: 142, bumperEnd: 56, wingEnd: 134, door1: 238, door2: 314, quarterEnd: 406, roofEnd: 376,
-    wf: 104, wr: 350, wy: 116, rad: 28
-  },
-  coupe: {
-    label: 'Coupe',
-    pts: '8,110 10,90 34,82 66,80 146,56 182,30 262,28 348,52 408,62 428,74 438,96 440,110 8,110',
-    belt: 60, cowl: 156, bumperEnd: 52, wingEnd: 136, door1: 288, door2: 288, quarterEnd: 408, roofEnd: 352,
-    wf: 106, wr: 352, wy: 116, rad: 25
+    wf: 104, wr: 350, wy: 116, rad: 28, roofY: 12, sillY: 112
   },
   van: {
     label: 'Van',
     pts: '8,112 10,78 30,66 58,62 96,26 120,10 420,8 434,20 442,60 444,112 8,112',
     belt: 62, cowl: 112, bumperEnd: 46, wingEnd: 122, door1: 212, door2: 212, quarterEnd: 420, roofEnd: 420,
-    wf: 92, wr: 366, wy: 116, rad: 24
+    wf: 92, wr: 366, wy: 116, rad: 24, roofY: 8, sillY: 112
   }
 };
 
@@ -535,14 +611,357 @@ const SEVERITIES = [
 
 const SEV_LABEL = { light: 'Light', moderate: 'Moderate', heavy: 'Heavy', unsure: 'Not sure' };
 
+const FRONT_REAR_PTS = '70,150 70,120 110,70 170,30 290,30 350,70 390,120 390,150 70,150';
+const FRONT_REAR_ZONES = [
+  ['headlight_l', 'Left headlight', 'Left tail light', 76, 84, 30, 24],
+  ['headlight_r', 'Right headlight', 'Right tail light', 354, 84, 30, 24],
+  ['roof_fr', 'Roof', 'Roof', 110, 30, 240, 40],
+  ['wing_l', 'Left wing', 'Left quarter panel', 70, 70, 40, 60],
+  ['wing_r', 'Right wing', 'Right quarter panel', 350, 70, 40, 60],
+  ['bonnet_fr', 'Bonnet', 'Tailgate / boot', 110, 70, 240, 60],
+  ['bumper_fr', 'Front bumper', 'Rear bumper', 70, 130, 320, 20]
+];
+
+const PHOTO_DIAGRAMS = {
+  hatchback: {
+    driver: {
+      img: './assets/diagram/hatchback_driver.jpg',
+      w: 406, h: 161,
+      frontIsOn: 'right',
+      zones: [
+        ['mirror', 'Wing mirror', 245, 43, 38, 30],
+        ['rearbumper', 'Rear bumper', 0, 75, 25, 70],
+        ['quarter', 'Rear quarter', 25, 75, 110, 70],
+        ['reardoor', 'Rear door', 135, 75, 80, 70],
+        ['frontdoor', 'Front door', 215, 75, 80, 70],
+        ['frontwing', 'Front wing', 295, 75, 70, 70],
+        ['frontbumper', 'Front bumper', 365, 75, 41, 70],
+        ['tailgate', 'Boot / tailgate', 0, 0, 110, 75],
+        ['roof', 'Roof & glass', 110, 0, 180, 75],
+        ['bonnet', 'Bonnet', 290, 0, 116, 75]
+      ]
+    },
+    passenger: {
+      img: './assets/diagram/hatchback_passenger.jpg',
+      w: 406, h: 168,
+      frontIsOn: 'left',
+      zones: [
+        ['mirror', 'Wing mirror', 123, 43, 38, 30],
+        ['frontbumper', 'Front bumper', 0, 75, 41, 70],
+        ['frontwing', 'Front wing', 41, 75, 70, 70],
+        ['frontdoor', 'Front door', 111, 75, 80, 70],
+        ['reardoor', 'Rear door', 191, 75, 80, 70],
+        ['quarter', 'Rear quarter', 271, 75, 110, 70],
+        ['rearbumper', 'Rear bumper', 381, 75, 25, 70],
+        ['bonnet', 'Bonnet', 0, 0, 116, 75],
+        ['roof', 'Roof & glass', 116, 0, 180, 75],
+        ['tailgate', 'Boot / tailgate', 296, 0, 110, 75]
+      ]
+    },
+    front: {
+      img: './assets/diagram/hatchback_front.jpg',
+      w: 203, h: 171,
+      zones: [
+        ['mirror_l', 'Left mirror', 3, 42, 35, 38],
+        ['mirror_r', 'Right mirror', 165, 42, 35, 38],
+        ['headlight_l', 'Left headlight', 22, 85, 55, 30],
+        ['headlight_r', 'Right headlight', 126, 85, 55, 30],
+        ['roof_windscreen', 'Roof & windscreen', 28, 0, 147, 88],
+        ['wing_l', 'Left wing', 3, 80, 50, 85],
+        ['wing_r', 'Right wing', 150, 80, 50, 85],
+        ['bonnet_grille', 'Bonnet & grille', 77, 88, 49, 77],
+        ['bumper_front', 'Front bumper', 12, 140, 179, 31]
+      ]
+    },
+    rear: {
+      img: './assets/diagram/hatchback_rear.jpg',
+      w: 202, h: 152,
+      zones: [
+        ['mirror_l', 'Left mirror', 3, 35, 35, 35],
+        ['mirror_r', 'Right mirror', 164, 35, 35, 35],
+        ['taillight_l', 'Left tail light', 20, 73, 33, 45],
+        ['taillight_r', 'Right tail light', 149, 73, 33, 45],
+        ['roof_rearglass', 'Roof & rear glass', 28, 0, 146, 73],
+        ['quarter_l', 'Left quarter panel', 3, 73, 45, 47],
+        ['quarter_r', 'Right quarter panel', 154, 73, 45, 47],
+        ['tailgate_boot', 'Boot / tailgate', 53, 73, 96, 47],
+        ['bumper_rear', 'Rear bumper', 10, 120, 182, 32]
+      ]
+    }
+  },
+  estate: {
+    driver: {
+      img: './assets/diagram/estate_driver.jpg',
+      w: 533, h: 198,
+      frontIsOn: 'right',
+      zones: [
+        ['mirror', 'Wing mirror', 325, 54, 38, 26],
+        ['rearbumper', 'Rear bumper', 0, 90, 28, 85],
+        ['quarter', 'Rear quarter', 28, 90, 150, 85],
+        ['reardoor', 'Rear door', 178, 90, 102, 85],
+        ['frontdoor', 'Front door', 280, 90, 110, 85],
+        ['frontwing', 'Front wing', 390, 90, 100, 85],
+        ['frontbumper', 'Front bumper', 490, 90, 43, 85],
+        ['tailgate', 'Boot / tailgate', 0, 0, 150, 90],
+        ['roof', 'Roof & glass', 150, 0, 280, 90],
+        ['bonnet', 'Bonnet', 430, 0, 103, 90]
+      ]
+    },
+    passenger: {
+      img: './assets/diagram/estate_passenger.jpg',
+      w: 509, h: 204,
+      frontIsOn: 'left',
+      zones: [
+        ['mirror', 'Wing mirror', 147, 48, 32, 24],
+        ['frontbumper', 'Front bumper', 0, 90, 41, 85],
+        ['frontwing', 'Front wing', 41, 90, 96, 85],
+        ['frontdoor', 'Front door', 137, 90, 105, 85],
+        ['reardoor', 'Rear door', 242, 90, 97, 85],
+        ['quarter', 'Rear quarter', 339, 90, 143, 85],
+        ['rearbumper', 'Rear bumper', 482, 90, 27, 85],
+        ['bonnet', 'Bonnet', 0, 0, 98, 90],
+        ['roof', 'Roof & glass', 98, 0, 267, 90],
+        ['tailgate', 'Boot / tailgate', 365, 0, 144, 90]
+      ]
+    },
+    front: {
+      img: './assets/diagram/estate_front.jpg',
+      w: 242, h: 204,
+      zones: [
+        ['mirror_l', 'Left mirror', 5, 55, 40, 45],
+        ['mirror_r', 'Right mirror', 197, 55, 40, 45],
+        ['headlight_l', 'Left headlight', 30, 105, 65, 45],
+        ['headlight_r', 'Right headlight', 147, 105, 65, 45],
+        ['roof_windscreen', 'Roof & windscreen', 35, 0, 172, 105],
+        ['wing_l', 'Left wing', 5, 100, 60, 100],
+        ['wing_r', 'Right wing', 177, 100, 60, 100],
+        ['bonnet_grille', 'Bonnet & grille', 95, 105, 52, 95],
+        ['bumper_front', 'Front bumper', 15, 165, 212, 39]
+      ]
+    },
+    rear: {
+      img: './assets/diagram/estate_rear.jpg',
+      w: 242, h: 191,
+      zones: [
+        ['mirror_l', 'Left mirror', 5, 48, 40, 42],
+        ['mirror_r', 'Right mirror', 197, 48, 40, 42],
+        ['taillight_l', 'Left tail light', 25, 90, 70, 55],
+        ['taillight_r', 'Right tail light', 147, 90, 70, 55],
+        ['roof_rearglass', 'Roof & rear glass', 35, 0, 172, 90],
+        ['quarter_l', 'Left quarter panel', 5, 90, 55, 60],
+        ['quarter_r', 'Right quarter panel', 182, 90, 55, 60],
+        ['tailgate_boot', 'Boot / tailgate', 95, 90, 52, 60],
+        ['bumper_rear', 'Rear bumper', 15, 150, 212, 41]
+      ]
+    }
+  },
+  suv: {
+    driver: {
+      img: './assets/diagram/car-driver-side.png',
+      w: 1560, h: 585,
+      frontIsOn: 'right',
+      zones: [
+        ['mirror', 'Wing mirror', 915, 150, 70, 50],
+        ['rearbumper', 'Rear bumper', 0, 195, 125, 265],
+        ['quarter', 'Rear quarter', 125, 195, 265, 265],
+        ['reardoor', 'Rear door', 390, 195, 310, 265],
+        ['frontdoor', 'Front door', 700, 195, 280, 265],
+        ['frontwing', 'Front wing', 980, 195, 420, 265],
+        ['frontbumper', 'Front bumper', 1400, 195, 160, 265],
+        ['tailgate', 'Boot / tailgate', 0, 0, 155, 195],
+        ['roof', 'Roof & glass', 155, 0, 905, 195],
+        ['bonnet', 'Bonnet', 1060, 0, 500, 195]
+      ]
+    },
+    passenger: {
+      img: './assets/diagram/car-passenger-side.png',
+      w: 1560, h: 585,
+      frontIsOn: 'left',
+      zones: [
+        ['mirror', 'Wing mirror', 575, 150, 70, 50],
+        ['rearbumper', 'Rear bumper', 1435, 195, 125, 265],
+        ['quarter', 'Rear quarter', 1170, 195, 265, 265],
+        ['reardoor', 'Rear door', 860, 195, 310, 265],
+        ['frontdoor', 'Front door', 580, 195, 280, 265],
+        ['frontwing', 'Front wing', 160, 195, 420, 265],
+        ['frontbumper', 'Front bumper', 0, 195, 160, 265],
+        ['tailgate', 'Boot / tailgate', 1405, 0, 155, 195],
+        ['roof', 'Roof & glass', 500, 0, 905, 195],
+        ['bonnet', 'Bonnet', 0, 0, 500, 195]
+      ]
+    },
+    front: {
+      img: './assets/diagram/car-front.png',
+      w: 979, h: 849,
+      zones: [
+        ['mirror_l', 'Left mirror', 5, 220, 85, 85],
+        ['mirror_r', 'Right mirror', 890, 220, 85, 85],
+        ['headlight_l', 'Left headlight', 90, 385, 175, 90],
+        ['headlight_r', 'Right headlight', 715, 385, 175, 90],
+        ['roof_windscreen', 'Roof & windscreen', 150, 0, 680, 390],
+        ['wing_l', 'Left wing', 5, 305, 85, 395],
+        ['wing_r', 'Right wing', 890, 305, 85, 395],
+        ['bonnet_grille', 'Bonnet & grille', 265, 390, 450, 210],
+        ['bumper_front', 'Front bumper', 40, 600, 900, 110]
+      ]
+    },
+    rear: {
+      img: './assets/diagram/car-rear.png',
+      w: 935, h: 818,
+      zones: [
+        ['mirror_l', 'Left mirror', 5, 225, 75, 80],
+        ['mirror_r', 'Right mirror', 855, 225, 75, 80],
+        ['taillight_l', 'Left tail light', 65, 300, 180, 95],
+        ['taillight_r', 'Right tail light', 690, 300, 180, 95],
+        ['roof_rearglass', 'Roof & rear glass', 140, 0, 660, 300],
+        ['quarter_l', 'Left quarter panel', 5, 305, 70, 355],
+        ['quarter_r', 'Right quarter panel', 860, 305, 70, 355],
+        ['tailgate_boot', 'Tailgate / boot', 245, 300, 450, 260],
+        ['bumper_rear', 'Rear bumper', 30, 560, 875, 100]
+      ]
+    }
+  },
+  sedan: {
+    driver: {
+      img: './assets/diagram/sedan_driver.jpg',
+      w: 1255, h: 454,
+      frontIsOn: 'right',
+      zones: [
+        ['mirror', 'Wing mirror', 850, 130, 60, 50],
+        ['rearbumper', 'Rear bumper', 0, 170, 100, 220],
+        ['quarter', 'Rear quarter', 100, 170, 260, 220],
+        ['reardoor', 'Rear door', 360, 170, 200, 220],
+        ['frontdoor', 'Front door', 560, 170, 290, 220],
+        ['frontwing', 'Front wing', 850, 170, 300, 220],
+        ['frontbumper', 'Front bumper', 1150, 170, 105, 220],
+        ['tailgate', 'Boot', 0, 0, 230, 170],
+        ['roof', 'Roof & glass', 230, 0, 670, 170],
+        ['bonnet', 'Bonnet', 900, 0, 355, 170]
+      ]
+    },
+    passenger: {
+      img: './assets/diagram/sedan_passenger.jpg',
+      w: 1247, h: 451,
+      frontIsOn: 'left',
+      zones: [
+        ['mirror', 'Wing mirror', 337, 130, 60, 50],
+        ['frontbumper', 'Front bumper', 0, 170, 100, 220],
+        ['frontwing', 'Front wing', 100, 170, 300, 220],
+        ['frontdoor', 'Front door', 400, 170, 290, 220],
+        ['reardoor', 'Rear door', 690, 170, 200, 220],
+        ['quarter', 'Rear quarter', 890, 170, 260, 220],
+        ['rearbumper', 'Rear bumper', 1150, 170, 97, 220],
+        ['bonnet', 'Bonnet', 0, 0, 347, 170],
+        ['roof', 'Roof & glass', 347, 0, 670, 170],
+        ['tailgate', 'Boot', 1017, 0, 230, 170]
+      ]
+    },
+    front: {
+      img: './assets/diagram/sedan_front.jpg',
+      w: 581, h: 445,
+      zones: [
+        ['mirror_l', 'Left mirror', 10, 90, 70, 55],
+        ['mirror_r', 'Right mirror', 500, 90, 70, 55],
+        ['headlight_l', 'Left headlight', 35, 190, 110, 65],
+        ['headlight_r', 'Right headlight', 435, 190, 110, 65],
+        ['roof_windscreen', 'Roof & windscreen', 100, 0, 380, 195],
+        ['wing_l', 'Left wing', 10, 145, 90, 265],
+        ['wing_r', 'Right wing', 480, 145, 90, 265],
+        ['bonnet_grille', 'Bonnet & grille', 145, 195, 290, 215],
+        ['bumper_front', 'Front bumper', 20, 345, 540, 75]
+      ]
+    },
+    rear: {
+      img: './assets/diagram/sedan_rear.jpg',
+      w: 566, h: 435,
+      zones: [
+        ['mirror_l', 'Left mirror', 5, 90, 65, 50],
+        ['mirror_r', 'Right mirror', 495, 90, 65, 50],
+        ['taillight_l', 'Left tail light', 30, 145, 135, 90],
+        ['taillight_r', 'Right tail light', 400, 145, 135, 90],
+        ['roof_rearglass', 'Roof & rear glass', 95, 0, 375, 145],
+        ['quarter_l', 'Left quarter panel', 5, 140, 90, 250],
+        ['quarter_r', 'Right quarter panel', 470, 140, 90, 250],
+        ['tailgate_boot', 'Boot', 95, 145, 375, 220],
+        ['bumper_rear', 'Rear bumper', 20, 320, 525, 85]
+      ]
+    }
+  },
+  van: {
+    driver: {
+      img: './assets/diagram/van_drive.jpg',
+      w: 832, h: 359,
+      frontIsOn: 'right',
+      zones: [
+        ['mirror', 'Wing mirror', 550, 130, 55, 50],
+        ['rearbumper', 'Rear bumper', 0, 195, 40, 155],
+        ['quarter', 'Rear quarter', 40, 195, 240, 155],
+        ['slidingdoor', 'Sliding door', 280, 195, 265, 155],
+        ['frontdoor', 'Front door', 545, 195, 100, 155],
+        ['frontwing', 'Front wing', 645, 195, 145, 155],
+        ['frontbumper', 'Front bumper', 790, 195, 42, 155],
+        ['tailgate', 'Rear panel', 0, 0, 220, 195],
+        ['roof', 'Roof & glass', 220, 0, 400, 195],
+        ['bonnet', 'Bonnet', 620, 0, 212, 195]
+      ]
+    },
+    passenger: {
+      img: './assets/diagram/van_passenger.jpg',
+      w: 811, h: 363,
+      frontIsOn: 'left',
+      zones: [
+        ['mirror', 'Wing mirror', 221, 130, 54, 50],
+        ['frontbumper', 'Front bumper', 0, 195, 41, 155],
+        ['frontwing', 'Front wing', 41, 195, 142, 155],
+        ['frontdoor', 'Front door', 182, 195, 97, 155],
+        ['slidingdoor', 'Sliding door', 280, 195, 258, 155],
+        ['quarter', 'Rear quarter', 538, 195, 234, 155],
+        ['rearbumper', 'Rear bumper', 772, 195, 39, 155],
+        ['bonnet', 'Bonnet', 0, 0, 207, 195],
+        ['roof', 'Roof & glass', 207, 0, 390, 195],
+        ['tailgate', 'Rear panel', 597, 0, 214, 195]
+      ]
+    },
+    front: {
+      img: './assets/diagram/van_front.jpg',
+      w: 374, h: 366,
+      zones: [
+        ['mirror_l', 'Left mirror', 8, 95, 55, 65],
+        ['mirror_r', 'Right mirror', 310, 95, 55, 65],
+        ['headlight_l', 'Left headlight', 45, 175, 110, 65],
+        ['headlight_r', 'Right headlight', 220, 175, 110, 65],
+        ['roof_windscreen', 'Roof & windscreen', 55, 0, 265, 175],
+        ['wing_l', 'Left wing', 8, 160, 80, 170],
+        ['wing_r', 'Right wing', 285, 160, 80, 170],
+        ['bonnet_grille', 'Bonnet & grille', 150, 175, 75, 155],
+        ['bumper_front', 'Front bumper', 20, 255, 335, 80]
+      ]
+    },
+    rear: {
+      img: './assets/diagram/van_rear.jpg',
+      w: 413, h: 386,
+      zones: [
+        ['mirror_l', 'Left mirror', 10, 115, 60, 65],
+        ['mirror_r', 'Right mirror', 345, 115, 60, 65],
+        ['taillight_l', 'Left tail light', 5, 275, 75, 55],
+        ['taillight_r', 'Right tail light', 335, 275, 75, 55],
+        ['roof_rearglass', 'Roof & rear glass', 65, 0, 285, 180],
+        ['doorleft_rear', 'Left rear door', 15, 180, 190, 160],
+        ['doorright_rear', 'Right rear door', 205, 180, 190, 160],
+        ['bumper_rear', 'Rear bumper', 20, 340, 375, 46]
+      ]
+    }
+  }
+};
+
 class Component extends DCLogic {
   state = {
     navDrawer: false, navMenu: false, narrow: false, step: 1, done: false,
     vehicleMode: 'saved', selectedReg: GARAGE[0].reg,
     reg: '', make: '', model: '', year: '', colour: '',
     services: [], wheels: 4,
-    bodyType: null, side: 'driver', panels: {},
-    severity: null, notes: '', photo: null,
+    bodyType: null, view: 'driver', points: [],
+    notes: '',
     name: 'Sophie Mills', phone: '07841 226 903', email: 'sophie.mills@gmail.com', marketing: false
   };
 
@@ -564,8 +983,7 @@ class Component extends DCLogic {
     return !this.needsDiagram() && this.state.services.indexOf('alloy') > -1;
   }
   activeSteps() {
-    if (this.needsDiagram()) return [1, 2, 3, 4, 5];
-    if (this.needsWheelStep()) return [1, 2, 3, 5];
+    if (this.needsDiagram() || this.needsWheelStep()) return [1, 2, 3, 5];
     return [1, 2, 5];
   }
   go(n) {
@@ -598,7 +1016,12 @@ class Component extends DCLogic {
       ['rearbumper', 'Rear bumper', s.quarterEnd, s.belt, 460 - s.quarterEnd, bottom - s.belt]
     ].filter(p => p[4] > 0);
   }
-  sideWord(k) { return k === 'driver' ? 'Driver side' : 'Passenger side'; }
+  viewWord(k) {
+    if (k === 'driver') return 'Driver side';
+    if (k === 'passenger') return 'Passenger side';
+    if (k === 'front') return 'Front';
+    return 'Rear';
+  }
 
   toggleService(id) {
     this.setState(st => {
@@ -606,12 +1029,130 @@ class Component extends DCLogic {
       return { services: has ? st.services.filter(x => x !== id) : st.services.concat([id]) };
     });
   }
-  togglePanel(key) {
-    this.setState(st => {
-      const p = Object.assign({}, st.panels);
-      if (p[key]) delete p[key]; else p[key] = true;
-      return { panels: p };
-    });
+
+  mirrorPos() {
+    const s = this.shape();
+    return { x: s.wingEnd + (s.door1 - s.wingEnd) * 0.18, y: s.belt - 3 };
+  }
+  mirrorZone() {
+    const pos = this.mirrorPos();
+    const w = 18, h = 18;
+    return { x: pos.x - w / 2, y: pos.y - h / 2, w: w, h: h };
+  }
+  frontRearPanelDefs() {
+    const isFront = this.state.view === 'front';
+    return FRONT_REAR_ZONES.map(z => [z[0], isFront ? z[1] : z[2], z[3], z[4], z[5], z[6]]);
+  }
+  currentBodyType() {
+    return this.state.bodyType || 'hatchback';
+  }
+  hasPhotoDiagram() {
+    const set = PHOTO_DIAGRAMS[this.currentBodyType()];
+    return !!(set && set[this.state.view]);
+  }
+  photoDiagramSet() {
+    return PHOTO_DIAGRAMS[this.currentBodyType()] || PHOTO_DIAGRAMS.suv;
+  }
+  photoView() {
+    const set = this.photoDiagramSet();
+    return set[this.state.view] || set.driver;
+  }
+  panelForPoint(x, y) {
+    if (this.hasPhotoDiagram()) {
+      return this.photoView().zones.find(p => x >= p[2] && x <= p[2] + p[4] && y >= p[3] && y <= p[3] + p[5]);
+    }
+    if (this.state.view === 'front' || this.state.view === 'rear') {
+      return this.frontRearPanelDefs().find(p => x >= p[2] && x <= p[2] + p[4] && y >= p[3] && y <= p[3] + p[5]);
+    }
+    const mz = this.mirrorZone();
+    if (x >= mz.x && x <= mz.x + mz.w && y >= mz.y && y <= mz.y + mz.h) {
+      return ['mirror', 'Wing mirror', mz.x, mz.y, mz.w, mz.h];
+    }
+    return this.panelDefs().find(p => x >= p[2] && x <= p[2] + p[4] && y >= p[3] && y <= p[3] + p[5]);
+  }
+  addPointAt(x, y) {
+    const panel = this.panelForPoint(x, y);
+    if (!panel) return;
+    this._pid = (this._pid || 0) + 1;
+    const point = { id: this._pid, view: this.state.view, x, y, panelKey: panel[0], panelLabel: panel[1], severity: null, photo: null };
+    this.setState(st => ({ points: st.points.concat([point]) }));
+  }
+  removePoint(id) {
+    this.setState(st => ({ points: st.points.filter(p => p.id !== id) }));
+  }
+  setPointSeverity(id, sev) {
+    this.setState(st => ({ points: st.points.map(p => p.id === id ? Object.assign({}, p, { severity: sev }) : p) }));
+  }
+  setPointPhoto(id, name) {
+    this.setState(st => ({ points: st.points.map(p => p.id === id ? Object.assign({}, p, { photo: name }) : p) }));
+  }
+  pickPointPhoto(id) {
+    const i = document.createElement('input');
+    i.type = 'file';
+    i.accept = 'image/*';
+    i.onchange = () => { if (i.files && i.files[0]) this.setPointPhoto(id, i.files[0].name); };
+    i.click();
+  }
+  handleDiagramClick(e) {
+    const svgEl = e.currentTarget.ownerSVGElement;
+    const groupEl = svgEl && svgEl.querySelector('[data-tyg-flip]');
+    if (!svgEl || !groupEl) return;
+    const pt = svgEl.createSVGPoint();
+    pt.x = e.clientX;
+    pt.y = e.clientY;
+    const ctm = groupEl.getScreenCTM();
+    if (!ctm) return;
+    const loc = pt.matrixTransform(ctm.inverse());
+    this.addPointAt(loc.x, loc.y);
+  }
+  diagramGeometry() {
+    const s = this.shape();
+    const glassPts = [
+      [s.cowl - 6, s.belt - 2],
+      [s.cowl + 18, s.roofY + 6],
+      [s.roofEnd - 18, s.roofY + 6],
+      [s.roofEnd + 8, s.belt - 2]
+    ].map(p => p.join(',')).join(' ');
+    const seamXs = Array.from(new Set([s.wingEnd, s.door1, s.door2, s.quarterEnd]));
+    const seams = seamXs.map(x => ({ x, y1: s.belt, y2: s.sillY }));
+    const mirrorPos = this.mirrorPos();
+    return {
+      glassPts,
+      seams,
+      creaseY: s.belt + (s.sillY - s.belt) * 0.42,
+      creaseX1: s.bumperEnd * 0.6,
+      creaseX2: s.quarterEnd + (460 - s.quarterEnd) * 0.4,
+      mirrorX: mirrorPos.x,
+      mirrorY: mirrorPos.y,
+      lightY: s.belt + 4,
+      headlightX: s.bumperEnd * 0.35,
+      taillightX: s.quarterEnd + (460 - s.quarterEnd) * 0.3,
+      archRx: s.rad + 8,
+      archRy: s.rad * 0.6,
+      rimR: s.rad * 0.55
+    };
+  }
+  frontRearGeometry() {
+    const isFront = this.state.view === 'front';
+    return {
+      frontRearPts: FRONT_REAR_PTS,
+      frLightLX: 78,
+      frLightRX: 356,
+      frLightColor: isFront ? '#FFD200' : '#F24405',
+      frPlateColor: isFront ? '#f5f5f0' : '#FFD200'
+    };
+  }
+  photoGeometry() {
+    const v = this.photoView();
+    const scale = v.w / 460;
+    return {
+      photoImg: v.img,
+      photoViewW: v.w,
+      photoViewH: v.h,
+      photoPinR: 8 * scale,
+      photoPinInnerR: 6 * scale,
+      photoPinStroke: 1.6 * scale
+    };
   }
 
   serviceRow(def) {
@@ -682,17 +1223,17 @@ class Component extends DCLogic {
     const shp = this.shape();
     const showDiagram = this.needsDiagram();
     const showWheelStep = this.needsWheelStep();
-    const panelKeys = Object.keys(st.panels);
+    const points = st.points;
+    const hasPhoto = this.hasPhotoDiagram();
 
     const stepLabels = {
       1: 'Your vehicle',
       2: 'What it needs',
       3: showDiagram ? 'Damage area' : (showWheelStep ? 'Wheel count' : 'Damage area - not needed'),
-      4: showDiagram ? 'How bad it is' : 'How bad it is - not needed',
       5: 'Your details'
     };
 
-    const stepper = [1, 2, 3, 4, 5].map(n => {
+    const stepper = [1, 2, 3, 5].map(n => {
       const active = n === st.step && !st.done;
       const reachable = list.indexOf(n) > -1;
       const passed = reachable && list.indexOf(n) < list.indexOf(st.step);
@@ -715,9 +1256,8 @@ class Component extends DCLogic {
       1: step1Valid ? '' : 'Choose a vehicle to continue',
       2: selCount ? selCount + (selCount === 1 ? ' service selected' : ' services selected') : 'Pick at least one service',
       3: showDiagram
-        ? (panelKeys.length ? panelKeys.length + ' area' + (panelKeys.length === 1 ? '' : 's') + ' marked' : 'Optional - tap the panels that need work')
+        ? (points.length ? points.length + ' area' + (points.length === 1 ? '' : 's') + ' marked' : 'Optional - tap the car where the damage is')
         : (showWheelStep ? st.wheels + ' wheel' + (st.wheels > 1 ? 's' : '') + ' selected' : ''),
-      4: '',
       5: ''
     }[st.step] || '';
 
@@ -725,10 +1265,10 @@ class Component extends DCLogic {
       { k: 'Vehicle', v: this.vehicleLine(), onEdit: () => this.go(1) },
       { k: 'Services', v: this.serviceNames().join(', ') || 'None selected', onEdit: () => this.go(2) },
       { k: 'Damage area', v: showDiagram
-          ? (panelKeys.length ? panelKeys.map(k => { const parts = k.split(':'); const def = this.panelDefs().find(p => p[0] === parts[1]); return this.sideWord(parts[0]) + ' ' + (def ? def[1].toLowerCase() : parts[1]); }).join(', ') + ' (' + shp.label.toLowerCase() + ')' : 'Not marked')
-          : (showWheelStep ? st.wheels + ' wheel' + (st.wheels > 1 ? 's' : '') + ' to refurbish' : 'Not applicable'), onEdit: () => this.go(3) },
-      { k: 'Severity', v: showDiagram ? (SEV_LABEL[st.severity] || 'Not given') + (st.notes ? ' — ' + st.notes : '') : 'Not applicable', onEdit: () => this.go(4) },
-      { k: 'Photo', v: showDiagram ? (st.photo || 'None attached') : 'Not applicable', onEdit: () => this.go(4) }
+          ? (points.length
+              ? points.map(p => this.viewWord(p.view) + ' ' + p.panelLabel.toLowerCase() + ' (' + (SEV_LABEL[p.severity] || 'severity not given') + (p.photo ? ' · photo attached' : '') + ')').join(', ') + ' — ' + shp.label.toLowerCase()
+              : 'Not marked')
+          : (showWheelStep ? st.wheels + ' wheel' + (st.wheels > 1 ? 's' : '') + ' to refurbish' : 'Not applicable'), onEdit: () => this.go(3) }
     ];
 
     return {
@@ -746,7 +1286,6 @@ class Component extends DCLogic {
       s1: !st.done && st.step === 1 ? 'block' : 'none',
       s2: !st.done && st.step === 2 ? 'block' : 'none',
       s3: !st.done && st.step === 3 ? 'block' : 'none',
-      s4: !st.done && st.step === 4 ? 'block' : 'none',
       s5: !st.done && st.step === 5 ? 'block' : 'none',
       sDone: st.done ? 'flex' : 'none',
       navRow: st.done || st.step === 5 ? 'none' : 'flex',
@@ -815,52 +1354,55 @@ class Component extends DCLogic {
           onClick: () => this.setState({ bodyType: k })
         };
       }),
-      sides: ['driver', 'passenger'].map(k => ({
-        label: this.sideWord(k),
-        bg: st.side === k ? 'rgba(242,68,5,.14)' : 'transparent',
-        border: st.side === k ? '#F24405' : 'rgba(185,186,184,.28)',
-        color: st.side === k ? '#fff' : '#B9BAB8',
-        onClick: () => this.setState({ side: k })
+      views: ['driver', 'passenger', 'front', 'rear'].map(k => ({
+        label: this.viewWord(k),
+        bg: st.view === k ? 'rgba(242,68,5,.14)' : 'transparent',
+        border: st.view === k ? '#F24405' : 'rgba(185,186,184,.28)',
+        color: st.view === k ? '#fff' : '#B9BAB8',
+        onClick: () => this.setState({ view: k })
       })),
       carPts: shp.pts,
-      flip: st.side === 'passenger' ? 'translate(460,0) scale(-1,1)' : 'translate(0,0)',
-      frontSideWord: st.side === 'passenger' ? 'right' : 'left',
+      flip: st.view === 'passenger' ? 'translate(460,0) scale(-1,1)' : 'translate(0,0)',
+      photoDiagramDisplay: hasPhoto ? 'block' : 'none',
+      sideViewDisplay: !hasPhoto && (st.view === 'driver' || st.view === 'passenger') ? 'block' : 'none',
+      frontRearViewDisplay: !hasPhoto && (st.view === 'front' || st.view === 'rear') ? 'block' : 'none',
+      diagramMaxHeight: (st.view === 'front' || st.view === 'rear') ? '400px' : 'none',
+      diagramCaption: hasPhoto && (st.view === 'driver' || st.view === 'passenger')
+        ? 'Front of the car is on the ' + this.photoView().frontIsOn + '. Tap anywhere on the car to drop a pin.'
+        : st.view === 'front'
+        ? 'You are looking at the front of the car. Tap anywhere on it to drop a pin.'
+        : st.view === 'rear'
+        ? 'You are looking at the rear of the car. Tap anywhere on it to drop a pin.'
+        : 'Front of the car is on the ' + (st.view === 'passenger' ? 'right' : 'left') + '. Tap anywhere on the car to drop a pin.',
       wheelFrontX: shp.wf, wheelRearX: shp.wr, wheelY: shp.wy, wheelR: shp.rad,
-      panels: this.panelDefs().map(p => {
-        const key = st.side + ':' + p[0];
-        return {
-          x: p[2], y: p[3], w: p[4], h: p[5],
-          fill: st.panels[key] ? '#F24405' : '#181818',
-          onClick: () => this.togglePanel(key)
-        };
-      }),
-      selectedPanels: panelKeys.map(k => {
-        const parts = k.split(':');
-        const def = this.panelDefs().find(p => p[0] === parts[1]);
-        return {
-          label: this.sideWord(parts[0]) + ' · ' + (def ? def[1] : parts[1]),
-          onClick: () => this.togglePanel(k)
-        };
-      }),
-      noPanelsDisplay: panelKeys.length ? 'none' : 'block',
-
-      severities: SEVERITIES.map(s => ({
-        label: s[1], note: s[2],
-        bg: st.severity === s[0] ? 'rgba(242,68,5,.09)' : '#0D0D0D',
-        border: st.severity === s[0] ? 'rgba(242,68,5,.6)' : 'rgba(185,186,184,.18)',
-        onClick: () => this.setState({ severity: s[0] })
+      ...this.diagramGeometry(),
+      ...this.frontRearGeometry(),
+      ...this.photoGeometry(),
+      diagramClick: e => this.handleDiagramClick(e),
+      pins: points.filter(p => p.view === st.view).map(p => ({
+        x: p.x, y: p.y,
+        onClick: () => this.removePoint(p.id)
       })),
+      pointCards: points.map(p => ({
+        label: this.viewWord(p.view) + ' · ' + p.panelLabel,
+        onRemove: () => this.removePoint(p.id),
+        severities: SEVERITIES.map(s => ({
+          label: s[1],
+          bg: p.severity === s[0] ? 'rgba(242,68,5,.09)' : '#141414',
+          border: p.severity === s[0] ? 'rgba(242,68,5,.6)' : 'rgba(185,186,184,.2)',
+          color: p.severity === s[0] ? '#fff' : '#B9BAB8',
+          onClick: () => this.setPointSeverity(p.id, s[0])
+        })),
+        photoOptionalWord: '(optional)',
+        photoName: p.photo || 'No photo attached',
+        photoBtn: p.photo ? 'Replace' : 'Add photo',
+        onPhoto: () => this.pickPointPhoto(p.id)
+      })),
+      noPanelsDisplay: points.length ? 'none' : 'block',
+
+      notesFieldDisplay: showDiagram ? 'block' : 'none',
       notes: st.notes,
       setNotes: e => this.setState({ notes: e.target.value }),
-      photoName: st.photo || 'No photo attached',
-      photoBtn: st.photo ? 'Replace' : 'Add photo',
-      pickPhoto: () => {
-        const i = document.createElement('input');
-        i.type = 'file';
-        i.accept = 'image/*';
-        i.onchange = () => { if (i.files && i.files[0]) this.setState({ photo: i.files[0].name }); };
-        i.click();
-      },
 
       summary,
       rewardNoticeDisplay: this.unlockedReward() ? 'block' : 'none',
@@ -881,8 +1423,8 @@ class Component extends DCLogic {
       submit: () => { this.setState({ done: true }); window.scrollTo({ top: 0, behavior: 'smooth' }); },
       ref: 'TQ-' + (st.vehicleMode === 'saved' ? st.selectedReg.replace(/\s/g, '') : (st.reg ? st.reg.replace(/\s/g, '').toUpperCase() : 'NEW')).slice(0, 4) + '-06',
       restart: () => this.setState({
-        done: false, step: 1, services: [], panels: {}, severity: null,
-        notes: '', photo: null, vehicleMode: 'saved', selectedReg: GARAGE[0].reg,
+        done: false, step: 1, services: [], points: [],
+        notes: '', vehicleMode: 'saved', selectedReg: GARAGE[0].reg,
         reg: '', make: '', model: '', year: '', colour: ''
       })
     };
