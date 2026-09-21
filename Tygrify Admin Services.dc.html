@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./splash.js"></script>
 <script src="./support.js"></script>
 </head>
 <body>
@@ -27,9 +28,8 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#F24405}
 
   <header style="position:sticky;top:0;z-index:40;background:rgba(13,13,13,.94);backdrop-filter:blur(10px);border-bottom:1px solid rgba(185,186,184,.16)">
     <div style="max-width:1400px;margin:0 auto;padding:12px 20px;display:flex;align-items:center;gap:14px">
-      <a href="./Tygrify Admin Home.dc.html" style="display:flex;align-items:baseline;gap:8px;flex:none">
-        <span style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.06em;line-height:1">TYGRIFY</span>
-        <span style="width:6px;height:6px;background:#F24405;border-radius:50%;display:block"></span>
+      <a href="./Tygrify Admin Home.dc.html" style="display:flex;align-items:center;flex:none">
+        <img src="./assets/Logo_text.png" alt="Tygrify" style="height:44px;width:auto;display:block">
       </a>
       <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B9BAB8;border:1px solid rgba(185,186,184,.3);border-radius:999px;padding:3px 8px;flex:none;white-space:nowrap">Admin</span>
       <div style="margin-left:auto;display:flex;align-items:center;gap:12px;flex:none">
@@ -326,7 +326,7 @@ const SERVICES = [
     description: 'SMART stands for small to medium area repair technique - the damage is repaired and blended into the existing paint rather than the whole panel being resprayed. It suits scratches, small dents and scuffs where the panel itself is straight.',
     who: 'Lease returns, small car park damage, anyone who wants one mark dealt with rather than a full panel job.',
     terms: ['smart repair', 'scratch repair', 'paint chip repair', 'small dent repair', 'mobile paint repair'],
-    galleryTag: 'Body repair', imageCount: 4, lastEdited: 'Last edited 2 Sep by Jay'
+    galleryTag: 'Body repair', imageCount: 4, lastEdited: 'Last edited 2 Sep by Tyg'
   },
   {
     id: 2, name: 'Bumper Scuff & Crack Repair', slug: 'bumper-repair', category: 'Body & paint', status: 'Published', sort: '2',
@@ -335,7 +335,7 @@ const SERVICES = [
     description: 'Plastic bumpers can usually be repaired rather than replaced, including cracks, as long as the mounting points are sound. The repair is filled, reshaped and refinished to match the surrounding paint.',
     who: 'Car park knocks, kerbed bumpers, bollard damage.',
     terms: ['bumper repair', 'bumper scuff repair', 'cracked bumper', 'bumper respray', 'plastic bumper repair'],
-    galleryTag: 'Body repair', imageCount: 6, lastEdited: 'Last edited 2 Sep by Jay'
+    galleryTag: 'Body repair', imageCount: 6, lastEdited: 'Last edited 2 Sep by Tyg'
   },
   {
     id: 3, name: 'Panel Repair & Replacement', slug: 'panel-repair', category: 'Body & paint', status: 'Published', sort: '3',
@@ -344,7 +344,7 @@ const SERVICES = [
     description: 'Larger damage, structural work and anything where the panel has moved needs looking at in person. Some panels are worth repairing, some are cheaper and better replaced - we will tell you which.',
     who: 'Collision damage, deeper dents and creases, rust breaking through.',
     terms: ['dent repair', 'panel replacement', 'accident repair', 'crash repair coventry', 'car body repair'],
-    galleryTag: 'Body repair', imageCount: 3, lastEdited: 'Last edited 28 Aug by Jay'
+    galleryTag: 'Body repair', imageCount: 3, lastEdited: 'Last edited 28 Aug by Tyg'
   },
   {
     id: 4, name: 'Respray & Colour Matching', slug: 'respray', category: 'Body & paint', status: 'Published', sort: '4',
@@ -353,7 +353,7 @@ const SERVICES = [
     description: 'Paint is mixed to the vehicle\'s own code and adjusted for age and fade, then blended into the adjacent panels so the repair does not sit as a patch.',
     who: 'Fade, lacquer peel, colour changes, multi-panel repairs.',
     terms: ['car respray', 'colour matching', 'paint blending', 'lacquer peel repair', 'full respray coventry'],
-    galleryTag: 'Body repair', imageCount: 5, lastEdited: 'Last edited 28 Aug by Jay'
+    galleryTag: 'Body repair', imageCount: 5, lastEdited: 'Last edited 28 Aug by Tyg'
   },
   {
     id: 5, name: 'Alloy Wheel Refurbishment', slug: 'alloy-wheel-refurbishment', category: 'Cosmetic & aftermarket', status: 'Published', sort: '1',
@@ -362,7 +362,7 @@ const SERVICES = [
     description: 'Wheels are stripped, kerb damage repaired, then refinished in the original colour or a different one. Diamond cut faces need specific equipment - ask and we will say whether yours can be done.',
     who: 'Kerbed wheels, corrosion, lease returns, colour changes.',
     terms: ['alloy wheel refurbishment', 'kerbed wheel repair', 'wheel refurb coventry', 'powder coating wheels', 'diamond cut wheels'],
-    galleryTag: 'Alloys', imageCount: 8, lastEdited: 'Last edited 1 Sep by Jay'
+    galleryTag: 'Alloys', imageCount: 8, lastEdited: 'Last edited 1 Sep by Tyg'
   },
   {
     id: 6, name: 'Ceramic Coating', slug: 'ceramic-coating', category: 'Cosmetic & aftermarket', status: 'Published', sort: '2',
@@ -371,7 +371,7 @@ const SERVICES = [
     description: 'The paint is decontaminated and machine polished first, then the coating is applied and cured. It makes the car easier to clean and holds gloss for longer. It is not scratch-proofing.',
     who: 'New cars, freshly repaired paint, anyone who washes their own car regularly.',
     terms: ['ceramic coating', 'paint protection', 'car detailing coventry', 'paint correction', 'gloss coating'],
-    galleryTag: 'Body repair', imageCount: 2, lastEdited: 'Last edited 1 Sep by Jay'
+    galleryTag: 'Body repair', imageCount: 2, lastEdited: 'Last edited 1 Sep by Tyg'
   },
   {
     id: 7, name: 'Interior & Trim Repair', slug: 'interior-trim-repair', category: 'Cosmetic & aftermarket', status: 'Draft', sort: '3',
@@ -380,7 +380,7 @@ const SERVICES = [
     description: 'Seat bolsters, scuffed door cards, cracked dash trim and cigarette burns can usually be repaired and recoloured in place.',
     who: 'Lease returns, worn driver\'s seats, resale preparation.',
     terms: ['leather repair', 'seat repair', 'trim repair', 'interior repair coventry', 'dashboard repair'],
-    galleryTag: 'Interiors', imageCount: 1, lastEdited: 'Last edited 24 Aug by Jay'
+    galleryTag: 'Interiors', imageCount: 1, lastEdited: 'Last edited 24 Aug by Tyg'
   },
   {
     id: 8, name: 'Ghost Immobilisers', slug: 'ghost-immobiliser', category: 'Security & customisation', status: 'Published', sort: '1',
@@ -389,7 +389,7 @@ const SERVICES = [
     description: 'The unit sits hidden in the vehicle and communicates over the car\'s own wiring. Until the PIN is entered through buttons the car already has, the engine will not start - so there is nothing to clone and nothing to relay.',
     who: 'Keyless-entry cars, anyone told by an insurer to improve security.',
     terms: ['ghost immobiliser', 'ghost 2 immobiliser', 'keyless theft protection', 'car security coventry', 'relay attack prevention'],
-    galleryTag: 'Security', imageCount: 3, lastEdited: 'Last edited 5 Sep by Jay',
+    galleryTag: 'Security', imageCount: 3, lastEdited: 'Last edited 5 Sep by Tyg',
     compatibility: 'Most makes from 2010 onward. Confirmed against the vehicle before fitting.'
   },
   {
@@ -399,7 +399,7 @@ const SERVICES = [
     description: 'A tracker will not stop the car being taken, but it gives the police and your insurer somewhere to start. Fitting is discreet and wired into the vehicle.',
     who: 'Higher-value cars, insurer requirements, vans carrying tools.',
     terms: ['car tracker', 'vehicle tracker fitting', 'insurance approved tracker', 'stolen vehicle tracking', 'van tracker coventry'],
-    galleryTag: 'Security', imageCount: 1, lastEdited: 'Last edited 5 Sep by Jay',
+    galleryTag: 'Security', imageCount: 1, lastEdited: 'Last edited 5 Sep by Tyg',
     compatibility: 'Any vehicle with a 12V system.'
   },
   {
@@ -409,7 +409,7 @@ const SERVICES = [
     description: 'CAN-BUS is the network a modern car uses to let its systems talk to each other. Work here is heavily make and model dependent, which is why it is quoted after we have looked at the vehicle.',
     who: 'Owners wanting security or added features that work with the car\'s existing electronics.',
     terms: ['can-bus security', 'can bus coding', 'vehicle electronics coventry', 'immobiliser wiring', 'car module coding'],
-    galleryTag: 'Security', imageCount: 0, lastEdited: 'Last edited 5 Sep by Jay',
+    galleryTag: 'Security', imageCount: 0, lastEdited: 'Last edited 5 Sep by Tyg',
     compatibility: 'Make and model dependent - checked per vehicle, no universal fitment.'
   }
 ];

@@ -1,0 +1,76 @@
+TYGRIFY MOCKUP - CLIENT SIGN-OFF CHECKLIST
+============================================
+
+1. REWARDS PROGRAM
+-------------------
+- Define point values / earn rate
+- Define reward tiers (if any) and what unlocks at each tier
+- Define what points can be redeemed for (discounts, free services, vouchers)
+- Define redemption rules (minimum points, expiry, one reward at a time, etc.)
+- Confirm points expiry policy (do they expire, after how long)
+- Confirm how customers see/track their points (Account > Rewards page)
+- Confirm how admin manages rewards (Admin > Rewards page - adding/editing/removing rewards)
+
+2. PHOTOS NEEDED
+-----------------
+- Gallery photos - before/after repair and detailing work (real jobs, with permission to use)
+- Founder photo(s) for About page
+- Garage / workshop photos (exterior, interior, team at work)
+- Any team/staff photos if wanted
+
+3. SERVICES - PRICING & DESCRIPTIONS
+--------------------------------------
+- Review each service listed on the Services page for accuracy
+- Confirm final pricing (or pricing ranges / "from" pricing) for each service
+- Confirm service descriptions are accurate and complete
+- Confirm nothing is missing (any services offered that aren't listed yet)
+- Confirm nothing listed is no longer offered
+- Review services shown in Admin > Services page match the public Services page
+
+4. FINAL OVERVIEW - FULL WEBSITE SIGN-OFF
+--------------------------------------------
+
+Public website pages:
+- Homepage
+- About
+- Services
+- Gallery
+- Reviews
+- Rewards
+- Security
+- Get a Quote
+- Contact
+- Sign In
+- Sign Up
+- Privacy Policy
+- Terms of Service
+- Cookies Policy
+
+Customer account pages:
+- Account (dashboard/overview)
+- Account - Profile
+- Account - Vehicles
+- Account - Vehicle (single vehicle view)
+- Account - Quotes
+- Account - Quote (single quote view)
+- Account - Get a Quote
+- Account - Repairs
+- Account - Rewards
+
+Admin panel pages:
+- Admin Home
+- Admin - Customers
+- Admin - Edit Customer
+- Admin - Enquiries
+- Admin - Enquiry (single view)
+- Admin - Gallery
+- Admin - Gallery Item
+- Admin - Services
+- Admin - Rewards
+- Admin - Settings
+
+General sign-off:
+- Contact details correct (phone, email, company number, VAT)
+- Overall look and feel approved
+- Checked on mobile and desktop
+- Ready to move from mockup to live build
