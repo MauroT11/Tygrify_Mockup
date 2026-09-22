@@ -3,13 +3,28 @@ TYGRIFY MOCKUP - CLIENT SIGN-OFF CHECKLIST
 
 1. REWARDS PROGRAM
 -------------------
-- Define point values / earn rate
 - Define reward tiers (if any) and what unlocks at each tier
-- Define what points can be redeemed for (discounts, free services, vouchers)
-- Define redemption rules (minimum points, expiry, one reward at a time, etc.)
-- Confirm points expiry policy (do they expire, after how long)
-- Confirm how customers see/track their points (Account > Rewards page)
 - Confirm how admin manages rewards (Admin > Rewards page - adding/editing/removing rewards)
+
+Level 1 - Free Full Valet
+Level 2 - £50 off
+Level 3 - 1 alloy wheel refurbishment
+Level 4 - free synthetic coating / option to upgrade to ceramic coating discount £150 off
+Level 5 - £100 off
+Level 6 - Free SMART REPAIR up to £150
+Level 7 - 30% off one job of their choice
+Level 8 - Full Alloy Refurbishment & Respray
+Level 9 - Token every 250xp, choose to redeem it
+	1 token = Free car wash
+	2 tokens = £50 off
+		 = Flat and polish / Deep Scratches per panel
+		 = £100 of can phantom immobiliser/trackers
+	3 tokens = Free SMART Repair Panel up to £100
+		 = 20% off one job
+		 = single stage paint correction 
+
+Remove aluminium service & rust service & paint correction
+
 
 2. PHOTOS NEEDED
 -----------------
@@ -17,6 +32,30 @@ TYGRIFY MOCKUP - CLIENT SIGN-OFF CHECKLIST
 - Founder photo(s) for About page
 - Garage / workshop photos (exterior, interior, team at work)
 - Any team/staff photos if wanted
+
+https://www.instagram.com/p/CzyeVsbNV8a/
+https://www.instagram.com/p/Cx7vF4tsHIw/?img_index=1
+https://www.instagram.com/p/CvqKi0PN4_l/
+https://www.instagram.com/p/Cug64ZJsN_0/?img_index=1
+https://www.instagram.com/p/CuhY6jnN4Ut/?img_index=1
+https://www.instagram.com/p/C5souzpNslI/?img_index=3
+
+Message us on WhatsApp for instant quote, reply within an hour
+add homepage hero bg photo change to admin panel
+move video section above the "how it works"
+remove respray & paint correction and valeting
+Pick up to five dates on estimates 
+alloy wheel £100 each
+SMART repair from £80
+interior repair from £150
+ceramic coating option on summary
+	level 1 = synthetic coating £100 6-12 months
+	level 2 = cancoat £195 up to 12 months
+	level 3 = heavy duty ceramic £350 24-36 months
+
+light = deep scratch
+medium = golf ball size dent
+heavy = beyond repair/needs replacing
 
 3. SERVICES - PRICING & DESCRIPTIONS
 --------------------------------------

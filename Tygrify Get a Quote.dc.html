@@ -169,11 +169,25 @@ input::placeholder,textarea::placeholder{color:#4d4d4d}
         <div style="display:{{ wheelBlock }};border:1px solid rgba(242,68,5,.4);background:rgba(242,68,5,.07);padding:18px;margin-bottom:28px;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px">
           <div>
             <p style="margin:0 0 4px;font-size:15px;font-weight:700">How many wheels?</p>
-            <p style="margin:0;font-size:13px;color:#B9BAB8">Alloy refurbishment is priced per wheel, from &pound;50 each.</p>
+            <p style="margin:0;font-size:13px;color:#B9BAB8">Alloy refurbishment is &pound;100 per wheel.</p>
           </div>
           <div style="display:flex;align-items:center;gap:2px">
             <sc-for list="{{ wheelOptions }}" as="w" hint-placeholder-count="4">
               <button type="button" onClick="{{ w.onClick }}" style="cursor:pointer;width:48px;height:48px;background:{{ w.bg }};border:1px solid {{ w.border }};color:{{ w.color }};font-size:16px;font-weight:700;border-radius:2px">{{ w.n }}</button>
+            </sc-for>
+          </div>
+        </div>
+
+        <div style="display:{{ ceramicBlock }};border:1px solid rgba(242,68,5,.4);background:rgba(242,68,5,.07);padding:18px;margin-bottom:28px">
+          <p style="margin:0 0 4px;font-size:15px;font-weight:700">Ceramic coating level</p>
+          <p style="margin:0 0 14px;font-size:13px;color:#B9BAB8">Choose the level of protection - the months shown are how long each one lasts on the car.</p>
+          <div style="display:grid;gap:10px;grid-template-columns:{{ ceramicGridCols }}">
+            <sc-for list="{{ ceramicTiers }}" as="ct" hint-placeholder-count="3">
+              <button type="button" onClick="{{ ct.onClick }}" style="cursor:pointer;text-align:left;background:{{ ct.bg }};border:1px solid {{ ct.border }};border-radius:2px;padding:16px;display:flex;flex-direction:column;gap:6px">
+                <span style="font-size:14.5px;font-weight:600;color:#fff">{{ ct.name }}</span>
+                <span style="font-size:12.5px;color:#B9BAB8">{{ ct.duration }}</span>
+                <span style="font-size:17px;font-weight:700;color:{{ ct.priceColor }};margin-top:2px">{{ ct.price }}</span>
+              </button>
             </sc-for>
           </div>
         </div>
@@ -323,9 +337,12 @@ input::placeholder,textarea::placeholder{color:#4d4d4d}
                   </div>
 
                   <p style="margin:0 0 8px;font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:#595959">How bad is it?</p>
-                  <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px">
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:6px;margin-bottom:14px">
                     <sc-for list="{{ pc.severities }}" as="sv" hint-placeholder-count="4">
-                      <button type="button" onClick="{{ sv.onClick }}" style="cursor:pointer;font-size:12px;padding:8px 13px;border-radius:999px;background:{{ sv.bg }};border:1px solid {{ sv.border }};color:{{ sv.color }};white-space:nowrap">{{ sv.label }}</button>
+                      <button type="button" onClick="{{ sv.onClick }}" style="cursor:pointer;text-align:left;font-size:12px;padding:9px 12px;border-radius:2px;background:{{ sv.bg }};border:1px solid {{ sv.border }};color:{{ sv.color }}">
+                        <span style="display:block;font-weight:700">{{ sv.label }}</span>
+                        <span style="display:block;font-size:11px;margin-top:2px;color:{{ sv.noteColor }}">{{ sv.note }}</span>
+                      </button>
                     </sc-for>
                   </div>
 
@@ -341,13 +358,28 @@ input::placeholder,textarea::placeholder{color:#4d4d4d}
           </div>
         </div>
 
-        <div style="display:{{ wheelStepDisplay }}">
-          <h2 style="margin:0 0 8px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(26px,3.6vw,36px);line-height:1;letter-spacing:.02em">How many wheels?</h2>
-          <p style="margin:0 0 26px;font-size:15px;line-height:1.65;color:#B9BAB8;max-width:60ch">Alloy wheel refurbishment is priced per wheel, from &pound;50 each. Choose how many need work.</p>
-          <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
-            <sc-for list="{{ wheelOptions }}" as="w" hint-placeholder-count="4">
-              <button type="button" onClick="{{ w.onClick }}" style="cursor:pointer;width:64px;height:64px;background:{{ w.bg }};border:1px solid {{ w.border }};color:{{ w.color }};font-size:18px;font-weight:700;border-radius:2px">{{ w.n }}</button>
-            </sc-for>
+        <div style="display:{{ extrasStepDisplay }}">
+          <div style="display:{{ wheelSubDisplay }}">
+            <h2 style="margin:0 0 8px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(26px,3.6vw,36px);line-height:1;letter-spacing:.02em">How many wheels?</h2>
+            <p style="margin:0 0 26px;font-size:15px;line-height:1.65;color:#B9BAB8;max-width:60ch">Alloy wheel refurbishment is &pound;100 per wheel. Choose how many need work.</p>
+            <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+              <sc-for list="{{ wheelOptions }}" as="w" hint-placeholder-count="4">
+                <button type="button" onClick="{{ w.onClick }}" style="cursor:pointer;width:64px;height:64px;background:{{ w.bg }};border:1px solid {{ w.border }};color:{{ w.color }};font-size:18px;font-weight:700;border-radius:2px">{{ w.n }}</button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:{{ ceramicSubDisplay }};margin-top:{{ ceramicSubMarginTop }}">
+            <h2 style="margin:0 0 8px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(26px,3.6vw,36px);line-height:1;letter-spacing:.02em">Ceramic coating level</h2>
+            <p style="margin:0 0 26px;font-size:15px;line-height:1.65;color:#B9BAB8;max-width:60ch">Choose the level of protection - the months shown are how long each one lasts on the car.</p>
+            <div style="display:grid;gap:10px;grid-template-columns:{{ ceramicGridCols }}">
+              <sc-for list="{{ ceramicTiers }}" as="ct" hint-placeholder-count="3">
+                <button type="button" onClick="{{ ct.onClick }}" style="cursor:pointer;text-align:left;background:{{ ct.bg }};border:1px solid {{ ct.border }};border-radius:2px;padding:16px;display:flex;flex-direction:column;gap:6px">
+                  <span style="font-size:14.5px;font-weight:600;color:#fff">{{ ct.name }}</span>
+                  <span style="font-size:12.5px;color:#B9BAB8">{{ ct.duration }}</span>
+                  <span style="font-size:17px;font-weight:700;color:{{ ct.priceColor }};margin-top:2px">{{ ct.price }}</span>
+                </button>
+              </sc-for>
+            </div>
           </div>
         </div>
       </div>
@@ -502,26 +534,26 @@ input::placeholder,textarea::placeholder{color:#4d4d4d}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;defaultBodyType&quot;:{&quot;editor&quot;:&quot;enum&quot;,&quot;options&quot;:[&quot;hatchback&quot;,&quot;sedan&quot;,&quot;estate&quot;,&quot;suv&quot;,&quot;van&quot;],&quot;default&quot;:&quot;hatchback&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Quote form&quot;},&quot;photoRequired&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Quote form&quot;}}">
 const BODY_SERVICES = [
-  ['smart', 'SMART repair', 'Scuffs, small dents, localised scratches', 'From \u00a350'],
+  ['smart', 'SMART repair', 'Scuffs, small dents, localised scratches', 'From \u00a380'],
   ['bumper', 'Bumper scuff & crack repair', 'Kerbed, scuffed or split bumpers', 'Quote on inspection'],
-  ['panel', 'Panel repair & replacement', 'Dents, creases, torn panels', 'Quote on inspection'],
-  ['respray', 'Respray & colour matching', 'Part or half resprays, blended in', 'Quote on inspection'],
-  ['alu', 'Aluminium bodywork', 'Aluminium panels repaired properly', 'Quote on inspection'],
-  ['rust', 'Rust & corrosion repair', 'Cut back, treated, primed, painted', 'Quote on inspection']
+  ['panel', 'Panel repair & replacement', 'Dents, creases, torn panels', 'Quote on inspection']
 ];
 const COSMETIC_SERVICES = [
-  ['alloy', 'Alloy wheel refurbishment', 'Priced per wheel, from \u00a350 each', 'From \u00a350 per wheel'],
-  ['correction', 'Paint correction', 'Machine polishing - workshop visit', 'From \u00a3400'],
-  ['ceramic', 'Ceramic coating & paint protection', 'Workshop visit needed', 'Quote on inspection'],
-  ['valet', 'Valeting & detailing', 'Workshop visit needed', 'Quote on inspection'],
-  ['interior', 'Interior & trim repair', 'Workshop visit needed', 'From \u00a380']
+  ['alloy', 'Alloy wheel refurbishment', 'Priced per wheel', '\u00a3100 per wheel'],
+  ['ceramic', 'Ceramic coating & paint protection', 'Workshop visit needed', 'From \u00a3100'],
+  ['interior', 'Interior & trim repair', 'Workshop visit needed', 'From \u00a3150']
 ];
 const SECURITY_SERVICES = [
-  ['ghost', 'Ghost immobiliser', 'Fixed price fitting - workshop visit', '\u00a3500'],
+  ['can-phantom', 'Can Phantom immobiliser', 'Fixed price fitting - workshop visit', '\u00a3500'],
   ['tracker', 'Trackers', 'Fitted and set up - workshop visit', 'From \u00a3350'],
   ['canbus', 'CAN-BUS security systems', 'Fitted to suit the vehicle - workshop visit', 'Quote on inspection']
 ];
-const PANEL_BASED = ['smart', 'bumper', 'panel', 'respray', 'alu', 'rust'];
+const PANEL_BASED = ['smart', 'bumper', 'panel'];
+const CERAMIC_TIERS = [
+  ['synthetic', 'Synthetic coating', '\u00a3100', 'Lasts 6-12 months'],
+  ['cancoat', 'CanCoat', '\u00a3195', 'Lasts up to 12 months'],
+  ['heavy', 'Heavy duty ceramic', '\u00a3350', 'Lasts 24-36 months']
+];
 
 const SHAPES = {
   hatchback: {
@@ -557,13 +589,13 @@ const SHAPES = {
 };
 
 const SEVERITIES = [
-  ['light', 'Light', 'Surface scratches and scuffs, paint still mostly intact'],
-  ['moderate', 'Moderate', 'Dents you can feel, paint through to primer'],
-  ['heavy', 'Heavy', 'Deep creases, cracked or torn panels'],
+  ['light', 'Light', 'Deep scratch'],
+  ['moderate', 'Medium', 'Golf ball size dent'],
+  ['heavy', 'Heavy', 'Beyond repair / needs replacing'],
   ['unsure', 'Not sure', 'Happy for you to tell me when you see it']
 ];
 
-const SEV_LABEL = { light: 'Light', moderate: 'Moderate', heavy: 'Heavy', unsure: 'Not sure' };
+const SEV_LABEL = { light: 'Light', moderate: 'Medium', heavy: 'Heavy', unsure: 'Not sure' };
 
 const FRONT_REAR_PTS = '70,150 70,120 110,70 170,30 290,30 350,70 390,120 390,150 70,150';
 const FRONT_REAR_ZONES = [
@@ -912,7 +944,7 @@ class Component extends DCLogic {
   state = {
     mobile: false, menu: false, step: 1, done: false,
     reg: '', make: '', model: '', year: '', colour: '',
-    services: [], wheels: 4,
+    services: [], wheels: 4, ceramicTier: 'synthetic',
     bodyType: null, view: 'driver', points: [],
     notes: '',
     name: '', phone: '', email: '', marketing: false,
@@ -944,8 +976,11 @@ class Component extends DCLogic {
   needsWheelStep() {
     return !this.needsDiagram() && this.state.services.indexOf('alloy') > -1;
   }
+  needsCeramicStep() {
+    return !this.needsDiagram() && this.state.services.indexOf('ceramic') > -1;
+  }
   activeSteps() {
-    if (this.needsDiagram() || this.needsWheelStep()) return [1, 2, 3, 5];
+    if (this.needsDiagram() || this.needsWheelStep() || this.needsCeramicStep()) return [1, 2, 3, 5];
     return [1, 2, 5];
   }
   go(n) {
@@ -1128,11 +1163,18 @@ class Component extends DCLogic {
       onClick: () => this.toggleService(def[0])
     };
   }
+  ceramicTierDef() {
+    return CERAMIC_TIERS.find(t => t[0] === this.state.ceramicTier) || CERAMIC_TIERS[0];
+  }
   serviceNames() {
     const all = BODY_SERVICES.concat(COSMETIC_SERVICES, SECURITY_SERVICES);
     return this.state.services.map(id => {
       const d = all.find(x => x[0] === id);
       if (!d) return id;
+      if (id === 'ceramic') {
+        const t = this.ceramicTierDef();
+        return d[1] + ' (' + t[1] + ') — ' + t[2];
+      }
       const label = id === 'alloy' ? d[1] + ' (' + this.state.wheels + ' wheel' + (this.state.wheels > 1 ? 's' : '') + ')' : d[1];
       return label + ' — ' + d[3];
     });
@@ -1148,6 +1190,11 @@ class Component extends DCLogic {
     let hasQuote = false;
     items.forEach(d => {
       if (d[3] === 'Quote on inspection') { hasQuote = true; return; }
+      if (d[0] === 'ceramic') {
+        total += Number((this.ceramicTierDef()[2].match(/£(\d+)/) || [])[1]) || 0;
+        hasNumeric = true;
+        return;
+      }
       const n = Number((d[3].match(/£(\d+)/) || [])[1]) || 0;
       total += d[0] === 'alloy' ? n * this.state.wheels : n;
       hasNumeric = true;
@@ -1173,13 +1220,18 @@ class Component extends DCLogic {
     const shp = this.shape();
     const showDiagram = this.needsDiagram();
     const showWheelStep = this.needsWheelStep();
+    const showCeramicStep = this.needsCeramicStep();
     const points = st.points;
     const hasPhoto = this.hasPhotoDiagram();
 
     const stepLabels = {
       1: 'Your vehicle',
       2: 'What it needs',
-      3: showDiagram ? 'Damage area' : (showWheelStep ? 'Wheel count' : 'Damage area - not needed'),
+      3: showDiagram ? 'Damage area'
+        : (showWheelStep && showCeramicStep ? 'Wheels & coating'
+          : showWheelStep ? 'Wheel count'
+          : showCeramicStep ? 'Ceramic coating'
+          : 'Damage area - not needed'),
       5: 'Your details'
     };
 
@@ -1207,7 +1259,8 @@ class Component extends DCLogic {
       2: selCount ? selCount + (selCount === 1 ? ' service selected' : ' services selected') : 'Pick at least one service',
       3: showDiagram
         ? (points.length ? points.length + ' area' + (points.length === 1 ? '' : 's') + ' marked' : 'Optional - tap the car where the damage is')
-        : (showWheelStep ? st.wheels + ' wheel' + (st.wheels > 1 ? 's' : '') + ' selected' : ''),
+        : [showWheelStep ? st.wheels + ' wheel' + (st.wheels > 1 ? 's' : '') + ' selected' : null,
+           showCeramicStep ? this.ceramicTierDef()[1] + ' selected' : null].filter(Boolean).join(' \u00b7 '),
       5: ''
     }[st.step] || '';
 
@@ -1218,7 +1271,8 @@ class Component extends DCLogic {
           ? (points.length
               ? points.map(p => this.viewWord(p.view) + ' ' + p.panelLabel.toLowerCase() + ' (' + (SEV_LABEL[p.severity] || 'severity not given') + (p.photo ? ' \u00b7 photo attached' : '') + ')').join(', ') + ' \u2014 ' + shp.label.toLowerCase()
               : 'Not marked')
-          : (showWheelStep ? st.wheels + ' wheel' + (st.wheels > 1 ? 's' : '') + ' to refurbish' : 'Not applicable'), onEdit: () => this.go(3) }
+          : ([showWheelStep ? st.wheels + ' wheel' + (st.wheels > 1 ? 's' : '') + ' to refurbish' : null,
+              showCeramicStep ? this.ceramicTierDef()[1] + ' ceramic coating' : null].filter(Boolean).join(' \u00b7 ') || 'Not applicable'), onEdit: () => this.go(3) }
     ];
 
     return {
@@ -1264,8 +1318,12 @@ class Component extends DCLogic {
       cosmeticServices: COSMETIC_SERVICES.map(d => this.serviceRow(d)),
       securityServices: SECURITY_SERVICES.map(d => this.serviceRow(d)),
       wheelBlock: st.services.indexOf('alloy') > -1 && showDiagram ? 'flex' : 'none',
+      ceramicBlock: st.services.indexOf('ceramic') > -1 && showDiagram ? 'block' : 'none',
       diagramDisplay: showDiagram ? 'block' : 'none',
-      wheelStepDisplay: showWheelStep ? 'block' : 'none',
+      extrasStepDisplay: (showWheelStep || showCeramicStep) ? 'block' : 'none',
+      wheelSubDisplay: showWheelStep ? 'block' : 'none',
+      ceramicSubDisplay: showCeramicStep ? 'block' : 'none',
+      ceramicSubMarginTop: showWheelStep ? '34px' : '0',
       wheelOptions: [1, 2, 3, 4].map(n => ({
         n: String(n),
         bg: st.wheels === n ? '#F24405' : '#0D0D0D',
@@ -1273,6 +1331,18 @@ class Component extends DCLogic {
         color: st.wheels === n ? '#fff' : '#B9BAB8',
         onClick: () => this.setState({ wheels: n })
       })),
+
+      ceramicGridCols: m ? '1fr' : 'repeat(3,1fr)',
+      ceramicTiers: CERAMIC_TIERS.map(t => {
+        const on = st.ceramicTier === t[0];
+        return {
+          name: t[1], duration: t[3], price: t[2],
+          bg: on ? 'rgba(242,68,5,.09)' : '#111',
+          border: on ? 'rgba(242,68,5,.6)' : 'rgba(185,186,184,.18)',
+          priceColor: on ? '#F24405' : '#fff',
+          onClick: () => this.setState({ ceramicTier: t[0] })
+        };
+      }),
 
       bodyTypes: Object.keys(SHAPES).map(k => {
         const on = (st.bodyType || this.props.defaultBodyType || 'hatchback') === k;
@@ -1317,10 +1387,11 @@ class Component extends DCLogic {
         label: this.viewWord(p.view) + ' \u00b7 ' + p.panelLabel,
         onRemove: () => this.removePoint(p.id),
         severities: SEVERITIES.map(s => ({
-          label: s[1],
+          label: s[1], note: s[2],
           bg: p.severity === s[0] ? 'rgba(242,68,5,.09)' : '#141414',
           border: p.severity === s[0] ? 'rgba(242,68,5,.6)' : 'rgba(185,186,184,.2)',
           color: p.severity === s[0] ? '#fff' : '#B9BAB8',
+          noteColor: p.severity === s[0] ? 'rgba(255,255,255,.7)' : '#595959',
           onClick: () => this.setPointSeverity(p.id, s[0])
         })),
         photoOptionalWord: this.props.photoRequired ? '' : '(optional)',

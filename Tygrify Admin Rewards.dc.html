@@ -88,7 +88,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#F24405}
       <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(30px,5vw,44px);letter-spacing:.02em;line-height:1">Tygrify XP</h1>
       <span style="font-size:14px;color:#595959">{{ countLabel }}</span>
     </div>
-    <p style="margin:12px 0 0;font-size:14px;line-height:1.6;color:#B9BAB8;max-width:64ch">Points are earned automatically from completed jobs. What sits below controls how fast customers earn them and what they can spend them on - shown live on the Tygrify XP card in every customer's account.</p>
+    <p style="margin:12px 0 0;font-size:14px;line-height:1.6;color:#B9BAB8;max-width:64ch">Points are earned automatically from completed jobs and never expire by default. What sits below controls how fast customers earn them and what they unlock at each level - shown live on the Tygrify XP card in every customer's account.</p>
 
     <div style="margin-top:22px;display:grid;gap:clamp(18px,2.6vw,26px);grid-template-columns:{{ pageColumns }};align-items:start">
 
@@ -266,6 +266,27 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#F24405}
           </div>
         </section>
 
+        <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(20px,2.6vw,26px)">
+          <p style="margin:0 0 6px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Token rewards - Level 9+</p>
+          <p style="margin:0 0 18px;font-size:14px;line-height:1.6;color:#B9BAB8;max-width:56ch">Once a customer reaches Level 9 - TYGRIFY VIP (6,850 XP), every further 250 XP earns a token instead of a new level. Tokens stack and are spent against the menu below.</p>
+
+          <div style="border:1px solid rgba(185,186,184,.16);display:grid;gap:1px;background:rgba(185,186,184,.16)">
+            <div style="background:#0D0D0D;padding:16px 18px">
+              <span style="display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#595959;margin-bottom:6px">1 token</span>
+              <span style="font-size:15px;color:#fff">Free car wash</span>
+            </div>
+            <div style="background:#0D0D0D;padding:16px 18px">
+              <span style="display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#595959;margin-bottom:6px">2 tokens - customer picks one</span>
+              <span style="font-size:15px;color:#fff">£50 off &middot; Flat &amp; polish or deep scratch repair per panel &middot; £100 off a Can Phantom immobiliser or tracker</span>
+            </div>
+            <div style="background:#0D0D0D;padding:16px 18px">
+              <span style="display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:#595959;margin-bottom:6px">3 tokens - customer picks one</span>
+              <span style="font-size:15px;color:#fff">Free SMART Repair panel up to £100 &middot; 20% off one job &middot; Single-stage paint correction</span>
+            </div>
+          </div>
+          <button type="button" onClick="{{ addTier }}" style="margin-top:14px;background:none;border:1px dashed rgba(185,186,184,.34);color:#B9BAB8;border-radius:2px;padding:14px 16px;font-family:'Public Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer;width:100%" style-hover="border-color:#F24405;color:#F24405">Add a token reward</button>
+        </section>
+
         <div style="display:flex;gap:12px;flex-wrap:wrap;align-items:center">
           <button type="button" style="background:#F24405;border:none;color:#fff;border-radius:2px;padding:16px 24px;font-family:'Public Sans',sans-serif;font-weight:700;font-size:13px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer">Save changes</button>
           <span style="font-size:13px;color:#595959">{{ sel.lastEdited }}</span>
@@ -282,28 +303,58 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#F24405}
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1180,&quot;height&quot;:1500}}">
 const TIERS = [
   {
-    id: 1, name: 'Free wheel clean', points: '150', status: 'Active', sort: '1',
+    id: 1, name: 'Free Full Valet (Member)', points: '250', status: 'Active', sort: '1',
     rewardType: 'Free service', value: '',
-    description: 'A full wheel clean on their next visit, added as a free line on the job.',
+    description: 'Their first reward with us, unlocked after their first bit of spend.',
     lastEdited: 'Last edited 3 Sep by Tyg'
   },
   {
-    id: 2, name: '10% off next service', points: '250', status: 'Active', sort: '2',
-    rewardType: 'Percentage off', value: '10',
-    description: 'Applies once, to any single service booked through the site or over the phone.',
+    id: 2, name: '£50 off (Bronze)', points: '600', status: 'Active', sort: '2',
+    rewardType: 'Amount off', value: '50',
+    description: '£50 off any single job, applied at checkout.',
     lastEdited: 'Last edited 3 Sep by Tyg'
   },
   {
-    id: 3, name: 'Free ceramic coating', points: '500', status: 'Active', sort: '3',
+    id: 3, name: 'Alloy wheel refurbishment (Silver)', points: '1100', status: 'Active', sort: '3',
     rewardType: 'Free service', value: '',
-    description: 'The reward already shown on the customer account page - our highest-value redemption.',
-    lastEdited: 'Last edited 5 Sep by Tyg'
+    description: 'One wheel refurbished on us, added as a free line on the job.',
+    lastEdited: 'Last edited 3 Sep by Tyg'
   },
   {
-    id: 4, name: 'Free interior valet', points: '750', status: 'Draft', sort: '4',
+    id: 4, name: 'Free synthetic coating (Gold)', points: '1700', status: 'Active', sort: '4',
     rewardType: 'Free service', value: '',
-    description: 'Held back until valeting capacity is confirmed with the workshop.',
-    lastEdited: 'Last edited 5 Sep by Tyg'
+    description: 'Free synthetic coating, with the option to upgrade to ceramic coating for £150 off.',
+    lastEdited: 'Last edited 3 Sep by Tyg'
+  },
+  {
+    id: 5, name: '£100 off (Platinum)', points: '2450', status: 'Active', sort: '5',
+    rewardType: 'Amount off', value: '100',
+    description: '£100 off any single job, applied at checkout.',
+    lastEdited: 'Last edited 3 Sep by Tyg'
+  },
+  {
+    id: 6, name: 'Free SMART Repair (Black)', points: '3350', status: 'Active', sort: '6',
+    rewardType: 'Free service', value: '',
+    description: 'One SMART repair covered in full, up to £150 in value.',
+    lastEdited: 'Last edited 3 Sep by Tyg'
+  },
+  {
+    id: 7, name: '30% off one job (Elite)', points: '4350', status: 'Active', sort: '7',
+    rewardType: 'Percentage off', value: '30',
+    description: '30% off any single job of the customer\'s choice.',
+    lastEdited: 'Last edited 3 Sep by Tyg'
+  },
+  {
+    id: 8, name: 'Full alloy refurb & respray (Prestige)', points: '5600', status: 'Active', sort: '8',
+    rewardType: 'Free service', value: '',
+    description: 'Our top reward - a complete alloy refurbishment and respray, no charge.',
+    lastEdited: 'Last edited 3 Sep by Tyg'
+  },
+  {
+    id: 9, name: 'TYGRIFY VIP status (Level 9)', points: '6850', status: 'Active', sort: '9',
+    rewardType: 'Free service', value: '',
+    description: 'Reached automatically at 6,850 lifetime XP. Unlocks ongoing token earning - see Token rewards below.',
+    lastEdited: 'Last edited 3 Sep by Tyg'
   }
 ];
 
@@ -311,7 +362,7 @@ class Component extends DCLogic {
   state = {
     navDrawer: false, navMenu: false, narrow: false, mid: false, filter: 'All', selId: 3, edits: {}, mobileView: 'list',
     perPound: '1.5', referralBonus: '200 points', referralBonusOwner: '100 points', autoAward: true,
-    minRedeem: '150', perVisit: 'One',
+    minRedeem: '250', perVisit: 'One',
     expiry: false, expiryMonths: '24 months',
     visible: true
   };

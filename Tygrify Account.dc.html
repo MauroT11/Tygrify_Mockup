@@ -32,7 +32,7 @@ a:hover{color:#F24405}
       </a>
       <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B9BAB8;border:1px solid rgba(185,186,184,.3);border-radius:999px;padding:3px 8px;flex:none;white-space:nowrap">My garage</span>
       <div style="margin-left:auto;display:flex;align-items:center;gap:14px;flex:none">
-        <a href="./Tygrify Homepage.dc.html" style="display:{{ siteLinkDisplay }};font-size:13.5px;color:#B9BAB8">Back to site</a>
+        <a href="./Tygrify Sign In.dc.html" style="display:{{ siteLinkDisplay }};font-size:13.5px;color:#B9BAB8">Sign out</a>
         <a href="./Tygrify Account Get a Quote.dc.html" style="background:#F24405;color:#fff;padding:8px 14px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap">Quote</a>
       </div>
       <button type="button" onClick="{{ toggleNavMenu }}" aria-label="Open menu" style="display:{{ navBurgerDisplay }};background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;flex:none">
@@ -92,7 +92,7 @@ a:hover{color:#F24405}
       <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap">
         <div style="min-width:0">
           <p style="margin:0 0 8px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Tygrify XP</p>
-          <p style="margin:0;font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4.4vw,38px);line-height:1;letter-spacing:.02em">{{ loyaltyPoints }} <span style="font-size:16px;color:#B9BAB8">/ {{ loyaltyTarget }}</span></p>
+          <p style="margin:0;font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4.4vw,38px);line-height:1;letter-spacing:.02em">{{ loyaltyPoints }} <span style="font-size:16px;color:#B9BAB8">XP - Level {{ currentLevelNum }} {{ currentLevelName }}</span></p>
         </div>
         <a href="./Tygrify Account Rewards.dc.html" style="flex:none;font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#F24405">How it works</a>
       </div>
@@ -100,8 +100,8 @@ a:hover{color:#F24405}
         <div style="height:100%;width:{{ loyaltyPercent }};background:#F24405;border-radius:999px"></div>
       </div>
       <div style="display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline">
-        <p style="margin:0;font-size:14px;font-weight:700">Free ceramic coating</p>
-        <p style="margin:0;font-size:13px;color:#B9BAB8">{{ loyaltyRemaining }} points to go</p>
+        <p style="margin:0;font-size:14px;font-weight:700">{{ nextLevelTitle }}</p>
+        <p style="margin:0;font-size:13px;color:#B9BAB8">{{ loyaltyRemaining }}</p>
       </div>
       <p style="margin:0;font-size:12.5px;color:#595959">Last earned {{ loyaltyLast }}</p>
     </section>
@@ -243,7 +243,7 @@ a:hover{color:#F24405}
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:1100},&quot;loyaltyPoints&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:320,&quot;min&quot;:0,&quot;max&quot;:1000,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Tygrify XP&quot;},&quot;loyaltyTarget&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:500,&quot;min&quot;:100,&quot;max&quot;:2000,&quot;step&quot;:50,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Tygrify XP&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:1100},&quot;loyaltyPoints&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:900,&quot;min&quot;:0,&quot;max&quot;:8000,&quot;step&quot;:25,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Tygrify XP&quot;}}">
 class Component extends DCLogic {
   state = { navDrawer: false, navMenu: false, narrow: false };
   componentDidMount() {
@@ -261,17 +261,37 @@ class Component extends DCLogic {
     let cookieChoice = this.state.cookieChoiceOverride || null;
     if (!cookieChoice) { try { cookieChoice = localStorage.getItem('tygrifyCookieConsent'); } catch (e) {} }
     const st = this.state;
-    const pts = this.props.loyaltyPoints ?? 320;
-    const target = this.props.loyaltyTarget ?? 500;
+    const pts = this.props.loyaltyPoints ?? 900;
+    const tierDefs = [
+      { name: 'Member', points: 250, title: 'Free Full Valet' },
+      { name: 'Bronze', points: 600, title: '£50 off' },
+      { name: 'Silver', points: 1100, title: '1 alloy wheel refurbishment' },
+      { name: 'Gold', points: 1700, title: 'Free synthetic coating' },
+      { name: 'Platinum', points: 2450, title: '£100 off' },
+      { name: 'Black', points: 3350, title: 'Free SMART Repair up to £150' },
+      { name: 'Elite', points: 4350, title: '30% off one job' },
+      { name: 'Prestige', points: 5600, title: 'Full alloy refurbishment & respray' },
+      { name: 'TYGRIFY VIP', points: 6850, title: 'TYGRIFY VIP status' }
+    ];
+    let currentIndex = -1;
+    tierDefs.forEach((t, i) => { if (pts >= t.points) currentIndex = i; });
+    const current = currentIndex >= 0 ? tierDefs[currentIndex] : null;
+    const currentPoints = current ? current.points : 0;
+    const next = tierDefs[currentIndex + 1] || null;
+    const isVip = pts >= 6850;
+    const xpIntoToken = isVip ? (pts - 6850) % 250 : 0;
+    const tokenCount = isVip ? Math.floor((pts - 6850) / 250) : 0;
     return {
       cookieBannerDisplay: cookieChoice ? 'none' : 'flex',
       waBottom: cookieChoice ? '20px' : '92px',
       acceptAllCookies: () => { try { localStorage.setItem('tygrifyCookieConsent', 'all'); } catch (e) {} this.setState({ cookieChoiceOverride: 'all' }); },
       acceptEssentialCookies: () => { try { localStorage.setItem('tygrifyCookieConsent', 'essential'); } catch (e) {} this.setState({ cookieChoiceOverride: 'essential' }); },
       loyaltyPoints: pts,
-      loyaltyTarget: target,
-      loyaltyPercent: Math.min(100, Math.round(pts / target * 100)) + '%',
-      loyaltyRemaining: Math.max(0, target - pts),
+      currentLevelNum: currentIndex + 1,
+      currentLevelName: current ? current.name : 'New customer',
+      loyaltyPercent: next ? (Math.min(100, Math.max(0, Math.round((pts - currentPoints) / Math.max(1, next.points - currentPoints) * 100))) + '%') : (Math.round(xpIntoToken / 250 * 100) + '%'),
+      nextLevelTitle: next ? next.title : (tokenCount + ' token' + (tokenCount === 1 ? '' : 's') + ' available'),
+      loyaltyRemaining: next ? ((next.points - pts) + ' XP to go') : ((250 - xpIntoToken) + ' XP to your next token'),
       loyaltyLast: '+120 SMART repair, 12 June',
       mainCols: st.navDrawer ? 'minmax(0,1fr)' : '218px minmax(0,1fr)',
       sidebarOrder: st.navDrawer ? '2' : '0',

@@ -321,7 +321,7 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#F24405}
 const SERVICES = [
   {
     id: 1, name: 'SMART Repair', slug: 'smart-repair', category: 'Body & paint', status: 'Published', sort: '1',
-    priceType: 'From', amount: '£120', publishPrice: false, turnaround: 'Usually same day',
+    priceType: 'From', amount: '£80', publishPrice: false, turnaround: 'Usually same day',
     summary: 'Small, localised paint and dent repair without respraying the whole panel.',
     description: 'SMART stands for small to medium area repair technique - the damage is repaired and blended into the existing paint rather than the whole panel being resprayed. It suits scratches, small dents and scuffs where the panel itself is straight.',
     who: 'Lease returns, small car park damage, anyone who wants one mark dealt with rather than a full panel job.',
@@ -347,17 +347,8 @@ const SERVICES = [
     galleryTag: 'Body repair', imageCount: 3, lastEdited: 'Last edited 28 Aug by Tyg'
   },
   {
-    id: 4, name: 'Respray & Colour Matching', slug: 'respray', category: 'Body & paint', status: 'Published', sort: '4',
-    priceType: 'Quote on inspection', amount: '', publishPrice: false, turnaround: '2 to 5 days',
-    summary: 'Full and partial resprays, matched to the car\'s existing paint code.',
-    description: 'Paint is mixed to the vehicle\'s own code and adjusted for age and fade, then blended into the adjacent panels so the repair does not sit as a patch.',
-    who: 'Fade, lacquer peel, colour changes, multi-panel repairs.',
-    terms: ['car respray', 'colour matching', 'paint blending', 'lacquer peel repair', 'full respray coventry'],
-    galleryTag: 'Body repair', imageCount: 5, lastEdited: 'Last edited 28 Aug by Tyg'
-  },
-  {
     id: 5, name: 'Alloy Wheel Refurbishment', slug: 'alloy-wheel-refurbishment', category: 'Cosmetic & aftermarket', status: 'Published', sort: '1',
-    priceType: 'From', amount: '£80 per wheel', publishPrice: true, turnaround: '1 to 2 days for a set',
+    priceType: 'Fixed', amount: '£100 per wheel', publishPrice: true, turnaround: '1 to 2 days for a set',
     summary: 'Kerbed and corroded wheels stripped, repaired and refinished.',
     description: 'Wheels are stripped, kerb damage repaired, then refinished in the original colour or a different one. Diamond cut faces need specific equipment - ask and we will say whether yours can be done.',
     who: 'Kerbed wheels, corrosion, lease returns, colour changes.',
@@ -366,16 +357,16 @@ const SERVICES = [
   },
   {
     id: 6, name: 'Ceramic Coating', slug: 'ceramic-coating', category: 'Cosmetic & aftermarket', status: 'Published', sort: '2',
-    priceType: 'From', amount: '£250', publishPrice: true, turnaround: '1 to 2 days',
-    summary: 'A hard protective layer over the paint, applied after correction.',
-    description: 'The paint is decontaminated and machine polished first, then the coating is applied and cured. It makes the car easier to clean and holds gloss for longer. It is not scratch-proofing.',
+    priceType: 'From', amount: '£100', publishPrice: true, turnaround: '1 to 2 days',
+    summary: 'A protective layer over the paint, in three levels of durability.',
+    description: 'The paint is decontaminated and prepped, then the coating is applied and cured. Three levels are offered: synthetic coating (£100, lasts 6-12 months), CanCoat (£195, lasts up to 12 months), and heavy duty ceramic (£350, lasts 24-36 months). It makes the car easier to clean and holds gloss for longer. It is not scratch-proofing.',
     who: 'New cars, freshly repaired paint, anyone who washes their own car regularly.',
-    terms: ['ceramic coating', 'paint protection', 'car detailing coventry', 'paint correction', 'gloss coating'],
+    terms: ['ceramic coating', 'paint protection', 'car detailing coventry', 'cancoat', 'gloss coating'],
     galleryTag: 'Body repair', imageCount: 2, lastEdited: 'Last edited 1 Sep by Tyg'
   },
   {
     id: 7, name: 'Interior & Trim Repair', slug: 'interior-trim-repair', category: 'Cosmetic & aftermarket', status: 'Draft', sort: '3',
-    priceType: 'Quote on inspection', amount: '', publishPrice: false, turnaround: 'Usually same day',
+    priceType: 'From', amount: '£150', publishPrice: false, turnaround: 'Usually same day',
     summary: 'Leather, vinyl and plastic trim repaired rather than replaced.',
     description: 'Seat bolsters, scuffed door cards, cracked dash trim and cigarette burns can usually be repaired and recoloured in place.',
     who: 'Lease returns, worn driver\'s seats, resale preparation.',
@@ -383,12 +374,12 @@ const SERVICES = [
     galleryTag: 'Interiors', imageCount: 1, lastEdited: 'Last edited 24 Aug by Tyg'
   },
   {
-    id: 8, name: 'Ghost Immobilisers', slug: 'ghost-immobiliser', category: 'Security & customisation', status: 'Published', sort: '1',
+    id: 8, name: 'Can Phantom Immobilisers', slug: 'can-phantom-immobiliser', category: 'Security & customisation', status: 'Published', sort: '1',
     priceType: 'Fixed', amount: '£500', publishPrice: true, turnaround: 'Same day to 24 hours',
     summary: 'A hidden immobiliser that needs a PIN before the engine will start.',
     description: 'The unit sits hidden in the vehicle and communicates over the car\'s own wiring. Until the PIN is entered through buttons the car already has, the engine will not start - so there is nothing to clone and nothing to relay.',
     who: 'Keyless-entry cars, anyone told by an insurer to improve security.',
-    terms: ['ghost immobiliser', 'ghost 2 immobiliser', 'keyless theft protection', 'car security coventry', 'relay attack prevention'],
+    terms: ['can phantom immobiliser', 'can phantom 2 immobiliser', 'keyless theft protection', 'car security coventry', 'relay attack prevention'],
     galleryTag: 'Security', imageCount: 3, lastEdited: 'Last edited 5 Sep by Tyg',
     compatibility: 'Most makes from 2010 onward. Confirmed against the vehicle before fitting.'
   },

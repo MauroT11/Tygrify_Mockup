@@ -33,7 +33,7 @@ input,button,textarea{font-family:'Public Sans',system-ui,sans-serif}
       </a>
       <span style="font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B9BAB8;border:1px solid rgba(185,186,184,.3);border-radius:999px;padding:3px 8px;flex:none;white-space:nowrap">My garage</span>
       <div style="margin-left:auto;display:flex;align-items:center;gap:14px;flex:none">
-        <a href="./Tygrify Homepage.dc.html" style="display:{{ siteLinkDisplay }};font-size:13.5px;color:#B9BAB8">Back to site</a>
+        <a href="./Tygrify Sign In.dc.html" style="display:{{ siteLinkDisplay }};font-size:13.5px;color:#B9BAB8">Sign out</a>
         <a href="./Tygrify Account Get a Quote.dc.html" style="background:#F24405;color:#fff;padding:8px 14px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap">Quote</a>
       </div>
       <button type="button" onClick="{{ toggleNavMenu }}" aria-label="Open menu" style="display:{{ navBurgerDisplay }};background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;flex:none">
@@ -111,7 +111,7 @@ input,button,textarea{font-family:'Public Sans',system-ui,sans-serif}
       </div>
 
       <div style="display:{{ datesDisplay }};flex-direction:column;margin-top:22px;border-top:1px solid rgba(255,255,255,.14);padding-top:22px">
-        <p style="margin:0 0 6px;font-size:15px">Pick up to three dates that suit you</p>
+        <p style="margin:0 0 6px;font-size:15px">Pick up to five dates that suit you</p>
         <p style="margin:0 0 16px;font-size:13.5px;line-height:1.55;color:#B9BAB8;max-width:52ch">These are preferences, not a booking. Jay confirms one of them by phone or message, usually the same day.</p>
         <div style="border:1px solid rgba(185,186,184,.16);background:#111;padding:18px;max-width:360px">
           <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-bottom:14px">
@@ -356,7 +356,7 @@ class Component extends DCLogic {
       const date = new Date(st.calMonth.getFullYear(), st.calMonth.getMonth(), day);
       const iso = isoDate(date);
       const on = st.picked.includes(iso);
-      const disabled = date < today || (st.picked.length >= 3 && !on);
+      const disabled = date < today || (st.picked.length >= 5 && !on);
       calDays.push({
         label: String(day),
         disabled,
@@ -408,7 +408,7 @@ class Component extends DCLogic {
       sendBg: canSend ? '#F24405' : 'rgba(185,186,184,.14)',
       sendColor: canSend ? '#fff' : '#595959',
       sendCursor: canSend ? 'pointer' : 'not-allowed',
-      pickedLabel: st.picked.length === 0 ? 'Nothing picked yet' : st.picked.length + ' of 3 picked',
+      pickedLabel: st.picked.length === 0 ? 'Nothing picked yet' : st.picked.length + ' of 5 picked',
       pickedList: st.picked.slice().sort().map(iso => formatShort(parseIsoDate(iso))).join(', '),
       calWeekdays: WEEKDAYS_MON_FIRST,
       calLabel: MONTHS_FULL[st.calMonth.getMonth()] + ' ' + st.calMonth.getFullYear(),

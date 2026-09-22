@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./splash.js"></script>
 <script src="./support.js"></script>
+<script src="./image-slot.js"></script>
 </head>
 <body>
 <x-dc>
@@ -87,6 +88,14 @@ input:focus,select:focus,textarea:focus{outline:none;border-color:#F24405}
     <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(30px,5vw,44px);letter-spacing:.02em;line-height:1">Settings</h1>
 
     <div style="margin-top:clamp(22px,3.4vw,32px);display:flex;flex-direction:column;gap:clamp(18px,2.6vw,24px)">
+
+      <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(20px,2.6vw,26px)">
+        <p style="margin:0 0 6px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Homepage hero photo</p>
+        <p style="margin:0 0 18px;font-size:14px;line-height:1.6;color:#B9BAB8;max-width:56ch">The background photo behind the headline on the homepage. Click it to replace it - the change goes live on the homepage immediately.</p>
+        <div style="position:relative;aspect-ratio:16/9;max-width:480px;overflow:hidden;border:1px solid rgba(185,186,184,.16);background:#1A1A1A">
+          <image-slot id="tg-hero" shape="rect" src="./assets/tygrify garage.webp" placeholder="Hero photo - car outside the Tygrify workshop, plate covered"></image-slot>
+        </div>
+      </section>
 
       <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(20px,2.6vw,26px)">
         <p style="margin:0 0 6px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Notifications</p>
