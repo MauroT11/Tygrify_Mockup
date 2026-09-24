@@ -27,6 +27,9 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 .tg-gallery-before-layer{opacity:0;transition:opacity .25s ease}
 .tg-gallery-photo.tg-before-active .tg-gallery-before-layer{opacity:1}
 @media (hover:hover){.tg-gallery-photo:hover .tg-gallery-before-layer{opacity:1}}
+.tg-vid-track{scrollbar-width:none}
+.tg-vid-track::-webkit-scrollbar{display:none}
+.tg-vid-arrow:hover{background:rgba(242,68,5,.9)!important;border-color:#F24405!important}
 </style>
 </helmet>
 
@@ -519,6 +522,85 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
     <p style="margin:24px 0 0;font-size:14px;color:#B9BAB8;max-width:70ch">Nine repairs shown. More real jobs from the workshop are added as they're photographed.</p>
   </section>
 
+  <section style="max-width:1200px;margin:0 auto;padding:clamp(46px,7vw,80px) 20px 0">
+    <p style="margin:0 0 12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">On video</p>
+    <h2 style="margin:0 0 34px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(30px,4.6vw,46px);line-height:1">Watch the work</h2>
+    <div style="position:relative">
+    <div id="tg-vid-track" class="tg-vid-track" style="display:flex;gap:{{ vidTrackGap }};overflow-x:auto;scroll-snap-type:x mandatory;padding:{{ vidTrackPad }};margin:{{ vidTrackMargin }};-webkit-overflow-scrolling:touch">
+      <div style="flex:{{ vidCardFlex }};scroll-snap-align:center">
+        <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
+          <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28);z-index:1"></div>
+          <div style="position:relative;height:360px;max-width:100%;aspect-ratio:3/4;overflow:hidden;border-radius:22px;background:#000">
+            <video id="tg-g-vid-timelapse" data-src="./assets/videos/timelapse.mov" muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center">Applying the final touches</p>
+      </div>
+      <div style="flex:{{ vidCardFlex }};scroll-snap-align:center">
+        <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
+          <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28);z-index:1"></div>
+          <div style="position:relative;height:360px;max-width:100%;aspect-ratio:9/16;overflow:hidden;border-radius:22px;background:#000">
+            <video id="tg-g-vid-golf" data-src="./assets/videos/golf_timelapse.mp4" muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center">Golf - before and after</p>
+      </div>
+      <div style="flex:{{ vidCardFlex }};scroll-snap-align:center">
+        <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
+          <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28);z-index:1"></div>
+          <div style="position:relative;height:360px;max-width:100%;aspect-ratio:3/4;overflow:hidden;border-radius:22px;background:#000">
+            <video id="tg-g-vid-finished" data-src="./assets/videos/finished.mov" muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center">The finished result</p>
+      </div>
+      <div style="flex:{{ vidCardFlex }};scroll-snap-align:center">
+        <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
+          <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28);z-index:1"></div>
+          <div style="position:relative;height:360px;max-width:100%;aspect-ratio:9/16;overflow:hidden;border-radius:22px;background:#000">
+            <video id="tg-g-vid-maserati" data-src="./assets/videos/Maserati%20Levante.mp4" muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center">Maserati Levante</p>
+      </div>
+      <div style="flex:{{ vidCardFlex }};scroll-snap-align:center">
+        <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
+          <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28);z-index:1"></div>
+          <div style="position:relative;height:360px;max-width:100%;aspect-ratio:9/16;overflow:hidden;border-radius:22px;background:#000">
+            <video id="tg-g-vid-audi" data-src="./assets/videos/audi%20a3.mp4" muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center">Audi A3</p>
+      </div>
+      <div style="flex:{{ vidCardFlex }};scroll-snap-align:center">
+        <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
+          <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28);z-index:1"></div>
+          <div style="position:relative;height:360px;max-width:100%;aspect-ratio:9/16;overflow:hidden;border-radius:22px;background:#000">
+            <video id="tg-g-vid-jag" data-src="./assets/videos/jag%20vid.mp4" muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center">Jaguar F-Pace</p>
+      </div>
+      <div style="flex:{{ vidCardFlex }};scroll-snap-align:center">
+        <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
+          <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28);z-index:1"></div>
+          <div style="position:relative;height:360px;max-width:100%;aspect-ratio:9/16;overflow:hidden;border-radius:22px;background:#000">
+            <video id="tg-g-vid-alloy" data-src="./assets/videos/alloy%20vid.mp4" muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center">Alloy wheel refurbishment</p>
+      </div>
+    </div>
+    <button class="tg-vid-arrow" onClick="{{ scrollVidPrev }}" aria-label="Previous video" style="display:{{ vidArrowDisplay }};position:absolute;left:4px;top:50%;transform:translateY(-50%);z-index:2;background:rgba(13,13,13,.85);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:50%;width:44px;height:44px;align-items:center;justify-content:center;cursor:pointer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+    <button class="tg-vid-arrow" onClick="{{ scrollVidNext }}" aria-label="Next video" style="display:{{ vidArrowDisplay }};position:absolute;right:4px;top:50%;transform:translateY(-50%);z-index:2;background:rgba(13,13,13,.85);border:1px solid rgba(255,255,255,.35);color:#fff;border-radius:50%;width:44px;height:44px;align-items:center;justify-content:center;cursor:pointer">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg>
+    </button>
+    </div>
+    <p style="margin:28px 0 0;font-size:13px;color:#595959;text-align:center">Seven clips from the workshop. More are added as jobs are filmed.</p>
+  </section>
+
   <section style="max-width:1200px;margin:clamp(50px,7vw,88px) auto 0;padding:0 20px">
     <div style="background:#F24405;padding:clamp(34px,5vw,56px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:26px">
       <div>
@@ -619,6 +701,32 @@ class Component extends DCLogic {
     };
     this._r();
     window.addEventListener('resize', this._r);
+    this._vidObserver = ('IntersectionObserver' in window) ? new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const v = entry.target;
+        if (entry.isIntersecting) {
+          if (!v.src && v.dataset.src) { v.src = v.dataset.src; v.load(); }
+          v.play().catch(() => {});
+        } else {
+          v.pause();
+        }
+      });
+    }, { rootMargin: '200px', threshold: 0.01 }) : null;
+    ['tg-g-vid-timelapse', 'tg-g-vid-golf', 'tg-g-vid-finished', 'tg-g-vid-maserati', 'tg-g-vid-audi', 'tg-g-vid-jag', 'tg-g-vid-alloy'].forEach(id => {
+      const v = document.getElementById(id);
+      if (!v) return;
+      v.muted = true;
+      v.defaultMuted = true;
+      v.volume = 0;
+      v.loop = true;
+      v.addEventListener('ended', () => { v.currentTime = 0; v.play().catch(() => {}); });
+      if (this._vidObserver) {
+        this._vidObserver.observe(v);
+      } else {
+        v.src = v.dataset.src;
+        v.play().catch(() => {});
+      }
+    });
     this._s = () => {
       const sc = window.scrollY > 8;
       if (sc !== this.state.scrolled) this.setState({ scrolled: sc });
@@ -636,6 +744,7 @@ class Component extends DCLogic {
     window.removeEventListener('resize', this._r);
     window.removeEventListener('scroll', this._s);
     window.removeEventListener('keydown', this._esc);
+    if (this._vidObserver) this._vidObserver.disconnect();
   }
   renderVals() {
     let cookieChoice = this.state.cookieChoiceOverride || null;
@@ -665,7 +774,14 @@ class Component extends DCLogic {
       closeModal: () => this.setState({ modal: null }),
       stopClick: (e) => { if (e) e.stopPropagation(); },
       prevModal: (e) => { if (e) e.stopPropagation(); this.setState(st => ({ modal: (st.modal + cats.length - 1) % cats.length })); },
-      nextModal: (e) => { if (e) e.stopPropagation(); this.setState(st => ({ modal: (st.modal + 1) % cats.length })); }
+      nextModal: (e) => { if (e) e.stopPropagation(); this.setState(st => ({ modal: (st.modal + 1) % cats.length })); },
+      vidTrackGap: m ? '16px' : '20px',
+      vidTrackPad: m ? '4px 20px 12px' : '4px 8px 12px',
+      vidTrackMargin: m ? '0 -20px' : '0',
+      vidCardFlex: m ? '0 0 72%' : '0 0 300px',
+      vidArrowDisplay: m ? 'none' : 'flex',
+      scrollVidPrev: () => { const el = document.getElementById('tg-vid-track'); if (el) el.scrollBy({ left: -324, behavior: 'smooth' }); },
+      scrollVidNext: () => { const el = document.getElementById('tg-vid-track'); if (el) el.scrollBy({ left: 324, behavior: 'smooth' }); }
     };
     [0, 1, 2, 3, 4, 5, 6, 7, 8].forEach(i => {
       out['openModal' + i] = () => this.setState({ modal: i });

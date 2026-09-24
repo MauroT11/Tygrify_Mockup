@@ -181,7 +181,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
         <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
           <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28)"></div>
           <div style="position:relative;height:360px;max-width:100%;aspect-ratio:3/4;overflow:hidden;border-radius:22px;background:#000">
-            <video id="tg-video-timelapse" src="./assets/videos/timelapse.mov" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+            <video id="tg-video-timelapse" data-src="./assets/videos/timelapse.mov" muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
           </div>
         </div>
         <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center">Applying the final touches</p>
@@ -190,7 +190,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
         <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
           <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28)"></div>
           <div style="position:relative;height:360px;max-width:100%;aspect-ratio:9/16;overflow:hidden;border-radius:22px;background:#000">
-            <video id="tg-video-golf" src="./assets/videos/golf_timelapse.mp4" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+            <video id="tg-video-golf" data-src="./assets/videos/golf_timelapse.mp4" muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
           </div>
         </div>
         <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center">Before and after</p>
@@ -199,7 +199,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
         <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
           <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28)"></div>
           <div style="position:relative;height:360px;max-width:100%;aspect-ratio:3/4;overflow:hidden;border-radius:22px;background:#000">
-            <video id="tg-video-finished" src="./assets/videos/finished.mov" autoplay muted loop playsinline style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+            <video id="tg-video-finished" data-src="./assets/videos/finished.mov" muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
           </div>
         </div>
         <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center">The finished result</p>
@@ -546,6 +546,17 @@ class Component extends DCLogic {
     };
     this._r();
     window.addEventListener('resize', this._r);
+    this._vidObserver = ('IntersectionObserver' in window) ? new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const v = entry.target;
+        if (entry.isIntersecting) {
+          if (!v.src && v.dataset.src) { v.src = v.dataset.src; v.load(); }
+          v.play().catch(() => {});
+        } else {
+          v.pause();
+        }
+      });
+    }, { rootMargin: '200px', threshold: 0.01 }) : null;
     ['tg-video-timelapse', 'tg-video-golf', 'tg-video-finished'].forEach(id => {
       const v = document.getElementById(id);
       if (!v) return;
@@ -554,7 +565,12 @@ class Component extends DCLogic {
       v.volume = 0;
       v.loop = true;
       v.addEventListener('ended', () => { v.currentTime = 0; v.play().catch(() => {}); });
-      v.play().catch(() => {});
+      if (this._vidObserver) {
+        this._vidObserver.observe(v);
+      } else {
+        v.src = v.dataset.src;
+        v.play().catch(() => {});
+      }
     });
     this._s = () => {
       const sc = window.scrollY > 8;
@@ -565,6 +581,7 @@ class Component extends DCLogic {
   componentWillUnmount() {
     window.removeEventListener('resize', this._r);
     window.removeEventListener('scroll', this._s);
+    if (this._vidObserver) this._vidObserver.disconnect();
   }
   renderVals() {
     let cookieChoice = this.state.cookieChoiceOverride || null;

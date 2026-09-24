@@ -178,6 +178,50 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
     </div>
   </section>
 
+  <section style="max-width:1200px;margin:0 auto;padding:clamp(46px,7vw,80px) 20px 0">
+    <p style="margin:0 0 12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">From the workshop</p>
+    <h2 style="margin:0 0 34px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(30px,4.6vw,46px);line-height:1">Recent jobs on film</h2>
+    <div style="display:{{ vidTrackDisplay }};gap:{{ vidTrackGap }};grid-template-columns:{{ vidTrackCols }};overflow-x:{{ vidTrackOverflow }};scroll-snap-type:{{ vidTrackSnap }};padding:{{ vidTrackPad }};margin:{{ vidTrackMargin }};-webkit-overflow-scrolling:touch">
+      <div style="flex:{{ vidCardFlex }};scroll-snap-align:{{ vidCardSnapAlign }}">
+        <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
+          <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28);z-index:1"></div>
+          <div style="position:relative;height:360px;max-width:100%;aspect-ratio:9/16;overflow:hidden;border-radius:22px;background:#000">
+            <video id="tg-about-vid-maserati" data-src="./assets/videos/Maserati%20Levante.mp4" muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center">Maserati Levante</p>
+      </div>
+      <div style="flex:{{ vidCardFlex }};scroll-snap-align:{{ vidCardSnapAlign }}">
+        <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
+          <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28);z-index:1"></div>
+          <div style="position:relative;height:360px;max-width:100%;aspect-ratio:9/16;overflow:hidden;border-radius:22px;background:#000">
+            <video id="tg-about-vid-audi" data-src="./assets/videos/audi%20a3.mp4" muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center">Audi A3</p>
+      </div>
+      <div style="flex:{{ vidCardFlex }};scroll-snap-align:{{ vidCardSnapAlign }}">
+        <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
+          <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28);z-index:1"></div>
+          <div style="position:relative;height:360px;max-width:100%;aspect-ratio:9/16;overflow:hidden;border-radius:22px;background:#000">
+            <video id="tg-about-vid-jag" data-src="./assets/videos/jag%20vid.mp4" muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center">Jaguar F-Pace</p>
+      </div>
+      <div style="flex:{{ vidCardFlex }};scroll-snap-align:{{ vidCardSnapAlign }}">
+        <div style="position:relative;width:fit-content;max-width:100%;margin:0 auto;padding:14px 10px;background:#111;border:1px solid rgba(185,186,184,.24);border-radius:36px;box-shadow:0 20px 44px rgba(0,0,0,.35)">
+          <div style="position:absolute;top:26px;left:50%;transform:translateX(-50%);width:60px;height:6px;border-radius:999px;background:rgba(185,186,184,.28);z-index:1"></div>
+          <div style="position:relative;height:360px;max-width:100%;aspect-ratio:9/16;overflow:hidden;border-radius:22px;background:#000">
+            <video id="tg-about-vid-alloy" data-src="./assets/videos/alloy%20vid.mp4" muted loop playsinline preload="none" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
+          </div>
+        </div>
+        <p style="margin:16px 0 0;font-size:14px;font-weight:600;text-align:center"><a href="./Tygrify Services.dc.html#cosmetic">Alloy wheel refurbishment</a></p>
+      </div>
+    </div>
+    <p style="margin:28px 0 0;font-size:13px;color:#595959;text-align:center">Filmed in the unit on Brays Lane.</p>
+  </section>
+
   <sc-if value="{{ showTeam }}" hint-placeholder-val="{{ false }}">
     <section style="max-width:1200px;margin:0 auto;padding:clamp(46px,7vw,80px) 20px 0">
       <p style="margin:0 0 12px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">The team</p>
@@ -287,6 +331,32 @@ class Component extends DCLogic {
     };
     this._r();
     window.addEventListener('resize', this._r);
+    this._vidObserver = ('IntersectionObserver' in window) ? new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const v = entry.target;
+        if (entry.isIntersecting) {
+          if (!v.src && v.dataset.src) { v.src = v.dataset.src; v.load(); }
+          v.play().catch(() => {});
+        } else {
+          v.pause();
+        }
+      });
+    }, { rootMargin: '200px', threshold: 0.01 }) : null;
+    ['tg-about-vid-maserati', 'tg-about-vid-audi', 'tg-about-vid-jag', 'tg-about-vid-alloy'].forEach(id => {
+      const v = document.getElementById(id);
+      if (!v) return;
+      v.muted = true;
+      v.defaultMuted = true;
+      v.volume = 0;
+      v.loop = true;
+      v.addEventListener('ended', () => { v.currentTime = 0; v.play().catch(() => {}); });
+      if (this._vidObserver) {
+        this._vidObserver.observe(v);
+      } else {
+        v.src = v.dataset.src;
+        v.play().catch(() => {});
+      }
+    });
     this._s = () => {
       const sc = window.scrollY > 8;
       if (sc !== this.state.scrolled) this.setState({ scrolled: sc });
@@ -296,6 +366,7 @@ class Component extends DCLogic {
   componentWillUnmount() {
     window.removeEventListener('resize', this._r);
     window.removeEventListener('scroll', this._s);
+    if (this._vidObserver) this._vidObserver.disconnect();
   }
   renderVals() {
     let cookieChoice = this.state.cookieChoiceOverride || null;
@@ -314,6 +385,15 @@ class Component extends DCLogic {
       menuDisplay: m && this.state.menu ? 'flex' : 'none',
       closeMenu: () => this.setState({ menu: false }),
       toggleMenu: () => this.setState(st => ({ menu: !st.menu })),
+      vidTrackDisplay: m ? 'flex' : 'grid',
+      vidTrackGap: m ? '16px' : 'clamp(20px,3vw,32px)',
+      vidTrackCols: m ? 'none' : 'repeat(auto-fit,minmax(min(220px,100%),1fr))',
+      vidTrackOverflow: m ? 'auto' : 'visible',
+      vidTrackSnap: m ? 'x mandatory' : 'none',
+      vidTrackPad: m ? '4px 20px 12px' : '0',
+      vidTrackMargin: m ? '0 -20px' : '0',
+      vidCardFlex: m ? '0 0 72%' : 'initial',
+      vidCardSnapAlign: m ? 'center' : 'unset',
       showTeam: this.props.showTeam ?? false
     };
   }
