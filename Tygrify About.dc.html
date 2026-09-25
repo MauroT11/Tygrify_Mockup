@@ -22,6 +22,8 @@ a{color:#FFFFFF;text-decoration:none}
 a:hover{color:#F24405}
 a,button{transition:color .18s ease,background-color .18s ease,border-color .18s ease,box-shadow .18s ease,filter .18s ease,transform .12s ease}
 @media (prefers-reduced-motion: reduce){*{transition-duration:.001ms!important;animation-duration:.001ms!important}}
+.tg-map{aspect-ratio:3/1}
+@media (max-width:640px){.tg-map{aspect-ratio:4/5}}
 </style>
 </helmet>
 
@@ -33,7 +35,6 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
         <img src="./assets/Logo_text.png" alt="Tygrify" style="height:56px;width:auto;display:block">
       </a>
       <nav style="display:{{ navDisplay }};align-items:center;gap:26px;margin-left:auto;font-size:14px;letter-spacing:.02em;color:#B9BAB8">
-        <a href="./Tygrify Homepage.dc.html">Home</a>
         <a href="./Tygrify Services.dc.html">Services</a>
         <a href="./Tygrify Security.dc.html">Security</a>
         <a href="./Tygrify Gallery.dc.html">Gallery</a>
@@ -66,10 +67,9 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       </button>
     </div>
     <nav style="display:flex;flex-direction:column;padding:6px 20px 10px">
-      <a href="./Tygrify Homepage.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Home</a>
       <a href="./Tygrify Services.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Services</a>
       <a href="./Tygrify Security.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Security</a>
-      <a href="./Tygrify Gallery.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Before &amp; after</a>
+      <a href="./Tygrify Gallery.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Gallery</a>
       <a href="./Tygrify Rewards.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Rewards</a>
       <a href="./Tygrify Reviews.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Reviews</a>
       <a href="./Tygrify About.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">About</a>
@@ -105,8 +105,19 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
         <p style="margin:0 0 16px;font-size:16.5px;line-height:1.7;color:#B9BAB8;max-width:54ch">Getting from there to a workshop took, in the founder's own words, "numerous sleepless nights, long days, and many miles travelled." Customer satisfaction has been the number one priority since day one, and that is not a slogan - when the only marketing you have is word of mouth, it is the whole business model.</p>
         <p style="margin:0;font-size:16.5px;line-height:1.7;color:#B9BAB8;max-width:54ch">Today the unit on Brays Lane handles bodywork, paintwork, customisations and automotive security in one place, so a car does not have to go to three different people to come back right.</p>
       </div>
-      <div style="aspect-ratio:4/5;max-height:560px">
-        <image-slot id="tg-about-founder" shape="rect" src="./assets/placeholder-about.png" placeholder="Portrait of the founder at the workshop"></image-slot>
+      <div style="aspect-ratio:4/5;max-height:560px;background:#111;border:1px solid rgba(185,186,184,.16);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:28px;padding:32px">
+        <img src="./assets/tygrify spray and www.png" alt="Tygrify" style="width:min(240px,70%);height:auto">
+        <span style="width:40px;height:2px;background:#F24405"></span>
+        <div style="display:flex;gap:40px">
+          <div style="text-align:center">
+            <p style="margin:0;font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;color:#fff">2024</p>
+            <p style="margin:8px 0 0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Founded</p>
+          </div>
+          <div style="text-align:center">
+            <p style="margin:0;font-family:'Bebas Neue',sans-serif;font-size:40px;line-height:1;color:#fff">5</p>
+            <p style="margin:8px 0 0;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Years in the trade</p>
+          </div>
+        </div>
       </div>
     </div>
   </section>
@@ -166,14 +177,11 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
           </div>
         </div>
       </div>
-      <div style="display:grid;gap:12px;grid-template-columns:repeat(2,minmax(0,1fr));align-content:start">
-        <div style="aspect-ratio:1/1;min-width:0"><image-slot id="tg-about-shop-1" shape="rect" placeholder="Unit exterior on Brays Lane"></image-slot></div>
-        <div style="aspect-ratio:1/1;min-width:0"><image-slot id="tg-about-shop-2" shape="rect" placeholder="Inside the workshop"></image-slot></div>
-        <div style="aspect-ratio:1/1;min-width:0"><image-slot id="tg-about-shop-3" shape="rect" placeholder="Paint or prep bay"></image-slot></div>
-        <div style="aspect-ratio:1/1;min-width:0"><image-slot id="tg-about-shop-4" shape="rect" placeholder="Car in for work, plate covered"></image-slot></div>
+      <div style="min-width:0;align-self:start;aspect-ratio:4/3;border:1px solid rgba(185,186,184,.16)">
+        <img src="./assets/unit2.jpeg" alt="The Tygrify unit on Brays Lane" style="display:block;width:100%;height:100%;object-fit:cover">
       </div>
     </div>
-    <div style="aspect-ratio:3/1;min-width:0;position:relative;border:1px solid rgba(185,186,184,.16);margin-top:clamp(24px,4vw,44px)">
+    <div class="tg-map" style="min-width:0;position:relative;border:1px solid rgba(185,186,184,.16);margin-top:clamp(24px,4vw,44px)">
       <iframe src="https://www.google.com/maps?q=7+Brays+Lane,+Coventry+CV2+4DT&output=embed" title="Tygrify workshop location - 7 Brays Lane, Coventry CV2 4DT" width="100%" height="100%" style="position:absolute;inset:0;border:0;filter:invert(1) hue-rotate(180deg) brightness(.92) contrast(.9)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
   </section>

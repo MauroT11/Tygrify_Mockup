@@ -23,6 +23,9 @@ a:hover{color:#F24405}
 a,button{transition:color .18s ease,background-color .18s ease,border-color .18s ease,box-shadow .18s ease,filter .18s ease,transform .12s ease}
 @media (prefers-reduced-motion: reduce){*{transition-duration:.001ms!important;animation-duration:.001ms!important}}
 @keyframes tgFade{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.tg-map{aspect-ratio:3/2}
+@media (max-width:640px){.tg-map{aspect-ratio:4/5}}
+@media (max-width:640px){.tg-hero-content{padding-bottom:120px!important}}
 </style>
 </helmet>
 
@@ -66,10 +69,9 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       </button>
     </div>
     <nav style="display:flex;flex-direction:column;padding:6px 20px 10px">
-      <a href="./Tygrify Homepage.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Home</a>
       <a href="./Tygrify Services.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Services</a>
       <a href="./Tygrify Security.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Security</a>
-      <a href="./Tygrify Gallery.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Before &amp; after</a>
+      <a href="./Tygrify Gallery.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Gallery</a>
       <a href="./Tygrify Rewards.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Rewards</a>
       <a href="./Tygrify Reviews.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Reviews</a>
       <a href="./Tygrify About.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">About</a>
@@ -89,8 +91,8 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
       <image-slot id="tg-hero" shape="rect" src="./assets/tygrify garage.webp" placeholder="Hero photo - car outside the Tygrify workshop, plate covered"></image-slot>
     </div>
     <div style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(13,13,13,.75) 0%,rgba(13,13,13,.45) 40%,rgba(13,13,13,.94) 100%);pointer-events:none"></div>
-    <div style="position:relative;width:100%;max-width:1200px;margin:0 auto;padding:120px 20px 56px;pointer-events:none">
-      <p style="margin:0 0 18px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">Bodyshop &amp; vehicle security - Coventry</p>
+    <div class="tg-hero-content" style="position:relative;width:100%;max-width:1200px;margin:0 auto;padding:120px 20px 56px;pointer-events:none">
+      <p style="margin:0 0 18px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405;text-shadow:0 1px 8px rgba(0,0,0,.9),0 1px 2px rgba(0,0,0,.9)">Bodyshop &amp; vehicle security - Coventry</p>
       <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(46px,9.5vw,112px);line-height:.92;letter-spacing:.005em;max-width:16ch;text-wrap:balance">Damaged car? Start here.</h1>
       <p style="margin:22px 0 0;max-width:56ch;font-size:clamp(16px,2.2vw,19px);line-height:1.6;color:#B9BAB8;text-wrap:pretty">Paint and panel repairs, SMART repairs, alloys and vehicle security, done in one workshop on Brays Lane. Send a few photos of the damage and we will come back to you the same day.</p>
       <div style="display:flex;flex-wrap:wrap;gap:12px;margin-top:34px;pointer-events:auto">
@@ -423,7 +425,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
           </div>
         </div>
       </div>
-      <div style="aspect-ratio:3/2;min-width:0;position:relative;border:1px solid rgba(185,186,184,.16)">
+      <div class="tg-map" style="min-width:0;position:relative;border:1px solid rgba(185,186,184,.16)">
         <iframe src="https://www.google.com/maps?q=7+Brays+Lane,+Coventry+CV2+4DT&output=embed" title="Tygrify workshop location - 7 Brays Lane, Coventry CV2 4DT" width="100%" height="100%" style="position:absolute;inset:0;border:0;filter:invert(1) hue-rotate(180deg) brightness(.92) contrast(.9)" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
       </div>
     </div>

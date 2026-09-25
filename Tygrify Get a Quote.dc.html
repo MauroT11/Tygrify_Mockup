@@ -34,7 +34,6 @@ input::placeholder,textarea::placeholder{color:#4d4d4d}
         <img src="./assets/Logo_text.png" alt="Tygrify" style="height:56px;width:auto;display:block">
       </a>
       <nav style="display:{{ navDisplay }};align-items:center;gap:26px;margin-left:auto;font-size:14px;letter-spacing:.02em;color:#B9BAB8">
-        <a href="./Tygrify Homepage.dc.html">Home</a>
         <a href="./Tygrify Services.dc.html">Services</a>
         <a href="./Tygrify Security.dc.html">Security</a>
         <a href="./Tygrify Gallery.dc.html">Gallery</a>
@@ -65,10 +64,9 @@ input::placeholder,textarea::placeholder{color:#4d4d4d}
       </button>
     </div>
     <nav style="display:flex;flex-direction:column;padding:6px 20px 10px">
-      <a href="./Tygrify Homepage.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Home</a>
       <a href="./Tygrify Services.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Services</a>
       <a href="./Tygrify Security.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Security</a>
-      <a href="./Tygrify Gallery.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Before &amp; after</a>
+      <a href="./Tygrify Gallery.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Gallery</a>
       <a href="./Tygrify Rewards.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Rewards</a>
       <a href="./Tygrify Reviews.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Reviews</a>
       <a href="./Tygrify About.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">About</a>
@@ -418,11 +416,16 @@ input::placeholder,textarea::placeholder{color:#4d4d4d}
           </div>
         </div>
 
+        <div style="width:100%;text-align:left;background:none;border:1px solid rgba(185,186,184,.16);border-radius:2px;padding:16px;display:flex;gap:13px;align-items:flex-start;margin-bottom:14px">
+          <button type="button" onClick="{{ toggleConsent }}" aria-label="By submitting this quote, Tygrify can contact you regarding this quote" style="flex:none;width:20px;height:20px;cursor:pointer;padding:0;border:1px solid {{ consentBorder }};background:{{ consentBg }};border-radius:2px;margin-top:1px"></button>
+          <span style="font-size:14px;line-height:1.6;color:#B9BAB8">By submitting this quote, Tygrify can contact you regarding this quote. <span style="color:#F24405">*</span> See our <a href="./Tygrify Privacy Policy.dc.html" style="color:#B9BAB8;text-decoration:underline">privacy policy</a>.</span>
+        </div>
+
         <button type="button" onClick="{{ toggleMarketing }}" style="width:100%;text-align:left;cursor:pointer;background:none;border:1px solid rgba(185,186,184,.16);border-radius:2px;padding:16px;display:flex;gap:13px;align-items:flex-start;margin-bottom:14px">
           <span style="flex:none;width:20px;height:20px;border:1px solid {{ mkBorder }};background:{{ mkBg }};border-radius:2px;margin-top:1px"></span>
           <span style="font-size:14px;line-height:1.6;color:#B9BAB8">Send me occasional offers and workshop updates from Tygrify. We will not pass your details to anyone else, and you can stop them at any time.</span>
         </button>
-        <p style="margin:0 0 26px;font-size:12.5px;line-height:1.6;color:#595959">We will only use your details to answer this quote. See our <a href="#" style="color:#595959;text-decoration:underline">privacy notice</a>.</p>
+        <p style="margin:0 0 26px;font-size:12.5px;line-height:1.6;color:#595959">We will only use your details to answer this quote. See our <a href="./Tygrify Privacy Policy.dc.html" style="color:#595959;text-decoration:underline">privacy notice</a>.</p>
 
         <div style="border:1px solid rgba(242,68,5,.4);background:rgba(242,68,5,.07);border-radius:2px;padding:20px;margin-bottom:20px">
           <p style="margin:0 0 4px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Estimated price</p>
@@ -947,7 +950,7 @@ class Component extends DCLogic {
     services: [], wheels: 4, ceramicTier: 'synthetic',
     bodyType: null, view: 'driver', points: [],
     notes: '',
-    name: '', phone: '', email: '', marketing: false,
+    name: '', phone: '', email: '', marketing: false, contactConsent: false,
     scrolled: false
   };
 
@@ -1251,7 +1254,7 @@ class Component extends DCLogic {
     });
 
     const step1Valid = !!(st.reg.trim() && st.make.trim());
-    const step5Valid = !!(st.name.trim() && st.phone.trim() && st.email.trim());
+    const step5Valid = !!(st.name.trim() && st.phone.trim() && st.email.trim() && st.contactConsent);
 
     const selCount = st.services.length;
     const hint = {
@@ -1419,6 +1422,9 @@ class Component extends DCLogic {
       mkBg: st.marketing ? '#F24405' : 'transparent',
       mkBorder: st.marketing ? '#F24405' : 'rgba(185,186,184,.4)',
       toggleMarketing: () => this.setState(s => ({ marketing: !s.marketing })),
+      consentBg: st.contactConsent ? '#F24405' : 'transparent',
+      consentBorder: st.contactConsent ? '#F24405' : 'rgba(185,186,184,.4)',
+      toggleConsent: () => this.setState(s => ({ contactConsent: !s.contactConsent })),
       submit: () => { this.setState({ done: true }); window.scrollTo({ top: 0, behavior: 'smooth' }); },
       ref: 'TQ-' + (st.reg ? st.reg.replace(/\s/g, '').toUpperCase().slice(0, 4) : '2481') + '-06',
       restart: () => this.setState({

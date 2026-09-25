@@ -85,30 +85,60 @@ a:hover{color:#F24405}
     <p style="margin:0 0 4px;font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:#595959">{{ today }}</p>
     <h1 style="margin:0 0 clamp(20px,3vw,28px);font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(30px,5vw,44px);letter-spacing:.02em;line-height:1">Morning, {{ ownerName }}</h1>
 
-    <a href="./Tygrify Admin Enquiries.dc.html" style="display:block;border:1px solid #F24405;background:linear-gradient(180deg,rgba(242,68,5,.12),rgba(242,68,5,.03));padding:clamp(22px,3.6vw,32px);border-radius:2px">
-      <p style="margin:0 0 6px;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Awaiting a response</p>
-      <div style="display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap">
-        <span style="font-family:'Bebas Neue',sans-serif;font-size:clamp(72px,16vw,124px);line-height:.82;letter-spacing:.01em;color:#fff">{{ newCount }}</span>
-        <span style="font-size:clamp(17px,2.6vw,21px);line-height:1.35;color:#fff;padding-bottom:6px;max-width:22ch">new enquiries, oldest {{ oldestNew }}</span>
-      </div>
-      <p style="margin:18px 0 0;font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#F24405">Open enquiries</p>
-    </a>
-
-    <div style="display:grid;gap:1px;background:rgba(185,186,184,.16);border:1px solid rgba(185,186,184,.16);grid-template-columns:{{ statColumns }};margin-top:clamp(16px,2.4vw,22px)">
-      <a href="./Tygrify Admin Enquiries.dc.html" style="background:#111;padding:22px 20px;display:block">
+    <div style="display:grid;gap:1px;background:rgba(185,186,184,.16);border:1px solid rgba(185,186,184,.16);grid-template-columns:{{ statColumns }}">
+      <a href="./Tygrify Admin Enquiries.dc.html" style="display:flex;flex-direction:column;align-items:center;border:1px solid #F24405;background:linear-gradient(180deg,rgba(242,68,5,.12),rgba(242,68,5,.03));padding:24px 20px;text-align:center">
+        <p style="margin:0 0 10px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#F24405">Awaiting a response</p>
+        <div style="display:flex;align-items:baseline;justify-content:center;gap:10px">
+          <span style="font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:.9;color:#fff">{{ newCount }}</span>
+          <span style="font-size:13.5px;color:#fff">new enquiries</span>
+        </div>
+        <p style="margin:10px 0 0;font-size:12.5px;color:#B9BAB8">oldest {{ oldestNew }}</p>
+      </a>
+      <a href="./Tygrify Admin Enquiries.dc.html" style="display:flex;flex-direction:column;align-items:center;background:#111;padding:24px 20px;text-align:center">
         <p style="margin:0 0 10px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Awaiting customer approval</p>
-        <div style="display:flex;align-items:baseline;gap:10px">
+        <div style="display:flex;align-items:baseline;justify-content:center;gap:10px">
           <span style="font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:.9">{{ awaitingCount }}</span>
           <span style="font-size:13.5px;color:#B9BAB8">estimates sent</span>
         </div>
       </a>
-      <a href="./Tygrify Admin Enquiries.dc.html" style="background:#111;padding:22px 20px;display:block">
+      <a href="./Tygrify Admin Enquiries.dc.html" style="display:flex;flex-direction:column;align-items:center;background:#111;padding:24px 20px;text-align:center">
         <p style="margin:0 0 10px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Gone quiet</p>
-        <div style="display:flex;align-items:baseline;gap:10px">
+        <div style="display:flex;align-items:baseline;justify-content:center;gap:10px">
           <span style="font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:.9">{{ quietCount }}</span>
           <span style="font-size:13.5px;color:#B9BAB8">no reply in {{ quietDays }} days</span>
         </div>
       </a>
+    </div>
+
+    <h2 style="margin:clamp(32px,5vw,48px) 0 0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(22px,3.4vw,30px);letter-spacing:.03em">This week at a glance</h2>
+
+    <div style="margin-top:16px;display:grid;gap:1px;background:rgba(185,186,184,.16);border:1px solid rgba(185,186,184,.16);grid-template-columns:{{ weekColumns }}">
+      <a href="./Tygrify Admin Customers.dc.html" style="display:flex;flex-direction:column;align-items:center;background:#111;padding:24px 20px;text-align:center">
+        <p style="margin:0 0 10px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Total customers</p>
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:.9">{{ totalCustomers }}</span>
+        <p style="margin:10px 0 0;font-size:13.5px;color:#B9BAB8">{{ newCustomersWeek }} new this week</p>
+      </a>
+      <a href="./Tygrify Admin Rewards.dc.html" style="display:flex;flex-direction:column;align-items:center;background:#111;padding:24px 20px;text-align:center">
+        <p style="margin:0 0 10px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Rewards ready</p>
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:.9">{{ rewardsReadyCount }}</span>
+        <p style="margin:10px 0 0;font-size:13.5px;color:#B9BAB8">customers have a reward waiting</p>
+      </a>
+      <a href="./Tygrify Admin Enquiries.dc.html" style="display:flex;flex-direction:column;align-items:center;background:#111;padding:24px 20px;text-align:center">
+        <p style="margin:0 0 10px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Upcoming bookings</p>
+        <span style="font-family:'Bebas Neue',sans-serif;font-size:42px;line-height:.9">{{ bookedCount }}</span>
+        <p style="margin:10px 0 0;font-size:13.5px;color:#B9BAB8">jobs booked in</p>
+      </a>
+    </div>
+
+    <h2 style="margin:clamp(32px,5vw,48px) 0 0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(22px,3.4vw,30px);letter-spacing:.03em">Quick links</h2>
+
+    <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+      <a href="./Tygrify Admin Enquiries.dc.html" style="background:#111;border:1px solid rgba(185,186,184,.28);color:#B9BAB8;border-radius:2px;padding:12px 18px;font-size:13px;font-weight:600;white-space:nowrap" style-hover="border-color:#F24405;color:#F24405">Enquiries</a>
+      <a href="./Tygrify Admin Customers.dc.html" style="background:#111;border:1px solid rgba(185,186,184,.28);color:#B9BAB8;border-radius:2px;padding:12px 18px;font-size:13px;font-weight:600;white-space:nowrap" style-hover="border-color:#F24405;color:#F24405">Customers</a>
+      <a href="./Tygrify Admin Services.dc.html" style="background:#111;border:1px solid rgba(185,186,184,.28);color:#B9BAB8;border-radius:2px;padding:12px 18px;font-size:13px;font-weight:600;white-space:nowrap" style-hover="border-color:#F24405;color:#F24405">Services</a>
+      <a href="./Tygrify Admin Gallery.dc.html" style="background:#111;border:1px solid rgba(185,186,184,.28);color:#B9BAB8;border-radius:2px;padding:12px 18px;font-size:13px;font-weight:600;white-space:nowrap" style-hover="border-color:#F24405;color:#F24405">Gallery</a>
+      <a href="./Tygrify Admin Rewards.dc.html" style="background:#111;border:1px solid rgba(185,186,184,.28);color:#B9BAB8;border-radius:2px;padding:12px 18px;font-size:13px;font-weight:600;white-space:nowrap" style-hover="border-color:#F24405;color:#F24405">Tygrify XP</a>
+      <a href="./Tygrify Admin Settings.dc.html" style="background:#111;border:1px solid rgba(185,186,184,.28);color:#B9BAB8;border-radius:2px;padding:12px 18px;font-size:13px;font-weight:600;white-space:nowrap" style-hover="border-color:#F24405;color:#F24405">Settings</a>
     </div>
 
     <div style="margin-top:clamp(32px,5vw,48px);display:flex;align-items:baseline;justify-content:space-between;gap:16px">
@@ -143,7 +173,7 @@ a:hover{color:#F24405}
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;ownerName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Tyg&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;quietDays&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:5,&quot;min&quot;:2,&quot;max&quot;:21,&quot;tsType&quot;:&quot;number&quot;}}">
+<script type="text/x-dc" data-dc-script data-props="{&quot;ownerName&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;Tyg&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;quietDays&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:5,&quot;min&quot;:2,&quot;max&quot;:21,&quot;tsType&quot;:&quot;number&quot;},&quot;totalCustomers&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:128,&quot;min&quot;:0,&quot;max&quot;:9999,&quot;tsType&quot;:&quot;number&quot;},&quot;newCustomersWeek&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:6,&quot;min&quot;:0,&quot;max&quot;:999,&quot;tsType&quot;:&quot;number&quot;},&quot;rewardsReadyCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:3,&quot;min&quot;:0,&quot;max&quot;:999,&quot;tsType&quot;:&quot;number&quot;},&quot;bookedCount&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:5,&quot;min&quot;:0,&quot;max&quot;:999,&quot;tsType&quot;:&quot;number&quot;}}">
 class Component extends DCLogic {
   state = { navDrawer: false, navMenu: false, narrow: false };
   componentDidMount() {
@@ -183,7 +213,12 @@ class Component extends DCLogic {
       awaitingCount: 4,
       quietCount: 2,
       quietDays,
-      statColumns: n ? '1fr' : '1fr 1fr',
+      totalCustomers: this.props.totalCustomers ?? 128,
+      newCustomersWeek: this.props.newCustomersWeek ?? 6,
+      rewardsReadyCount: this.props.rewardsReadyCount ?? 3,
+      bookedCount: this.props.bookedCount ?? 5,
+      statColumns: n ? '1fr' : '1fr 1fr 1fr',
+      weekColumns: n ? '1fr' : '1fr 1fr 1fr',
       mainCols: this.state.navDrawer ? 'minmax(0,1fr)' : '218px minmax(0,1fr)',
       sidebarOrder: this.state.navDrawer ? '2' : '0',
       sidebarPosition: this.state.navDrawer ? 'static' : 'sticky',
