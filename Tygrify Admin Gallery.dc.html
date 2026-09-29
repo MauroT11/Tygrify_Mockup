@@ -83,7 +83,13 @@ select:focus{outline:none;border-color:#F24405}
 
     <div style="min-width:0">
 
-    <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(30px,5vw,44px);letter-spacing:.02em;line-height:1">Gallery</h1>
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+      <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(30px,5vw,44px);letter-spacing:.02em;line-height:1">Gallery</h1>
+      <button type="button" onClick="{{ openAdd }}" style="display:inline-flex;align-items:center;gap:8px;background:#F24405;border:none;color:#fff;border-radius:2px;padding:12px 18px;font-family:'Public Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer;flex:none">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+        Add new
+      </button>
+    </div>
     <p style="margin:12px 0 0;font-size:14.5px;line-height:1.65;color:#B9BAB8;max-width:62ch">Anything here goes on a public page. Plates are covered automatically, but nothing publishes until you have looked at it - a missed plate on a live page is a data breach, not a tidy-up job.</p>
 
     <div style="margin-top:clamp(24px,3.4vw,32px);border:1px solid #F24405;background:linear-gradient(180deg,rgba(242,68,5,.12),rgba(242,68,5,.02));padding:clamp(20px,2.6vw,26px)">
@@ -97,8 +103,9 @@ select:focus{outline:none;border-color:#F24405}
     <div style="margin-top:clamp(20px,3vw,28px);display:grid;gap:clamp(14px,2vw,18px);grid-template-columns:{{ pendingColumns }}">
       <sc-for list="{{ pending }}" as="p" hint-placeholder-count="3">
         <div style="border:1px solid rgba(185,186,184,.16);background:#111;display:flex;flex-direction:column">
-          <div style="aspect-ratio:4/3;background:#1A1A1A;border-bottom:1px solid rgba(185,186,184,.16);display:flex;align-items:center;justify-content:center;position:relative">
-            <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#595959">{{ p.slot }}</span>
+          <div style="aspect-ratio:4/3;background:#1A1A1A;border-bottom:1px solid rgba(185,186,184,.16);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
+            <img src="{{ p.photo }}" alt="{{ p.job }}" style="display:{{ p.photoDisplay }};position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <span style="display:{{ p.slotDisplay }};font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#595959">{{ p.slot }}</span>
             <span style="position:absolute;left:10px;top:10px;display:inline-block;white-space:nowrap;line-height:1.2;font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid {{ p.plateBorder }};color:{{ p.plateColor }};background:rgba(13,13,13,.85);border-radius:2px;padding:4px 7px">{{ p.plate }}</span>
           </div>
           <div style="padding:16px;display:flex;flex-direction:column;gap:12px;flex:1">
@@ -150,8 +157,9 @@ select:focus{outline:none;border-color:#F24405}
     <div style="margin-top:18px;display:grid;gap:clamp(12px,1.8vw,16px);grid-template-columns:{{ liveColumns }}">
       <sc-for list="{{ live }}" as="l" hint-placeholder-count="6">
         <div style="border:1px solid rgba(185,186,184,.16);background:#111;display:flex;flex-direction:column">
-          <div style="aspect-ratio:4/3;background:#1A1A1A;border-bottom:1px solid rgba(185,186,184,.16);display:flex;align-items:center;justify-content:center">
-            <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#595959">{{ l.slot }}</span>
+          <div style="aspect-ratio:4/3;background:#1A1A1A;border-bottom:1px solid rgba(185,186,184,.16);display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden">
+            <img src="{{ l.photo }}" alt="{{ l.job }}" style="display:{{ l.photoDisplay }};position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+            <span style="display:{{ l.slotDisplay }};font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#595959">{{ l.slot }}</span>
           </div>
           <div style="padding:14px;display:flex;flex-direction:column;flex:1">
             <p style="margin:0;font-size:14.5px;font-weight:600">{{ l.job }}</p>
@@ -180,6 +188,68 @@ select:focus{outline:none;border-color:#F24405}
 
   </main>
 
+  <div onClick="{{ closeAdd }}" style="display:{{ addDisplay }};position:fixed;inset:0;z-index:70;background:rgba(0,0,0,.72)"></div>
+  <div role="dialog" aria-label="Add gallery photo" style="display:{{ addDisplay }};position:fixed;z-index:71;left:50%;top:50%;transform:translate(-50%,-50%);width:min(560px,calc(100vw - 32px));max-height:calc(100vh - 32px);overflow-y:auto;background:#111;border:1px solid rgba(185,186,184,.24);flex-direction:column">
+    <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 20px;border-bottom:1px solid rgba(185,186,184,.16)">
+      <span style="font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.03em;line-height:1">Add new photo</span>
+      <button type="button" onClick="{{ closeAdd }}" aria-label="Close" style="background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:38px;height:38px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex:none">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round"><path d="M5 5l14 14M19 5L5 19"/></svg>
+      </button>
+    </div>
+    <div style="padding:20px;display:flex;flex-direction:column;gap:16px">
+      <label style="display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;aspect-ratio:16/9;border:1px dashed {{ dropBorder }};background:#0D0D0D;cursor:pointer;position:relative;overflow:hidden;text-align:center;padding:16px" style-hover="border-color:#F24405">
+        <img src="{{ draftPhoto }}" alt="Preview" style="display:{{ draftPhotoDisplay }};position:absolute;inset:0;width:100%;height:100%;object-fit:cover">
+        <svg style="display:{{ draftEmptyDisplay }}" width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#B9BAB8" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5"/><path d="M4 16v4h16v-4"/></svg>
+        <span style="display:{{ draftEmptyDisplay }};font-size:14px;color:#fff">Choose a photo to upload</span>
+        <span style="display:{{ draftEmptyDisplay }};font-size:12.5px;color:#595959">JPG or PNG. Plates are covered automatically.</span>
+        <span style="display:{{ draftPhotoDisplay }};position:absolute;right:10px;bottom:10px;background:rgba(13,13,13,.85);border:1px solid rgba(185,186,184,.34);border-radius:2px;padding:6px 10px;font-size:11px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#fff">Change photo</span>
+        <input type="file" accept="image/*" onChange="{{ onDraftPhoto }}" style="display:none">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:7px">
+        <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Job title</span>
+        <input type="text" value="{{ draftJob }}" onChange="{{ onDraftJob }}" placeholder="e.g. Front bumper crack repair" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:14px;padding:11px 10px;width:100%">
+      </label>
+      <label style="display:flex;flex-direction:column;gap:7px">
+        <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Vehicle</span>
+        <input type="text" value="{{ draftVehicle }}" onChange="{{ onDraftVehicle }}" placeholder="e.g. VW Golf GTI" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:14px;padding:11px 10px;width:100%">
+      </label>
+      <div style="display:grid;gap:12px;grid-template-columns:{{ draftCols }}">
+        <label style="display:flex;flex-direction:column;gap:7px">
+          <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Category</span>
+          <select value="{{ draftCategory }}" onChange="{{ onDraftCategory }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:14px;padding:11px 10px;width:100%">
+            <option value="Body repair">Body repair</option>
+            <option value="Alloys">Alloys</option>
+            <option value="Interiors">Interiors</option>
+            <option value="Security">Security</option>
+          </select>
+        </label>
+        <label style="display:flex;flex-direction:column;gap:7px">
+          <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Photo type</span>
+          <select value="{{ draftSlot }}" onChange="{{ onDraftSlot }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:14px;padding:11px 10px;width:100%">
+            <option value="After photo">After photo</option>
+            <option value="Before / after">Before / after</option>
+            <option value="Install photo">Install photo</option>
+          </select>
+        </label>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:7px">
+        <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Completed in</span>
+        <div style="display:flex;gap:10px">
+          <input type="number" min="1" value="{{ draftDuration }}" onChange="{{ onDraftDuration }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:14px;padding:11px 10px;width:100px;flex:none">
+          <select value="{{ draftUnit }}" onChange="{{ onDraftUnit }}" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:14px;padding:11px 10px;flex:1;min-width:0">
+            <option value="hours">hours</option>
+            <option value="days">days</option>
+          </select>
+        </div>
+      </div>
+      <p style="margin:0;font-size:12.5px;line-height:1.55;color:#595959">New uploads go into the review queue first. Nothing goes live until you publish it.</p>
+    </div>
+    <div style="display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap;padding:16px 20px;border-top:1px solid rgba(185,186,184,.16)">
+      <button type="button" onClick="{{ closeAdd }}" style="background:none;border:1px solid rgba(185,186,184,.34);color:#B9BAB8;border-radius:2px;padding:12px 18px;font-family:'Public Sans',sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer">Cancel</button>
+      <button type="button" onClick="{{ submitAdd }}" disabled="{{ draftInvalid }}" style="background:{{ submitBg }};border:none;color:{{ submitColor }};border-radius:2px;padding:12px 18px;font-family:'Public Sans',sans-serif;font-weight:700;font-size:11.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:{{ submitCursor }}">Upload for review</button>
+    </div>
+  </div>
+
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1080,&quot;height&quot;:1000}}">
@@ -199,8 +269,10 @@ const LIVE = [
   { id: 16, job: 'Wheel colour change', category: 'Alloys', when: '1 Aug', duration: 4, durationUnit: 'hours', slot: 'After photo' }
 ];
 
+const EMPTY_DRAFT = { photo: '', job: '', vehicle: '', category: 'Body repair', slot: 'After photo', duration: '', unit: 'hours' };
+
 class Component extends DCLogic {
-  state = { navDrawer: false, navMenu: false, narrow: false, mid: false, pending: PENDING, live: LIVE, filter: 'All' };
+  state = { navDrawer: false, navMenu: false, narrow: false, mid: false, pending: PENDING, live: LIVE, filter: 'All', addOpen: false, draft: EMPTY_DRAFT };
   componentDidMount() {
     this._r = () => {
       const dw = window.innerWidth < 760;
@@ -217,7 +289,44 @@ class Component extends DCLogic {
     const st = this.state;
     const cats = ['All', 'Body repair', 'Alloys', 'Interiors', 'Security'];
     const live = st.live.filter(l => st.filter === 'All' || l.category === st.filter);
+    const d = st.draft;
+    const invalid = !d.photo || !d.job.trim() || !(Number(d.duration) > 0);
+    const setDraft = k => e => this.setState(s => ({ draft: { ...s.draft, [k]: e.target.value } }));
+    const photoVals = x => ({ photo: x.photo || '', photoDisplay: x.photo ? 'block' : 'none', slotDisplay: x.photo ? 'none' : 'inline' });
     return {
+      addDisplay: st.addOpen ? 'flex' : 'none',
+      openAdd: () => this.setState({ addOpen: true, draft: EMPTY_DRAFT, navMenu: false }),
+      closeAdd: () => this.setState({ addOpen: false }),
+      draftPhoto: d.photo,
+      draftPhotoDisplay: d.photo ? 'block' : 'none',
+      draftEmptyDisplay: d.photo ? 'none' : 'block',
+      dropBorder: d.photo ? 'rgba(185,186,184,.34)' : 'rgba(185,186,184,.4)',
+      onDraftPhoto: e => {
+        const f = e.target.files && e.target.files[0];
+        if (!f) return;
+        const url = URL.createObjectURL(f);
+        this.setState(s => ({ draft: { ...s.draft, photo: url } }));
+      },
+      draftJob: d.job, onDraftJob: setDraft('job'),
+      draftVehicle: d.vehicle, onDraftVehicle: setDraft('vehicle'),
+      draftCategory: d.category, onDraftCategory: setDraft('category'),
+      draftSlot: d.slot, onDraftSlot: setDraft('slot'),
+      draftDuration: d.duration, onDraftDuration: setDraft('duration'),
+      draftUnit: d.unit, onDraftUnit: setDraft('unit'),
+      draftCols: st.narrow ? '1fr' : '1fr 1fr',
+      draftInvalid: invalid,
+      submitBg: invalid ? 'rgba(185,186,184,.14)' : '#F24405',
+      submitColor: invalid ? '#595959' : '#fff',
+      submitCursor: invalid ? 'not-allowed' : 'pointer',
+      submitAdd: () => !invalid && this.setState(s => ({
+        addOpen: false,
+        pending: [{
+          id: Date.now(), job: d.job.trim(),
+          meta: (d.vehicle.trim() ? d.vehicle.trim() + ' - ' : '') + 'uploaded just now',
+          duration: Number(d.duration), durationUnit: d.unit, slot: d.slot, category: d.category,
+          plate: 'Plate covered', plateOk: true, photo: d.photo
+        }].concat(s.pending)
+      })),
       mainCols: this.state.navDrawer ? 'minmax(0,1fr)' : '218px minmax(0,1fr)',
       sidebarOrder: this.state.navDrawer ? '2' : '0',
       sidebarPosition: this.state.navDrawer ? 'static' : 'sticky',
@@ -233,6 +342,7 @@ class Component extends DCLogic {
       pendingEmpty: st.pending.length === 0,
       pending: st.pending.map(p => ({
         ...p,
+        ...photoVals(p),
         plateColor: p.plateOk ? '#B9BAB8' : '#F24405',
         plateBorder: p.plateOk ? 'rgba(185,186,184,.34)' : '#F24405',
         blocked: !p.plateOk,
@@ -243,7 +353,7 @@ class Component extends DCLogic {
         onCategory: e => this.setState(s => ({ pending: s.pending.map(x => x.id === p.id ? { ...x, category: e.target.value } : x) })),
         approve: () => p.plateOk && this.setState(s => ({
           pending: s.pending.filter(x => x.id !== p.id),
-          live: [{ id: p.id, job: p.job, category: p.category, when: 'just now', slot: p.slot, duration: p.duration, durationUnit: p.durationUnit }].concat(s.live)
+          live: [{ id: p.id, job: p.job, category: p.category, when: 'just now', slot: p.slot, duration: p.duration, durationUnit: p.durationUnit, photo: p.photo }].concat(s.live)
         })),
         reject: () => this.setState(s => ({ pending: s.pending.filter(x => x.id !== p.id) }))
       })),
@@ -254,7 +364,7 @@ class Component extends DCLogic {
         border: st.filter === c ? '#F24405' : 'rgba(185,186,184,.28)',
         color: st.filter === c ? '#fff' : '#B9BAB8'
       })),
-      live: live.map(l => ({ ...l, unpublish: () => this.setState(s => ({ live: s.live.filter(x => x.id !== l.id) })) })),
+      live: live.map(l => ({ ...l, ...photoVals(l), unpublish: () => this.setState(s => ({ live: s.live.filter(x => x.id !== l.id) })) })),
       liveEmpty: live.length === 0
     };
   }

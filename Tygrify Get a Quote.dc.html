@@ -203,12 +203,32 @@ input::placeholder,textarea::placeholder{color:#4d4d4d}
             </button>
           </sc-for>
         </div>
+
+        <div style="display:{{ trackerBlock }};border:1px solid rgba(242,68,5,.4);background:rgba(242,68,5,.07);padding:18px;margin-top:12px">
+          <p style="margin:0 0 4px;font-size:15px;font-weight:700">Tracker unit</p>
+          <p style="margin:0 0 14px;font-size:13px;line-height:1.6;color:#B9BAB8">Fitted prices include the unit and fitting. The 24/7 monitoring subscription is arranged and paid separately with ScorpionTrack. <a href="./Tygrify Trackers.dc.html#compare" target="_blank" rel="noreferrer" style="color:#F24405;text-decoration:underline">Compare units</a></p>
+          <div style="display:grid;gap:10px;grid-template-columns:{{ ceramicGridCols }}">
+            <sc-for list="{{ trackerTiers }}" as="tt" hint-placeholder-count="3">
+              <button type="button" onClick="{{ tt.onClick }}" style="cursor:pointer;text-align:left;background:{{ tt.bg }};border:1px solid {{ tt.border }};border-radius:2px;padding:16px;display:flex;flex-direction:column;gap:6px">
+                <span style="font-size:14.5px;font-weight:600;color:#fff">{{ tt.name }}</span>
+                <span style="font-size:12.5px;color:#B9BAB8">{{ tt.detail }}</span>
+                <span style="display:flex;flex-direction:column;gap:6px;margin:4px 0 2px;padding-top:10px;border-top:1px solid rgba(185,186,184,.14)">
+                  <sc-for list="{{ tt.features }}" as="tf" hint-placeholder-count="4">
+                    <span style="display:flex;gap:8px;align-items:flex-start;font-size:12.5px;line-height:1.45;color:{{ tf.color }};font-weight:{{ tf.weight }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F24405" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:2px"><path d="M4.5 12.5l5 5 10-11"/></svg>{{ tf.text }}</span>
+                  </sc-for>
+                </span>
+                <span style="font-size:17px;font-weight:700;color:{{ tt.priceColor }};margin-top:2px">{{ tt.price }} <span style="font-size:12px;font-weight:400;color:#595959">fitted</span></span>
+                <span style="font-size:11.5px;line-height:1.5;color:#595959">{{ tt.sub }}</span>
+              </button>
+            </sc-for>
+          </div>
+        </div>
       </div>
 
       <div style="display:{{ s3 }}">
         <div style="display:{{ diagramDisplay }}">
           <h2 style="margin:0 0 8px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(26px,3.6vw,36px);line-height:1;letter-spacing:.02em">Where is the damage?</h2>
-          <p style="margin:0 0 22px;font-size:15px;line-height:1.65;color:#B9BAB8;max-width:60ch">Choose the shape closest to your car, then tap directly on the diagram wherever there is damage. We will work out which panel that is.</p>
+          <p style="margin:0 0 22px;font-size:15px;line-height:1.65;color:#B9BAB8;max-width:60ch">Choose the shape closest to your car, then tap directly on the diagram wherever there is damage (up to {{ maxPoints }} areas). We will work out which panel that is. Changing the car shape clears any areas you have marked.</p>
 
           <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:18px">
             <sc-for list="{{ bodyTypes }}" as="bt" hint-placeholder-count="5">
@@ -325,7 +345,7 @@ input::placeholder,textarea::placeholder{color:#4d4d4d}
           </div>
 
           <div style="margin-top:20px">
-            <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Selected areas</p>
+            <p style="margin:0 0 10px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Selected areas <span style="color:#B9BAB8">&middot; {{ pointCountLabel }}</span></p>
             <div style="display:flex;flex-direction:column;gap:10px">
               <sc-for list="{{ pointCards }}" as="pc" hint-placeholder-count="2">
                 <div style="border:1px solid rgba(185,186,184,.18);background:#0D0D0D;padding:16px">
@@ -353,6 +373,7 @@ input::placeholder,textarea::placeholder{color:#4d4d4d}
               </sc-for>
             </div>
             <p style="display:{{ noPanelsDisplay }};margin:0;font-size:13.5px;color:#595959">Nothing marked yet. You can also skip this and describe it in your own words at the end.</p>
+            <p style="display:{{ maxPointsDisplay }};margin:10px 0 0;font-size:13.5px;line-height:1.6;color:#F24405">{{ maxPointsText }}</p>
           </div>
         </div>
 
@@ -375,6 +396,25 @@ input::placeholder,textarea::placeholder{color:#4d4d4d}
                   <span style="font-size:14.5px;font-weight:600;color:#fff">{{ ct.name }}</span>
                   <span style="font-size:12.5px;color:#B9BAB8">{{ ct.duration }}</span>
                   <span style="font-size:17px;font-weight:700;color:{{ ct.priceColor }};margin-top:2px">{{ ct.price }}</span>
+                </button>
+              </sc-for>
+            </div>
+          </div>
+          <div style="display:{{ trackerSubDisplay }};margin-top:{{ trackerSubMarginTop }}">
+            <h2 style="margin:0 0 8px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(26px,3.6vw,36px);line-height:1;letter-spacing:.02em">Which tracker?</h2>
+            <p style="margin:0 0 26px;font-size:15px;line-height:1.65;color:#B9BAB8;max-width:60ch">Fitted prices include the unit and fitting. The 24/7 monitoring subscription is arranged and paid separately with ScorpionTrack. <a href="./Tygrify Trackers.dc.html#compare" target="_blank" rel="noreferrer" style="color:#F24405;text-decoration:underline">Compare units</a></p>
+            <div style="display:grid;gap:10px;grid-template-columns:{{ ceramicGridCols }}">
+              <sc-for list="{{ trackerTiers }}" as="tt" hint-placeholder-count="3">
+                <button type="button" onClick="{{ tt.onClick }}" style="cursor:pointer;text-align:left;background:{{ tt.bg }};border:1px solid {{ tt.border }};border-radius:2px;padding:16px;display:flex;flex-direction:column;gap:6px">
+                  <span style="font-size:14.5px;font-weight:600;color:#fff">{{ tt.name }}</span>
+                  <span style="font-size:12.5px;color:#B9BAB8">{{ tt.detail }}</span>
+                  <span style="display:flex;flex-direction:column;gap:6px;margin:4px 0 2px;padding-top:10px;border-top:1px solid rgba(185,186,184,.14)">
+                    <sc-for list="{{ tt.features }}" as="tf" hint-placeholder-count="4">
+                      <span style="display:flex;gap:8px;align-items:flex-start;font-size:12.5px;line-height:1.45;color:{{ tf.color }};font-weight:{{ tf.weight }}"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#F24405" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:2px"><path d="M4.5 12.5l5 5 10-11"/></svg>{{ tf.text }}</span>
+                    </sc-for>
+                  </span>
+                  <span style="font-size:17px;font-weight:700;color:{{ tt.priceColor }};margin-top:2px">{{ tt.price }} <span style="font-size:12px;font-weight:400;color:#595959">fitted</span></span>
+                  <span style="font-size:11.5px;line-height:1.5;color:#595959">{{ tt.sub }}</span>
                 </button>
               </sc-for>
             </div>
@@ -548,7 +588,7 @@ const COSMETIC_SERVICES = [
 ];
 const SECURITY_SERVICES = [
   ['can-phantom', 'Can Phantom immobiliser', 'Fixed price fitting - workshop visit', '\u00a3500'],
-  ['tracker', 'Trackers', 'Fitted and set up - workshop visit', 'From \u00a3350'],
+  ['tracker', 'ScorpionTrack Trackers', 'S7, S5 or S5+ fitted - workshop visit', 'From \u00a3329'],
   ['canbus', 'CAN-BUS security systems', 'Fitted to suit the vehicle - workshop visit', 'Quote on inspection']
 ];
 const PANEL_BASED = ['smart', 'bumper', 'panel'];
@@ -556,6 +596,11 @@ const CERAMIC_TIERS = [
   ['synthetic', 'Synthetic coating', '\u00a3100', 'Lasts 6-12 months'],
   ['cancoat', 'CanCoat', '\u00a3195', 'Lasts up to 12 months'],
   ['heavy', 'Heavy duty ceramic', '\u00a3350', 'Lasts 24-36 months']
+];
+const TRACKER_TIERS = [
+  ['s7', 'ScorpionTrack S7', 'From \u00a3329', '24/7 monitored theft tracking', ['24/7 theft monitoring', 'Tow-away & tamper alerts', 'ScorpionTrack app access', 'Transferable to your next car'], '\u00a312.49'],
+  ['s5', 'ScorpionTrack S5', 'From \u00a3449', 'Adds 2 driver recognition tags', ['Everything in the S7', '+2x driver recognition tags', '+Driver tag low battery alert', 'Alerts if moved without a tag'], '\u00a313.49'],
+  ['s5plus', 'ScorpionTrack S5+', 'From \u00a3599', 'Adds remote immobilisation', ['Everything in the S5', '+Remote immobilisation', 'Stops a stolen car restarting', '2x driver recognition tags'], '\u00a316.99']
 ];
 
 const SHAPES = {
@@ -590,6 +635,8 @@ const SHAPES = {
     wf: 92, wr: 366, wy: 116, rad: 24, roofY: 8, sillY: 112
   }
 };
+
+const MAX_DAMAGE_POINTS = 5;
 
 const SEVERITIES = [
   ['light', 'Light', 'Deep scratch'],
@@ -947,7 +994,7 @@ class Component extends DCLogic {
   state = {
     mobile: false, menu: false, step: 1, done: false,
     reg: '', make: '', model: '', year: '', colour: '',
-    services: [], wheels: 4, ceramicTier: 'synthetic',
+    services: [], wheels: 4, ceramicTier: 'synthetic', trackerTier: 's7',
     bodyType: null, view: 'driver', points: [],
     notes: '',
     name: '', phone: '', email: '', marketing: false, contactConsent: false,
@@ -966,6 +1013,15 @@ class Component extends DCLogic {
       if (sc !== this.state.scrolled) this.setState({ scrolled: sc });
     };
     window.addEventListener('scroll', this._s, { passive: true });
+    // Pre-fill from links: ?service=smart (or smart,alloy), ?tier=cancoat, ?unit=s5plus
+    const q = new URLSearchParams(window.location.search);
+    const ids = BODY_SERVICES.concat(COSMETIC_SERVICES, SECURITY_SERVICES).map(d => d[0]);
+    const pre = q.getAll('service').join(',').split(',').filter(id => ids.indexOf(id) > -1);
+    const tier = CERAMIC_TIERS.find(t => t[0] === q.get('tier'));
+    if (pre.length) this.setState({ services: pre });
+    if (tier) this.setState({ ceramicTier: tier[0] });
+    const unit = TRACKER_TIERS.find(t => t[0] === q.get('unit'));
+    if (unit) this.setState({ trackerTier: unit[0] });
   }
   componentWillUnmount() {
     window.removeEventListener('resize', this._r);
@@ -982,8 +1038,11 @@ class Component extends DCLogic {
   needsCeramicStep() {
     return !this.needsDiagram() && this.state.services.indexOf('ceramic') > -1;
   }
+  needsTrackerStep() {
+    return !this.needsDiagram() && this.state.services.indexOf('tracker') > -1;
+  }
   activeSteps() {
-    if (this.needsDiagram() || this.needsWheelStep() || this.needsCeramicStep()) return [1, 2, 3, 5];
+    if (this.needsDiagram() || this.needsWheelStep() || this.needsCeramicStep() || this.needsTrackerStep()) return [1, 2, 3, 5];
     return [1, 2, 5];
   }
   go(n) {
@@ -1071,11 +1130,17 @@ class Component extends DCLogic {
     return this.panelDefs().find(p => x >= p[2] && x <= p[2] + p[4] && y >= p[3] && y <= p[3] + p[5]);
   }
   addPointAt(x, y) {
+    if (this.state.points.length >= MAX_DAMAGE_POINTS) return;
     const panel = this.panelForPoint(x, y);
     if (!panel) return;
     this._pid = (this._pid || 0) + 1;
     const point = { id: this._pid, view: this.state.view, x, y, panelKey: panel[0], panelLabel: panel[1], severity: null, photo: null };
     this.setState(st => ({ points: st.points.concat([point]) }));
+  }
+  selectBodyType(k) {
+    // Pins are placed against a specific car shape, so they are cleared when the shape changes
+    if (k === this.currentBodyType()) return;
+    this.setState({ bodyType: k, points: [] });
   }
   removePoint(id) {
     this.setState(st => ({ points: st.points.filter(p => p.id !== id) }));
@@ -1169,6 +1234,9 @@ class Component extends DCLogic {
   ceramicTierDef() {
     return CERAMIC_TIERS.find(t => t[0] === this.state.ceramicTier) || CERAMIC_TIERS[0];
   }
+  trackerTierDef() {
+    return TRACKER_TIERS.find(t => t[0] === this.state.trackerTier) || TRACKER_TIERS[0];
+  }
   serviceNames() {
     const all = BODY_SERVICES.concat(COSMETIC_SERVICES, SECURITY_SERVICES);
     return this.state.services.map(id => {
@@ -1177,6 +1245,10 @@ class Component extends DCLogic {
       if (id === 'ceramic') {
         const t = this.ceramicTierDef();
         return d[1] + ' (' + t[1] + ') — ' + t[2];
+      }
+      if (id === 'tracker') {
+        const t = this.trackerTierDef();
+        return t[1] + ' — ' + t[2].toLowerCase() + ' fitted';
       }
       const label = id === 'alloy' ? d[1] + ' (' + this.state.wheels + ' wheel' + (this.state.wheels > 1 ? 's' : '') + ')' : d[1];
       return label + ' — ' + d[3];
@@ -1196,6 +1268,12 @@ class Component extends DCLogic {
       if (d[0] === 'ceramic') {
         total += Number((this.ceramicTierDef()[2].match(/£(\d+)/) || [])[1]) || 0;
         hasNumeric = true;
+        return;
+      }
+      if (d[0] === 'tracker') {
+        total += Number((this.trackerTierDef()[2].match(/£(\d+)/) || [])[1]) || 0;
+        hasNumeric = true;
+        hasFromWord = true;
         return;
       }
       const n = Number((d[3].match(/£(\d+)/) || [])[1]) || 0;
@@ -1224,6 +1302,8 @@ class Component extends DCLogic {
     const showDiagram = this.needsDiagram();
     const showWheelStep = this.needsWheelStep();
     const showCeramicStep = this.needsCeramicStep();
+    const showTrackerStep = this.needsTrackerStep();
+    const extraLabels = [showWheelStep ? 'Wheels' : null, showCeramicStep ? 'Coating' : null, showTrackerStep ? 'Tracker' : null].filter(Boolean);
     const points = st.points;
     const hasPhoto = this.hasPhotoDiagram();
 
@@ -1231,9 +1311,10 @@ class Component extends DCLogic {
       1: 'Your vehicle',
       2: 'What it needs',
       3: showDiagram ? 'Damage area'
-        : (showWheelStep && showCeramicStep ? 'Wheels & coating'
+        : (extraLabels.length > 1 ? extraLabels.join(' & ')
           : showWheelStep ? 'Wheel count'
           : showCeramicStep ? 'Ceramic coating'
+          : showTrackerStep ? 'Tracker unit'
           : 'Damage area - not needed'),
       5: 'Your details'
     };
@@ -1263,7 +1344,8 @@ class Component extends DCLogic {
       3: showDiagram
         ? (points.length ? points.length + ' area' + (points.length === 1 ? '' : 's') + ' marked' : 'Optional - tap the car where the damage is')
         : [showWheelStep ? st.wheels + ' wheel' + (st.wheels > 1 ? 's' : '') + ' selected' : null,
-           showCeramicStep ? this.ceramicTierDef()[1] + ' selected' : null].filter(Boolean).join(' \u00b7 '),
+           showCeramicStep ? this.ceramicTierDef()[1] + ' selected' : null,
+           showTrackerStep ? this.trackerTierDef()[1] + ' selected' : null].filter(Boolean).join(' \u00b7 '),
       5: ''
     }[st.step] || '';
 
@@ -1275,7 +1357,8 @@ class Component extends DCLogic {
               ? points.map(p => this.viewWord(p.view) + ' ' + p.panelLabel.toLowerCase() + ' (' + (SEV_LABEL[p.severity] || 'severity not given') + (p.photo ? ' \u00b7 photo attached' : '') + ')').join(', ') + ' \u2014 ' + shp.label.toLowerCase()
               : 'Not marked')
           : ([showWheelStep ? st.wheels + ' wheel' + (st.wheels > 1 ? 's' : '') + ' to refurbish' : null,
-              showCeramicStep ? this.ceramicTierDef()[1] + ' ceramic coating' : null].filter(Boolean).join(' \u00b7 ') || 'Not applicable'), onEdit: () => this.go(3) }
+              showCeramicStep ? this.ceramicTierDef()[1] + ' ceramic coating' : null,
+              showTrackerStep ? this.trackerTierDef()[1] + ' tracker' : null].filter(Boolean).join(' \u00b7 ') || 'Not applicable'), onEdit: () => this.go(3) }
     ];
 
     return {
@@ -1323,10 +1406,13 @@ class Component extends DCLogic {
       wheelBlock: st.services.indexOf('alloy') > -1 && showDiagram ? 'flex' : 'none',
       ceramicBlock: st.services.indexOf('ceramic') > -1 && showDiagram ? 'block' : 'none',
       diagramDisplay: showDiagram ? 'block' : 'none',
-      extrasStepDisplay: (showWheelStep || showCeramicStep) ? 'block' : 'none',
+      trackerBlock: st.services.indexOf('tracker') > -1 && showDiagram ? 'block' : 'none',
+      extrasStepDisplay: (showWheelStep || showCeramicStep || showTrackerStep) ? 'block' : 'none',
       wheelSubDisplay: showWheelStep ? 'block' : 'none',
       ceramicSubDisplay: showCeramicStep ? 'block' : 'none',
       ceramicSubMarginTop: showWheelStep ? '34px' : '0',
+      trackerSubDisplay: showTrackerStep ? 'block' : 'none',
+      trackerSubMarginTop: (showWheelStep || showCeramicStep) ? '34px' : '0',
       wheelOptions: [1, 2, 3, 4].map(n => ({
         n: String(n),
         bg: st.wheels === n ? '#F24405' : '#0D0D0D',
@@ -1346,6 +1432,22 @@ class Component extends DCLogic {
           onClick: () => this.setState({ ceramicTier: t[0] })
         };
       }),
+      trackerTiers: TRACKER_TIERS.map(t => {
+        const on = st.trackerTier === t[0];
+        return {
+          name: t[1], detail: t[3], price: t[2],
+          sub: 'Subscription from ' + t[5] + ' a month, paid to ScorpionTrack',
+          features: t[4].map(f => ({
+            text: f.replace(/^\+/, ''),
+            color: f[0] === '+' ? '#fff' : '#B9BAB8',
+            weight: f[0] === '+' ? '700' : '400'
+          })),
+          bg: on ? 'rgba(242,68,5,.09)' : '#111',
+          border: on ? 'rgba(242,68,5,.6)' : 'rgba(185,186,184,.18)',
+          priceColor: on ? '#F24405' : '#fff',
+          onClick: () => this.setState({ trackerTier: t[0] })
+        };
+      }),
 
       bodyTypes: Object.keys(SHAPES).map(k => {
         const on = (st.bodyType || this.props.defaultBodyType || 'hatchback') === k;
@@ -1354,7 +1456,7 @@ class Component extends DCLogic {
           bg: on ? '#F24405' : 'transparent',
           border: on ? '#F24405' : 'rgba(185,186,184,.28)',
           color: on ? '#fff' : '#B9BAB8',
-          onClick: () => this.setState({ bodyType: k })
+          onClick: () => this.selectBodyType(k)
         };
       }),
       views: ['driver', 'passenger', 'front', 'rear'].map(k => ({
@@ -1403,6 +1505,10 @@ class Component extends DCLogic {
         onPhoto: () => this.pickPointPhoto(p.id)
       })),
       noPanelsDisplay: points.length ? 'none' : 'block',
+      maxPoints: MAX_DAMAGE_POINTS,
+      pointCountLabel: points.length + ' of ' + MAX_DAMAGE_POINTS,
+      maxPointsDisplay: points.length >= MAX_DAMAGE_POINTS ? 'block' : 'none',
+      maxPointsText: 'You have marked the maximum of ' + MAX_DAMAGE_POINTS + ' areas. Remove one to add another, or describe any extra damage in your own words at the end.',
 
       notesFieldDisplay: showDiagram ? 'block' : 'none',
       notes: st.notes,

@@ -97,6 +97,7 @@ input:focus,select:focus{outline:none;border-color:#F24405}
       <label style="display:flex;align-items:center;gap:10px">
         <span style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:#595959;flex:none">Sort</span>
         <select value="{{ sort }}" onChange="{{ onSort }}" style="background:#111;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:14.5px;padding:13px 12px;width:100%">
+          <option value="priority">Priority</option>
           <option value="oldest">Oldest unanswered first</option>
           <option value="newest">Newest received first</option>
         </select>
@@ -104,7 +105,7 @@ input:focus,select:focus{outline:none;border-color:#F24405}
     </div>
 
     <div style="margin-top:14px;display:flex;gap:8px;flex-wrap:wrap">
-      <sc-for list="{{ chips }}" as="c" hint-placeholder-count="7">
+      <sc-for list="{{ chips }}" as="c" hint-placeholder-count="8">
         <button type="button" onClick="{{ c.pick }}" style="background:{{ c.bg }};border:1px solid {{ c.border }};color:{{ c.color }};border-radius:999px;padding:8px 14px;font-family:'Public Sans',sans-serif;font-size:12.5px;letter-spacing:.04em;cursor:pointer">{{ c.label }}</button>
       </sc-for>
     </div>
@@ -123,7 +124,7 @@ input:focus,select:focus{outline:none;border-color:#F24405}
       <sc-for list="{{ rows }}" as="e" hint-placeholder-count="6">
         <div style="background:#111;padding:16px 20px;display:flex;align-items:flex-start;gap:16px">
           <input type="checkbox" checked="{{ e.checked }}" onChange="{{ e.toggle }}" aria-label="Select enquiry" style="width:17px;height:17px;accent-color:#F24405;flex:none;margin-top:3px">
-          <a href="./Tygrify Admin Enquiry.dc.html" style="flex:1;min-width:0;display:flex;gap:16px;align-items:flex-start">
+          <a href="{{ e.href }}" style="flex:1;min-width:0;display:flex;gap:16px;align-items:flex-start">
             <div style="flex:1;min-width:0">
               <div style="display:flex;align-items:baseline;gap:10px;flex-wrap:wrap">
                 <span style="font-size:16px;font-weight:600">{{ e.name }}</span>
@@ -131,6 +132,7 @@ input:focus,select:focus{outline:none;border-color:#F24405}
               </div>
               <p style="margin:7px 0 0;font-size:13.5px;line-height:1.5;color:#B9BAB8">{{ e.vehicle }}</p>
               <p style="margin:5px 0 0;font-size:13px;color:#595959">{{ e.meta }}</p>
+              <span style="display:{{ e.flagDisplay }};margin-top:9px;font-size:11.5px;font-weight:600;letter-spacing:.03em;border:1px solid #F24405;background:{{ e.flagBg }};color:{{ e.flagColor }};border-radius:2px;padding:4px 8px;width:fit-content">{{ e.flag }}</span>
             </div>
             <div style="flex:none;display:flex;flex-direction:column;align-items:flex-end;gap:8px">
               <span style="font-size:11px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;border:1px solid {{ e.statusBorder }};color:{{ e.statusColor }};border-radius:2px;padding:4px 8px;white-space:nowrap">{{ e.status }}</span>
@@ -147,7 +149,7 @@ input:focus,select:focus{outline:none;border-color:#F24405}
       </sc-if>
     </div>
 
-    <p style="margin:26px 0 0;font-size:13px;line-height:1.6;color:#595959;max-width:56ch">Stale enquiries can be cleared in bulk so the list stays worth checking. Marking as lost keeps the record, it just drops out of the default view.</p>
+    <p style="margin:26px 0 0;font-size:13px;line-height:1.6;color:#595959;max-width:56ch">Stale enquiries can be cleared in bulk so the list stays worth checking. Completed and lost enquiries keep their records, they just drop out of the default view. Use their filters to see them.</p>
 
     </div>
 
@@ -165,19 +167,31 @@ const TONE = {
   Lost: ['#595959', 'rgba(185,186,184,.2)']
 };
 
+const CLOSED = ['Completed', 'Lost'];
+const PRIORITY = ['New', 'Approved', 'Booked', 'Quoted', 'Completed', 'Lost'];
+const days = n => n + (n === 1 ? ' day' : ' days');
+
+// What the team needs to do next, if anything. strong = overdue.
+function attention(r) {
+  if (r.status === 'New') return r.since >= 1 ? { text: 'No reply for ' + days(r.since), strong: true } : { text: 'Reply needed', strong: false };
+  if (r.status === 'Approved' && r.since >= 2) return { text: 'Not booked: approved ' + days(r.since) + ' ago', strong: false };
+  if (r.status === 'Quoted' && r.since >= 5) return { text: 'Chase: quoted ' + days(r.since) + ' ago', strong: false };
+  return null;
+}
+
 const DATA = [
-  { id: 1, name: 'Danielle Okafor', phone: '07712 445 019', reg: 'LV19 XKR', vehicle: 'Audi A3 Sportback, 2019, Nardo grey', panels: 2, photos: 4, status: 'New', date: '6 Sep', age: 0 },
-  { id: 2, name: 'Marek Kowalski', phone: '07884 220 771', reg: 'YE68 HTN', vehicle: 'BMW 320d Touring, 2018, black', panels: 1, photos: 3, status: 'New', date: '5 Sep', age: 1 },
-  { id: 3, name: 'Sophie Bennett', phone: '07500 118 402', reg: 'RK21 OZP', vehicle: 'Mini Cooper S, 2021, white', panels: 3, photos: 6, status: 'Quoted', date: '4 Sep', age: 2 },
-  { id: 4, name: 'Ade Fashola', phone: '07966 301 558', reg: 'MV17 CDU', vehicle: 'Mercedes C220, 2017, silver', panels: 1, photos: 2, status: 'Approved', date: '2 Sep', age: 4 },
-  { id: 5, name: 'Chris Whelan', phone: '07451 887 120', reg: 'FG15 TRJ', vehicle: 'VW Golf GTI, 2015, red', panels: 2, photos: 5, status: 'Booked', date: '31 Aug', age: 6 },
-  { id: 6, name: 'Priya Raval', phone: '07733 664 208', reg: 'BD20 LME', vehicle: 'Kia Sportage, 2020, blue', panels: 2, photos: 4, status: 'Quoted', date: '28 Aug', age: 9 },
-  { id: 7, name: 'Liam Doherty', phone: '07902 553 447', reg: 'WR62 KNA', vehicle: 'Ford Focus, 2012, grey', panels: 4, photos: 7, status: 'Completed', date: '21 Aug', age: 16 },
-  { id: 8, name: 'Hannah Yates', phone: '07816 990 335', reg: 'SG14 PLV', vehicle: 'Vauxhall Corsa, 2014, black', panels: 1, photos: 2, status: 'Lost', date: '12 Aug', age: 25 }
+  { id: 1, name: 'Danielle Okafor', phone: '07712 445 019', reg: 'LV19 XKR', vehicle: 'Audi A3 Sportback, 2019, Nardo grey', panels: 2, photos: 4, status: 'New', date: '6 Sep', age: 0, since: 0 },
+  { id: 2, name: 'Marek Kowalski', phone: '07884 220 771', reg: 'YE68 HTN', vehicle: 'BMW 320d Touring, 2018, black', panels: 1, photos: 3, status: 'New', date: '5 Sep', age: 1, since: 1 },
+  { id: 3, name: 'Sophie Bennett', phone: '07500 118 402', reg: 'RK21 OZP', vehicle: 'Mini Cooper S, 2021, white', panels: 3, photos: 6, status: 'Quoted', date: '4 Sep', age: 2, since: 2 },
+  { id: 4, name: 'Ade Fashola', phone: '07966 301 558', reg: 'MV17 CDU', vehicle: 'Mercedes C220, 2017, silver', panels: 1, photos: 2, status: 'Approved', date: '2 Sep', age: 4, since: 3 },
+  { id: 5, name: 'Chris Whelan', phone: '07451 887 120', reg: 'FG15 TRJ', vehicle: 'VW Golf GTI, 2015, red', panels: 2, photos: 5, status: 'Booked', date: '31 Aug', age: 6, since: 4 },
+  { id: 6, name: 'Priya Raval', phone: '07733 664 208', reg: 'BD20 LME', vehicle: 'Kia Sportage, 2020, blue', panels: 2, photos: 4, status: 'Quoted', date: '28 Aug', age: 9, since: 7 },
+  { id: 7, name: 'Liam Doherty', phone: '07902 553 447', reg: 'WR62 KNA', vehicle: 'Ford Focus, 2012, grey', panels: 4, photos: 7, status: 'Completed', date: '21 Aug', age: 16, since: 0 },
+  { id: 8, name: 'Hannah Yates', phone: '07816 990 335', reg: 'SG14 PLV', vehicle: 'Vauxhall Corsa, 2014, black', panels: 1, photos: 2, status: 'Lost', date: '12 Aug', age: 25, since: 20 }
 ];
 
 class Component extends DCLogic {
-  state = { navDrawer: false, navMenu: false, narrow: false, status: 'All', query: '', sort: 'oldest', sel: [], lost: [] };
+  state = { navDrawer: false, navMenu: false, narrow: false, status: 'Active', query: '', sort: 'priority', sel: [], lost: [] };
   componentDidMount() {
     this._r = () => {
       const dw = window.innerWidth < 760;
@@ -194,9 +208,18 @@ class Component extends DCLogic {
     const { status, query, sort, lost } = this.state;
     const q = query.trim().toLowerCase();
     let rows = DATA.map(r => lost.includes(r.id) ? { ...r, status: 'Lost' } : r);
-    rows = rows.filter(r => status === 'All' ? r.status !== 'Lost' : r.status === status);
+    rows = rows.map(r => ({ ...r, attn: CLOSED.includes(r.status) ? null : attention(r) }));
+    rows = rows.filter(r => status === 'Active' ? !CLOSED.includes(r.status) : status === 'Needs attention' ? r.attn : r.status === status);
     if (q) rows = rows.filter(r => (r.name + ' ' + r.reg + ' ' + r.phone).toLowerCase().replace(/\s+/g, ' ').includes(q));
-    rows.sort((a, b) => sort === 'oldest' ? b.age - a.age : a.age - b.age);
+    rows.sort((a, b) => {
+      if (sort === 'priority') {
+        const g = PRIORITY.indexOf(a.status) - PRIORITY.indexOf(b.status);
+        if (g) return g;
+        if (!!a.attn !== !!b.attn) return a.attn ? -1 : 1;
+        return b.age - a.age;
+      }
+      return sort === 'oldest' ? b.age - a.age : a.age - b.age;
+    });
     return rows;
   }
 
@@ -204,7 +227,7 @@ class Component extends DCLogic {
     const st = this.state;
     const rows = this.visible();
     const ids = rows.map(r => r.id);
-    const statuses = ['All', 'New', 'Quoted', 'Approved', 'Booked', 'Completed', 'Lost'];
+    const statuses = ['Active', 'Needs attention', 'New', 'Quoted', 'Approved', 'Booked', 'Completed', 'Lost'];
     return {
       mainCols: this.state.navDrawer ? 'minmax(0,1fr)' : '218px minmax(0,1fr)',
       sidebarOrder: this.state.navDrawer ? '2' : '0',
@@ -216,7 +239,7 @@ class Component extends DCLogic {
       closeNavMenu: () => this.setState({ navMenu: false }),
       emailDisplay: st.narrow ? 'none' : 'inline',
       toolbarColumns: st.narrow ? '1fr' : 'minmax(0,1fr) 280px',
-      countLabel: rows.length + (rows.length === 1 ? ' enquiry' : ' enquiries') + (st.status === 'All' ? ', excluding lost' : ''),
+      countLabel: rows.length + (rows.length === 1 ? ' enquiry' : ' enquiries') + (st.status === 'Active' ? ', excluding completed and lost' : ''),
       query: st.query,
       sort: st.sort,
       onQuery: e => this.setState({ query: e.target.value }),
@@ -233,6 +256,11 @@ class Component extends DCLogic {
         meta: r.panels + (r.panels === 1 ? ' panel - ' : ' panels - ') + r.photos + ' photos',
         statusColor: TONE[r.status][0],
         statusBorder: TONE[r.status][1],
+        href: r.status === 'New' ? './Tygrify Admin Enquiry.dc.html' : './Tygrify Admin Enquiry ' + r.status + '.dc.html',
+        flag: r.attn ? r.attn.text : '',
+        flagDisplay: r.attn ? 'block' : 'none',
+        flagBg: r.attn && r.attn.strong ? '#F24405' : 'transparent',
+        flagColor: r.attn && r.attn.strong ? '#fff' : '#F24405',
         checked: st.sel.includes(r.id),
         toggle: () => this.setState(s => ({ sel: s.sel.includes(r.id) ? s.sel.filter(i => i !== r.id) : s.sel.concat(r.id) }))
       })),

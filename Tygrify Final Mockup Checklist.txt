@@ -93,7 +93,8 @@ Customer account pages:
 - Account - Quotes
 - Account - Quote (single quote view)
 - Account - Get a Quote
-- Account - Repairs
+- Account - Bookings
+- Account - Booking (single finished job + Xero invoice)
 - Account - Rewards
 
 Admin panel pages:
@@ -101,7 +102,12 @@ Admin panel pages:
 - Admin - Customers
 - Admin - Edit Customer
 - Admin - Enquiries
-- Admin - Enquiry (single view)
+- Admin - Enquiry (single view, New)
+- Admin - Enquiry Quoted
+- Admin - Enquiry Approved
+- Admin - Enquiry Booked
+- Admin - Enquiry Completed
+- Admin - Enquiry Lost
 - Admin - Gallery
 - Admin - Gallery Item
 - Admin - Services

@@ -158,6 +158,38 @@ input:focus{outline:none;border-color:#F24405}
           <p style="margin:14px 0 0;font-size:12.5px;line-height:1.6;color:#595959">This is the customer's own record. Corrections only, and deletion is theirs to request from their account.</p>
         </section>
 
+        <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(20px,2.6vw,26px);display:flex;flex-direction:column;gap:14px">
+          <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap">
+            <p style="margin:0;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Tygrify XP</p>
+            <a href="./Tygrify Admin Rewards.dc.html" style="flex:none;font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#F24405">Reward settings</a>
+          </div>
+          <p style="margin:0;font-family:'Bebas Neue',sans-serif;font-size:clamp(28px,4.4vw,38px);line-height:1;letter-spacing:.02em">{{ sel.xp }} <span style="font-size:16px;color:#B9BAB8">XP - Level {{ sel.levelNum }} {{ sel.levelName }}</span></p>
+          <div style="height:8px;background:rgba(185,186,184,.16);border-radius:999px;overflow:hidden">
+            <div style="height:100%;width:{{ sel.xpPercent }};background:#F24405;border-radius:999px"></div>
+          </div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px 16px;align-items:baseline">
+            <p style="margin:0;font-size:14px;font-weight:700">{{ sel.nextTitle }}</p>
+            <p style="margin:0;font-size:13px;color:#B9BAB8">{{ sel.xpRemaining }}</p>
+          </div>
+        </section>
+
+        <sc-if value="{{ sel.hasRedeemable }}" hint-placeholder-val="{{ true }}">
+          <section style="border:1px solid #F24405;background:linear-gradient(180deg,rgba(242,68,5,.13),rgba(242,68,5,.02));padding:clamp(20px,2.6vw,26px)">
+            <p style="margin:0 0 16px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Ready to redeem</p>
+            <div style="display:flex;flex-direction:column;gap:12px">
+              <sc-for list="{{ sel.redeemable }}" as="r" hint-placeholder-count="1">
+                <div style="border:1px solid rgba(185,186,184,.16);background:#0D0D0D;padding:15px;display:flex;gap:14px;align-items:center;flex-wrap:wrap">
+                  <div style="flex:1;min-width:0">
+                    <p style="margin:0;font-size:15px;font-weight:600">{{ r.title }}</p>
+                    <p style="margin:5px 0 0;font-size:13px;color:#595959">{{ r.meta }}</p>
+                  </div>
+                  <button type="button" onClick="{{ r.redeem }}" style="background:#F24405;border:none;color:#fff;padding:11px 16px;border-radius:2px;font-family:'Public Sans',sans-serif;font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer;flex:none;margin-left:auto">Mark redeemed</button>
+                </div>
+              </sc-for>
+            </div>
+          </section>
+        </sc-if>
+
         <section style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(20px,2.6vw,26px)">
           <p style="margin:0 0 16px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Saved vehicles</p>
           <div style="display:flex;flex-direction:column;gap:12px">
@@ -166,7 +198,14 @@ input:focus{outline:none;border-color:#F24405}
                 <span style="display:inline-block;white-space:nowrap;line-height:1.2;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;background:#F5E93B;color:#111;border-radius:3px;padding:3px 9px;flex:none">{{ v.reg }}</span>
                 <div style="flex:1;min-width:0">
                   <p style="margin:0;font-size:15px">{{ v.name }}</p>
-                  <p style="margin:5px 0 0;font-size:13px;color:#595959">{{ v.mot }}</p>
+                </div>
+                <div style="display:flex;align-items:center;gap:10px;flex:none;margin-left:auto">
+                  <img src="{{ v.photo }}" alt="{{ v.reg }}" style="display:{{ v.photoDisplay }};width:64px;height:44px;object-fit:cover;border-radius:2px;border:1px solid rgba(185,186,184,.24)">
+                  <label style="display:inline-flex;align-items:center;gap:8px;border:1px solid rgba(185,186,184,.34);color:#fff;border-radius:2px;padding:10px 14px;font-weight:700;font-size:12px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;cursor:pointer" style-hover="border-color:#F24405;color:#F24405">
+                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>
+                    {{ v.photoLabel }}
+                    <input type="file" accept="image/*" onChange="{{ v.onPhoto }}" style="display:none">
+                  </label>
                 </div>
               </div>
             </sc-for>
@@ -219,27 +258,55 @@ const TONE = {
   Lost: ['#595959', 'rgba(185,186,184,.2)']
 };
 
+const TIERS = [
+  { name: 'Member', points: 250, title: 'Free Full Valet' },
+  { name: 'Bronze', points: 600, title: '£50 off' },
+  { name: 'Silver', points: 1100, title: '1 alloy wheel refurbishment' },
+  { name: 'Gold', points: 1700, title: 'Free synthetic coating' },
+  { name: 'Platinum', points: 2450, title: '£100 off' },
+  { name: 'Black', points: 3350, title: 'Free SMART Repair up to £150' },
+  { name: 'Elite', points: 4350, title: '30% off one job' },
+  { name: 'Prestige', points: 5600, title: 'Full alloy refurbishment & respray' },
+  { name: 'TYGRIFY VIP', points: 6850, title: 'TYGRIFY VIP status' }
+];
+
+function xpInfo(pts) {
+  let i = -1;
+  TIERS.forEach((t, k) => { if (pts >= t.points) i = k; });
+  const cur = i >= 0 ? TIERS[i] : null;
+  const next = TIERS[i + 1] || null;
+  const base = cur ? cur.points : 0;
+  const intoToken = next ? 0 : (pts - 6850) % 250;
+  return {
+    levelNum: i + 1,
+    levelName: cur ? cur.name : 'New customer',
+    xpPercent: next ? Math.min(100, Math.round((pts - base) / (next.points - base) * 100)) + '%' : Math.round(intoToken / 250 * 100) + '%',
+    nextTitle: next ? 'Next: ' + next.title : 'Earning VIP tokens',
+    xpRemaining: next ? (next.points - pts) + ' XP to go' : (250 - intoToken) + ' XP to the next token'
+  };
+}
+
 const CUSTOMERS = [
   {
     id: 1, name: 'Sophie Bennett', phone: '07500 118 402', wa: '447500118402', email: 's.bennett@example.com',
-    marketing: 'Email only', created: '4 Sep 2026', lastSeen: 'Today', method: 'Google', since: 'Customer since Sep 2026',
-    vehicles: [{ reg: 'RK21 OZP', name: 'Mini Cooper S, 2021, white', mot: 'MOT expires 14 Mar 2027' }],
+    marketing: 'Email only', created: '4 Sep 2026', lastSeen: 'Today', method: 'Google', since: 'Customer since Sep 2026', xp: 120, unredeemed: [],
+    vehicles: [{ reg: 'RK21 OZP', name: 'Mini Cooper S, 2021, white' }],
     enquiries: [{ date: '4 Sep', what: 'Rear quarter and bumper - 3 panels', status: 'Quoted' }],
     repairs: []
   },
   {
     id: 2, name: 'Ade Fashola', phone: '07966 301 558', wa: '447966301558', email: 'ade.fashola@example.com',
-    marketing: 'Email and WhatsApp', created: '2 Sep 2026', lastSeen: '2 days ago', method: 'One-time code', since: 'Customer since Sep 2026',
-    vehicles: [{ reg: 'MV17 CDU', name: 'Mercedes C220, 2017, silver', mot: 'MOT expires 2 Nov 2026' }],
+    marketing: 'Email and WhatsApp', created: '2 Sep 2026', lastSeen: '2 days ago', method: 'One-time code', since: 'Customer since Sep 2026', xp: 310, unredeemed: [{ title: 'Free Full Valet', meta: 'Level 1 Member - unlocked 2 Sep 2026' }],
+    vehicles: [{ reg: 'MV17 CDU', name: 'Mercedes C220, 2017, silver' }],
     enquiries: [{ date: '2 Sep', what: 'Offside rear door scratch + Immobiliser fitting', status: 'Approved' }],
     repairs: []
   },
   {
     id: 3, name: 'Chris Whelan', phone: '07451 887 120', wa: '447451887120', email: 'cwhelan@example.com',
-    marketing: 'None', created: '18 Jul 2026', lastSeen: '6 days ago', method: 'Google', since: 'Customer since Jul 2026',
+    marketing: 'None', created: '18 Jul 2026', lastSeen: '6 days ago', method: 'Google', since: 'Customer since Jul 2026', xp: 1240, unredeemed: [{ title: '1 alloy wheel refurbishment', meta: 'Level 3 Silver - unlocked 26 Jul 2026' }, { title: '£50 off', meta: 'Level 2 Bronze - unlocked 26 Jul 2026' }],
     vehicles: [
-      { reg: 'FG15 TRJ', name: 'VW Golf GTI, 2015, red', mot: 'MOT expires 21 Jan 2027' },
-      { reg: 'KP18 VBN', name: 'Seat Ibiza, 2018, grey', mot: 'MOT expires 9 Jun 2027' }
+      { reg: 'FG15 TRJ', name: 'VW Golf GTI, 2015, red' },
+      { reg: 'KP18 VBN', name: 'Seat Ibiza, 2018, grey' }
     ],
     enquiries: [
       { date: '31 Aug', what: 'Front wing and door - 2 panels', status: 'Booked' },
@@ -249,15 +316,15 @@ const CUSTOMERS = [
   },
   {
     id: 4, name: 'Priya Raval', phone: '07733 664 208', wa: '447733664208', email: 'priya.raval@example.com',
-    marketing: 'Email only', created: '28 Aug 2026', lastSeen: '9 days ago', method: 'One-time code', since: 'Customer since Aug 2026',
-    vehicles: [{ reg: 'BD20 LME', name: 'Kia Sportage, 2020, blue', mot: 'MOT expires 30 Sep 2026 - due soon' }],
+    marketing: 'Email only', created: '28 Aug 2026', lastSeen: '9 days ago', method: 'One-time code', since: 'Customer since Aug 2026', xp: 60, unredeemed: [],
+    vehicles: [{ reg: 'BD20 LME', name: 'Kia Sportage, 2020, blue' }],
     enquiries: [{ date: '28 Aug', what: 'Bonnet stone chips and bumper scuff', status: 'Quoted' }],
     repairs: []
   },
   {
     id: 5, name: 'Liam Doherty', phone: '07902 553 447', wa: '447902553447', email: 'l.doherty@example.com',
-    marketing: 'Email and WhatsApp', created: '11 May 2026', lastSeen: '3 weeks ago', method: 'Google', since: 'Customer since May 2026',
-    vehicles: [{ reg: 'WR62 KNA', name: 'Ford Focus, 2012, grey', mot: 'MOT expires 4 Feb 2027' }],
+    marketing: 'Email and WhatsApp', created: '11 May 2026', lastSeen: '3 weeks ago', method: 'Google', since: 'Customer since May 2026', xp: 7400, unredeemed: [{ title: '2 VIP tokens', meta: 'Level 9 TYGRIFY VIP - spend against the token menu' }],
+    vehicles: [{ reg: 'WR62 KNA', name: 'Ford Focus, 2012, grey' }],
     enquiries: [
       { date: '21 Aug', what: 'Nearside panels after a car park knock', status: 'Completed' },
       { date: '12 May', what: 'Bumper crack repair', status: 'Completed' }
@@ -270,7 +337,7 @@ const CUSTOMERS = [
 ];
 
 class Component extends DCLogic {
-  state = { navDrawer: false, navMenu: false, narrow: false, query: '', selId: 1, mobileView: 'list' };
+  state = { navDrawer: false, navMenu: false, narrow: false, query: '', selId: 1, mobileView: 'list', photos: {}, redeemed: {} };
   componentDidMount() {
     this._r = () => {
       const dw = window.innerWidth < 760;
@@ -287,6 +354,9 @@ class Component extends DCLogic {
     const q = st.query.trim().toLowerCase();
     const list = CUSTOMERS.filter(c => !q || (c.name + ' ' + c.email + ' ' + c.vehicles.map(v => v.reg).join(' ')).toLowerCase().includes(q));
     const sel = CUSTOMERS.find(c => c.id === st.selId) || CUSTOMERS[0];
+    const redeemable = sel.unredeemed
+      .filter(r => !st.redeemed[sel.id + '|' + r.title])
+      .map(r => ({ ...r, redeem: () => this.setState(s => ({ redeemed: { ...s.redeemed, [sel.id + '|' + r.title]: true } })) }));
     return {
       mainCols: this.state.navDrawer ? 'minmax(0,1fr)' : '218px minmax(0,1fr)',
       sidebarOrder: this.state.navDrawer ? '2' : '0',
@@ -320,6 +390,21 @@ class Component extends DCLogic {
         telHref: 'tel:' + sel.phone.replace(/\s/g, ''),
         mailHref: 'mailto:' + sel.email,
         waHref: 'https://wa.me/' + sel.wa,
+        ...xpInfo(sel.xp),
+        redeemable,
+        hasRedeemable: redeemable.length > 0,
+        vehicles: sel.vehicles.map(v => ({
+          ...v,
+          photo: st.photos[v.reg] || '',
+          photoDisplay: st.photos[v.reg] ? 'block' : 'none',
+          photoLabel: st.photos[v.reg] ? 'Change photo' : 'Upload photo',
+          onPhoto: e => {
+            const f = e.target.files && e.target.files[0];
+            if (!f) return;
+            const url = URL.createObjectURL(f);
+            this.setState(s => ({ photos: { ...s.photos, [v.reg]: url } }));
+          }
+        })),
         enquiries: sel.enquiries.map(e => ({ ...e, color: TONE[e.status][0], border: TONE[e.status][1] })),
         noRepairs: sel.repairs.length === 0
       }

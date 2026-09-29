@@ -12,6 +12,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Public+Sans:ital,wght@0,300..800;1,400&display=swap" rel="stylesheet">
+<script src="./image-slot.js"></script>
 <style>
 html{scroll-behavior:smooth}
 html,body{margin:0;padding:0;background:#0D0D0D;-webkit-font-smoothing:antialiased}
@@ -53,8 +54,8 @@ input,button{font-family:'Public Sans',system-ui,sans-serif}
     <nav style="display:flex;flex-direction:column;padding:6px 20px 10px">
       <a href="./Tygrify Account.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Home</a>
       <a href="./Tygrify Account Vehicles.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Vehicles</a>
-      <a href="./Tygrify Account Quotes.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1);color:#F24405">Quotes &amp; estimates</a>
-      <a href="./Tygrify Account Bookings.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Bookings</a>
+      <a href="./Tygrify Account Quotes.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Quotes &amp; estimates</a>
+      <a href="./Tygrify Account Bookings.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1);color:#F24405">Bookings</a>
       <a href="./Tygrify Account Rewards.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Tygrify XP</a>
       <a href="./Tygrify Account Profile.dc.html" style="padding:14px 0;font-size:16px;border-bottom:1px solid rgba(185,186,184,.1)">Profile</a>
       <a href="./Tygrify Sign In.dc.html" style="padding:14px 0;font-size:16px;color:#B9BAB8;border-bottom:none">Sign out</a>
@@ -71,8 +72,8 @@ input,button{font-family:'Public Sans',system-ui,sans-serif}
       <nav style="display:{{ sidebarNavDisplay }};flex-direction:column;border:1px solid rgba(185,186,184,.16);background:#111">
         <a href="./Tygrify Account.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Home</a>
         <a href="./Tygrify Account Vehicles.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Vehicles</a>
-        <a href="./Tygrify Account Quotes.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid #F24405;background:rgba(242,68,5,.08);color:#fff">Quotes</a>
-        <a href="./Tygrify Account Bookings.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Bookings</a>
+        <a href="./Tygrify Account Quotes.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Quotes</a>
+        <a href="./Tygrify Account Bookings.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid #F24405;background:rgba(242,68,5,.08);color:#fff">Bookings</a>
         <a href="./Tygrify Account Rewards.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Tygrify XP</a>
         <a href="./Tygrify Account Profile.dc.html" style="font-size:14px;padding:13px 16px;border-left:2px solid transparent;color:#B9BAB8">Profile</a>
       </nav>
@@ -85,50 +86,112 @@ input,button{font-family:'Public Sans',system-ui,sans-serif}
 
     <div style="min-width:0">
 
-    <p style="margin:0 0 10px;font-size:12.5px;color:#595959"><a href="./Tygrify Account.dc.html" style="color:#595959">My garage</a> / Quotes</p>
-    <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(34px,6vw,58px);letter-spacing:.02em;line-height:1">Quotes &amp; estimates</h1>
-    <p style="margin:12px 0 0;font-size:clamp(15px,2.2vw,17px);line-height:1.6;color:#B9BAB8;max-width:58ch">{{ headline }}</p>
 
-    <div style="margin-top:clamp(22px,3.2vw,30px);display:flex;gap:8px;flex-wrap:wrap">
-      <sc-for list="{{ filters }}" as="f" hint-placeholder-count="4">
-        <button type="button" onClick="{{ f.pick }}" style="background:{{ f.bg }};border:1px solid {{ f.border }};color:{{ f.color }};border-radius:999px;padding:9px 15px;font-size:13px;cursor:pointer;white-space:nowrap">{{ f.label }}</button>
-      </sc-for>
+    <p style="margin:0 0 14px;font-size:12.5px;color:#595959"><a href="./Tygrify Account.dc.html" style="color:#595959">My garage</a> / <a href="./Tygrify Account Bookings.dc.html" style="color:#595959">Bookings</a> / TG-1841</p>
+
+    <div style="display:flex;gap:16px;align-items:flex-start;flex-wrap:wrap">
+      <div style="flex:1;min-width:220px">
+        <p style="margin:0 0 8px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Finished work - Invoice TG-1841</p>
+        <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(32px,5.4vw,50px);letter-spacing:.02em;line-height:1">Ceramic coating - two stage machine polish</h1>
+        <p style="margin:10px 0 0;font-size:15px;color:#B9BAB8">Collected 18 April 2026</p>
+      </div>
+      <div style="flex:none;text-align:{{ priceAlign }}">
+        <p style="margin:0;font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,7.5vw,58px);line-height:.9">£540</p>
+        <p style="margin:6px 0 0;font-size:13px;color:#595959">Paid in full, including VAT</p>
+      </div>
     </div>
 
-    <section style="margin-top:clamp(18px,2.6vw,24px);display:flex;flex-direction:column;gap:clamp(12px,1.8vw,16px)">
-      <sc-for list="{{ quotes }}" as="q" hint-placeholder-count="4">
-        <div style="border:1px solid {{ q.border }};background:{{ q.bg }};padding:clamp(18px,2.6vw,24px);display:flex;flex-direction:column;gap:16px">
-          <div style="display:flex;gap:14px;align-items:flex-start;flex-wrap:wrap">
-            <div style="flex:1;min-width:200px">
-              <p style="margin:0 0 6px;font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:#595959">{{ q.ref }}</p>
-              <p style="margin:0;font-size:19px;font-weight:600;line-height:1.35">{{ q.title }}</p>
-              <p style="margin:6px 0 0;font-size:13.5px;color:#B9BAB8">{{ q.vehicle }}</p>
-            </div>
-            <div style="flex:none;text-align:{{ priceAlign }}">
-              <p style="margin:0;font-family:'Bebas Neue',sans-serif;font-size:clamp(30px,5vw,40px);line-height:.95;letter-spacing:.01em">{{ q.price }}</p>
-              <p style="margin:5px 0 0;font-size:12.5px;color:#595959">{{ q.priceNote }}</p>
-            </div>
+    <a href="./Tygrify Account Vehicle.dc.html" style="margin-top:20px;border:1px solid rgba(185,186,184,.16);background:#111;padding:15px;display:flex;gap:14px;align-items:center;flex-wrap:wrap;color:#fff" style-hover="border-color:rgba(242,68,5,.6)">
+      <span style="display:inline-block;white-space:nowrap;line-height:1.2;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:.08em;background:#F5E93B;color:#111;border-radius:3px;padding:3px 9px;flex:none">RK21 OZP</span>
+      <span style="flex:1;min-width:0">
+        <span style="display:block;font-size:15px">Mini Cooper S, 2021, white</span>
+        <span style="display:block;margin-top:5px;font-size:13px;color:#595959">Petrol - 1998cc</span>
+      </span>
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#B9BAB8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex:none"><path d="M9 6l6 6-6 6"/></svg>
+    </a>
+
+    <section style="margin-top:clamp(24px,3.4vw,32px);border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(22px,3vw,30px)">
+      <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap;margin-bottom:14px">
+        <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;background:rgba(242,68,5,.14);color:#F24405;border-radius:999px;padding:5px 10px;white-space:nowrap">Completed</span>
+        <span style="font-size:11px;letter-spacing:.14em;text-transform:uppercase;border:1px solid rgba(185,186,184,.28);color:#B9BAB8;border-radius:999px;padding:4px 10px;white-space:nowrap">Paid</span>
+      </div>
+      <p style="margin:0;font-size:15.5px;line-height:1.7;max-width:62ch">Paint came up really well - most of the swirling on the bonnet and roof was wash marring, so the second stage took it right out. Coating is fully cured. Leave it a week before the first wash and use a pH neutral shampoo, no automatic car washes.</p>
+      <p style="margin:12px 0 0;font-size:13.5px;color:#B9BAB8">Jay - 18 April, 4:15pm</p>
+      <div style="margin-top:20px;display:grid;gap:16px;grid-template-columns:{{ metaColumns }};border-top:1px solid rgba(185,186,184,.14);padding-top:18px">
+        <sc-for list="{{ meta }}" as="m" hint-placeholder-count="4">
+          <div>
+            <p style="margin:0 0 5px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#595959">{{ m.label }}</p>
+            <p style="margin:0;font-size:15px">{{ m.value }}</p>
           </div>
-          <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;border-top:1px solid rgba(185,186,184,.12);padding-top:14px">
-            <span style="font-size:11.5px;letter-spacing:.12em;text-transform:uppercase;border:1px solid {{ q.chipBorder }};color:{{ q.chipColor }};border-radius:999px;padding:5px 10px;flex:none;white-space:nowrap">{{ q.status }}</span>
-            <span style="font-size:13.5px;color:#B9BAB8;flex:1;min-width:160px">{{ q.timing }}</span>
-            <a href="./Tygrify Account Quote.dc.html" style="flex:none;font-size:12.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap;color:{{ q.linkColor }}">{{ q.linkLabel }}</a>
-          </div>
-        </div>
-      </sc-for>
+        </sc-for>
+      </div>
     </section>
 
-    <p style="display:{{ emptyDisplay }};margin:clamp(18px,2.6vw,24px) 0 0;border:1px solid rgba(185,186,184,.16);background:#111;padding:24px;font-size:15px;line-height:1.65;color:#B9BAB8">Nothing in this list. Try another filter, or send photos of what needs doing and Jay will price it.</p>
+    <section style="margin-top:clamp(30px,4.4vw,44px)">
+      <h2 style="margin:0 0 16px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(24px,3.6vw,32px);letter-spacing:.03em">Work carried out</h2>
+      <div style="border:1px solid rgba(185,186,184,.16);background:#111">
+        <sc-for list="{{ lines }}" as="l" hint-placeholder-count="3">
+          <div style="display:flex;gap:16px;align-items:flex-start;padding:18px 20px;border-bottom:1px solid rgba(185,186,184,.12);flex-wrap:wrap">
+            <div style="flex:1;min-width:200px">
+              <p style="margin:0;font-size:15.5px;font-weight:600">{{ l.title }}</p>
+              <p style="margin:6px 0 0;font-size:13.5px;line-height:1.6;color:#B9BAB8">{{ l.detail }}</p>
+            </div>
+            <p style="margin:0;flex:none;font-size:15.5px;color:#fff;min-width:96px;text-align:{{ priceAlign }}">{{ l.price }}</p>
+          </div>
+        </sc-for>
+        <div style="display:flex;gap:16px;align-items:baseline;padding:18px 20px;flex-wrap:wrap">
+          <p style="margin:0;flex:1;min-width:200px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:#595959">Total including VAT</p>
+          <p style="margin:0;flex:none;font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:.02em;min-width:96px;text-align:{{ priceAlign }}">£540</p>
+        </div>
+      </div>
+    </section>
+
+    <section style="margin-top:clamp(30px,4.4vw,44px)">
+      <h2 style="margin:0 0 16px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(24px,3.6vw,32px);letter-spacing:.03em">Your invoice</h2>
+      <div style="border:1px solid rgba(185,186,184,.16);background:#111;padding:clamp(18px,2.6vw,22px);display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+        <div style="display:flex;align-items:center;gap:14px;flex:1;min-width:220px">
+          <span style="flex:none;width:40px;height:48px;border-radius:2px;background:#F24405;color:#fff;font-size:10px;font-weight:800;letter-spacing:.04em;display:flex;align-items:flex-end;justify-content:center;padding-bottom:7px">PDF</span>
+          <div style="min-width:0">
+            <p style="margin:0;font-size:15.5px;font-weight:600">Invoice TG-1841</p>
+            <p style="margin:4px 0 0;font-size:13px;color:#B9BAB8">Issued through Xero - 17 Apr 2026 - £540 paid</p>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="#" target="_blank" rel="noreferrer" style="display:flex;align-items:center;gap:8px;background:#F24405;color:#fff;padding:13px 18px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6M20 4l-9 9M18 14v6H4V6h6"/></svg>
+            View PDF
+          </a>
+          <a href="#" download style="display:flex;align-items:center;gap:8px;border:1px solid rgba(185,186,184,.34);color:#B9BAB8;padding:13px 18px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap" style-hover="border-color:#F24405;color:#F24405">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 10l5 5 5-5M5 20h14"/></svg>
+            Download
+          </a>
+        </div>
+      </div>
+      <p style="margin:12px 0 0;font-size:13px;line-height:1.65;color:#595959;max-width:64ch">A copy was also emailed when the job was paid. Need it for insurance or a VAT receipt? Download it above or <a href="tel:07722102736" style="color:#B9BAB8;text-decoration:underline">ask Jay</a>.</p>
+    </section>
+
+    <section style="margin-top:clamp(30px,4.4vw,44px)">
+      <h2 style="margin:0 0 16px;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(24px,3.6vw,32px);letter-spacing:.03em">Photos from the booking</h2>
+      <div style="display:grid;gap:10px;grid-template-columns:{{ photoColumns }}">
+        <sc-for list="{{ photos }}" as="ph" hint-placeholder-count="4">
+          <div style="border:1px solid rgba(185,186,184,.16);background:#111;aspect-ratio:4/3">
+            <image-slot id="{{ ph.id }}" placeholder="{{ ph.placeholder }}" shape="rect"></image-slot>
+          </div>
+        </sc-for>
+      </div>
+      <p style="margin:12px 0 0;font-size:13px;color:#595959">Taken by Jay before and after, under the shop lights.</p>
+    </section>
 
     <section style="margin-top:clamp(30px,4.4vw,44px);display:grid;gap:clamp(14px,2vw,18px);grid-template-columns:{{ twoColumns }}">
       <div style="border:1px solid rgba(185,186,184,.16);background:#111;padding:22px">
-        <p style="margin:0 0 12px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">How estimates work here</p>
-        <p style="margin:0;font-size:14.5px;line-height:1.7;color:#B9BAB8">A range means the job depends on what we find once the panel is off or on the ramp - Jay confirms the final figure before any work starts. A single price is fixed unless you change the job.</p>
+        <p style="margin:0 0 12px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#F24405">Something not right?</p>
+        <p style="margin:0 0 18px;font-size:14.5px;line-height:1.7;color:#B9BAB8">If the coating has marked, the gloss has dropped or water has stopped beading, send a photo and Jay will look at it under the warranty.</p>
+        <a href="./Tygrify Contact.dc.html" style="display:inline-block;border:1px solid rgba(185,186,184,.34);color:#B9BAB8;padding:14px 20px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap" style-hover="border-color:#F24405;color:#F24405">Raise a warranty claim</a>
       </div>
       <div style="border:1px solid rgba(185,186,184,.16);background:#111;padding:22px">
-        <p style="margin:0 0 12px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#595959">Need another price?</p>
-        <p style="margin:0 0 18px;font-size:14.5px;line-height:1.65;color:#B9BAB8">Photos and a couple of details are enough. Most quotes come back the same day.</p>
-        <a href="./Tygrify Account Get a Quote.dc.html" style="display:inline-block;background:#F24405;color:#fff;padding:14px 20px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">Get a quote</a>
+        <p style="margin:0 0 12px;font-size:11.5px;letter-spacing:.18em;text-transform:uppercase;color:#595959">Happy with the work?</p>
+        <p style="margin:0 0 18px;font-size:14.5px;line-height:1.7;color:#B9BAB8">Reviews are most of how people find the shop. Two lines is plenty, and it helps more than you would think.</p>
+        <a href="./Tygrify Reviews.dc.html" style="display:inline-block;background:#F24405;color:#fff;padding:14px 20px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">Leave a review</a>
       </div>
     </section>
 
@@ -209,44 +272,29 @@ input,button{font-family:'Public Sans',system-ui,sans-serif}
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:1100}}">
-const QUOTES = [
-  {
-    ref: 'TG-2041', title: 'Rear quarter and bumper repair', vehicle: 'Mini Cooper S - RK21 OZP',
-    price: '£420 - £560', priceNote: 'Range, confirmed on the ramp',
-    status: 'Awaiting you', state: 'open', timing: 'Sent 4 September - valid until 18 September',
-    linkLabel: 'Accept or decline'
-  },
-  {
-    ref: 'TG-1926', title: 'Ceramic coating - two stage polish', vehicle: 'Mini Cooper S - RK21 OZP',
-    price: '£540', priceNote: 'Fixed price, paid',
-    status: 'Completed', state: 'done', timing: 'Accepted 12 April - work finished 18 April',
-    linkLabel: 'View quote'
-  },
-  {
-    ref: 'TG-1783', title: 'Alloy wheel refurbishment - four wheels', vehicle: 'Seat Ibiza - KP18 VBN',
-    price: '£360', priceNote: 'Fixed price, paid',
-    status: 'Completed', state: 'done', timing: 'Accepted 2 March - work finished 9 March',
-    linkLabel: 'View quote'
-  },
-  {
-    ref: 'TG-1650', title: 'Front bumper scuff - SMART repair', vehicle: 'Seat Ibiza - KP18 VBN',
-    price: '£180', priceNote: 'Fixed price',
-    status: 'Expired', state: 'expired', timing: 'Sent 12 December 2025 - expired 26 December',
-    linkLabel: 'Ask again'
-  }
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:1200}}">
+const META = [
+  { label: 'Dropped off', value: 'Tue 14 Apr' },
+  { label: 'Collected', value: 'Sat 18 Apr' },
+  { label: 'Time in shop', value: 'Four days' },
+  { label: 'Paid', value: '18 Apr by card' }
 ];
 
-const STYLES = {
-  open: { border: 'rgba(242,68,5,.5)', bg: 'linear-gradient(180deg,rgba(242,68,5,.1),rgba(242,68,5,.01))', chip: '#F24405', chipBorder: 'rgba(242,68,5,.5)', link: '#F24405' },
-  done: { border: 'rgba(185,186,184,.16)', bg: '#111', chip: '#B9BAB8', chipBorder: 'rgba(185,186,184,.28)', link: '#B9BAB8' },
-  expired: { border: 'rgba(185,186,184,.16)', bg: '#0F0F0F', chip: '#595959', chipBorder: 'rgba(185,186,184,.22)', link: '#B9BAB8' }
-};
+const LINES = [
+  { title: 'Decontamination wash and clay bar', detail: 'Snow foam, iron fallout remover and a full clay to get the paint clean before any machine work.', price: '£72' },
+  { title: 'Two stage machine polish', detail: 'Cut and refine to take out wash swirls and light scratches on every panel. Deeper marks on the rear bumper reduced, not removed.', price: '£252' },
+  { title: 'Ceramic coating - paint, glass and wheels', detail: 'Nine year coating on the paint, glass coating on the screen and side windows, wheel faces coated.', price: '£216' }
+];
 
-const FILTERS = ['All', 'Awaiting you', 'Completed', 'Expired'];
+const PHOTOS = [
+  { id: 'b1841-1', placeholder: 'Before - bonnet swirls' },
+  { id: 'b1841-2', placeholder: 'After - bonnet polished' },
+  { id: 'b1841-3', placeholder: 'Water beading on the roof' },
+  { id: 'b1841-4', placeholder: 'Coated wheel face' }
+];
 
 class Component extends DCLogic {
-  state = { navDrawer: false, navMenu: false, narrow: false, filter: 'All' };
+  state = { navDrawer: false, navMenu: false, narrow: false };
   componentDidMount() {
     this._r = () => {
       const dw = window.innerWidth < 760;
@@ -261,8 +309,6 @@ class Component extends DCLogic {
     let cookieChoice = this.state.cookieChoiceOverride || null;
     if (!cookieChoice) { try { cookieChoice = localStorage.getItem('tygrifyCookieConsent'); } catch (e) {} }
     const st = this.state;
-    const rows = QUOTES.filter(q => st.filter === 'All' || q.status === st.filter);
-    const openCount = QUOTES.filter(q => q.state === 'open').length;
     return {
       cookieBannerDisplay: cookieChoice ? 'none' : 'flex',
       waBottom: cookieChoice ? '20px' : '92px',
@@ -280,29 +326,12 @@ class Component extends DCLogic {
       closeNavMenu: () => this.setState({ navMenu: false }),
       siteLinkDisplay: st.narrow ? 'none' : 'inline',
       twoColumns: st.narrow ? '1fr' : 'repeat(2,minmax(0,1fr))',
+      metaColumns: st.narrow ? '1fr 1fr' : 'repeat(4,minmax(0,1fr))',
       priceAlign: st.narrow ? 'left' : 'right',
-      headline: openCount === 1
-        ? 'One estimate is waiting on a decision from you. Everything Jay has priced for you is kept here.'
-        : 'Everything Jay has priced for you is kept here, open or not.',
-      filters: FILTERS.map(f => {
-        const on = st.filter === f;
-        return {
-          label: f,
-          bg: on ? '#F24405' : 'transparent',
-          border: on ? '#F24405' : 'rgba(185,186,184,.3)',
-          color: on ? '#fff' : '#B9BAB8',
-          pick: () => this.setState({ filter: f })
-        };
-      }),
-      quotes: rows.map(q => {
-        const s = STYLES[q.state];
-        return {
-          ref: q.ref, title: q.title, vehicle: q.vehicle, price: q.price, priceNote: q.priceNote,
-          status: q.status, timing: q.timing, linkLabel: q.linkLabel,
-          border: s.border, bg: s.bg, chipColor: s.chip, chipBorder: s.chipBorder, linkColor: s.link
-        };
-      }),
-      emptyDisplay: rows.length === 0 ? 'block' : 'none'
+      meta: META,
+      lines: LINES,
+      photoColumns: st.narrow ? '1fr 1fr' : 'repeat(4,minmax(0,1fr))',
+      photos: PHOTOS
     };
   }
 }
