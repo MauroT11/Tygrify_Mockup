@@ -26,6 +26,8 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
 .tg-map{aspect-ratio:3/2}
 @media (max-width:640px){.tg-map{aspect-ratio:4/5}}
 @media (max-width:640px){.tg-hero-content{padding-bottom:120px!important}}
+@media (max-width:640px){#tg-hero::part(image){left:30%!important;transform:translate(-30%,-50%)!important;object-position:30% center}}
+@media (max-width:519px){.tg-trust>*{border-right:none!important;padding:26px 0!important}.tg-trust>*:not(:last-child){border-bottom:1px solid rgba(185,186,184,.16)}}
 </style>
 </helmet>
 
@@ -110,7 +112,7 @@ a,button{transition:color .18s ease,background-color .18s ease,border-color .18s
   </section>
 
   <div style="border-top:1px solid rgba(185,186,184,.16);border-bottom:1px solid rgba(185,186,184,.16);background:#101010">
-    <div style="max-width:1200px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))">
+    <div class="tg-trust" style="max-width:1200px;margin:0 auto;padding:0 20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr))">
       <div style="padding:26px 26px 26px 0;border-right:1px solid rgba(185,186,184,.12);text-align:{{ trustAlign }}">
         <p style="margin:0 0 6px;font-family:'Bebas Neue',sans-serif;font-size:26px;letter-spacing:.04em">Same-day response</p>
         <p style="margin:0;font-size:14px;color:#595959;line-height:1.5">Quote requests answered the same day, Monday to Saturday.</p>

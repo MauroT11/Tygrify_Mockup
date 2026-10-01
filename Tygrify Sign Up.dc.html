@@ -82,11 +82,15 @@ input:focus{outline:none;border-color:#F24405}
     <div>
       <p style="margin:0 0 14px;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#F24405">My Garage</p>
       <h1 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(40px,7vw,76px);line-height:.94;max-width:16ch">Create your account</h1>
-      <p style="margin:20px 0 0;max-width:46ch;font-size:clamp(16px,2.2vw,18px);line-height:1.65;color:#B9BAB8;text-wrap:pretty">Add your car once and every quote, booking and job we do on it stays together in one place.</p>
+      <p style="margin:20px 0 0;max-width:46ch;font-size:clamp(16px,2.2vw,18px);line-height:1.65;color:#B9BAB8;text-wrap:pretty">Add your car once and every quote, booking and job we do on it stays together in one place. Every job also earns <a href="./Tygrify Rewards.dc.html" style="color:#F24405">Tygrify XP</a>: 1.5 points for every £1 you spend.</p>
       <div style="display:{{ asideDisplay }};flex-direction:column;gap:14px;margin-top:34px;border-top:1px solid rgba(185,186,184,.16);padding-top:26px;max-width:44ch">
         <div style="display:flex;gap:12px;align-items:flex-start">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F24405" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M4 12.5l5 5L20 6.5"/></svg>
           <p style="margin:0;font-size:14.5px;line-height:1.6;color:#B9BAB8">Free to set up, and no obligation to book anything.</p>
+        </div>
+        <div style="display:flex;gap:12px;align-items:flex-start">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F24405" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M4 12.5l5 5L20 6.5"/></svg>
+          <p style="margin:0;font-size:14.5px;line-height:1.6;color:#B9BAB8">Joins you to <a href="./Tygrify Rewards.dc.html" style="color:#F24405">Tygrify XP</a> automatically. Nine levels, each with a real reward.</p>
         </div>
         <div style="display:flex;gap:12px;align-items:flex-start">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#F24405" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px"><path d="M4 12.5l5 5L20 6.5"/></svg>
@@ -124,6 +128,14 @@ input:focus{outline:none;border-color:#F24405}
             <input type="{{ pwType }}" placeholder="At least 8 characters" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:14px 78px 14px 15px;width:100%">
             <button type="button" onClick="{{ togglePw }}" style="position:absolute;right:6px;top:50%;transform:translateY(-50%);background:none;border:none;color:#B9BAB8;font-family:'Public Sans',sans-serif;font-size:12px;letter-spacing:.1em;text-transform:uppercase;white-space:nowrap;cursor:pointer;padding:8px" style-hover="color:#F24405">{{ pwLabel }}</button>
           </span>
+        </label>
+
+        <label style="display:flex;flex-direction:column;gap:8px">
+          <span style="display:flex;justify-content:space-between;align-items:baseline;gap:12px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#B9BAB8">Referral code
+            <span style="font-size:12px;letter-spacing:.02em;text-transform:none;color:#595959">Optional</span>
+          </span>
+          <input type="text" placeholder="From a friend's account" style="background:#0D0D0D;border:1px solid rgba(185,186,184,.24);border-radius:2px;color:#fff;font-family:'Public Sans',sans-serif;font-size:15px;padding:14px 15px;width:100%">
+          <span style="font-size:13px;line-height:1.5;color:#595959">Got one? You start with 200 bonus points.</span>
         </label>
 
         <label style="display:flex;align-items:flex-start;gap:10px;font-size:13.5px;line-height:1.6;color:#B9BAB8;cursor:pointer">

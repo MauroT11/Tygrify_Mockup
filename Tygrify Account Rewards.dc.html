@@ -35,9 +35,9 @@ input,button{font-family:'Public Sans',system-ui,sans-serif}
       <span style="display:{{ garageBadgeDisplay }};font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B9BAB8;border:1px solid rgba(185,186,184,.3);border-radius:999px;padding:3px 8px;flex:none;white-space:nowrap">My garage</span>
       <div style="margin-left:auto;display:{{ headerActionsDisplay }};align-items:center;gap:14px;flex:none">
         <a href="./Tygrify Sign In.dc.html" style="display:{{ siteLinkDisplay }};font-size:13.5px;color:#B9BAB8">Sign out</a>
-        <a href="./Tygrify Account Get a Quote.dc.html" style="background:#F24405;color:#fff;padding:8px 14px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap">Quote</a>
+        <a href="./Tygrify Account Get a Quote.dc.html" style="display:inline-flex;align-items:center;height:{{ quoteBtnHeight }};background:#F24405;color:#fff;padding:0 14px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap">Quote</a>
       </div>
-      <button type="button" onClick="{{ toggleNavMenu }}" aria-label="Open menu" style="display:{{ navBurgerDisplay }};margin-left:auto;background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;flex:none">
+      <button type="button" onClick="{{ toggleNavMenu }}" aria-label="Open menu" style="display:{{ navBurgerDisplay }};background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;flex:none">
         <span style="display:block;width:17px;height:1.5px;background:#fff;box-shadow:0 -5px 0 #fff,0 5px 0 #fff"></span>
       </button>
     </div>
@@ -104,10 +104,10 @@ input,button{font-family:'Public Sans',system-ui,sans-serif}
 
     <section style="margin-top:clamp(34px,5vw,50px)">
       <h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(24px,3.6vw,32px);letter-spacing:.03em">Your levels</h2>
-      <div style="margin-top:16px;display:grid;gap:clamp(12px,1.8vw,16px);grid-template-columns:{{ twoColumns }}">
+      <div style="margin-top:16px;display:grid;gap:{{ cardGap }};grid-template-columns:{{ rewardColumns }}">
         <sc-for list="{{ tiers }}" as="tier" hint-placeholder-count="3">
-          <div style="border:1px solid {{ tier.borderColor }};background:{{ tier.bg }};padding:clamp(20px,2.6vw,26px);display:flex;flex-direction:column;gap:14px;min-width:0">
-            <div style="display:flex;align-items:center;justify-content:space-between;gap:12px">
+          <div style="border:1px solid {{ tier.borderColor }};background:{{ tier.bg }};padding:{{ cardPad }};display:flex;flex-direction:column;gap:14px;min-width:0">
+            <div style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:6px 12px">
               <span style="display:flex;align-items:center;gap:8px;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:{{ tier.statusColor }}">
                 <sc-if value="{{ tier.unlocked }}" hint-placeholder-val="{{ false }}">
                   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#F24405" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 12 9 17 20 6"/></svg>
@@ -121,11 +121,11 @@ input,button{font-family:'Public Sans',system-ui,sans-serif}
             </div>
             <div>
               <p style="margin:0 0 4px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#F24405">Level {{ tier.level }} - {{ tier.levelName }}</p>
-              <p style="margin:0 0 6px;font-size:19px;font-weight:600;line-height:1.3;color:{{ tier.titleColor }}">{{ tier.title }}</p>
+              <p style="margin:0 0 6px;font-size:{{ cardTitleSize }};font-weight:600;line-height:1.3;color:{{ tier.titleColor }}">{{ tier.title }}</p>
               <p style="margin:0;font-size:13.5px;line-height:1.55;color:#B9BAB8">{{ tier.desc }}</p>
             </div>
             <sc-if value="{{ tier.showClaim }}" hint-placeholder-val="{{ false }}">
-              <a href="https://wa.me/447722102736" target="_blank" rel="noreferrer" style="align-self:flex-start;background:#F24405;color:#fff;padding:12px 18px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">Claim this reward</a>
+              <a href="{{ tier.claimHref }}" target="_blank" rel="noreferrer" style="align-self:{{ claimAlign }};text-align:center;margin-top:auto;background:#F24405;color:#fff;padding:12px {{ claimPadX }};border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">{{ claimLabel }}</a>
             </sc-if>
             <sc-if value="{{ tier.showVipNote }}" hint-placeholder-val="{{ false }}">
               <p style="margin:0;font-size:12.5px;color:#B9BAB8">See your tokens below.</p>
@@ -145,25 +145,25 @@ input,button{font-family:'Public Sans',system-ui,sans-serif}
 
     <section style="margin-top:clamp(34px,5vw,50px);display:{{ tokensSectionDisplay }}">
       <h2 style="margin:0;font-family:'Bebas Neue',sans-serif;font-weight:400;font-size:clamp(24px,3.6vw,32px);letter-spacing:.03em">Your tokens</h2>
-      <p style="margin:12px 0 0;font-size:14px;line-height:1.6;color:#B9BAB8;max-width:56ch">You are Level 9 - TYGRIFY VIP. From here, every 250 XP earns a token instead of a new level. Save them up or spend them as you go.</p>
+      <p style="margin:12px 0 0;font-size:14px;line-height:1.6;color:#B9BAB8;max-width:56ch">{{ tokensIntro }}</p>
 
       <div style="margin-top:16px;border:1px solid #F24405;background:linear-gradient(180deg,rgba(242,68,5,.13),rgba(242,68,5,.02));padding:clamp(20px,2.6vw,26px)">
         <div style="display:flex;align-items:flex-end;gap:14px;flex-wrap:wrap">
           <span style="font-family:'Bebas Neue',sans-serif;font-size:clamp(40px,6vw,56px);line-height:.85">{{ tokenCount }}</span>
-          <span style="font-size:14px;color:#B9BAB8;padding-bottom:6px">tokens available</span>
+          <span style="font-size:14px;color:#B9BAB8;padding-bottom:6px">{{ tokenCountLabel }}</span>
         </div>
         <div style="height:8px;background:rgba(185,186,184,.16);border-radius:999px;overflow:hidden;margin:16px 0 10px">
           <div style="height:100%;width:{{ tokenPercent }};background:#F24405;border-radius:999px"></div>
         </div>
-        <p style="margin:0;font-size:13px;color:#B9BAB8">{{ xpToNextToken }} XP to your next token.</p>
+        <p style="margin:0;font-size:13px;color:#B9BAB8">{{ tokenProgressLabel }}</p>
       </div>
 
-      <div style="margin-top:16px;display:grid;gap:clamp(12px,1.8vw,16px);grid-template-columns:{{ twoColumns }}">
-        <div style="border:1px solid {{ token1Border }};background:{{ token1Bg }};padding:clamp(20px,2.6vw,26px);display:flex;flex-direction:column;gap:10px">
+      <div style="margin-top:16px;display:grid;gap:{{ cardGap }};grid-template-columns:{{ rewardColumns }}">
+        <div style="border:1px solid {{ token1Border }};background:{{ token1Bg }};padding:{{ cardPad }};display:flex;flex-direction:column;gap:10px;min-width:0">
           <span style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:{{ token1Color }}">{{ token1Status }} - 1 token</span>
-          <p style="margin:0;font-size:19px;font-weight:600;color:{{ token1Color2 }}">Free car wash</p>
+          <p style="margin:0;font-size:{{ cardTitleSize }};font-weight:600;color:{{ token1Color2 }}">Free car wash</p>
         </div>
-        <div style="border:1px solid {{ token2Border }};background:{{ token2Bg }};padding:clamp(20px,2.6vw,26px);display:flex;flex-direction:column;gap:10px">
+        <div style="border:1px solid {{ token2Border }};background:{{ token2Bg }};padding:{{ cardPad }};display:flex;flex-direction:column;gap:10px;min-width:0">
           <span style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:{{ token2Color }}">{{ token2Status }} - 2 tokens, pick one</span>
           <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.7;color:#B9BAB8">
             <li>£50 off</li>
@@ -171,7 +171,7 @@ input,button{font-family:'Public Sans',system-ui,sans-serif}
             <li>£100 off a Can Phantom immobiliser or ScorpionTrack Tracker</li>
           </ul>
         </div>
-        <div style="border:1px solid {{ token3Border }};background:{{ token3Bg }};padding:clamp(20px,2.6vw,26px);display:flex;flex-direction:column;gap:10px">
+        <div style="border:1px solid {{ token3Border }};background:{{ token3Bg }};padding:{{ cardPad }};display:flex;flex-direction:column;gap:10px;min-width:0">
           <span style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:{{ token3Color }}">{{ token3Status }} - 3 tokens, pick one</span>
           <ul style="margin:0;padding-left:18px;font-size:13.5px;line-height:1.7;color:#B9BAB8">
             <li>Free SMART Repair panel up to £100</li>
@@ -180,8 +180,8 @@ input,button{font-family:'Public Sans',system-ui,sans-serif}
           </ul>
         </div>
       </div>
-      <p style="margin:16px 0 0;font-size:13px;line-height:1.6;color:#595959;max-width:56ch">To spend tokens, message us on WhatsApp with what you would like and we will apply it to your next job.</p>
-      <a href="https://wa.me/447722102736" target="_blank" rel="noreferrer" style="display:inline-block;margin-top:14px;background:#F24405;color:#fff;padding:12px 18px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">Redeem tokens</a>
+      <p style="margin:16px 0 0;font-size:13px;line-height:1.6;color:#595959;max-width:56ch">Tokens do not expire and keep stacking. {{ tokenSpendNote }}</p>
+      <a href="https://wa.me/447722102736" target="_blank" rel="noreferrer" style="display:{{ redeemDisplay }};margin-top:14px;background:#F24405;color:#fff;padding:12px 18px;border-radius:2px;font-weight:700;font-size:12.5px;letter-spacing:.05em;text-transform:uppercase;white-space:nowrap">Redeem tokens</a>
     </section>
 
     <section style="margin-top:clamp(34px,5vw,50px)">
@@ -276,13 +276,15 @@ input,button{font-family:'Public Sans',system-ui,sans-serif}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1000,&quot;height&quot;:1300},&quot;loyaltyPoints&quot;:{&quot;editor&quot;:&quot;int&quot;,&quot;default&quot;:900,&quot;min&quot;:0,&quot;max&quot;:8000,&quot;step&quot;:25,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Tygrify XP&quot;}}">
 class Component extends DCLogic {
-  state = { navDrawer: false, navMenu: false, narrow: false };
+  state = { navDrawer: false, navMenu: false, narrow: false, mid: false };
   componentDidMount() {
     this._r = () => {
       const dw = window.innerWidth < 760;
       if (dw !== this.state.navDrawer) this.setState({ navDrawer: dw, navMenu: false });
       const n = window.innerWidth < 700;
       if (n !== this.state.narrow) this.setState({ narrow: n });
+      const md = window.innerWidth >= 760 && window.innerWidth < 1000;
+      if (md !== this.state.mid) this.setState({ mid: md });
     };
     this._r();
     window.addEventListener('resize', this._r);
@@ -312,6 +314,7 @@ class Component extends DCLogic {
       return {
         level: i + 1,
         levelName: t.name,
+        claimHref: 'https://wa.me/447722102736?text=' + encodeURIComponent('Hi Tygrify! I have reached Level ' + (i + 1) + ' - ' + t.name + ' on Tygrify XP and would like to claim my reward: ' + t.title + '. Could you add it to my next job, please?'),
         title: t.title,
         desc: t.desc,
         points: t.points,
@@ -357,10 +360,16 @@ class Component extends DCLogic {
       currentLevelName: current ? current.name : 'New customer',
       loyaltyPercent: next ? (Math.min(100, Math.max(0, Math.round((pts - currentPoints) / Math.max(1, next.points - currentPoints) * 100))) + '%') : (Math.round(xpIntoToken / 250 * 100) + '%'),
       loyaltyNextLabel: next ? ((next.points - pts) + ' XP to Level ' + (currentIndex + 2) + ' ' + next.name + '.') : (xpToNextToken + ' XP to your next token - you are Level 9, TYGRIFY VIP.'),
-      tokensSectionDisplay: isVip ? 'block' : 'none',
+      tokensSectionDisplay: 'block',
+      tokensIntro: isVip
+        ? 'You are Level 9 - TYGRIFY VIP. From here, every 250 XP earns a token instead of a new level. Save them up or spend them as you go.'
+        : 'Once you reach Level 9 - TYGRIFY VIP at 6,850 XP, every 250 XP after that earns a token. Spend them on the rewards below, or save up for a bigger one.',
       tokenCount,
-      tokenPercent: Math.round(xpIntoToken / 250 * 100) + '%',
-      xpToNextToken,
+      tokenCountLabel: isVip ? (tokenCount === 1 ? 'token available' : 'tokens available') : 'tokens - unlocks at Level 9',
+      tokenPercent: isVip ? Math.round(xpIntoToken / 250 * 100) + '%' : Math.min(100, Math.round(pts / 6850 * 100)) + '%',
+      tokenProgressLabel: isVip ? xpToNextToken + ' XP to your next token.' : (6850 - pts).toLocaleString('en-GB') + ' XP to Level 9 - TYGRIFY VIP, where tokens start.',
+      tokenSpendNote: tokenCount > 0 ? 'To spend them, message us on WhatsApp with what you would like and we will apply it to your next job.' : 'When you have some to spend, message us on WhatsApp and we will apply them to your next job.',
+      redeemDisplay: tokenCount > 0 ? 'inline-block' : 'none',
       token1Border: t1.border, token1Bg: t1.bg, token1Color: t1.color, token1Color2: t1.color2, token1Status: t1.status,
       token2Border: t2.border, token2Bg: t2.bg, token2Color: t2.color, token2Color2: t2.color2, token2Status: t2.status,
       token3Border: t3.border, token3Bg: t3.bg, token3Color: t3.color, token3Color2: t3.color2, token3Status: t3.status,
@@ -371,12 +380,20 @@ class Component extends DCLogic {
       sidebarNavDisplay: st.navDrawer ? 'none' : 'flex',
       navBurgerDisplay: st.navDrawer ? 'flex' : 'none',
       garageBadgeDisplay: st.navDrawer ? 'none' : 'inline-block',
-      headerActionsDisplay: st.navDrawer ? 'none' : 'flex',
+      headerActionsDisplay: 'flex',
+      quoteBtnHeight: st.navDrawer ? '42px' : '32px',
       navMenuDisplay: st.navDrawer && st.navMenu ? 'flex' : 'none',
       toggleNavMenu: () => this.setState(s => ({ navMenu: !s.navMenu })),
       closeNavMenu: () => this.setState({ navMenu: false }),
-      siteLinkDisplay: st.narrow ? 'none' : 'inline',
-      twoColumns: st.narrow ? '1fr' : 'repeat(2,minmax(0,1fr))',
+      siteLinkDisplay: st.narrow || st.navDrawer ? 'none' : 'inline',
+      rewardColumns: st.narrow || st.mid ? 'repeat(2,minmax(0,1fr))' : 'repeat(3,minmax(0,1fr))',
+      cardGap: st.narrow ? '10px' : 'clamp(12px,1.8vw,16px)',
+      cardPad: st.narrow ? '16px 14px' : 'clamp(20px,2.6vw,26px)',
+      cardTitleSize: st.narrow ? '16px' : '19px',
+      claimAlign: st.narrow ? 'stretch' : 'flex-start',
+      claimPadX: st.narrow ? '10px' : '18px',
+      claimLabel: st.narrow ? 'Claim' : 'Claim this reward',
+      twoColumns: st.narrow ? 'minmax(0,1fr)' : 'repeat(2,minmax(0,1fr))',
       tiers,
       earnPoints: [
         { label: '1.5 points for every £1 spent on repairs, detailing or bodywork' },

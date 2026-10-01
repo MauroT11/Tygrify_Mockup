@@ -35,9 +35,9 @@ input:focus{outline:1px solid #F24405}
       <span style="display:{{ garageBadgeDisplay }};font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#B9BAB8;border:1px solid rgba(185,186,184,.3);border-radius:999px;padding:3px 8px;flex:none;white-space:nowrap">My garage</span>
       <div style="margin-left:auto;display:{{ headerActionsDisplay }};align-items:center;gap:14px;flex:none">
         <a href="./Tygrify Sign In.dc.html" style="display:{{ siteLinkDisplay }};font-size:13.5px;color:#B9BAB8">Sign out</a>
-        <a href="./Tygrify Account Get a Quote.dc.html" style="background:#F24405;color:#fff;padding:8px 14px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap">Quote</a>
+        <a href="./Tygrify Account Get a Quote.dc.html" style="display:inline-flex;align-items:center;height:{{ quoteBtnHeight }};background:#F24405;color:#fff;padding:0 14px;border-radius:2px;font-weight:700;font-size:12px;letter-spacing:.04em;text-transform:uppercase;white-space:nowrap">Quote</a>
       </div>
-      <button type="button" onClick="{{ toggleNavMenu }}" aria-label="Open menu" style="display:{{ navBurgerDisplay }};margin-left:auto;background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;flex:none">
+      <button type="button" onClick="{{ toggleNavMenu }}" aria-label="Open menu" style="display:{{ navBurgerDisplay }};background:none;border:1px solid rgba(185,186,184,.3);color:#fff;border-radius:2px;width:42px;height:42px;align-items:center;justify-content:center;cursor:pointer;flex:none">
         <span style="display:block;width:17px;height:1.5px;background:#fff;box-shadow:0 -5px 0 #fff,0 5px 0 #fff"></span>
       </button>
     </div>
@@ -297,11 +297,12 @@ class Component extends DCLogic {
       sidebarNavDisplay: st.navDrawer ? 'none' : 'flex',
       navBurgerDisplay: st.navDrawer ? 'flex' : 'none',
       garageBadgeDisplay: st.navDrawer ? 'none' : 'inline-block',
-      headerActionsDisplay: st.navDrawer ? 'none' : 'flex',
+      headerActionsDisplay: 'flex',
+      quoteBtnHeight: st.navDrawer ? '42px' : '32px',
       navMenuDisplay: st.navDrawer && st.navMenu ? 'flex' : 'none',
       toggleNavMenu: () => this.setState(s => ({ navMenu: !s.navMenu })),
       closeNavMenu: () => this.setState({ navMenu: false }),
-      siteLinkDisplay: st.narrow ? 'none' : 'inline',
+      siteLinkDisplay: st.narrow || st.navDrawer ? 'none' : 'inline',
       twoColumns: st.narrow ? '1fr' : 'repeat(2,minmax(0,1fr))',
       fields: FIELDS.map(f => ({
         label: f.label,
